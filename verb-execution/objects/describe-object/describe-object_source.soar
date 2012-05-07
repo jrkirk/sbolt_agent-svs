@@ -1,0 +1,9 @@
+
+
+source elaborations.soar
+
+source preferences.soar
+
+source lookup-word.soar
+
+source complete-describe-object.soar

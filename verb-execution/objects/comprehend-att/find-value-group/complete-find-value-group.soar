@@ -1,0 +1,17 @@
+sp {propose*complete-find-value-group
+   (state <s> ^name find-value-group)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name complete-find-value-group
+        ^category object-processing)
+}
+
+sp {apply*complete-find-value-group
+   (state <s> ^name find-value-group
+              ^operator.name complete-find-value-group
+              ^superstate <ss>
+              ^att-type <att-type>
+              ^value <val>)
+-->
+   (<ss> ^processed.<att-type> <val>)
+}

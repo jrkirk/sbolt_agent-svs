@@ -1,0 +1,11 @@
+sp {propose*object-message
+   (state <s> ^topstate <s>
+              ^interaction.stack.segment.purpose <p>)
+   (<p> ^type object-message
+        ^parameters.object <obj>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name object-message
+        ^category object-processing
+        ^object <obj>)
+}

@@ -1,0 +1,81 @@
+# Adds a segment to the interaction stack to deal with the which question
+
+sp {propose*push-how-many-question
+   (state <s> ^topstate <s>
+              ^instructor-message <msg>)
+   (<msg> ^type object-question
+          ^information.question-word how-many)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name push-how-many-question
+        ^category communication)
+}
+
+sp {apply*push-how-many-question
+   (state <s> ^operator.name push-how-many-question
+              ^instructor-message <msg>)
+   (<msg> ^information.object <desc>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type how-many-question
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<sat> ^dialog-event count-response)
+   (<params> ^description <desc>)
+}
+
+# Returns points to the described object
+
+sp {how-many-question*propose*count-objects
+   (state <s> ^topstate <s>
+             -^instructor-message <msg>
+              ^interaction.stack.segment.purpose <p>)
+   (<p> ^type how-many-question)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name count-objects
+        ^category object-processing)
+}
+
+sp {how-many-question*count-objects*elaborate*word
+   (state <s> ^operator <o> +
+              ^interaction.stack.segment.purpose <p>)
+   (<p> ^type how-many-question
+        ^parameters.description.word {<word> <> object })
+   (<o> ^name count-objects)
+-->
+   (<o> ^word <word>)
+}
+
+sp {how-many-question*count-objects*elaborate*adjective
+   (state <s> ^operator <o> +
+              ^interaction.stack.segment.purpose <p>)
+   (<p> ^type how-many-question
+        ^parameters.description.adjective <word>)
+   (<o> ^name count-objects)
+-->
+   (<o> ^word <word>)
+}
+
+sp {how-many-question*apply*count-objects
+   (state <s> ^operator <o>
+              ^interaction.stack.segment.purpose.type how-many-question
+              ^status <status>)
+   (<o> ^name count-objects
+        ^match-count <m>)
+-->
+   (<status> ^performed.dialog-event count-response)
+}
+
+sp {recogition-question*apply*send-message
+   (state <s> ^operator <o>
+              ^io.output-link <out>
+              ^interaction.stack.segment.purpose.type how-many-question)
+   (<o> ^name count-objects
+        ^match-count <count>)
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type count-response
+          ^fields <f>)
+   (<f> ^count <count>)
+}

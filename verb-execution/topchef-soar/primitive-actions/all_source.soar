@@ -1,0 +1,5 @@
+source goto.soar
+source pick-up.soar
+source apply-action.soar
+source wait.soar
+source put-down.soar

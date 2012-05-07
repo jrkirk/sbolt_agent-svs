@@ -1,0 +1,147 @@
+# Proposes learn-val2att when the top segment on the interaction stack has the purpose of learning a value
+# segment.purpose <p>
+# (<p> ^type learn-val2att
+#	   ^parameters.internal <internal-val>
+#	   ^parameters.external <external-val>
+#      ^parameters.attribute <external-att>) !!! OPTIONAL !!!
+  
+# Proposes learn-val2att when the top segment on the interaction stack has the purpose of learning a value
+sp {propose*learn-val2att
+   (state <s> ^topstate <s>
+              ^interaction.stack.segment.purpose <p>)
+   (<p> ^type learn-val2att
+          ^parameters.attribute <external-att>
+          ^parameters.value <external-val>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name learn-val2att
+        ^category object-processing
+        ^attribute <external-att>
+        ^value <external-val>)
+}
+
+
+# Stores the learned value in semantic memory
+sp {apply*learn-val2att*update*smem
+   (state <s> ^operator <o>
+              ^smem.command <smem-cmd>)
+   (<o> ^name learn-val2att
+        ^attribute <external-att>
+        ^value <external-val>)
+-->
+   (<smem-cmd> ^store <val2att>)
+   (<val2att> ^type val2att ^value <external-val> ^attribute <external-att>)
+}
+
+sp {process-message*apply*lookup-att*failure
+   (state <s> ^name process-message
+              ^operator <o>
+              ^current-query.query.value <external-val>
+              ^topstate.object.mapping.att-val-pair <av-pair>)
+   (<o> ^name lookup-att
+        ^internal failure
+        ^external <external-att>)
+   (<av-pair> ^val.external <external-val>
+              ^att <att>)
+-->
+   (<att> ^external <external-att>)
+   (<s> ^internal-att failure)
+}
+
+sp {process-message*apply*lookup-att*success*mark-internal-att
+   (state <s> ^name process-message
+              ^operator <o>
+              ^current-query.query.type type-of-value)
+   (<o> ^name lookup-att
+        ^internal {<internal-att> <> failure}
+        ^external <external-att>)
+-->
+   (<s> ^internal-att <internal-att>)
+}
+
+sp {process-message*type-of-value*propose*comprehend-att
+   (state <s> ^name process-message
+              ^current-query.query.type type-of-value
+              ^internal-att failure
+             -^processed.<att-type> <attribute>
+              ^topstate.object <obj>)
+   (<obj> ^mapping.att-val-pair <av-pair>)
+   (<av-pair> ^att-type {<< internal external >> <att-type>}
+              ^att.<att-type> <attribute>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name comprehend-att
+        ^attribute <attribute>
+        ^type <att-type>)
+}
+
+sp {process-message*apply*lookup-att*success*learn-val
+   (state <s> ^name process-message
+              ^operator <o>
+              ^current-query.query <q>
+              ^topstate.object.mapping <map>)
+   (<q> ^type type-of-value
+        ^value <external-val>)
+   (<o> ^name lookup-att
+        ^internal {<internal-att> <> failure})
+   (<map> ^att-val-pair.val.external <external-val>
+          ^att-val-pair <av-pair>)
+   (<av-pair> ^att.internal <internal-att>
+              ^val.internal <internal-val>)
+-->
+   (<s> ^learned-val <v>)
+   (<v> ^internal <internal-val>
+        ^external <external-val>)
+}
+
+# Removes other queries that ask for the same value
+sp {process-message*apply*process-type-of-value*remove*similar*queries
+   (state <s> ^name process-message
+              ^current-query.query <q>
+              ^superstate <ss>)
+   (<q> ^type type-of-value
+        ^value <val>)
+   (<ss> ^query {<query2> <> <q>})
+   (<query2> ^type type-of-value
+             ^value <val>)
+-->
+   (<ss> ^query <query2> -)
+}
+
+
+# removes other queries asking for the same value
+sp {apply*learn-val*remove*type-of-value
+   (state <s> ^operator <o>
+              ^topstate <top>)
+   (<o> ^name learn-val
+        ^learned-val.internal <external-val>)
+   (<top> ^query {<q> <> <current-query>}
+          ^current-query.query <current-query>)
+   (<q> ^type type-of-value
+        ^value <external-val>)
+-->
+   (<top> ^query <q> -)
+}
+
+# Removes other queries that ask for the same value
+sp {process-message*apply*process-type-of-value*remove*similar*queries
+   (state <s> ^name process-message
+              ^current-query.query <q>
+              ^superstate <ss>)
+   (<q> ^type type-of-value
+        ^value <val>)
+   (<ss> ^query {<query2> <> <q>})
+   (<query2> ^type type-of-value
+             ^value <val>)
+-->
+   (<ss> ^query <query2> -)
+}
+
+
+sp {apply*learn-val2att*mark*satisfied
+   (state <s> ^operator.name learn-val2att
+              ^status <status>)
+-->
+   (<status> ^performed.learning-event val2att)
+}
+              

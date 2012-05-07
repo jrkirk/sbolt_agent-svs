@@ -1,0 +1,64 @@
+### break the operator-tie between all the primitive actions. assign highest preference to the operator that corresponds to the supplied verb command.
+
+sp {prefer*instructed*action*goto
+   (state <s> ^operator <op> +
+   	      ^interaction.stack.segment <top>)
+   (<top> ^originator instructor
+   	  ^purpose <p>)
+   (<p> ^type external-action
+   	^satisfaction <ps>)
+   (<ps> ^action-event <info>)
+   (<info> ^verb.word go
+   	   ^verb.preposition.object.word <loc-name>)
+   (<op> ^name goto
+   	 ^location <loc-name>)
+-->
+   (<s> ^operator <op> >)
+   (<op> ^information <info>)
+}
+
+sp {prefer*instructed*action*pickup
+   (state <s> ^operator <op> +
+   	      ^interaction.stack.segment <top>
+	      ^object <obj>)
+   (<obj> ^shape <obj-name>
+   	  ^id <obj-id>)
+   (<top> ^originator instructor
+   	  ^purpose <p>)
+   (<p> ^type external-action
+   	^satisfaction <ps>)
+   (<ps> ^action-event <info>)
+   (<info> ^verb.word pick
+   	   ^verb.direct-object.word <obj-name>)
+   (<op> ^name pick-up-object
+   	 ^actions.pick-up.object-id <obj-id>)
+-->
+   (<s> ^operator <op> >)
+   (<op> ^information <info>)
+}
+
+sp {prefer*instructed*action*putdown
+   (state <s> ^operator <op> +
+   	      ^interaction.stack.segment <top>)
+   (<top> ^originator instructor
+   	  ^purpose <p>)
+   (<p> ^type external-action
+   	^satisfaction <ps>)
+   (<ps> ^action-event <info>)
+   (<info> ^verb.word put)
+   (<op> ^name put-down)
+-->
+   (<s> ^operator <op> >)
+   (<op> ^information <info>)
+}
+
+sp {write*primitive-action*status*topstate
+   (state <s> ^operator <op>
+   	      ^topstate.status <status>)
+   (<op> ^category primitive-action
+   	 ^information <info>)
+ -->
+   (<status> ^performed.action-event <info>)
+}
+  
+   	     

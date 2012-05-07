@@ -1,0 +1,25 @@
+sp {object-message*elaborate*description
+   (state <s> ^name object-message
+              ^superstate.operator.object.word {<word> <> object})
+-->
+   (<s> ^nounjective.word <word>)
+}
+
+sp {object-message*elaborate*object*pointed
+   	(state <s> ^name object-message
+               ^superstate.operator.object.specifier this
+               ^io.input-link.pointed-object <obj-id>
+               ^topstate.object <obj>)
+    (<obj> ^id <obj-id>)
+-->
+   (<s> ^object <obj>)
+}
+
+sp {object-message*elaborate*object*only-one
+   	(state <s> ^name object-message
+               ^superstate.operator.object.specifier this
+               ^superstate.object <obj>
+              -^superstate.object <> <obj>)
+-->
+    (<s> ^object <obj>)
+}

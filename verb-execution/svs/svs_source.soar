@@ -1,0 +1,18 @@
+source svs-primitives.soar
+
+# currently not supported by the parsing system
+#pushd svs-question
+#source svs-question_source.soar
+#popd
+
+pushd svs-label
+source svs-label_source.soar
+popd
+
+pushd svs-query
+source svs-query_source.soar
+popd
+
+pushd find-relations
+source find-relations_source.soar
+popd

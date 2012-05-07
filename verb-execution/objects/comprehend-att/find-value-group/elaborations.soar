@@ -1,0 +1,111 @@
+# Elaborations used for the find-value-group substate
+
+# Copies the value currently being examined
+sp {find-value-group*elaborate*value
+   (state <s> ^name find-value-group
+              ^superstate.operator.value <val>)
+-->
+   (<s> ^value <val>)
+}
+
+# Copies the attribute information from the superstate
+sp {apply*init-find-value-group*copy*superstate-info
+   (state <s> ^name find-value-group
+              ^superstate.att-to-comp <att>
+              ^superstate.att-type <att-type>)
+-->
+   (<s> ^att-to-comp <att>
+        ^att-type <att-type>)
+}
+
+# Copies the objects with the given att-val pair to the substate
+sp {apply*init-find-value-group*objects
+   (state <s> ^name find-value-group
+		      ^att-to-comp <att>
+		      ^att-type <att-type>
+              ^value <val>
+              ^superstate.object <obj>)
+   (<obj> ^mapping.att-val-pair <av-pair>)
+   (<av-pair> ^att.<att-type> <att>
+              ^val.<att-type> <val>)
+-->
+   (<s> ^object <obj>)
+}
+
+# Creates the common-av-pair structure
+#   If all the objects in the substate share a common attribute-value pair, 
+#   Creates a common-av-pair structure with:
+#		^att <att>
+#		^val <val>
+#		^att-type << internal external >>
+sp {find-value-group*elaborate*common-av-pair
+   (state <s> ^name find-value-group
+              ^object <obj>)
+   (<obj> ^mapping.att-val-pair <av-pair>)
+   (<av-pair> ^att.<att-type> <att>
+              ^val.<att-type> <val>)
+   -{(<s> ^object.mapping.att-val-pair <av-pair2>)
+     (<av-pair2> ^att.<att-type> <att>
+                ^val.<att-type> <> <val>)}
+-->
+   (<s> ^common-av-pair <avp>)
+   (<avp> ^att <att>
+          ^val <val>
+          ^att-type <att-type>)
+}
+
+# Flag if the common-av-pair is a known internal (the mapping to an external attribute is known)
+sp {find-value-group*elaborate*common-av-pair*known*internal
+   (state <s> ^name find-value-group
+              ^common-av-pair <common-av-pair>
+              ^object <obj>)
+   (<common-av-pair> ^att <att>
+                     ^att-type internal)
+   (<obj> ^mapping.att-val-pair.att <attribute>)
+   (<attribute> ^internal <att>
+                ^external <external>)
+-->
+   (<common-av-pair> ^known true)
+}
+
+# Flag if the common-av-pair is a known external (the mapping to an internal attribute is known)
+sp {find-value-group*elaborate*common-av-pair*known*external
+   (state <s> ^name find-value-group
+              ^common-av-pair <common-av-pair>
+              ^object <obj>)
+   (<common-av-pair> ^att <att>
+                     ^att-type external)
+   (<obj> ^mapping.att-val-pair.att <attribute>)
+   (<attribute> ^internal <internal>
+                ^external <att>)
+-->
+   (<common-av-pair> ^known true)
+}
+
+# Flag if the common-av-pair is an unknown internal (the mapping to an external attribute is unknown)
+sp {find-value-group*elaborate*common-av-pair*unknown*internal
+   (state <s> ^name find-value-group
+              ^common-av-pair <common-av-pair>
+              ^object <obj>)
+   (<common-av-pair> ^att <att>
+                     ^att-type internal)
+   (<obj> ^mapping.att-val-pair.att <attribute>)
+   (<attribute> ^internal <att>
+                -^external)
+-->
+   (<common-av-pair> ^known false)
+}
+
+# Flag if the common-av-pair is an unknown external (the mapping to an internal attribute is unknown)
+sp {find-value-group*elaborate*common-av-pair*unknown*external
+   (state <s> ^name find-value-group
+              ^common-av-pair <common-av-pair>
+              ^object <obj>)
+   (<common-av-pair> ^att <att>
+                     ^att-type external)
+   (<obj> ^mapping.att-val-pair.att <attribute>)
+   (<attribute> -^internal
+                ^external <att>)
+-->
+   (<common-av-pair> ^known false)
+}

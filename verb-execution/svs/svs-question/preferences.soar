@@ -1,0 +1,14 @@
+# Orders query in the following way:
+#	shared-att-val > differs-from-group > value-question
+
+sp {prefer*true*over*false*default*svs-question
+   (state <s> ^name svs-questions
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name complete-svs-questions
+         ^type true)
+   (<o2> ^name complete-svs-questions
+         ^type false)
+-->
+   (<s> ^operator <o1> > <o2>)
+}

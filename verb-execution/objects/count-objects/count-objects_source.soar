@@ -1,0 +1,9 @@
+
+
+source find-object.soar
+
+source increment-count.soar
+
+source preferences.soar
+
+source complete-count-objects.soar

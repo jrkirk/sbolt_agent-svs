@@ -1,0 +1,38 @@
+# Finds a category for a given word (built-in)
+# Expected format of the operator
+#   (<s> ^operator <o> + =)
+#   (<o> ^name lookup-smem
+#        ^lookup-type category
+#        ^query <q>
+#        ^desired.category true)
+#   (<q> ^type word2cat ^word <word> ^category c67)
+# Only word is specified
+
+
+# The category is cached in working memory, use it
+sp {object-message*apply*lookup-smem*category*working-mem
+   (state <s> ^name object-message
+              ^operator <o>
+              ^topstate.mappings.word2cat <w2c>)
+   (<o> ^name lookup-smem
+        ^lookup-type category
+        ^query.word <word>)
+   (<w2c> ^<word> <cat>)
+-->
+   (<o> ^result <cat>)
+}
+
+# If this is a new word with an unknown category ask the user
+#sp {object-message*apply*lookup-smem*category*failure*query
+#   (state <s> ^name object-message
+#              ^operator <o>
+#              ^topstate.queries <qs>)
+#   (<o> ^name lookup-smem
+#        ^lookup-type category
+#        ^query.word <word>
+#        ^result failure)
+#-->
+#   (<qs> ^query <q>)
+#   (<q> ^type category-of-word
+#        ^word <word>)
+#}

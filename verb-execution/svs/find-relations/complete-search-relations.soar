@@ -1,0 +1,38 @@
+sp {find-relations*complete-relations-search*true
+   (state <s> ^name find-relations
+              ^obj <id>
+             #-^superstate.relationships
+			  ^relation <r>)
+   (<s> ^relationships <rels>)
+   (<r> ^result true
+       -^result false)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-relations-search
+        ^category svs
+        ^type true)
+   (<rels> ^relations <r>)
+}
+
+sp {find-relations*complete-relations-search*false
+   (state <s> ^name find-relations
+              ^obj <id>
+             #-^superstate.relationships
+			  ^relation <r>)
+   (<r> ^result false)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-relations-search
+        ^type false
+        ^category svs)
+}
+
+sp {find-relations*apply*relations-match
+   (state <s> ^name find-relations
+              ^operator <o>
+              ^superstate <ss>
+              ^relationships <rels>)
+   (<o> ^name complete-relations-search)
+-->
+   (<ss> ^relationships <rels>)
+}

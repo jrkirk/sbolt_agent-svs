@@ -1,0 +1,30 @@
+# Fetch the label for the category-word pair from memory
+sp {find-object*propose*lookup-smem*label
+   (state <s> ^name find-object
+              ^nounjective <nj>)
+   (<nj> ^category {<cat> <> failure}
+          ^word <word>
+         -^label)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name lookup-smem
+        ^category smem
+        ^lookup-type label
+        ^query <q>
+        ^desired.label true)
+   (<q> ^type label-map ^word <word> ^category <cat> ^label <label>)
+}
+
+# Successful retrieval
+sp {find-object*apply*lookup-smem*label*success
+   (state <s> ^name find-object
+              ^operator <o>
+              ^nounjective <nj>)
+   (<o> ^name lookup-smem
+        ^lookup-type label
+        ^query.word <word>
+        ^result {<label> <> failure})
+   (<nj> ^word <word>)
+-->
+   (<nj> ^label <label>)
+}

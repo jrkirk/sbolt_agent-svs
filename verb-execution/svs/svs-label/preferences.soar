@@ -1,0 +1,26 @@
+# Orders query in the following way:
+#	shared-att-val > differs-from-group > value-question
+
+sp {prefer*old*simplify*over*old*default*svs-label
+   (state <s> ^name svs-label
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name complete-svs-label
+         ^type old-simplify)
+   (<o2> ^name complete-svs-label
+         ^type old)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {prefer*new*add*over*false*default*svs-label
+   (state <s> ^name svs-label
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name complete-svs-label
+         ^type new-add)
+   (<o2> ^name complete-svs-label
+         ^type false)
+-->
+   (<s> ^operator <o1> > <o2>)
+}

@@ -1,0 +1,90 @@
+# Adds a segment to the interaction stack to deal with the object question
+
+sp {propose*push-description-request
+   (state <s> ^topstate <s>
+              ^instructor-message <msg>)
+   (<msg> ^type object-question
+          ^information.question-word what
+          ^information.object.specifier this)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name push-description-request
+        ^category communication)
+}
+
+sp {apply*push-description-request
+   (state <s> ^operator.name push-description-request
+              ^instructor-message <msg>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type description-request
+        ^satisfaction <sat>)
+   (<sat> ^action-event describe)
+}
+
+# Describes the pointed-to object (or only object)
+sp {description-request*propose*describe-object
+   (state <s> ^topstate <s>
+             -^instructor-message <msg>
+              ^interaction.stack.segment.purpose <p>)
+   (<p> ^type description-request)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name describe-object
+        ^category object-processing)
+}
+
+sp {describe-object*elaborate*object*pointed
+   	(state <s> ^operator <o> +
+               ^interaction.stack.segment.purpose.type description-request
+               ^io.input-link.pointed-object <obj-id>
+               ^topstate.object <obj>)
+    (<o> ^name describe-object)
+    (<obj> ^id <obj-id>)
+-->
+    (<o> ^object <obj>)
+}
+
+sp {describe-object*elaborate*object*only-one
+   	(state <s> ^operator <o> +
+               ^interaction.stack.segment.purpose.type description-request
+               ^topstate.object <obj>
+              -^topstate.object <> <obj>)
+    (<o> ^name describe-object)
+-->
+    (<o> ^object <obj>)
+}
+
+sp {description-request*apply*describe-object*mark-performed
+   (state <s> ^operator <o>
+              ^interaction.stack.segment.purpose.type description-request
+              ^status <status>)
+   (<o> ^name describe-object
+        ^description <desc>)
+-->
+   (<status> ^performed.action-event describe)
+}
+
+sp {description-request*apply*describe-object*send-message
+   (state <s> ^operator <o>
+              ^interaction.stack.segment.purpose.type description-request
+              ^io.output-link <out>)
+   (<o> ^name describe-object
+        ^description {<desc> <> failure})
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type describe-object
+          ^fields.object <desc>)
+}
+
+sp {descriptoin-request*apply*describe-object*no-object
+   (state <s> ^operator <o>
+              ^interaction.stack.segment.purpose.type description-request
+              ^io.output-link <out>)
+   (<o> ^name describe-object
+        ^description failure)
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type no-object
+          ^fields <f>)
+}

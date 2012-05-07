@@ -1,0 +1,15 @@
+pushd object-message
+source object-message_source.soar
+popd
+
+source copy-message.soar
+
+source description-request.soar
+
+source category-response.soar
+
+source which-question.soar
+
+source property-question.soar
+
+source how-many-question.soar

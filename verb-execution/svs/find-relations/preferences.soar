@@ -1,0 +1,12 @@
+
+sp {prefer*false*over*true*find-relations
+   (state <s> ^name find-relations
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name complete-relations-search
+         ^type false)
+   (<o2> ^name complete-relations-search
+         ^type true)
+-->
+   (<s> ^operator <o1> > <o2>)
+}

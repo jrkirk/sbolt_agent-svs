@@ -1,0 +1,4 @@
+source propose*svs-question.soar
+source query-svs.soar
+source preferences.soar
+source complete-svs-question.soar

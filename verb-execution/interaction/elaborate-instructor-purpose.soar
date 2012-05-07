@@ -1,0 +1,31 @@
+### the agent uses background knowledge of interactive dialog to assign purpose to instructor-messages.
+
+
+## case 1 verb-commands: the purpose of the instructor is for the agent to act the command in the environment.
+
+ sp {elaborate*instructor-message*purpose*case1
+    (state <s> ^topstate <s>
+	       ^instructor-message <m>)
+    (<m> ^type verb-command
+    	 ^information <info>)
+ -->
+    (<m> ^purpose <p>)
+    (<p> ^type external-action
+    	 ^satisfaction <sat>)
+    (<sat> ^action-event <info>
+    	   ^learning-event explanation)
+ }
+
+
+ ### case 2 indication of a successful completion: the purpose of the instructor is to indicate that the current action being pursued is successfully completed, and hence an explanation of that composite operator is in order
+
+ sp {elaborate*instructor-message*purpose*case2
+    (state <s> ^topstate <s>
+	       ^instructor-message <m>)
+    (<m> ^event-type successful-completion)
+ -->
+    (<m> ^purpose <p>)
+    (<p> ^type explanation
+    	 ^satisfaction <sat>)
+    (<sat> ^learning-event explanation)
+ }

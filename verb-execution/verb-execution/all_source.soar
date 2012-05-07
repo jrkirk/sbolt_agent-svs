@@ -1,0 +1,9 @@
+source initialize-verb-learning.soar
+source preferences.soar
+source apply-primitive-verbs.soar
+#pushd ./explanation
+#source all_source.soar
+#popd
+pushd ./operator-tie
+source all_source.soar
+popd

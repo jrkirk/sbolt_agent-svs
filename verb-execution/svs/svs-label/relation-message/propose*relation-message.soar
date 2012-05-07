@@ -1,0 +1,115 @@
+#find ids for both objects then process in svs
+sp {relation-message*propose*find-object1
+   (state <s> ^topstate <s>
+              ^interaction.stack.segment.purpose <p>
+              -^obj1)
+   (<p> ^type relation-message
+        ^parameters.object1 <obj1>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name find-object
+        ^category svs
+        ^obj 1)
+}
+
+sp {relation-message*propose*find-object2
+   (state <s> ^topstate <s>
+              ^interaction.stack.segment.purpose <p>
+             -^obj2) 
+   (<p> ^type relation-message
+        ^parameters.object2 <obj2>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name find-object
+        ^category svs
+        ^obj 2)
+}
+
+sp {relation-message*find-object1*elaborate*word
+   (state <s> ^operator <o> +
+              ^interaction.stack.segment.purpose <p>)
+   (<p> ^type relation-message
+        ^parameters.object1.word {<word> <> object })
+   (<o> ^name find-object
+        ^obj 1)
+-->
+   (<o> ^word <word>)
+}
+
+sp {relation-message*find-object2*elaborate*word
+   (state <s> ^operator <o> +
+              ^interaction.stack.segment.purpose <p>)
+   (<p> ^type relation-message
+        ^parameters.object2.word {<word> <> object })
+   (<o> ^name find-object
+        ^obj 2)
+-->
+   (<o> ^word <word>)
+}
+
+sp {relation-messaging*apply*find-object1*results
+   (state <s> ^operator <o>
+              ^interaction.stack.segment.purpose.type relation-message)
+   (<o> ^name find-object
+        ^obj 1
+        ^match.id <id>)
+-->
+   (<s> ^obj1 <id>)
+}
+
+sp {relation-messaging*apply*find-object2*results
+   (state <s> ^operator <o>
+              ^interaction.stack.segment.purpose.type relation-message)
+   (<o> ^name find-object
+        ^obj 2
+        ^match.id <id>)
+-->
+   (<s> ^obj2 <id>)
+}
+
+sp {relation-messaging*propose*process-svs-message
+   (state <s> -^processed
+              ^interaction.stack.segment.purpose <p>
+              ^obj1 <id1>
+              ^obj2 <id2>)
+   (<p> ^type relation-message
+        ^parameters.prep <prep>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name process-svs-message
+        ^category svs
+	    ^message <m>)
+   (<m> ^fields <f> ^type svs-label)
+   (<f> ^objects <object>)
+   (<object> ^obj <obja>
+             ^obj <objb>
+             ^type <prep>)
+   (<obja> ^id <id1> ^index 1)
+   (<objb> ^id <id2> ^index 2)
+} 
+
+
+
+#sp {relation-message*clean*up
+#   (state <s> ^topstate <s>
+#             -^interaction.stack.segment.purpose.type relation-message
+#              ^processed <msg>
+#              ^obj1 <id1>
+#              ^obj2 <id2>)
+#-->
+#   (<s> ^obj1 <id1> -)
+#   (<s> ^obj2 <id2> -)
+#   (<s> ^processed <msg> -)
+#}
+#sp {relation-messaging*propose*process-svs-message*test
+#   (state <s> ^processed <msg>
+#              ^topstate <s>
+#              ^interaction.stack.segment.purpose <p>
+#              ^obj2 <id2>)
+# -->
+#   (<s> ^operator <o> +)
+#   (<o> ^name find-relations
+#        ^category svs
+#		 ^obj <id2>)
+#}
+

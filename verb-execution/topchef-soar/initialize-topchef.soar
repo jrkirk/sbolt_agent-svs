@@ -1,0 +1,12 @@
+sp {apply*init-agent*topchef-soar
+   (state <s> ^operator <op>)
+   (<op> ^name init-agent)
+-->
+   (<s> ^name topchef-soar
+   	^location <l>)   
+   (<l> ^name center
+   	^pose <lp>)
+   (<lp> ^x 1.5
+   	^y 0.5
+	^z 0)
+}

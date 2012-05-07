@@ -1,0 +1,20 @@
+# Operators that create the object structures based on perceived objects from the world
+
+source create-object.soar
+# When there is a new object on the input link initialize a new object sturcture in working memory
+
+source delete-object.soar
+# When an object no longer exists on the input-link remove it
+
+pushd visual-properties
+source visual-properties_source.soar
+# These operators deal with properties of an object that come from the visual system
+# Right now this is shape, size, and color
+popd
+
+source object-info.soar
+# Elaborates flexible structures on the object from the input-link
+# Includes pose and bbox
+
+# Prefer creating/deleting objects over properties
+source preferences.soar

@@ -1,0 +1,24 @@
+sp {propose*push-object-message
+   (state <s> ^topstate <s>
+              ^instructor-message <msg>)
+   (<msg> ^type object-message
+          ^information.object.specifier this )
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name push-object-message
+        ^category communication)
+}
+
+sp {apply*push-object-message
+   (state <s> ^operator.name push-object-message
+              ^instructor-message <msg>)
+   (<msg> ^type object-message
+          ^information.object <obj>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type object-message
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<params> ^object <obj>)
+   (<sat> ^learning-event object)
+}

@@ -1,0 +1,131 @@
+
+sp {svs-label*propose*complete-svs-label*direct
+   (state <s> ^name svs-label
+              ^superstate.operator.message.fields.objects <objs>
+              ^superstate.superstate <sss>
+              ^label-svs <l>)
+   (<l> ^result <r>)
+   (<r> ^type <t>
+        ^a <i1>
+        ^b <i2>)
+   (<objs> ^type <type>)
+   (<sss> ^predicates.predicate <p1>)
+   (<p1> ^name <type>
+         ^obj <o1>
+         ^obj <o2>)
+   (<o2> ^index <i2>)
+   (<o1> ^index <i1>)
+-->
+   (<p1> ^relation <r1>)
+   (<r1> ^type <t>
+         ^a <i1>
+         ^b <i2>)
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-svs-label
+        ^category svs
+        ^type new-add)
+}
+
+sp {svs-label*complete-svs-label*simplify
+   (state <s> ^name svs-label
+              ^superstate.operator.message.fields.objects <objs>
+              ^superstate.superstate <sss>
+              ^label-svs <l>)
+   (<objs> ^type <type>)
+   (<sss> ^predicates.predicate <p1>)
+   (<p1> ^name <type>
+         ^obj <o1>
+         ^obj <o2>
+         ^obj <o3>)
+   (<o3> ^index <i3>)
+   (<o2> ^index <i2>)
+   (<o1> ^index <i1>)
+   (<o1> ^index < <i2>)
+   (<o2> ^index < <i3>)
+   (<p1> ^relation <r1> ^relation { <r2> <> <r1> } ^relation { <r3> <> <r1> })
+   (<p1> ^relation { <r3> <> <r2> })
+   (<r1> ^type { <rtype> << west-of north-of south-of east-of above below horizontally-aligned vertically-aligned planar-aligned >> }
+         ^a <i1>
+         ^b <i2>)
+   (<r2> ^type <rtype>
+         ^a <i2>
+         ^b <i3>)
+   (<r3> ^type <rtype>
+         ^a <i1>
+         ^b <i3>)
+-->
+   (<p1> ^relation <r3> -)
+}
+
+
+sp {svs-label*propose*complete-svs-label*true
+   (state <s> ^name svs-label
+              ^superstate.operator.message.fields.objects <objs>
+              ^superstate.superstate <sss>
+              ^status old)
+   (<sss> ^svs.command <cmd>)
+   (<objs> ^type <type>
+           ^obj <o1>
+           ^obj <o2>)
+   (<o2> ^index <i2> ^id <objb>)
+   (<o1> ^index <i1> ^id <obja>)
+   (<o1> ^index < <i2>)
+   (<cmd> ^extract <E>)
+   (<E> ^type <t> ^result.negative.atom <A>)
+   (<A> ^a1 <obja> 
+        ^b1 <objb>)
+   (<sss> ^predicates.predicate <p1>)
+   (<p1> ^name <type>
+         ^relation <r1>)
+   (<r1> ^type <t> ^a <i1> ^b <i2>)
+-->
+   (<p1> ^relation <r1> -)
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-svs-label
+        ^category svs
+        ^type old-simplify)
+}
+
+
+sp {svs-label*propose*complete-svs-label*old*default
+   (state <s> ^name svs-label
+              ^superstate.operator.message.fields.objects <obj>
+              ^status old)
+-->
+   (<s> ^operator <o> +) # <
+   (<o> ^name complete-svs-label
+        ^category svs
+        ^type old)
+}
+
+sp {svs-label*propose*complete-svs-label*direct*false
+   (state <s> ^name svs-label
+              ^superstate.operator.message.fields.objects <objs>
+              ^label-svs <l>)
+   (<l> ^done true)
+   (<objs> ^type <type>)
+-->
+   (<s> ^operator <o> +) # <
+   (<o> ^name complete-svs-label
+        ^category svs
+        ^type false)
+}
+
+
+
+sp {svs-label*apply*complete-svs-label*direct*mark-processed
+   (state <s> ^name svs-label
+              ^operator.name complete-svs-label
+              ^topstate.status <status>
+              ^superstate <ss>)
+   (<ss> ^operator.message <m>)
+   (<ss> ^superstate <sss>)
+#   (<sss> ^obj1 <id1>
+#          ^obj2 <id2>)
+-->
+#   (<sss> ^obj1 <id1> -)
+#   (<sss> ^obj2 <id2> -)
+   (<status> ^performed.learning-event preposition)
+}
+
+

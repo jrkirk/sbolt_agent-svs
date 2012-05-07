@@ -1,0 +1,34 @@
+### if an object is within some distance of the robot, mark it as close-by
+
+
+sp {elaborate*location*distx
+   (state <s> ^location <loc>
+   	      ^self.pose.x <selfx>)
+   (<loc> ^pose <p>)
+   (<p> ^x <locx>)
+ -->
+   (<p> ^distx (- <selfx> <locx>))
+}
+
+sp {elaborate*location*disty
+   (state <s> ^location <loc>
+   	      ^self.pose.y <selfy>)
+   (<loc> ^pose <p>)
+   (<p> ^y <locy>)
+ -->
+   (<p> ^disty (- <selfy> <locy>))
+}
+
+
+sp {elaborate*location*close
+   (state <s> ^location <loc>
+   	      -^self.grabbed-location <id>)
+   (<loc> ^pose <locp>
+   	  ^id <id>)
+   (<locp> ^distx < 0.25
+   	  ^distx > -0.25
+	  ^disty < 0.25
+	  ^disty > -0.25)
+-->
+   (<loc> ^contains yes)
+}

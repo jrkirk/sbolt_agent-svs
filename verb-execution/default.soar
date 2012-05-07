@@ -1,0 +1,29 @@
+sp {all*elaborate-state-name
+   (state <s> ^superstate.operator.name <name>)
+-->
+   (<s> ^name <name>)
+}
+
+sp {all*elaborate-state-top-state
+   (state <s> ^superstate.topstate <ts>)
+-->
+   (<s> ^topstate <ts>)
+}
+
+sp {all*elaborate*io
+   (state <s> ^superstate.io <io>
+   	      -^name explain)
+-->
+   (<s> ^io <io>)
+}
+
+# Automatically removes store commands from smem
+sp {apply*remove-stored
+   (state <s> ^operator <o>
+              ^smem <smem>)
+   (<smem> ^command <cmd>
+           ^result.success <a>)
+   (<cmd> ^store <a>)
+-->
+   (<cmd> ^store <a> -)
+}

@@ -1,0 +1,30 @@
+# Copy the words from the superstate to create nounjective structures
+
+sp {find-object*elaborate*nounjective
+   (state <s> ^name find-object
+              ^superstate.operator <o>)
+   (<o> ^word <w>)
+-->
+   (<s> ^nounjective.word <w>)
+}
+
+sp {find-object*elaborate*return-any*true
+   (state <s> ^name find-object
+              ^superstate.operator.return-any true)
+-->
+   (<s> ^return-any true)
+}
+
+sp {find-object*elaborate*return-any*false
+   (state <s> ^name find-object
+             -^return-any true)
+-->
+   (<s> ^return-any false)
+}
+
+sp {find-object*elaborate*return-all*true
+   (state <s> ^name find-object
+              ^superstate.operator.return-all true)
+-->
+   (<s> ^return-all true)
+}

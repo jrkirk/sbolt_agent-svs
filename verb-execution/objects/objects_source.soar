@@ -1,0 +1,109 @@
+
+
+##############------- CONFIGURATION -----############
+smem --set learning on
+
+#########------- SETUP AND INITIALIZATION -----#######
+#  init-objects
+######################################################
+
+source init-objects.soar
+# Initializes objects and adds knowledge to semantic memory
+
+
+########------- ELABORATIONS and PREFERENCES -----#######
+#  elaborations
+#  preferences
+#########################################################
+
+pushd elaborations
+source elaborations_source.soar
+# Contains basic elaborations used across objects
+popd
+
+source preferences.soar
+
+source mappings.soar
+# Creates a working memory cache of mappings, these are only those mappings that exist in working memory
+# If an object is removed or changed then the mapping dissappears
+# Only the smem mappings are long-term
+
+
+
+
+########------- SMEM OPERATIONS ------######
+# lookup-smem
+############################################
+
+pushd lookup-smem
+source lookup-smem_source.soar
+popd
+
+
+
+##########-------- OBJECT PROCESSING -------#######
+#  object-structures
+#  visual-properties
+#########################################################
+pushd object-structures
+source object-structures_source.soar
+# Operators that create the object structures based on perceived objects from the world
+popd
+
+
+
+########------- OBJECT USAGE TOOLS  ------######
+# find-object
+# describe-object
+#################################################
+
+pushd find-object
+source find-object_source.soar
+# find-object is a query operator used to get an object from a bag of words
+# Below is an example of a proposal for a find-object operator to get a red, round object
+#sp {object-question*propose*find-object
+#   (state <s> ^topstate <s>
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name find-object
+#        ^category object-processing
+#		 ^word red
+#  		 ^word round)
+#}
+
+# The find-object will add a ^match WME to the operator
+# ^match will either be a pointer to the found object or the word failure
+popd
+
+
+pushd describe-object
+source describe-object_source.soar
+
+popd
+
+
+pushd count-objects
+source count-objects_source.soar
+popd
+
+
+########----------- COMMUNICATION ----------#######
+#  ask-query
+#  communication
+#########################################################
+
+pushd communication
+source communication_source.soar
+popd
+
+pushd ask-query
+ source ask-query_source.soar
+#	If there is a query structure on the top state and no current-query
+#		this operator will ask the query by creating a structure on the output link
+popd
+
+
+
+pushd learning
+source learning_source.soar
+popd

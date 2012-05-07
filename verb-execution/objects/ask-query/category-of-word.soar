@@ -1,0 +1,22 @@
+# category-of-word
+#	Query for the category of a known word
+
+sp {elaborate*ask-query*category-of-word
+   (state <s> ^operator <o>)
+   (<o> ^name ask-query
+        ^query.type category-of-word)
+-->
+   (<o> ^type category-of-word
+        ^expected-response object-message)
+}
+
+sp {elaborate*ask-query*category-of-word*word
+   (state <s> ^operator <o>)
+   (<o> ^name ask-query
+        ^query <q>
+        ^fields <f>)
+   (<q> ^type category-of-word
+        ^word <word>)
+-->
+   (<f> ^word <word>)
+}

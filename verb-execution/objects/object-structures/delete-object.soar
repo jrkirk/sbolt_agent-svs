@@ -1,0 +1,21 @@
+# When an object no longer exists on the input-link remove it
+
+sp {propose*delete-object
+   (state <s> ^topstate <s>
+              ^object <obj>
+             -^io.input-link.objects.object.id <id>)
+   (<obj> ^id <id>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name delete-object
+        ^category object-processing
+        ^object <obj>)
+}
+
+sp {apply*delete-object
+   (state <s> ^operator <o>)
+   (<o> ^name delete-object 
+        ^object <obj>)
+-->
+   (<s> ^object <obj> -)
+}

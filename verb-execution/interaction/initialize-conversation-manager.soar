@@ -1,0 +1,17 @@
+### the agent maintains an interaction state
+## initialized at agent initialization
+
+sp {topstate*apply*init*conversation-manager
+   (state <s> ^operator <op>)
+   (<op> ^name init-agent)
+-->
+   (<s> ^interaction <conv>)
+   (<conv> ^stack <cs>)
+   (<conv> ^expectation <expec>)
+   (<cs> ^segment <seg>)
+   (<seg> ^id 0
+   	  ^purpose none)
+   (<s> ^nl <snl>) 
+   (<snl> ^input-link <snl-il>
+   	  ^output-link <snl-ol>)
+}

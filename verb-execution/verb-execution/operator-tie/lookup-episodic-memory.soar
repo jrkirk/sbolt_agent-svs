@@ -1,0 +1,13 @@
+# in case of an operator-tie, lookup-episodic memory.
+# if there exist an episode where the proposed operator in the topstate is at the top of the stack; reject indicate-unresolved-tie and begin selection space
+
+
+
+
+
+
+
+
+
+
+

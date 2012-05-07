@@ -1,0 +1,76 @@
+#######------ object-processing ------#####
+#sp {elaborate*pref-rank*create-object
+#   (state <s> ^topstate <s>
+#              ^operator <o> +)
+#   (<o> ^name delete-object)
+#-->
+#   (<o> ^pref-rank 0)
+#}
+
+sp {elaborate*pref-rank*delete-object
+   (state <s> ^topstate <s>
+              ^operator <o> +)
+   (<o> ^name delete-object)
+-->
+   (<o> ^pref-rank 0)
+}
+
+sp {elaborate*pref-rank*create-object
+   (state <s> ^topstate <s>
+              ^operator <o> +)
+   (<o> ^name create-object)
+-->
+   (<o> ^pref-rank 1)
+}
+
+sp {elaborate*pref-rank*delete-value
+   (state <s> ^topstate <s>
+              ^operator <o> +)
+   (<o> ^name delete-visual-value)
+-->
+   (<o> ^pref-rank 2)
+}
+
+sp {elaborate*pref-rank*create-value
+   (state <s> ^topstate <s>
+              ^operator <o> +)
+   (<o> ^name create-visual-value)
+-->
+   (<o> ^pref-rank 3)
+}
+
+sp {elaborate*pref-rank*ask-query
+   (state <s> ^topstate <s>
+              ^operator <o> +)
+   (<o> ^name ask-query)
+-->
+   (<o> ^pref-rank 4)
+}
+
+sp {elaborate*pref-rank*object-message
+   (state <s> ^topstate <s>
+              ^operator <o> +)
+   (<o> ^name << object-message >>)
+-->
+   (<o> ^pref-rank 5)
+}
+
+sp {elaborate*pref-rank*else
+   (state <s> ^topstate <s>
+              ^operator <o> +)
+   (<o> -^name << delete-object create-object create-visual-value delete-visual-value ask-query push-object-message object-message >>
+        ^category object-processing)
+-->
+   (<o> ^pref-rank 6)
+}
+
+
+# Prefer a lower rank to a higher one
+sp {prefer*lower*pref-rank
+   (state <s> ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^pref-rank <rank>)
+   (<o2> ^pref-rank > <rank>)
+-->
+   (<s> ^operator <o1> > <o2>)
+}

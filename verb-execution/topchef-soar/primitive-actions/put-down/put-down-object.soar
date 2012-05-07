@@ -1,0 +1,21 @@
+### put down a particular object
+
+sp {propose*put-down-object*current-location
+   (state <s> ^self.grabbed-object <id> <> -1
+   	      ^object <obj>)
+   (<obj> ^id <id>)
+-->
+   (<s> ^operator <op> +)
+   (<op> ^name put-down
+   	 ^object <id>
+	 ^category primitive-action)
+}
+
+### apply put-down-object
+sp {apply*put-down-object*current-location
+   (state <s> ^operator <op>
+   	      ^name put-down)
+   (<op> ^name put-down
+   	 ^object <id>)
+-->
+   (

@@ -1,0 +1,34 @@
+sp {count-objects*propose*find-object
+   (state <s> ^name count-objects
+             -^match)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name find-object
+        ^return-all true
+        ^category object-processing)
+}
+
+sp {count-objects*elaborate*find-object*word
+   (state <s> ^name count-objects
+              ^operator <o> +
+              ^superstate.operator.word <word>)
+   (<o> ^name find-object)
+-->
+   (<o> ^word <word>)
+}
+
+sp {count-objects*apply*find-object*copy-matches
+   (state <s> ^name count-objects
+              ^operator <o>)
+   (<o> ^name find-object
+        ^match <match>)
+-->
+   (<s> ^match <match>)
+}
+
+sp {count-objects*apply*find-object*count
+   (state <s> ^name count-objects
+              ^operator.name find-object)
+-->
+   (<s> ^match-count 0)
+}

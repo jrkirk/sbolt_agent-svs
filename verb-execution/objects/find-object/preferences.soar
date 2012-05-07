@@ -1,0 +1,31 @@
+# Preferences ensure lookup over object-match and object-match over no-match
+
+sp {find-object*prefer*lookup-smem*over*object-match
+   (state <s> ^name find-object
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name lookup-smem)
+   (<o2> ^name << object-match no-match find-object-smem >>)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {find-object*prefer*object-match*over*no-match
+   (state <s> ^name find-object
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name << object-match find-object-smem >>)
+   (<o2> ^name no-match)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {find-object*prefer*object-match*over*find-object-smem
+   (state <s> ^name find-object
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name object-match)
+   (<o2> ^name find-object-smem)
+-->
+   (<s> ^operator <o1> > <o2>)
+}

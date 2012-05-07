@@ -1,0 +1,56 @@
+sp {describe-object*propose*complete-describe-object
+   (state <s> ^name describe-object)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name complete-describe-object
+        ^category object-processing
+        ^description <desc>)
+}
+
+sp {describe-object*elaborate*complete-describe-object*name
+   (state <s> ^name describe-object
+              ^operator <o>
+              ^needs-found <nf>)
+   (<o> ^name complete-describe-object
+        ^description <desc>)
+   (<nf> ^query name
+         ^result <name>)
+-->
+   (<desc> ^word <name>)
+}
+
+sp {describe-object*elaborate*complete-describe-object*label
+   (state <s> ^name describe-object
+              ^operator <o>
+              ^needs-found <nf>
+              ^needs-found <name-nf>)
+   (<o> ^name complete-describe-object
+        ^description <desc>)
+   (<nf> ^query <> name
+         ^result {<word> <> failure <> <name>})
+   (<name-nf> ^query name
+              ^result <name>)
+-->
+   (<desc> ^adjective <word>)
+}
+
+sp {describe-object*apply*complete-describe-object
+   (state <s> ^name describe-object
+              ^operator <o>
+              ^object
+              ^superstate.operator <ss-o>)
+   (<o> ^name complete-describe-object
+        ^description <desc>)
+-->
+   (<ss-o> ^description <desc>)
+}
+
+sp {describe-object*apply*complete-describe-object*failure
+   (state <s> ^name describe-object
+              ^operator.name complete-describe-object
+             -^object
+              ^superstate.operator <ss-o>)
+-->
+   (<ss-o> ^description failure)
+}
+

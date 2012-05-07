@@ -1,0 +1,131 @@
+# Adds a segment to the interaction stack to deal with the property question
+
+sp {propose*push-property-question
+   (state <s> ^topstate <s>
+              ^instructor-message <msg>)
+   (<msg> ^type property-question
+          ^information.question-word what)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name push-property-question
+        ^category communication)
+}
+
+sp {apply*push-property-question
+   (state <s> ^operator.name push-property-question
+              ^instructor-message <msg>)
+   (<msg> ^information.word <w>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type property-question
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<sat> ^dialog-event property-response)
+   (<params> ^property <w>)
+}
+
+sp {property-question*propose*lookup-smem
+	(state <s> ^interaction.stack.segment.purpose <p>)
+	(<p> ^type property-question
+      	 ^parameters.property <prop-name>)
+-->
+    (<s> ^operator <o> +)
+    (<o> ^name lookup-smem
+         ^lookup-type word
+         ^category smem
+         ^property <prop-name>)
+}
+
+sp {property-question*elaborate*lookup-smem*object*pointed
+   	(state <s> ^operator <o> +
+               ^interaction.stack.segment.purpose.type property-question
+               ^io.input-link.pointed-object <obj-id>
+               ^topstate.object <obj>)
+    (<o> ^name lookup-smem)
+    (<obj> ^id <obj-id>)
+-->
+    (<o> ^object <obj>)
+}
+
+sp {property-question*elaborate*lookup-smem*object*only-one
+   	(state <s> ^operator <o> +
+               ^interaction.stack.segment.purpose.type property-question
+               ^topstate.object <obj>
+              -^topstate.object <> <obj>)
+    (<o> ^name lookup-smem)
+-->
+    (<o> ^object <obj>)
+}
+
+sp {property-question*elaborate*lookup-smem*query
+   (state <s> ^operator <o> +
+              ^interaction.stack.segment.purpose.type property-question)
+   (<o> ^name lookup-smem
+        ^property <prop-name>
+        ^object.property <prop>)
+   (<prop> ^name <prop-name>
+           ^label <label>)
+-->
+   (<o> ^query <q>
+        ^desired.word true)
+   (<q> ^type label-map ^category <prop-name> ^label <label> ^word <word>)
+}
+
+sp {property-question*elaborate*lookup-smem*no-query
+   (state <s> ^operator <o> +
+              ^interaction.stack.segment.purpose.type property-question)
+   (<o> ^name lookup-smem
+       -^query)
+-->
+   (<o> ^result failure)
+}
+
+sp {property-question*apply*failure*dont-know
+   (state <s> ^operator <o>
+              ^io.output-link <out>
+              ^interaction.stack.segment.purpose.type property-question)
+   (<o> ^name lookup-smem
+        ^object
+        ^result failure)
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type dont-know
+          ^fields <f>)
+}
+
+sp {property-question*apply*failure*no-object
+   (state <s> ^operator <o>
+              ^io.output-link <out>
+              ^interaction.stack.segment.purpose.type property-question)
+   (<o> ^name lookup-smem
+        -^object
+        ^result failure)
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type no-object
+          ^fields <f>)
+}
+
+
+
+sp {property-question*apply*lookup-smem*send-word
+   (state <s> ^operator <o>
+              ^io.output-link <out>
+              ^interaction.stack.segment.purpose.type property-question)
+   (<o> ^name lookup-smem
+        ^result {<word> <> failure})
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type single-word
+          ^fields.word <word>)
+}
+
+sp {property-question*apply*lookup-smem*mark-performed
+   (state <s> ^operator <o>
+              ^interaction.stack.segment.purpose.type property-question
+              ^status <status>)
+   (<o> ^name lookup-smem
+        ^result)
+-->
+   (<status> ^performed.dialog-event property-response)
+}

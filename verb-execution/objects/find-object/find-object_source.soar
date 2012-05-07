@@ -1,0 +1,29 @@
+# find-object is a query operator used to get an object from a bag of words
+# Below is an example of a proposal for a find-object operator to get a red, round object
+#sp {object-question*propose*find-object
+#   (state <s> ^topstate <s>
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name find-object
+#        ^category object-processing
+#		 ^word red
+#  		 ^word round)
+#}
+
+# The find-object will add a ^match WME to the operator
+# ^match will either be a pointer to the found object or the word failure
+
+source elaborations.soar
+# Copy the words from the superstate to create nounjective structures
+
+source preferences.soar
+# Preferences ensure lookup-smem > object-match and object-match > no-match
+
+source lookup-category.soar
+# Fetch the category for each word in the query
+
+source lookup-label.soar
+# Fetch the label for each word in the query
+
+source object-match.soar
+# Proposes a match operator for each object matching the description

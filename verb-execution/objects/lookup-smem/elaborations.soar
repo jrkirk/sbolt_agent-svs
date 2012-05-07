@@ -1,0 +1,13 @@
+sp {lookup-smem*elaborate*query
+   (state <s> ^name lookup-smem
+              ^superstate.operator.query <q>)
+-->
+   (<s> ^query <q>)
+}
+
+sp {lookup-smem*elaborate*desired
+   (state <s> ^name lookup-smem
+              ^superstate.operator.desired <d>)
+-->
+   (<s> ^desired <d>)
+}

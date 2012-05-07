@@ -1,0 +1,16 @@
+# when an object is created, adds a visual property (category) to the structure
+# Right now this includes color, shape, and size
+
+sp {apply*create-object*create-visual-property
+   (state <s> ^operator <o>
+              ^io.input-link.objects.object <il-obj>)
+   (<o> ^name create-object
+        ^object <obj>
+        ^id <id>)
+   (<il-obj> ^id <id>
+             ^category.name <cat-name>)
+-->
+   (<obj> ^property <prop>)
+   (<prop> ^name <cat-name>
+           ^type visual)
+}

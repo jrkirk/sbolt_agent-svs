@@ -1,0 +1,54 @@
+#find ids for both objects then process in svs
+sp {relation-question*propose*find-object
+   (state <s> ^topstate <s>
+              ^interaction.stack.segment.purpose <p>
+              -^obj1)
+   (<p> ^type relation-question
+        ^parameters.object2 <obj2>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name find-object
+        ^category svs
+        ^obj 2)
+}
+
+
+sp {relation-question*find-object2*elaborate*word
+   (state <s> ^operator <o> +
+              ^interaction.stack.segment.purpose <p>)
+   (<p> ^type relation-question
+        ^parameters.object2.word {<word> <> object })
+   (<o> ^name find-object
+        ^obj 2)
+-->
+   (<o> ^word <word>)
+}
+
+sp {relation-question*apply*find-object2*results
+   (state <s> ^operator <o>
+              ^interaction.stack.segment.purpose.type relation-question)
+   (<o> ^name find-object
+        ^obj 2
+        ^match.id <id>)
+-->
+   (<s> ^obj2 <id>)
+}
+
+sp {relation-question*propose*process-svs-question
+   (state <s> ^operator <o>
+             -^processed
+              ^interaction.stack.segment.purpose <p>
+              ^obj2 <id2>)
+   (<p> ^type relation-question
+        ^parameters.prep <prep>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name process-svs-question
+        ^category svs
+	    ^message <m>)
+   (<m> ^fields <f> ^type svs-query)
+   (<f> ^objects <object>)
+   (<object> ^obj <obja>
+             ^type <prep>)
+   (<obja> ^id <id2> ^index 2)
+} 

@@ -1,0 +1,11 @@
+### if the supplied verb-command does not correspond to any proposed operators for primitive actions. propose a new operator.
+
+sp {propose*intructed*verb-command
+   (state <s> ^interaction.stack.segment <top>)
+   (<top> ^originator instructor
+   	  ^purpose <p>)
+   (<p> ^type external-action
+   	^satisfaction <ps>)
+   (<ps> ^action-event <info>)
+ 
+

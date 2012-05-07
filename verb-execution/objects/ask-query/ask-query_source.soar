@@ -1,0 +1,24 @@
+# ask-query
+#	If there is a query structure on the top state and no current-query
+#		this operator will ask the query by creating a structure on the output link
+
+source ask-query.soar
+#	proposes ask-query if there is a query on the top state and 
+#		it is an appropriate time to ask a question (no current-query)
+                                               
+#   ask-query is proposed for each query
+#		then each operator is elaborated with the structure that should go on the output link
+#	Preferences determine which queries are better than others
+#	When an ask-query operator is chosen, it adds the query structure to the output link 
+#		and creates a current-query structure
+
+
+# 	Types of queries:
+
+source category-of-word.soar
+#	Query for the category of the given word
+
+
+source preferences.soar
+# Orders query in the following way:
+#	shared-att-val > differs-from-group > value-question

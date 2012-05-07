@@ -1,0 +1,96 @@
+sp {find-relations*propose*relation-search*false*first-part
+   (state <s> ^name find-relations
+              ^topstate <ss>
+              ^obj <id>
+              ^ind 1
+			  ^relation <r>)
+   (<ss> ^svs.command <cmd>)
+   (<ss> ^predicates <p>)
+   (<p> ^predicate <p1>)
+   (<p1> ^name <type>
+         ^relation <rel>)
+   (<r> ^name <type>
+        ^obj <objb>)
+   (<rel> ^type <t>)
+   (<cmd> ^extract <E11>)
+   (<E11> ^type <t> ^result.negative.atom <A1>)
+   (<A1> ^a1 <id> 
+         ^b1 <objb>)
+-->
+   (<r> ^result false) 
+}
+
+sp {find-relations*propose*relation-search*false*second-part
+   (state <s> ^name find-relations
+              ^topstate <ss>
+              ^obj <id>
+              ^ind 2
+			  ^relation <r>)
+   (<ss> ^svs.command <cmd>)
+   (<ss> ^predicates <p>)
+   (<p> ^predicate <p1>)
+   (<p1> ^name <type>
+         ^relation <rel>)
+   (<r> ^name <type>
+        ^obj <objb>)
+   (<rel> ^type <t>)
+   (<cmd> ^extract <E11>)
+   (<E11> ^type <t> ^result.negative.atom <A1>)
+   (<A1> ^a1 <objb> 
+         ^b1 <id>)
+-->
+   (<r> ^result false) 
+}
+
+sp {find-relations*propose*relation-search*true*default
+   (state <s> ^name find-relations
+              ^topstate <ss>
+              ^obj <id>
+			  ^relation <r>)
+   (<ss> ^svs.command <cmd>)
+   (<ss> ^predicates <p>)
+   (<p> ^predicate <p1>)
+   (<p1> ^name <type>)
+   (<r> ^name <type> 
+          ^obj <objb>)
+-->
+   (<r> ^result true) 
+}
+
+sp {find-relations*propose*relation-search*build-potentials
+   (state <s> ^name find-relations
+              ^topstate <ss>
+             -^prep
+              ^obj <id>)
+   (<ss> ^svs.command <cmd>)
+   (<ss> ^predicates <p>)
+   (<p>  ^predicate <p1>)
+   (<p1> ^name <type>)
+   (<ss> ^svs.spatial-scene.child.id-int <id2>)
+-->
+   (<s> ^relation <rel>)
+   (<rel> ^name <type> ^obj <id2>)
+}
+
+sp {find-relations*propose*relation-search*build-potentials*optional-prep
+   (state <s> ^name find-relations
+              ^topstate <ss>
+              ^prep <type>
+              ^obj <id>)
+   (<ss> ^svs.command <cmd>)
+   (<ss> ^predicates <p>)
+   (<p>  ^predicate <p1>)
+   (<p1> ^name <type>)
+   (<ss> ^svs.spatial-scene.child.id-int <id2>)
+-->
+   (<s> ^relation <rel>)
+   (<rel> ^name <type> ^obj <id2>)
+}
+
+sp {find-relations*propose*relation-search*build-answerlist
+   (state <s> ^name find-relations
+              ^superstate <ss>
+              ^obj <id>)
+-->
+   (<s> ^relationships <rels>)
+}

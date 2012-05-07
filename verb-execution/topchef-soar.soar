@@ -1,0 +1,12 @@
+pushd ./topchef-soar
+source all_source.soar
+popd
+
+
+sp {propose*init-agent
+   (state <s> -^name
+   	      ^superstate nil)
+-->
+   (<s> ^operator <op> + >)
+   (<op> ^name init-agent)
+}

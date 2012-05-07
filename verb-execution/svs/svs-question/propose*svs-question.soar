@@ -1,0 +1,13 @@
+
+
+
+sp {process-message*propose*svs-question
+   (state <s> ^name process-message
+             -^processed
+              ^message <m>)
+   (<m> ^type svs-question)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name svs-question
+        ^category svs)
+}

@@ -1,0 +1,19 @@
+sp {lookup-smem*propose*lookup
+   (state <s> ^name lookup-smem
+             -^queried)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name lookup
+        ^category smem)
+}
+
+sp {lookup-smem*apply*lookup
+   (state <s> ^name lookup-smem
+              ^operator.name lookup
+              ^query <q>
+              ^smem.command <cmd>)
+-->
+   (<s> ^queried true)
+   (<cmd> ^query <q>)
+}
+              

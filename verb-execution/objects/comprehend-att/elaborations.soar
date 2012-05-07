@@ -1,0 +1,22 @@
+# Elaborates useful information into the substate
+
+# Adds two WME's to the state: 
+#	att-to-comp - the symbol for the attribute
+#	att-type - whether the symbol is an external or internal one
+sp {comprehend-att*elaborate*attribute
+   (state <s> ^name comprehend-att
+              ^superstate.operator <ss-o>)
+   (<ss-o> ^attribute <att>
+           ^type <att-type>)
+-->
+   (<s> ^att-to-comp <att>
+        ^att-type <att-type>)
+}
+
+# Copies objects with the attribute to the state
+sp {comprehend-att*elaborate*object
+   (state <s> ^name comprehend-att
+              ^superstate.operator.object <obj>)
+-->
+   (<s> ^object <obj>)
+}

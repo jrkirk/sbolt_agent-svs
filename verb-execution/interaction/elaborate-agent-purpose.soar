@@ -1,0 +1,30 @@
+### elaborate agent's purpose 
+
+## case 1: agent does not know of any task to perform
+
+sp {elaborate*agent-purpose*next-task-unknown
+   (state <s> ^topstate <s>
+   	      ^status <status>)
+   (<status> ^type unresolved-tie
+   	     ^state-name topstate)
+-->
+   (<status> ^purpose <p>)
+   (<p> ^type get-next-task
+   	^satisfaction <sat>)
+    (<sat> ^dialog-event verb-command)
+}
+
+## case 2: agent does not know how to perform an action
+sp {elaborate*agent-purpose*next-subaction
+   (state <s> ^topstate <s>
+   	      ^status <status>)
+   (<status> ^type unresolved-tie
+   	     ^state-name <op-name> <> topstate)
+-->
+   (<status> ^purpose <p>)
+   (<p> ^type get-next-subaction
+   	^satisfaction <sat>)
+   (<sat> ^dialog-event verb-command
+   	  ^dialog-event successful-completion)
+}
+	     

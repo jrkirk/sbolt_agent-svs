@@ -1,0 +1,58 @@
+sp {svs-question*propose*complete-svs-question*direct*true
+   (state <s> ^name svs-question
+              ^superstate.message.fields.objects <objs>
+              ^query-svs <q>)
+   (<q>  ^result true
+        -^result false)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name complete-svs-question
+        ^type true
+        ^category svs
+        ^object <obj1>)
+   (<obj1> ^result 1.0)
+}
+
+sp {svs-question*propose*complete-svs-question*direct*false
+   (state <s> ^name svs-question
+              ^superstate.message.fields.objects <objs>
+              ^query-svs <q>)
+   (<q> ^result false)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-svs-question
+        ^type false
+        ^category svs
+        ^object <obj1>)
+   (<obj1> ^result 0.0)
+}
+
+
+
+sp {svs-question*apply*complete-svs-question*direct*mark-processed
+   (state <s> ^name svs-question
+              ^operator.name complete-svs-question
+              ^superstate <ss>)
+   (<ss> ^message <m>)
+-->
+   (<ss> ^processed <m>)
+}
+
+sp {svs-question*apply*complete-svs-question*direct*respond
+   (state <s> ^name svs-question
+              ^io.output-link <ol>
+              ^operator <o>)
+   (<o> ^name complete-svs-question
+        ^object <obj1>)
+-->
+   (<ol> ^query1.object <obj1>)
+}
+
+
+
+
+
+
+
+
+

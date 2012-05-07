@@ -1,0 +1,48 @@
+# Knows a query is processed if there is a success or failure result
+sp {lookup-smem*propose*complete-lookup-smem
+   (state <s> ^name lookup-smem
+              ^smem <smem>)
+   (<smem> ^command.query <query>
+           ^result.{<< success failure >>} <query>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name complete-lookup-smem
+        ^category smem
+        ^query <query>)
+}
+
+# Remove the query from the smem.command link
+sp {lookup-smem*apply*complete-lookup-smem*remove*query
+   (state <s> ^name lookup-smem
+              ^operator <o>
+              ^smem.command <cmd>)
+   (<o> ^name complete-lookup-smem
+        ^query <query>)
+   (<cmd> ^query <query>)
+-->
+   (<cmd> ^query <query> -)
+}
+
+# Case 1 : failure
+sp {lookup-smem*apply*complete-lookup-smem*failure
+   (state <s> ^name lookup-smem
+              ^operator.name complete-lookup-smem
+              ^smem.result.failure
+              ^superstate.operator <ss-op>)
+-->
+   (<ss-op> ^result failure)
+}
+
+# Case 2:  success
+sp {lookup-smem*apply*complete-lookup-smem*success
+   (state <s> ^name lookup-smem
+              ^operator.name complete-lookup-smem
+              ^smem.result <smem-result>
+              ^desired <d>
+              ^superstate.operator <ss-op>)
+   (<d> ^<att> <v>)
+   (<smem-result> ^success
+                  ^retrieved.<att> <result>)
+-->
+   (<ss-op> ^result <result>)
+}

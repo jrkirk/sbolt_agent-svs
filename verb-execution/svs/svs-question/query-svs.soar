@@ -1,0 +1,55 @@
+
+
+
+sp {svs-question*propose*query*direct-compare
+   (state <s> ^name svs-question
+              ^superstate.message.fields.objects <objs>
+   			  ^superstate.superstate <sss>
+              ^query-svs <q>)
+   (<sss> ^svs.command <cmd>)
+   (<objs> ^type <type>
+           ^obj <o1>
+           ^obj <o2>)
+   (<o2> ^index <i2> ^id <objb>)
+   (<o1> ^index <i1> ^id <obja>)
+   (<o1> ^index < <i2>)
+   (<sss> ^predicates <p>)
+   (<p> ^predicate <p1>)
+   (<p1> ^name <type>
+         ^relation <r>)
+   (<r> ^type <t> ^a <i1> ^b <i2>)
+   (<cmd> ^extract <E11>)
+   (<E11> ^type <t> ^result.negative.atom <A1>)
+   (<A1> ^a <obja> 
+         ^b <objb>)
+-->
+   (<q> ^result false)
+}
+
+#default true
+sp {svs-question*propose*query*direct-compare*default
+   (state <s> ^name svs-question
+              ^superstate.message.fields.objects <objs>
+   			  ^superstate.superstate <sss>
+              ^query-svs <q>)
+   (<objs> ^type <type>)
+-->
+   (<q> ^result true)
+}
+
+sp {svs-question*propose*query*direct
+   (state <s> ^name svs-question
+              ^superstate.message.fields.objects <objs>
+   			  ^superstate.superstate <sss>)
+   (<sss> ^svs.command <cmd>)
+   (<objs> ^type <type>)
+   (<sss> ^predicates <p>)
+   (<p> ^predicate <p1>)
+   (<p1> ^name <type>)
+-->
+   (<s> ^query-svs <q>)
+}
+
+
+
+

@@ -1,0 +1,20 @@
+#### apply pop-segment on the conversation-stack
+
+sp {pop-segment*dont-learn
+   (state <s> ^name pop-segment)
+-->
+   (dont-learn <s>)
+}
+
+sp {apply*pop-segment
+   (state <s> ^interaction.stack <cs>
+   	      ^operator <op>)
+   (<cs> ^segment <top-segment>)
+   (<op> ^name pop-segment
+   	 ^segment <top-segment>)
+   (<top-segment> ^next <next-segment>)
+-->
+   (<cs> ^segment <top-segment> -)
+   (<cs> ^segment <next-segment>)
+}
+   	 

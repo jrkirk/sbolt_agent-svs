@@ -1,0 +1,132 @@
+
+sp {apply*init-prepositions
+   (state <s> ^superstate nil)
+-->
+   (<s> ^predicates <p>)
+}
+
+#to enable integer comparisons
+sp {svs*elaborate*predicate*objects*to*int 
+   (state <s> ^superstate nil
+   	          ^svs.command <cmd>)
+   (<cmd> ^extract <E>)
+   (<E> ^result.<< positive negative >>.atom <A>)
+   (<A> ^a <obja1>
+        ^b <objb2>) 
+ --> 
+   (<A> ^a1 (int <obja1>)
+        ^b1 (int <objb2>))
+ }
+
+sp {svs*elaborate*svs*objects*ids*to*int 
+   (state <s> ^superstate nil
+   	          ^svs.spatial-scene <sc>)
+   (<sc> ^child <C>)
+   (<C> ^id <obja1>) 
+ --> 
+   (<C> ^id-int (int <obja1>))
+ }
+
+sp {clean*up*extracts
+   (state <s> ^operator.name pop-segment
+              ^superstate nil
+              ^svs.command <cmd>)
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8>)
+-->
+   (<cmd> ^extract <E11> -)
+}
+sp {extractsW
+   (state <s> ^name << svs-label svs-query >>
+              ^topstate.svs.command <cmd>)
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type west-of)
+   (<N7> ^type all_nodes)
+   (<N8> ^type all_nodes)}
+
+sp {extractsE
+   (state <s> ^name << svs-label svs-query >>
+              ^topstate.svs.command <cmd>)     
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type east-of)
+   (<N7> ^type all_nodes)
+   (<N8> ^type all_nodes)}
+
+sp {extractsN
+   (state <s> ^name << svs-label svs-query >>
+              ^topstate.svs.command <cmd>)  
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type north-of)
+   (<N7> ^type all_nodes)
+   (<N8> ^type all_nodes)}
+
+sp {extractsS
+   (state <s> ^name << svs-label svs-query >>
+              ^topstate.svs.command <cmd>)  
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type south-of)
+   (<N7> ^type all_nodes)
+   (<N8> ^type all_nodes)}
+
+
+sp {extractsA
+   (state <s> ^name << svs-label svs-query >>
+              ^topstate.svs.command <cmd>)  
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type above)
+   (<N7> ^type all_nodes)
+   (<N8> ^type all_nodes)}
+
+
+sp {extractsB
+   (state <s> ^name << svs-label svs-query >>
+              ^topstate.svs.command <cmd>)  
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type below)
+   (<N7> ^type all_nodes)
+   (<N8> ^type all_nodes)}
+
+
+sp {extractsHA
+   (state <s> ^name << svs-label svs-query >>
+              ^topstate.svs.command <cmd>)  
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type horizontally-aligned)
+   (<N7> ^type all_nodes)
+   (<N8> ^type all_nodes)}
+
+
+sp {extractsVA
+   (state <s> ^name << svs-label svs-query >>
+              ^topstate.svs.command <cmd>)  
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type vertically-aligned)
+   (<N7> ^type all_nodes)
+   (<N8> ^type all_nodes)}
+
+sp {extractsPA
+   (state <s> ^name << svs-label svs-query >>
+              ^topstate.svs.command <cmd>)  
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type planar-aligned)
+   (<N7> ^type all_nodes)
+   (<N8> ^type all_nodes)}
+
+
+#sp {extractsPA
+#   (state <s> ^superstate nil
+#              ^svs.command <cmd>)
+#-->
+#   (<cmd> ^extract <E11>)
+#   (<E11> ^a <N7> ^b <N8> ^type planar-aligned)
+#   (<N7> ^type all_nodes)
+#   (<N8> ^type all_nodes)}
