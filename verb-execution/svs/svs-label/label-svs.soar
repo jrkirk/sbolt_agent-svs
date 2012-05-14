@@ -87,3 +87,20 @@ sp {svs-label*propose*label*direct-default
    (<s> ^status default)
 }
 
+
+
+#sp {extractsProjW
+#   (state <s> ^name << svs-label svs-query >>
+#              ^topstate.svs.command <cmd>
+#              ^topstate.svs.spatial-scene <sp>)
+#   (<sp> ^child.id <id1>
+#         ^child.id <id2> <> <id1>)
+#-->
+#   (<cmd> ^project <P11>)
+#   (<P11> ^a <N7> ^b <N8> ^type west-of ^type north-of ^type planar-aligned)
+#   (<N7> ^type node ^name <id1>)
+#   (<N8> ^type node ^name <id2>)
+#}
+
+
+
