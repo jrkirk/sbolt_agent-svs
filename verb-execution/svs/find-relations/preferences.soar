@@ -10,27 +10,3 @@ sp {prefer*false*over*true*find-relations
 -->
    (<s> ^operator <o1> > <o2>)
 }
-
-sp {prefer*true*over*nonefound*find-relations
-   (state <s> ^name find-relations
-              ^operator <o1> +
-              ^operator <o2> +)
-   (<o1> ^name complete-relations-search
-         ^type true)
-   (<o2> ^name complete-relations-search
-         ^type none)
--->
-   (<s> ^operator <o1> > <o2>)
-}
-
-sp {prefer*false*over*nonefound*find-relations
-   (state <s> ^name find-relations
-              ^operator <o1> +
-              ^operator <o2> +)
-   (<o1> ^name complete-relations-search
-         ^type false)
-   (<o2> ^name complete-relations-search
-         ^type none)
--->
-   (<s> ^operator <o1> > <o2>)
-}

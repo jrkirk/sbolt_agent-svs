@@ -1,0 +1,20 @@
+# find-relations is a query operator used to get all the exisiting spatial relationships
+# that the given object participates in
+# Below is an example of a proposal for a find-relations operator to the relations for object id 0
+#sp {relation-question*propose*find-relations
+#   (state <s> ^topstate <s>
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name find-relations
+#        ^category svs
+#		 ^obj <id>
+#}
+
+# The find-relations will add a ^relationships WME to the operator
+# ^relationships will contain ^relations WME for each match, containing ^name <prepositon> and ^obj <id>
+
+
+#source elaborations.soar
+source project.soar
+#source preferences.soar
+#source complete-search-relations.soar

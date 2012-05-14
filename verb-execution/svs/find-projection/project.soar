@@ -1,0 +1,107 @@
+sp {find-projection*project*svs
+   (state <s> ^name find-projection
+              ^superstate <ss>
+              ^a <ida>
+              ^b <idb>
+              ^type <prep>)
+-->
+   (<s> ^result <res>)
+}
+
+sp {find-projection*project*svs*failure*prep-exist
+   (state <s> ^name find-projection
+              ^superstate <ss>
+              ^a <ida>
+              ^b <idb>
+              ^result <res>
+              ^topstate.predicates <p>
+              ^type <prep>)
+   (<p> -^predicate.name <prep>)
+-->
+   (<res> ^status failure)
+}
+
+sp {find-projection*project*svs*failure*obja-exist
+   (state <s> ^name find-projection
+              ^superstate <ss>
+              ^a <ida>
+              ^result <res>
+              ^topstate.svs.spatial-scene <sp>)
+   (<sp> -^child.id-int <ida>)
+-->
+   (<res> ^status failure)
+}
+sp {find-projection*project*svs*failure*objb-exist
+   (state <s> ^name find-projection
+              ^superstate <ss>
+              ^a <idb>
+              ^result <res>
+              ^topstate.svs.spatial-scene <sp>)
+   (<sp> -^child.id-int <idb>)
+-->
+   (<res> ^status failure)
+}
+
+
+
+sp {find-projection*project*svs*create-projection
+   (state <s> ^name find-projection
+              ^a <ida>
+              ^b <idb>
+              ^type <prep>
+              ^result <res>
+              ^topstate.svs.command <cmd>
+              ^topstate.svs.spatial-scene <sp>)
+   (<sp> ^child <c1> ^child <c2>)
+   (<c1> ^id-int <ida> ^id <obja>)
+   (<c2> ^id-int <idb> ^id <objb>)
+-->
+   (<cmd> ^project <P11>)
+   (<P11> ^a <N7> ^b <N8>)
+   (<N7> ^type node ^name <obja>)
+   (<N8> ^type node ^name <objb>)
+}
+
+sp {find-projection*project*svs*create-projection*add-primitives
+   (state <s> ^name find-projection
+              ^a <ida>
+              ^b <idb>
+              ^type <prep>
+              ^result <res>
+              ^topstate.svs.command <cmd>
+              ^topstate.predicates.predicate <p1>
+              ^topstate.svs.spatial-scene <sp>)
+   (<p1> ^name <prep>
+         ^relation.type <ptype>)
+   (<sp> ^child <c1> ^child <c2>)
+   (<c1> ^id-int <ida> ^id <obja>)
+   (<c2> ^id-int <idb> ^id <objb>)
+   (<cmd> ^project <P11>)
+   (<P11> ^a <N7> ^b <N8>)
+   (<N7> ^type node ^name <obja>)
+   (<N8> ^type node ^name <objb>)
+-->
+   (<P11> ^type <ptype>)
+}
+
+sp {find-projection*project*svs*complete-projection
+   (state <s> ^name find-projection
+              ^a <ida>
+              ^b <idb>
+              ^type <prep>
+              ^result <res>
+              ^superstate <ss>
+              ^topstate.svs.command <cmd>
+              ^topstate.svs.spatial-scene <sp>)
+   (<sp> ^child <c1> ^child <c2>)
+   (<c1> ^id-int <ida> ^id <obja>)
+   (<c2> ^id-int <idb> ^id <objb>)
+   (<cmd> ^project <P11>)
+   (<P11> ^a <N7> ^b <N8> ^result <r>)
+   (<N7> ^name <obja>)
+   (<N8> ^name <objb>)
+   (<r> ^x <x> ^y <y> ^z <z>)
+-->
+   (<res> ^x <x> ^y <y> ^z <z>
+          ^status success)
+}
