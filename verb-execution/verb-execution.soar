@@ -10,7 +10,7 @@ pushd ./interaction
 source all_source.soar
 popd
 
-pushd ./objects
+pushd objects
 source objects_source.soar
 popd
 
