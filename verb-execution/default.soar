@@ -8,7 +8,7 @@ sp {all*elaborate-state-top-state
    (state <s> ^superstate.topstate <ts>)
 -->
    (<s> ^topstate <ts>
-        ^top-state <ts>)
+		^top-state <ts>)
 }
 
 sp {all*elaborate*io
