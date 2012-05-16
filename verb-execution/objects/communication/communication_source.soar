@@ -6,10 +6,16 @@ source copy-message.soar
 
 source description-request.soar
 
-source category-response.soar
-
 source which-question.soar
 
 source property-question.soar
 
 source how-many-question.soar
+
+pushd noun-information
+source noun-information_source.soar
+popd
+
+source unknown-message.soar
+
+source single-word-response.soar

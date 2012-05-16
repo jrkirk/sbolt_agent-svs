@@ -10,7 +10,7 @@ pushd ./interaction
 source all_source.soar
 popd
 
-pushd objects
+pushd ./objects
 source objects_source.soar
 popd
 
@@ -21,6 +21,16 @@ popd
 source default.soar
 
 source preferences.soar
+
+#sp {propose*remove-message
+#   (state <s> ^topstate <s>
+#              ^instructor-message <m>)
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name remove-message
+#        ^category communication
+#        ^message <m>)
+#}
 
 
 sp {propose*init-agent

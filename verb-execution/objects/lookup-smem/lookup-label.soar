@@ -46,8 +46,7 @@ sp {apply*lookup-smem*label*new-label*add*result
 
 # Stores the new label in semantic memory
 sp {apply*lookup-smem*label*new-label*store*smem
-   (state <s> ^name object-message
-              ^operator <o>
+   (state <s> ^operator <o>
               ^smem.command <smem-cmd>)
    (<o> ^name lookup-smem
         ^lookup-type label

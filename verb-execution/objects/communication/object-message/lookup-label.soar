@@ -56,7 +56,7 @@ sp {object-message*apply*lookup-smem*label*name*object
    (<obj> ^property <prop>)
    (<prop> ^name name)
 -->
-   (<prop> ^value <word>)
+   (<prop> ^word <word>)
 }
 
 sp {object-message*apply*lookup-smem*add*word*to*object

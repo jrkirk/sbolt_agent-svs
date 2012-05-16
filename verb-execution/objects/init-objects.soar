@@ -26,44 +26,52 @@ sp {apply*init-agent*store*smem*word2cat
               ^operator.name init-agent
               ^smem.command <cmd>)
 -->
-   (<cmd> ^store <v11> <v12> <v13> <v14> <v15> <v16> # Color
+   (<cmd> ^store <c0> <c1> <c2> <c3> <c4> # Categories
+          		 <v11> <v12> <v13> <v14> <v15> <v16> # Color
           		 <v21> <v22> <v23> <v24> <v25> <v26> <v27> <v28> <v29> <v30> # Shape
 				 <v31> <v32> <v33>  # Size
 				 <v41> <v42> <v43> <v44> <v45> <v46> <v47> <v48> <v49>) # Name
+	# Categories
+   (<c0> ^type word2cat ^word category ^category category) # How meta is this!
+   (<c1> ^type word2cat ^word color ^category category)
+   (<c2> ^type word2cat ^word shape ^category category)
+   (<c3> ^type word2cat ^word size ^category category)
+   (<c4> ^type word2cat ^word name ^category category)
+
    # Color
-   (<v11> ^type word2cat ^word red ^category color)
-   (<v12> ^type word2cat ^word orange ^category color)
-   (<v13> ^type word2cat ^word yellow ^category color)
-   (<v14> ^type word2cat ^word green ^category color)
-   (<v15> ^type word2cat ^word blue ^category color)
-   (<v16> ^type word2cat ^word purple ^category color)
+#   (<v11> ^type word2cat ^word red ^category color)
+#   (<v12> ^type word2cat ^word orange ^category color)
+#   (<v13> ^type word2cat ^word yellow ^category color)
+#   (<v14> ^type word2cat ^word green ^category color)
+#   (<v15> ^type word2cat ^word blue ^category color)
+#   (<v16> ^type word2cat ^word purple ^category color)
    
    # Shape
-	(<v21> ^type word2cat ^word rectangle ^category shape)
-	(<v22> ^type word2cat ^word triangle ^category shape)
-	(<v23> ^type word2cat ^word cylinder ^category shape)
-	(<v24> ^type word2cat ^word l-block ^category shape)
-	(<v25> ^type word2cat ^word t-block ^category shape)
-	(<v26> ^type word2cat ^word half-cylinder ^category shape)
-	(<v27> ^type word2cat ^word arch ^category shape)
-	(<v28> ^type word2cat ^word square ^category shape)
-	(<v29> ^type word2cat ^word doughnut ^category shape)
-    (<v30> ^type word2cat ^word sphere ^category shape)
+#	(<v21> ^type word2cat ^word rectangle ^category shape)
+#	(<v22> ^type word2cat ^word triangle ^category shape)
+#	(<v23> ^type word2cat ^word cylinder ^category shape)
+#	(<v24> ^type word2cat ^word l-block ^category shape)
+#	(<v25> ^type word2cat ^word t-block ^category shape)
+#	(<v26> ^type word2cat ^word half-cylinder ^category shape)
+#	(<v27> ^type word2cat ^word arch ^category shape)
+#	(<v28> ^type word2cat ^word square ^category shape)
+#	(<v29> ^type word2cat ^word doughnut ^category shape)
+#    (<v30> ^type word2cat ^word sphere ^category shape)
  
  	# Size
-	(<v31> ^type word2cat ^word small ^category size)
-	(<v32> ^type word2cat ^word medium ^category size)
-	(<v33> ^type word2cat ^word large ^category size)
+#	(<v31> ^type word2cat ^word small ^category size)
+#	(<v32> ^type word2cat ^word medium ^category size)
+#	(<v33> ^type word2cat ^word large ^category size)
  
  	# Name
-	#(<v41> ^type word2cat ^word block ^category name)
-	#(<v42> ^type word2cat ^word cylinder ^category name)
-	#(<v43> ^type word2cat ^word ball ^category name)
+	(<v41> ^type word2cat ^word block ^category name)
+	(<v42> ^type word2cat ^word cylinder ^category name)
+	(<v43> ^type word2cat ^word ball ^category name)
 	(<v44> ^type word2cat ^word object ^category name)
 	(<v45> ^type word2cat ^word stove ^category name)
 	(<v46> ^type word2cat ^word pantry ^category name)
 	(<v47> ^type word2cat ^word dishwasher ^category name)
-	(<v48> ^type word2cat ^word center ^category name)
+	(<v48> ^type word2cat ^word table ^category name)
 	(<v49> ^type word2cat ^word garbage ^category name)
 }
 
@@ -74,11 +82,11 @@ sp {apply*init-agent*store*smem*label-map
               ^smem.command <cmd>)
 -->
    (<cmd> ^store <v1> <v2> <v3> <v4> <v5> <v6>)
-   (<v1> ^type label-map ^word sphere ^category shape ^label shape-sphere)
-   (<v2> ^type label-map ^word green ^category color ^label color-green)
-   (<v3> ^type label-map ^word blue ^category color ^label color-blue)
-   (<v5> ^type label-map ^word red ^category color ^label color-red)
-   (<v6> ^type label-map ^word yellow ^category color ^label color-yellow)
-   (<v4> ^type label-map ^word cylinder ^category shape ^label shape-cylinder)
+#   (<v1> ^type label-map ^word sphere ^category shape ^label shape-sphere)
+#   (<v2> ^type label-map ^word green ^category color ^label color-green)
+#   (<v3> ^type label-map ^word blue ^category color ^label color-blue)
+#   (<v5> ^type label-map ^word red ^category color ^label color-red)
+#   (<v6> ^type label-map ^word yellow ^category color ^label color-yellow)
+#   (<v4> ^type label-map ^word cylinder ^category shape ^label shape-cylinder)
 }
    

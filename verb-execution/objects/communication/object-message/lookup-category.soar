@@ -10,6 +10,7 @@ sp {object-message*propose*lookup-smem*category
    (<o> ^name lookup-smem
         ^category smem
         ^lookup-type category
+        ^ask-user true
         ^query <q>
         ^desired.category true)
    (<q> ^type word2cat ^word <word> ^category <cat>)

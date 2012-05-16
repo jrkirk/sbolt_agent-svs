@@ -45,9 +45,9 @@ sp {find-object*reject*not-match*name
         ^object <obj>)
    (<obj> ^property <prop>)
    (<prop> ^name name
-           -^value <label>)
+           -^word <name>)
    (<nj> ^category name
-         ^label {<label> <> name-object})
+         ^word {<name> <> object})
 -->
    (<s> ^operator <o> -
    	^not-match <obj>)
@@ -98,48 +98,9 @@ sp {find-object*add*smem-match
    (<ss-o> ^match <obj>)
 }
 
-#
-#sp {find-object*apply*object-match*return-any*false
-#   (state <s> ^name find-object
-#              ^return-any false
-#              ^topstate.object <obj>
-#              ^operator <o>
-#              ^superstate.operator <ss-o>)
-#   (<o> ^name object-match
-#        ^object <obj>)
-#-->
-#   (<ss-o> ^match <obj>)
-#}
-#
-##
-#
-#
-#sp {find-object*write*match*superstate-operator*return-any*true
-#   (state <s> ^name find-object
-#              ^return-any true
-#              ^superstate.operator <sso>	
-#	      	  ^operator <o>)
-#   (<o> ^name object-match
-#        ^object <obj>)
-#-->
-#   (<sso> ^match <obj>)
-#}
-#
-#sp {find-object*write*match*superstate-operator
-#   (state <s> ^name find-object
-#              ^return-any false
-#              ^superstate.operator <sso>	
-#	      ^operator <o>
-#	      ^topstate.object <obj>
-#	      -^not-match <obj>)
-#   (<o> ^name object-match)
-#-->
-#   (<sso> ^match <obj>)
-#}
-
 sp {find-object*propose*no-match
-   (state <s> ^name find-object
-   	      ^smem-match failure) 
+   (state <s> ^name find-object)
+   	   #   ^smem-match failure) 
 -->
    (<s> ^operator <o> +)
    (<o> ^name no-match
