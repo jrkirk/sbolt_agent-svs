@@ -65,7 +65,6 @@ sp {apply*init-agent*store*smem*word2cat
  
  	# Name
 	(<v41> ^type word2cat ^word block ^category name)
-	(<v42> ^type word2cat ^word cylinder ^category name)
 	(<v43> ^type word2cat ^word ball ^category name)
 	(<v44> ^type word2cat ^word object ^category name)
 	(<v45> ^type word2cat ^word stove ^category name)
