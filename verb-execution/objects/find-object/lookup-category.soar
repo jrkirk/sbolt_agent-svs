@@ -1,13 +1,15 @@
 # Fetch the category for the given word from memory
 sp {find-object*propose*lookup-smem*category
    (state <s> ^name find-object
-              ^nounjective <nj>)
+              ^nounjective <nj>
+              ^ask-user <ask>)
    (<nj> -^category
           ^word <word>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name lookup-smem
         ^category smem
+        ^ask-user <ask>
         ^lookup-type category
         ^query <q>
         ^desired.category true)

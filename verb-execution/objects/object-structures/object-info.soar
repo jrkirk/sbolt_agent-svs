@@ -23,13 +23,26 @@ sp {elaborate*object*bbox
    (<obj> ^bbox <pose>)
 }
 
+sp {elaborate*object*name
+   (state <s> ^topstate <s>
+              ^io.input-link.objects.object <il-obj>
+              ^object <obj>)
+   (<il-obj> ^id <id>
+             ^name <name>)
+   (<obj> ^id <id>
+          ^property <prop>)
+   (<prop> ^name name)
+-->
+   (<prop> ^word <name>)
+}
+
 sp {elaborate*object*name*no-name
    (state <s> ^topstate <s>
               ^object.property <prop>)
    (<prop> ^name name
-          -^value <> name-object)
+          -^word <> object)
 -->
-   (<prop> ^value name-object)
+   (<prop> ^word object)
 }
 
 sp {elaborate*object*shape-name

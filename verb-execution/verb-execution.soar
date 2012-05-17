@@ -10,6 +10,7 @@ pushd ./interaction
 source all_source.soar
 popd
 
+
 pushd ./objects
 source objects_source.soar
 popd
@@ -21,6 +22,16 @@ popd
 source default.soar
 
 source preferences.soar
+
+#sp {propose*remove-message
+#   (state <s> ^topstate <s>
+#              ^instructor-message <m>)
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name remove-message
+#        ^category communication
+#        ^message <m>)
+#}
 
 
 sp {propose*init-agent
@@ -34,7 +45,8 @@ sp {propose*init-agent
 sp {apply*init-agent
    (state <s> ^operator.name init-agent)
 -->
-   (<s> ^topstate <s>)
+   (<s> ^topstate <s>
+        ^top-state <s>)
 }
 
 ## Elaborate a state as non-atomic/atomic if the operator proposed in superstate in non-atomic/atomic

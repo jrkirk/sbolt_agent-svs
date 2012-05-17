@@ -35,6 +35,7 @@ sp {which-question*propose*find-object
    (<s> ^operator <o> +)
    (<o> ^name find-object
         ^return-any true
+        ^ask-user true
         ^category object-processing)
 }
 

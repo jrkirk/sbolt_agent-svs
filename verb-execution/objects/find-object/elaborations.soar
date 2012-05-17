@@ -8,23 +8,30 @@ sp {find-object*elaborate*nounjective
    (<s> ^nounjective.word <w>)
 }
 
-sp {find-object*elaborate*return-any*true
-   (state <s> ^name find-object
-              ^superstate.operator.return-any true)
--->
-   (<s> ^return-any true)
-}
-
-sp {find-object*elaborate*return-any*false
-   (state <s> ^name find-object
-             -^return-any true)
--->
-   (<s> ^return-any false)
-}
-
 sp {find-object*elaborate*return-all*true
    (state <s> ^name find-object
               ^superstate.operator.return-all true)
 -->
    (<s> ^return-all true)
+}
+
+sp {find-object*elaborate*return-all*false
+   (state <s> ^name find-object
+              -^superstate.operator.return-all true)
+-->
+   (<s> ^return-all false)
+}
+
+sp {find-object*elaborate*ask-user*true
+   (state <s> ^name find-object
+              ^superstate.operator.ask-user true)
+-->
+   (<s> ^ask-user true)
+}
+
+sp {find-object*elaborate*ask-user*false
+   (state <s> ^name find-object
+              -^superstate.operator.ask-user true)
+-->
+   (<s> ^ask-user false)
 }

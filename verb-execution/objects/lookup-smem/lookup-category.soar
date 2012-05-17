@@ -7,12 +7,13 @@
 #        ^desired.category true)
 #   (<q> ^type word2cat ^word <word> ^category c67)
 # Only word is specified
-
+#
+# Optional paramerter (<o> ^ask-user true) will cause the agent
+#   to ask the user if the category of a word is unknown
 
 # The category is cached in working memory, use it
-sp {object-message*apply*lookup-smem*category*working-mem
-   (state <s> ^name object-message
-              ^operator <o>
+sp {apply*lookup-smem*category*working-mem
+   (state <s> ^operator <o>
               ^topstate.mappings.word2cat <w2c>)
    (<o> ^name lookup-smem
         ^lookup-type category
@@ -23,16 +24,18 @@ sp {object-message*apply*lookup-smem*category*working-mem
 }
 
 # If this is a new word with an unknown category ask the user
-#sp {object-message*apply*lookup-smem*category*failure*query
-#   (state <s> ^name object-message
-#              ^operator <o>
-#              ^topstate.queries <qs>)
-#   (<o> ^name lookup-smem
-#        ^lookup-type category
-#        ^query.word <word>
-#        ^result failure)
-#-->
-#   (<qs> ^query <q>)
-#   (<q> ^type category-of-word
-#        ^word <word>)
-#}
+sp {apply*lookup-smem*category*failure*query
+   (state <s> ^operator <o>
+              ^topstate.queries <qs>
+              ^topstate.interaction.stack.segment <seg>)
+   (<o> ^name lookup-smem
+        ^ask-user true
+        ^lookup-type category
+        ^query.word <word>
+        ^result failure)
+-->
+   (<qs> ^query <q>)
+   (<q> ^type category-of-word
+        ^segment <seg>
+        ^word <word>)
+}
