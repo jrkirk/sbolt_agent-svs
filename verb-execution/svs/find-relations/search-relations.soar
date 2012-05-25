@@ -1,12 +1,11 @@
-sp {find-relations*propose*relation-search*false*first-part
+sp {find-relations*relation-search*false-first-part
    (state <s> ^name find-relations
               ^topstate <ss>
               ^obj <id>
               ^ind 1
 			  ^relation <r>)
    (<ss> ^svs.command <cmd>)
-   (<ss> ^predicates <p>)
-   (<p> ^predicate <p1>)
+   (<s> ^predicate <p1>)
    (<p1> ^name <type>
          ^relation <rel>)
    (<r> ^name <type>
@@ -20,15 +19,14 @@ sp {find-relations*propose*relation-search*false*first-part
    (<r> ^result false) 
 }
 
-sp {find-relations*propose*relation-search*false*second-part
+sp {find-relations*relation-search*false-second-part
    (state <s> ^name find-relations
               ^topstate <ss>
               ^obj <id>
               ^ind 2
 			  ^relation <r>)
    (<ss> ^svs.command <cmd>)
-   (<ss> ^predicates <p>)
-   (<p> ^predicate <p1>)
+   (<s> ^predicate <p1>)
    (<p1> ^name <type>
          ^relation <rel>)
    (<r> ^name <type>
@@ -42,14 +40,13 @@ sp {find-relations*propose*relation-search*false*second-part
    (<r> ^result false) 
 }
 
-sp {find-relations*propose*relation-search*true*default
+sp {find-relations*relation-search*true-default
    (state <s> ^name find-relations
               ^topstate <ss>
               ^obj <id>
 			  ^relation <r>)
    (<ss> ^svs.command <cmd>)
-   (<ss> ^predicates <p>)
-   (<p> ^predicate <p1>)
+   (<s> ^predicate <p1>)
    (<p1> ^name <type>)
    (<r> ^name <type> 
           ^obj <objb>)
@@ -57,39 +54,49 @@ sp {find-relations*propose*relation-search*true*default
    (<r> ^result true) 
 }
 
-sp {find-relations*propose*relation-search*build-potentials
+sp {find-relations*relation-search*build-potentials
    (state <s> ^name find-relations
               ^topstate <ss>
              -^prep
               ^obj <id>)
    (<ss> ^svs.command <cmd>)
-   (<ss> ^predicates <p>)
-   (<p>  ^predicate <p1>)
+   (<s>  ^predicate <p1>)
    (<p1> ^name <type>)
-   (<ss> ^svs.spatial-scene.child.id-int <id2>)
+   (<ss> ^svs.spatial-scene.child.id-int <id2> <> <id>)
 -->
    (<s> ^relation <rel>)
    (<rel> ^name <type> ^obj <id2>)
 }
 
-sp {find-relations*propose*relation-search*build-potentials*optional-prep
+sp {find-relations*relation-search*build-potentials*optional-prep
    (state <s> ^name find-relations
               ^topstate <ss>
               ^prep <type>
               ^obj <id>)
    (<ss> ^svs.command <cmd>)
-   (<ss> ^predicates <p>)
-   (<p>  ^predicate <p1>)
+   (<s>  ^predicate <p1>)
    (<p1> ^name <type>)
-   (<ss> ^svs.spatial-scene.child.id-int <id2>)
+   (<ss> ^svs.spatial-scene.child.id-int <id2> <> <id>)
 -->
    (<s> ^relation <rel>)
    (<rel> ^name <type> ^obj <id2>)
 }
 
+sp {find-relations*relation-search*propose*lookup-preposition
+   (state <s> ^name find-relations
+             -^status
+              ^prep <type>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name lookup-preposition
+        ^category svs
+        ^type <type>)
+}
+
 sp {find-relations*propose*relation-search*build-answerlist
    (state <s> ^name find-relations
               ^superstate <ss>
+              ^status
               ^obj <id>)
 -->
    (<s> ^relationships <rels>)

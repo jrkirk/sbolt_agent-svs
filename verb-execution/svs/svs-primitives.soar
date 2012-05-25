@@ -1,9 +1,9 @@
 
-sp {apply*init-prepositions
-   (state <s> ^superstate nil)
--->
-   (<s> ^predicates <p>)
-}
+#sp {apply*init-prepositions
+#   (state <s> ^superstate nil)
+#-->
+#   (<s> ^predicates <p>)
+#}
 
 #to enable integer comparisons
 sp {svs*elaborate*predicate*objects*to*int 
@@ -27,7 +27,7 @@ sp {svs*elaborate*svs*objects*ids*to*int
    (<C> ^id-int (int <obja1>))
  }
 
-sp {clean*up*extracts
+sp {clean-up*extracts*after*svs
    (state <s> ^operator.name pop-segment
               ^superstate nil
               ^svs.command <cmd>)
@@ -36,6 +36,22 @@ sp {clean*up*extracts
 -->
    (<cmd> ^extract <E11> -)
 }
+sp {clean-up*object1*after*svs
+   (state <s> ^operator.name pop-segment
+              ^topstate <s>
+              ^obj2 <o2>)
+-->
+   (<s> ^obj2 <o2> -)
+}
+
+sp {clean-up*object2*after*svs
+   (state <s> ^operator.name pop-segment
+              ^topstate <s>
+              ^obj1 <o1>)
+-->
+   (<s> ^obj1 <o1> -)
+}
+
 sp {extractsW
    (state <s> ^name << svs-label svs-query >>
               ^topstate.svs.command <cmd>)

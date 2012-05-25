@@ -1,16 +1,15 @@
-sp {svs-label*propose*label*direct-compare
+sp {svs-label*direct-compare
    (state <s> ^name svs-label
               ^superstate.operator.message.fields.objects <objs>
    			  ^superstate.superstate <sss>
               ^label-svs <l>)
    (<sss> ^svs.command <cmd>)
-   (<sss> ^predicates <p>)
    (<objs> ^type <type>
            ^obj <oa>
            ^obj <ob>)
    (<ob> ^index <i2> ^id <objb>)
    (<oa> ^index <i1> ^id <obja>)
-   (<p> ^predicate <p1>)
+   (<s> ^predicate <p1>)
    (<p1> ^name <type>
          ^obj <o1>
          ^obj <o2>)
@@ -29,61 +28,47 @@ sp {svs-label*propose*label*direct-compare
 }
 
 
-sp {svs-label*propose*label*direct-create*new*prep
+sp {svs-label*direct-create*new*prep
    (state <s> ^name svs-label
               ^superstate.operator.message.fields.objects <objs>
    			  ^superstate <ss>
               ^superstate.superstate <sss>
              -^status old
               ^status default)
-   (<sss> ^predicates <p>)
    (<objs> ^type <type>)
 -->
    (<s> ^label-svs <l>)
    (<s> ^created true)
-   (<p> ^predicate <p1>)
+   (<s> ^predicate <p1>)
    (<p1> ^name <type>) 
 }
 
-sp {svs-label*propose*label*direct-add*new*obj*to*prep
+sp {svs-label*direct-add*new*obj*to*prep
    (state <s> ^name svs-label
               ^superstate.operator.message.fields.objects <objs>
    			  ^superstate <ss>
               ^superstate.superstate <sss>
              -^status old
               ^status default)
-   (<sss> ^predicates <p>)
    (<objs> ^type <type>
            ^obj <o>)
    (<o> ^index <i>)  
-   (<p> ^predicate <p1>)
+   (<s> ^predicate <p1>)
    (<p1> ^name <type>)
 -->
    (<p1> ^obj <o1>)
    (<o1> ^index <i>)
 }
 
-sp {svs-label*propose*label*direct-old
+
+sp {svs*label*propose*lookup-preposition
    (state <s> ^name svs-label
-              ^superstate.operator.message.fields.objects <objs>
-   			  ^superstate <ss>
-              ^superstate.superstate <sss>
-             -^created)
-   (<sss> ^predicates <p>)
-   (<p>   ^predicate.name <type>) 
+             -^status
+              ^superstate.operator.message.fields.objects <objs>)
    (<objs> ^type <type>)
 -->
-   (<s> ^status old)
+   (<s> ^operator <o> +)
+   (<o> ^name lookup-preposition
+        ^category svs
+        ^type <type>)
 }
-
-sp {svs-label*propose*label*direct-default
-   (state <s> ^name svs-label
-              ^superstate.operator.message.fields.objects <objs>
-   			  ^superstate <ss>
-              ^superstate.superstate <sss>)
-   (<sss> ^predicates <p>)
-   (<objs> ^type <type>)
--->
-   (<s> ^status default)
-}
-

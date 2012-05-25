@@ -29,6 +29,7 @@ sp {find-relations*complete-relations-search*false
 sp {find-relations*complete-relations-search*nonefound
    (state <s> ^name find-relations
               ^obj <id>
+              ^relationships <rels>
 			  -^relation <r>)
 -->
    (<s> ^operator <o> + =)
