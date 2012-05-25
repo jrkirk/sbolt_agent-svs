@@ -2,6 +2,7 @@
 sp {svs-label*propose*complete-svs-label*direct
    (state <s> ^name svs-label
               ^superstate.operator.message.fields.objects <objs>
+              ^smem.command <sc>
               ^superstate.superstate <sss>
               ^label-svs <l>)
    (<l> ^result <r>)
@@ -9,7 +10,7 @@ sp {svs-label*propose*complete-svs-label*direct
         ^a <i1>
         ^b <i2>)
    (<objs> ^type <type>)
-   (<sss> ^predicates.predicate <p1>)
+   (<s> ^predicate <p1>)
    (<p1> ^name <type>
          ^obj <o1>
          ^obj <o2>)
@@ -20,6 +21,7 @@ sp {svs-label*propose*complete-svs-label*direct
    (<r1> ^type <t>
          ^a <i1>
          ^b <i2>)
+   (<sc> ^store <r1>)
    (<s> ^operator <o> + =)
    (<o> ^name complete-svs-label
         ^category svs
@@ -32,7 +34,7 @@ sp {svs-label*complete-svs-label*simplify
               ^superstate.superstate <sss>
               ^label-svs <l>)
    (<objs> ^type <type>)
-   (<sss> ^predicates.predicate <p1>)
+   (<s> ^predicate <p1>)
    (<p1> ^name <type>
          ^obj <o1>
          ^obj <o2>
@@ -58,7 +60,7 @@ sp {svs-label*complete-svs-label*simplify
 }
 
 
-sp {svs-label*propose*complete-svs-label*true
+sp {svs-label*propose*remove-relation
    (state <s> ^name svs-label
               ^superstate.operator.message.fields.objects <objs>
               ^superstate.superstate <sss>
@@ -74,17 +76,27 @@ sp {svs-label*propose*complete-svs-label*true
    (<E> ^type <t> ^result.negative.atom <A>)
    (<A> ^a1 <obja> 
         ^b1 <objb>)
-   (<sss> ^predicates.predicate <p1>)
+   (<s> ^predicate <p1>)
    (<p1> ^name <type>
          ^relation <r1>)
    (<r1> ^type <t> ^a <i1> ^b <i2>)
 -->
-   (<p1> ^relation <r1> -)
    (<s> ^operator <o> + =)
-   (<o> ^name complete-svs-label
-        ^category svs
-        ^type old-simplify)
+   (<o> ^name remove-relation
+        ^remove <r1>
+        ^category svs)
 }
+
+sp {svs-label*apply*remove-relation
+   (state <s> ^name svs-label
+              ^predicate <p1>
+              ^operator <o>)
+   (<o> ^name remove-relation
+        ^remove <r1>)
+-->
+   (<p1> ^relation <r1> -)
+}
+
 
 
 sp {svs-label*propose*complete-svs-label*old*default
@@ -172,10 +184,16 @@ sp {svs-label*apply*complete-svs-label*direct*mark-processed
               ^operator.name complete-svs-label
               ^topstate.status <status>
               ^topstate.svs.command.project  #todo remove
+              ^smem.command <sc>
+              ^superstate.operator.message.fields.objects <objs>
               ^superstate <ss>)
    (<ss> ^operator.message <m>)
+   (<objs> ^type <type>)
+   (<s> ^predicate <p1>)
+   (<p1> ^name <type>)
    (<ss> ^superstate <sss>)
 -->
+   (<sc> ^store <p1>)
    (<status> ^performed.learning-event preposition)
 }
 

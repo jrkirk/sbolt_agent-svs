@@ -1,4 +1,4 @@
-sp {find-relations*elaborate*copy*down*attrs
+sp {find-relations*elaborate*copy-down-attrs
    (state <s> ^name find-relations
               ^superstate.operator <o>)
    (<o> ^obj <id>
@@ -8,7 +8,7 @@ sp {find-relations*elaborate*copy*down*attrs
         ^ind <ind>)
 }
 
-sp {find-relations*elaborate*copy*down*attrs*optional-prep
+sp {find-relations*elaborate*copy-down-attrs*optional-prep
    (state <s> ^name find-relations
               ^superstate.operator <o>)
    (<o> ^prep <prep>)
