@@ -97,7 +97,9 @@ sp {find-relations*propose*relation-search*build-answerlist
    (state <s> ^name find-relations
               ^superstate <ss>
               ^status
+              ^prep <type>
               ^obj <id>)
 -->
    (<s> ^relationships <rels>)
+   (<rels> ^with <id> ^preposition <type>)
 }

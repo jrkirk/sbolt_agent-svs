@@ -24,6 +24,14 @@ sp {svs-query*apply*find-relations
    (<s> ^operator <o> + =)
 }
 
+#sp {svs-query*elaborate*find-relations*copy-relationships
+#   (state <s> ^name svs-query
+#              ^operator <o>)
+#   (<o> ^name find-relations
+#        ^relationships <rels>)
+#-->
+#   (<s> ^relationships <rels>)
+#}
 
 sp {svs-query*propose*describe-object
    (state <s> ^name svs-query
