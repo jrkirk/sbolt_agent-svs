@@ -36,6 +36,14 @@ sp {clean-up*extracts*after*svs
 -->
    (<cmd> ^extract <E11> -)
 }
+sp {clean-up*project*after*svs
+   (state <s> ^operator.name pop-segment
+              ^superstate nil
+              ^svs.command <cmd>)
+   (<cmd> ^project <P11>)
+-->
+   (<cmd> ^project <P11> -)
+}
 sp {clean-up*object1*after*svs
    (state <s> ^operator.name pop-segment
               ^topstate <s>

@@ -1,0 +1,48 @@
+#find ids for both objects then process in svs
+sp {svs-project*propose*find-projection
+   (state <s> ^name svs-project
+              -^projection-result
+              ^superstate.operator <so>)
+   (<so> ^message.fields.objects <objs>)
+   (<objs> ^obj <object>
+           ^type <prep>)
+   (<object> ^id <id> ^index <ind>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name find-projection
+        ^category svs
+        ^a <id>
+        ^b <id>
+        ^type <prep>)
+}
+
+
+sp {svs-project*find-projections*failed
+   (state <s> ^name svs-project
+              ^projection-result failure
+              ^io.output-link <out>
+              ^topstate.status <status>)
+-->
+   (<status> ^performed.action-event describe)
+   (<out> ^send-message <msg>)
+   (<msg> ^type describe-object
+          ^fields.object failure)
+}
+
+sp {svs-project*propose*point
+   (state <s> ^name svs-project
+               ^projection-result <res>
+               ^io.output-link <out>
+               ^topstate.status <status>)
+   (<res> ^x <x> ^y <y> ^z <z>)
+-->
+   (<out> ^point <point>)
+   (<point> ^pose <pose>)
+   (<pose> ^x <x> ^y <y> ^z <z>)
+   (<status> ^performed.action-event describe)
+}
+
+
+   
+
+

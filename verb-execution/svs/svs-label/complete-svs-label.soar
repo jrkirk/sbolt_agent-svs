@@ -124,66 +124,66 @@ sp {svs-label*propose*complete-svs-label*direct*false
 }
 
 
-sp {svs-label*apply*complete-svs-label*direct*temp*createproj
-   (state <s> ^name svs-label
-              ^operator.name complete-svs-label
-              ^superstate.operator.message.fields.objects <objs>
-              ^topstate.svs.command <cmd>
-              ^topstate.svs.spatial-scene <sp>)
-   (<objs> ^type <type>
-           ^obj <oa>
-           ^obj <ob>)
-   (<ob> ^index <i2> ^id <objb>)
-   (<oa> ^index <i1> ^id <obja>)
-   (<oa> ^index < <i2>)
-   (<sp> ^child <c1> ^child <c2>)
-   (<c1> ^id-int <obja> ^id <obja1>)
-   (<c2> ^id-int <objb> ^id <objb1>)
--->
-#   (<s> ^operator <o> + =)
-#   (<o> ^name find-projection
-#        ^category svs
-#        ^a <obja>
-#        ^b <objb>
-#        ^type <type>)
-   (<cmd> ^project <P11>)
-   (<P11> ^a <N7> ^b <N8>)
-   (<N7> ^type node ^name <obja1>)
-   (<N8> ^type node ^name <objb1>)
-}
+#sp {svs-label*apply*complete-svs-label*direct*temp*createproj
+#   (state <s> ^name svs-label
+#              ^operator.name complete-svs-label
+#              ^superstate.operator.message.fields.objects <objs>
+#              ^topstate.svs.command <cmd>
+#              ^topstate.svs.spatial-scene <sp>)
+#   (<objs> ^type <type>
+#           ^obj <oa>
+#           ^obj <ob>)
+#   (<ob> ^index <i2> ^id <objb>)
+#   (<oa> ^index <i1> ^id <obja>)
+#   (<oa> ^index < <i2>)
+#   (<sp> ^child <c1> ^child <c2>)
+#   (<c1> ^id-int <obja> ^id <obja1>)
+#   (<c2> ^id-int <objb> ^id <objb1>)
+#-->
+##   (<s> ^operator <o> + =)
+##   (<o> ^name find-projection
+##        ^category svs
+##        ^a <obja>
+##        ^b <objb>
+##        ^type <type>)
+#   (<cmd> ^project <P11>)
+#   (<P11> ^a <N7> ^b <N8>)
+#   (<N7> ^type node ^name <obja1>)
+#   (<N8> ^type node ^name <objb1>)
+#}
 
-sp {svs-label*apply*complete-svs-label*direct*temp*createproj2
-   (state <s> ^name svs-label
-              ^operator.name complete-svs-label
-              ^superstate.operator.message.fields.objects <objs>
-              ^topstate.svs.command <cmd>
-              ^topstate.predicates.predicate <p1>
-              ^topstate.svs.spatial-scene <sp>)
-   (<p1> ^name <type>
-         ^relation.type <ptype>)
-   (<objs> ^type <type>
-           ^obj <oa>
-           ^obj <ob>)
-   (<ob> ^index <i2> ^id <objb>)
-   (<oa> ^index <i1> ^id <obja>)
-   (<oa> ^index < <i2>)
-   (<sp> ^child <c1> ^child <c2>)
-   (<c1> ^id-int <obja> ^id <obja1>)
-   (<c2> ^id-int <objb> ^id <objb1>)
-   (<cmd> ^project <P11>)
-   (<P11> ^a <N7> ^b <N8>)
-   (<N7> ^type node ^name <obja1>)
-   (<N8> ^type node ^name <objb1>)  
--->
-   (<P11> ^type <ptype>)
-} 
+#sp {svs-label*apply*complete-svs-label*direct*temp*createproj2
+#   (state <s> ^name svs-label
+#              ^operator.name complete-svs-label
+#              ^superstate.operator.message.fields.objects <objs>
+#              ^topstate.svs.command <cmd>
+#              ^topstate.predicates.predicate <p1>
+#              ^topstate.svs.spatial-scene <sp>)
+#   (<p1> ^name <type>
+#         ^relation.type <ptype>)
+#   (<objs> ^type <type>
+#           ^obj <oa>
+#           ^obj <ob>)
+#   (<ob> ^index <i2> ^id <objb>)
+#   (<oa> ^index <i1> ^id <obja>)
+#   (<oa> ^index < <i2>)
+#   (<sp> ^child <c1> ^child <c2>)
+#   (<c1> ^id-int <obja> ^id <obja1>)
+#   (<c2> ^id-int <objb> ^id <objb1>)
+#   (<cmd> ^project <P11>)
+#   (<P11> ^a <N7> ^b <N8>)
+#   (<N7> ^type node ^name <obja1>)
+#   (<N8> ^type node ^name <objb1>)  
+#-->
+#   (<P11> ^type <ptype>)
+#} 
 
 
 sp {svs-label*apply*complete-svs-label*direct*mark-processed
    (state <s> ^name svs-label
               ^operator.name complete-svs-label
               ^topstate.status <status>
-              ^topstate.svs.command.project  #todo remove
+              #^topstate.svs.command.project  #todo remove
               ^smem.command <sc>
               ^superstate.operator.message.fields.objects <objs>
               ^superstate <ss>)

@@ -1,6 +1,8 @@
 source propose*svs-query.soar
+source propose*svs-project.soar
 source preferences.soar
 source complete-svs-query.soar
+source complete-svs-project.soar
 
 pushd relation-question
 source relation-question_source.soar
