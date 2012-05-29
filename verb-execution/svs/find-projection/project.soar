@@ -34,7 +34,8 @@ sp {find-projection*project*svs*failure*prep-exist
               ^type <prep>)
    (<s> ^status default)
 -->
-   (<ss> ^projection-result failure)
+   (<ss> ^projection-result failure
+         ^proj-failure-reason no-prep)
 }
 
 sp {find-projection*project*svs*failure*obja-exist
@@ -45,7 +46,8 @@ sp {find-projection*project*svs*failure*obja-exist
               ^topstate.svs.spatial-scene <sp>)
    (<sp> -^child.id-int <ida>)
 -->
-   (<ss> ^projection-result failure)
+   (<ss> ^projection-result failure
+         ^proj-failure-reason no-object)
 }
 sp {find-projection*project*svs*failure*objb-exist
    (state <s> ^name find-projection
@@ -55,7 +57,8 @@ sp {find-projection*project*svs*failure*objb-exist
               ^topstate.svs.spatial-scene <sp>)
    (<sp> -^child.id-int <idb>)
 -->
-   (<ss> ^projection-result failure)
+   (<ss> ^projection-result failure
+         ^proj-failure-reason no-object)
 }
 
 

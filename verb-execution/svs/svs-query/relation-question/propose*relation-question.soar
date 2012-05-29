@@ -34,6 +34,21 @@ sp {relation-question*apply*find-object2*results
    (<s> ^obj2 <id>)
 }
 
+sp {relation-question*apply*find-object2*failure
+   (state <s> ^operator <o>
+              ^interaction.stack.segment.purpose.type relation-question
+              ^io.output-link <out>
+              ^topstate.status <status>)
+   (<o> ^name find-object
+        ^obj 2
+        ^match failure)              
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type no-object
+          ^fields.object failure)
+   (<status> ^performed.action-event describe)
+}
+
 sp {relation-question*propose*process-svs-question
    (state <s> ^operator <o>
              -^processed

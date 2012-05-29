@@ -20,12 +20,19 @@ sp {svs-project*propose*find-projection
 sp {svs-project*find-projections*failed
    (state <s> ^name svs-project
               ^projection-result failure
-              ^io.output-link <out>
               ^topstate.status <status>)
 -->
    (<status> ^performed.action-event describe)
+}
+
+sp {svs-project*find-projections*failed*prep-unknown
+   (state <s> ^name svs-project
+              ^projection-result failure
+              ^proj-failure-reason no-prep
+              ^io.output-link <out>)
+-->
    (<out> ^send-message <msg>)
-   (<msg> ^type describe-object
+   (<msg> ^type no-prep
           ^fields.object failure)
 }
 

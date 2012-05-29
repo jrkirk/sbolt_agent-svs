@@ -93,6 +93,16 @@ sp {find-relations*relation-search*propose*lookup-preposition
         ^type <type>)
 }
 
+sp {find-relations*propose*relation-search*preposition-not-found
+   (state <s> ^name find-relations
+              ^superstate <ss>
+              ^status default
+              ^relationships <rels>
+              ^obj <id>)
+-->
+   (<rels> ^failure not-found)
+}
+
 sp {find-relations*propose*relation-search*build-answerlist
    (state <s> ^name find-relations
               ^superstate <ss>

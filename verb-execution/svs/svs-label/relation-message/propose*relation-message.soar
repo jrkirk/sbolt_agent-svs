@@ -70,11 +70,15 @@ sp {relation-messaging*apply*find-object2*results
 sp {relation-messaging*apply*find-object*failure
    (state <s> ^operator <o>
               ^interaction.stack.segment.purpose.type relation-message
+              ^io.output-link <out>
               ^topstate.status <status>)
    (<o> ^name find-object
         ^obj << 1 2 >>
         ^match failure)                
 -->
+   (<out> ^send-message <msg>)
+   (<msg> ^type no-object
+          ^fields.object failure)
    (<status> ^performed.learning-event preposition)
 }
 
