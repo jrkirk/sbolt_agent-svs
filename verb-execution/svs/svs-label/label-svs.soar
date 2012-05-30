@@ -4,6 +4,7 @@ sp {svs-label*direct-compare
    			  ^superstate.superstate <sss>
               ^label-svs <l>)
    (<sss> ^svs.command <cmd>)
+   (<sss> ^svs.spatial-scene <sc>)
    (<objs> ^type <type>
            ^obj <oa>
            ^obj <ob>)
@@ -17,9 +18,12 @@ sp {svs-label*direct-compare
    (<o1> ^index <i1>)
    (<o1> ^index < <i2>)
    (<cmd> ^extract <E>)
+   (<sc> ^child <C> ^child <C2>)
+   (<C> ^id <obja1> ^id-int <obja>)
+   (<C2> ^id <objb1> ^id-int <objb>)
    (<E> ^type <t> ^result.positive.atom <A>)
-   (<A> ^a1 <obja>
-        ^b1 <objb>)   
+   (<A> ^a <obja1>
+        ^b <objb1>)   
 -->
    (<l> ^result <r>)
    (<r> ^type <t>

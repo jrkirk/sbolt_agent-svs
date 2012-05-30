@@ -5,6 +5,7 @@ sp {find-relations*relation-search*false-first-part
               ^ind 1
 			  ^relation <r>)
    (<ss> ^svs.command <cmd>)
+   (<ss> ^svs.spatial-scene <sc>)
    (<s> ^predicate <p1>)
    (<p1> ^name <type>
          ^relation <rel>)
@@ -12,9 +13,12 @@ sp {find-relations*relation-search*false-first-part
         ^obj <objb>)
    (<rel> ^type <t>)
    (<cmd> ^extract <E11>)
+   (<sc> ^child <C> ^child <C2>)
+   (<C> ^id <obja1> ^id-int <id>)
+   (<C2> ^id <objb1> ^id-int <objb>)
    (<E11> ^type <t> ^result.negative.atom <A1>)
-   (<A1> ^a1 <id> 
-         ^b1 <objb>)
+   (<A1> ^a <obja1> 
+         ^b <objb1>)
 -->
    (<r> ^result false) 
 }
@@ -26,6 +30,7 @@ sp {find-relations*relation-search*false-second-part
               ^ind 2
 			  ^relation <r>)
    (<ss> ^svs.command <cmd>)
+   (<ss> ^svs.spatial-scene <sc>)
    (<s> ^predicate <p1>)
    (<p1> ^name <type>
          ^relation <rel>)
@@ -33,9 +38,12 @@ sp {find-relations*relation-search*false-second-part
         ^obj <objb>)
    (<rel> ^type <t>)
    (<cmd> ^extract <E11>)
+   (<sc> ^child <C> ^child <C2>)
+   (<C> ^id <objb1> ^id-int <id>)
+   (<C2> ^id <obja1> ^id-int <objb>)
    (<E11> ^type <t> ^result.negative.atom <A1>)
-   (<A1> ^a1 <objb> 
-         ^b1 <id>)
+   (<A1> ^a <obja1> 
+         ^b <objb1>)
 -->
    (<r> ^result false) 
 }
