@@ -37,11 +37,15 @@ sp {relation-question*apply*find-object2*results
 sp {relation-question*apply*find-object2*failure
    (state <s> ^operator <o>
               ^interaction.stack.segment.purpose.type relation-question
+              ^io.output-link <out>
               ^topstate.status <status>)
    (<o> ^name find-object
         ^obj 2
-        ^match failure)                
+        ^match failure)              
 -->
+   (<out> ^send-message <msg>)
+   (<msg> ^type no-object
+          ^fields.object failure)
    (<status> ^performed.action-event describe)
 }
 
@@ -51,6 +55,7 @@ sp {relation-question*propose*process-svs-question
               ^interaction.stack.segment.purpose <p>
               ^obj2 <id2>)
    (<p> ^type relation-question
+       -^parameters.project
         ^parameters.prep <prep>)
 -->
    (<s> ^operator <o> +)
@@ -62,4 +67,24 @@ sp {relation-question*propose*process-svs-question
    (<object> ^obj <obja>
              ^type <prep>)
    (<obja> ^id <id2> ^index 2)
-} 
+}
+
+sp {relation-question*propose*process-svs-projection
+   (state <s> ^operator <o>
+             -^processed
+              ^interaction.stack.segment.purpose <p>
+              ^obj2 <id2>)
+   (<p> ^type relation-question
+        ^parameters.project
+        ^parameters.prep <prep>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name process-svs-projection
+        ^category svs
+	    ^message <m>)
+   (<m> ^fields <f> ^type svs-project)
+   (<f> ^objects <object>)
+   (<object> ^obj <obja>
+             ^type <prep>)
+   (<obja> ^id <id2> ^index 2)
+}

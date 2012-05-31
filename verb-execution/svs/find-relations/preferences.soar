@@ -11,6 +11,7 @@ sp {prefer*false*over*true*find-relations
    (<s> ^operator <o1> > <o2>)
 }
 
+
 sp {prefer*true*over*nonefound*find-relations
    (state <s> ^name find-relations
               ^operator <o1> +

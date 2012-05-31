@@ -27,6 +27,7 @@ sp {find-relations*complete-relations-search*true
 #        ^category svs)
 #}
 
+
 sp {find-relations*complete-relations-search*nonefound
    (state <s> ^name find-relations
               ^obj <id>
@@ -39,6 +40,7 @@ sp {find-relations*complete-relations-search*nonefound
         ^type none
         ^category svs)
 }
+
 
 sp {find-relations*apply*relations-match
    (state <s> ^name find-relations
