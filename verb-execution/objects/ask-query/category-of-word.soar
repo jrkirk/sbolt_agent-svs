@@ -7,7 +7,7 @@ sp {elaborate*ask-query*category-of-word
         ^query.type category-of-word)
 -->
    (<o> ^type category-of-word
-        ^expected-response single-word-response)
+        ^expected-response object-message)
 }
 
 sp {elaborate*ask-query*category-of-word*word

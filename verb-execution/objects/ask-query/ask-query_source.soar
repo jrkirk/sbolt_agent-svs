@@ -18,7 +18,8 @@ source ask-query.soar
 source category-of-word.soar
 #	Query for the category of the given word
 
+source teaching-request.soar
+#	Ask for a teching session for a specific object
 
-source preferences.soar
-# Orders query in the following way:
-#	shared-att-val > differs-from-group > value-question
+source which-question.soar
+#	Ask for clarification about which object is meant when there are multiple matches

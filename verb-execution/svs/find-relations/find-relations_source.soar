@@ -24,6 +24,9 @@
 # If the find-relations find no relationships the ^relationships response will contain
 # ^failure none-found
 
+#If find-relations does not find the preposition used the ^relationships response
+#contains ^failure prep-not-found
+
 
 source elaborations.soar
 source search-relations.soar

@@ -5,16 +5,18 @@ sp {propose*push-relation-question
 -->
    (<s> ^operator <o> +)
    (<o> ^name push-relation-question
-        ^category communication)
+        ^category communication
+        ^message <msg>)
 }
 
 sp {apply*push-relation-question*what
-   (state <s> ^operator.name push-relation-question
-              ^instructor-message <msg>)
+   (state <s> ^operator <o>)
+   (<o> ^name push-relation-question
+        ^message <msg>)
    (<msg> ^type relation-question
           ^information.question-word what 
           ^information.relation <rel>)
-   (<rel> ^p1-object <obja> ^p2-object <objb> ^word <prep>)
+   (<rel> ^p1.object <obja> ^p2.object <objb> ^word <prep>)
 -->
    (<msg> ^purpose <p>)
    (<p> ^type relation-question
@@ -27,12 +29,13 @@ sp {apply*push-relation-question*what
 }
 ##################
 sp {apply*push-relation-question*which
-   (state <s> ^operator.name push-relation-question
-              ^instructor-message <msg>)
+   (state <s> ^operator <o>)
+   (<o> ^name push-relation-question
+        ^message <msg>)
    (<msg> ^type relation-question
           ^information.question-word which 
           ^information.relation <rel>)
-   (<rel> ^p1-object <obja> ^p2-object <objb> ^word <prep>)
+   (<rel> ^p1.object <obja> ^p2.object <objb> ^word <prep>)
 -->
    (<msg> ^purpose <p>)
    (<p> ^type relation-question

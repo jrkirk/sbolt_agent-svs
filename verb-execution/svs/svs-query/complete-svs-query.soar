@@ -95,8 +95,7 @@ sp {svs-query*apply*complete-svs-query
 
 sp {svs-query*apply*complete-svs-query*found-none
    (state <s> ^name svs-query
-              ^relationships <r>
-             -^relationships.failure
+              ^relationships.failure none-found
              -^described
               ^operator.name complete-svs-query
               ^io.output-link <out>)
@@ -109,7 +108,7 @@ sp {svs-query*apply*complete-svs-query*found-none
 
 sp {svs-query*apply*complete-svs-query*preposition-unknown
    (state <s> ^name svs-query
-              ^relationships.failure not-found
+              ^relationships.failure prep-not-found
              -^described
               ^operator.name complete-svs-query
               ^io.output-link <out>)

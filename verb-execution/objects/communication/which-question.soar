@@ -1,60 +1,76 @@
 # Adds a segment to the interaction stack to deal with the which question
 
-sp {propose*push-which-question
-   (state <s> ^topstate <s>
-              ^instructor-message <msg>)
-   (<msg> ^type object-question
-          ^information.question-word which)
--->
-   (<s> ^operator <o> +)
-   (<o> ^name push-which-question
-        ^category communication)
-}
 
-sp {apply*push-which-question
-   (state <s> ^operator.name push-which-question
+
+sp {apply*push-relation-question*which-question
+   (state <s> ^operator.name push-relation-question
               ^instructor-message <msg>)
-   (<msg> ^information.object <desc>)
+   (<msg> ^type relation-question
+          ^information.question-word which 
+          ^information.relation <rel>)
+   (<rel> ^p1.object <obja> ^p2.object <objb> ^word <prep>)
+   (<obja> ^word <> UNKNOWN)
+   (<objb> ^word <> UNKNOWN)
 -->
    (<msg> ^purpose <p>)
    (<p> ^type which-question
         ^parameters <params>
         ^satisfaction <sat>)
+   (<params> ^relation <rel2>)
+   (<rel2> ^object1 <obja>
+          ^object2 <objb>
+          ^word <prep>)
    (<sat> ^action-event point)
-   (<params> ^description <desc>)
 }
 
 # Returns points to the described object
 
-sp {which-question*propose*find-object
+sp {which-question*propose*index-object
    (state <s> ^topstate <s>
              -^instructor-message <msg>
-              ^interaction.stack.segment.purpose <p>)
+              ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>
+          ^originator instructor)
    (<p> ^type which-question)
 -->
    (<s> ^operator <o> +)
-   (<o> ^name find-object
-        ^return-any true
-        ^ask-user true
+   (<o> ^name index-object
+        ^return-all false
+        ^use-interaction true
+        ^allow-ties true
         ^category object-processing)
 }
 
-sp {which-question*find-object*elaborate*word
+sp {which-question*index-object*elaborate*single-object
    (state <s> ^operator <o> +
               ^interaction.stack.segment.purpose <p>)
    (<p> ^type which-question
-        ^parameters.description.word {<word> <> object })
-   (<o> ^name find-object)
+        ^parameters.description <desc>)
+   (<o> ^name index-object)
 -->
-   (<o> ^word <word>)
+   (<o> ^object <desc>)
 }
 
-sp {which-question*apply*find-object
+sp {which-question*index-object*elaborate*relation
+   (state <s> ^operator <o> +
+              ^interaction.stack.segment.purpose <p>)
+   (<o> ^name index-object)
+   (<p> ^type which-question
+        ^parameters.relation <rel>)
+   (<rel> ^object1 <obj1>
+          ^object2 <obj2>)
+-->
+   (<o> ^object <obj1>
+        ^object <obj2>
+        ^relation <rel>)
+}
+
+sp {which-question*apply*index-object
    (state <s> ^operator <o>
               ^interaction.stack.segment.purpose.type which-question
               ^status <status>)
-   (<o> ^name find-object
-        ^match <m>)
+   (<o> ^name index-object
+        ^finished true)
 -->
    (<status> ^performed.action-event point)
 }
@@ -63,7 +79,7 @@ sp {recogition-question*apply*failure*send-message
    (state <s> ^operator <o>
               ^io.output-link <out>
               ^interaction.stack.segment.purpose.type which-question)
-   (<o> ^name find-object
+   (<o> ^name index-object
         ^match failure)
 -->
    (<out> ^send-message <msg>)
@@ -71,12 +87,12 @@ sp {recogition-question*apply*failure*send-message
           ^fields <f>)
 }
 
-sp {recogition-question*apply*find-object*point
+sp {recogition-question*apply*index-object*point
    (state <s> ^operator <o>
               ^io.output-link <out>
               ^topstate.object <obj>
               ^interaction.stack.segment.purpose.type which-question)
-   (<o> ^name find-object
+   (<o> ^name index-object
         ^match.id <id>)
    (<obj> ^id <id>
           ^pose <pose>)
@@ -84,4 +100,25 @@ sp {recogition-question*apply*find-object*point
    (<out> ^point <point>)
    (<point> ^id <id>
             ^pose <pose>)
+}
+
+sp {finish*index-object*test*print*match*failure
+   (state <s> ^topstate <s>
+              ^interaction.stack.segment.purpose.type which-question
+              ^operator <op>)
+   (<op> ^name index-object
+         ^match failure)
+-->
+   (write (concat |No Match| (crlf)))
+}
+
+sp {finish*index-object*test*print*match*success
+   (state <s> ^topstate <s>
+              ^interaction.stack.segment.purpose.type which-question
+              ^operator <op>)
+   (<op> ^name index-object
+         ^match {<m> <> failure})
+   (<m> ^id <id>)
+-->
+   (write (concat |Object Match: | <id> (crlf)))
 }

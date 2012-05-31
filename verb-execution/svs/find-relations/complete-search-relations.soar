@@ -1,4 +1,4 @@
-sp {find-relations*complete-relations-search*true
+sp {find-relations*propose*complete-relations-search*true
    (state <s> ^name find-relations
               ^obj <id>
              #-^superstate.relationships
@@ -28,13 +28,26 @@ sp {find-relations*complete-relations-search*true
 #}
 
 
-sp {find-relations*complete-relations-search*nonefound
+sp {find-relations*propose*complete-relations-search*nonefound
    (state <s> ^name find-relations
               ^obj <id>
               ^relationships <rels>)
-   (<rels> -^relations)
+   (<rels> -^relations
+           -^failure prep-not-found)
 -->
    (<rels> ^failure none-found)
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-relations-search
+        ^type none
+        ^category svs)
+}
+
+sp {find-relations*propose*complete-relations-search*prep-not-found
+   (state <s> ^name find-relations
+              ^obj <id>
+              ^relationships <rels>)
+   (<rels> ^failure prep-not-found)
+-->
    (<s> ^operator <o> + =)
    (<o> ^name complete-relations-search
         ^type none

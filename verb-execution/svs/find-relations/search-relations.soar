@@ -108,7 +108,7 @@ sp {find-relations*propose*relation-search*preposition-not-found
               ^relationships <rels>
               ^obj <id>)
 -->
-   (<rels> ^failure not-found)
+   (<rels> ^failure prep-not-found)
 }
 
 sp {find-relations*propose*relation-search*build-answerlist

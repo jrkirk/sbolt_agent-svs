@@ -86,6 +86,10 @@ pushd count-objects
 source count-objects_source.soar
 popd
 
+pushd index-object
+source index-object_source.soar
+popd
+
 
 ########----------- COMMUNICATION ----------#######
 #  ask-query

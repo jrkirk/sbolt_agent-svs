@@ -1,27 +1,3 @@
-# Adds a segment to the interaction stack to deal with the object question
-
-sp {propose*push-description-request
-   (state <s> ^topstate <s>
-              ^instructor-message <msg>)
-   (<msg> ^type object-question
-          ^information.question-word what
-          ^information.object.specifier this)
--->
-   (<s> ^operator <o> +)
-   (<o> ^name push-description-request
-        ^category communication)
-}
-
-sp {apply*push-description-request
-   (state <s> ^operator.name push-description-request
-              ^instructor-message <msg>)
--->
-   (<msg> ^purpose <p>)
-   (<p> ^type description-request
-        ^satisfaction <sat>)
-   (<sat> ^action-event describe)
-}
-
 # Describes the pointed-to object (or only object)
 sp {description-request*propose*describe-object
    (state <s> ^topstate <s>

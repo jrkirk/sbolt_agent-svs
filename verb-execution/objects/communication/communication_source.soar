@@ -1,21 +1,21 @@
-pushd object-message
-source object-message_source.soar
+pushd message-interpretation
+source message-interpretation_source.soar
+popd
+
+pushd this-object-message
+source this-object-message_source.soar
 popd
 
 source copy-message.soar
 
 source description-request.soar
 
-source which-question.soar
-
-source property-question.soar
+source category-question.soar
 
 source how-many-question.soar
 
+source which-question.soar
+
 pushd noun-information
-source noun-information_source.soar
+#source noun-information_source.soar
 popd
-
-source unknown-message.soar
-
-source single-word-response.soar
