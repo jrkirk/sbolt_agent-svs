@@ -50,41 +50,41 @@ sp {clean-up*object2*after*svs
    (<s> ^obj1 <o1> -)
 }
 
-sp {extract-filters*for-query*first
-   (state <s> ^name svs-query
-              ^topstate.filters.filter <fil>
-              ^topstate.svs.spatial-scene <sc>
-              ^topstate.svs.command <cmd>
-              ^superstate.operator.message.fields.objects <objs>)
-   (<objs> ^obj <object>
-           ^type <prep>)
-   (<object> ^id <id> ^index 1)
-   (<sc> ^child <C>)
-   (<C> ^id <obja> ^id-int <id>) 
--->
-   (<cmd> ^extract <E11>)
-   (<E11> ^a <N7> ^b <N8> ^type <fil>)
-   (<N7> ^type node ^name <obja>)
-   (<N8> ^type all_nodes)
-}
-
-sp {extract-filters*for-query*second
-   (state <s> ^name svs-query
-              ^topstate.filters.filter <fil>
-              ^topstate.svs.spatial-scene <sc>
-              ^topstate.svs.command <cmd>
-              ^superstate.operator.message.fields.objects <objs>)
-   (<objs> ^obj <object>
-           ^type <prep>)
-   (<object> ^id <id> ^index 2)
-   (<sc> ^child <C>)
-   (<C> ^id <obja> ^id-int <id>) 
--->
-   (<cmd> ^extract <E11>)
-   (<E11> ^a <N7> ^b <N8> ^type <fil>)   
-   (<N7> ^type all_nodes)
-   (<N8> ^type node ^name <obja>)
-}
+#sp {extract-filters*for-query*first
+#   (state <s> ^name svs-query
+#              ^topstate.filters.filter <fil>
+#              ^topstate.svs.spatial-scene <sc>
+#              ^topstate.svs.command <cmd>
+#              ^superstate.operator.message.fields.objects <objs>)
+#   (<objs> ^obj <object>
+#           ^type <prep>)
+#   (<object> ^id <id> ^index 1)
+#   (<sc> ^child <C>)
+#   (<C> ^id <obja> ^id-int <id>) 
+#-->
+#   (<cmd> ^extract <E11>)
+#   (<E11> ^a <N7> ^b <N8> ^type <fil>)
+#   (<N7> ^type node ^name <obja>)
+#   (<N8> ^type all_nodes)
+#}
+#
+#sp {extract-filters*for-query*second
+#   (state <s> ^name svs-query
+#              ^topstate.filters.filter <fil>
+#              ^topstate.svs.spatial-scene <sc>
+#              ^topstate.svs.command <cmd>
+#              ^superstate.operator.message.fields.objects <objs>)
+#   (<objs> ^obj <object>
+#           ^type <prep>)
+#   (<object> ^id <id> ^index 2)
+#   (<sc> ^child <C>)
+#   (<C> ^id <obja> ^id-int <id>) 
+#-->
+#   (<cmd> ^extract <E11>)
+#   (<E11> ^a <N7> ^b <N8> ^type <fil>)   
+#   (<N7> ^type all_nodes)
+#   (<N8> ^type node ^name <obja>)
+#}
 
 sp {extract-filters*for-labeling
    (state <s> ^name svs-label

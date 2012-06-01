@@ -9,8 +9,8 @@ sp {apply*push-relation-question*which-question
           ^information.question-word which 
           ^information.relation <rel>)
    (<rel> ^p1.object <obja> ^p2.object <objb> ^word <prep>)
-   (<obja> ^word <> UNKNOWN)
-   (<objb> ^word <> UNKNOWN)
+   (<obja> ^empty false)
+   (<objb> ^empty false)
 -->
    (<msg> ^purpose <p>)
    (<p> ^type which-question

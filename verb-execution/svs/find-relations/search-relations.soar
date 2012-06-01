@@ -62,6 +62,39 @@ sp {find-relations*relation-search*true-default
    (<r> ^result true) 
 }
 
+sp {find-relations*extract-filters*for-query*first
+   (state <s> ^name find-relations
+              ^obj <id>
+              ^ind 1
+              ^topstate.filters.filter <fil>
+              ^topstate.svs.spatial-scene <sc>
+              ^topstate.svs.command <cmd>)
+   (<sc> ^child <C>)
+   (<C> ^id <obja> ^id-int <id>) 
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type <fil>)
+   (<N7> ^type node ^name <obja>)
+   (<N8> ^type all_nodes)
+}
+
+sp {find-relations*extract-filters*for-query*second
+(state <s> ^name find-relations
+              ^obj <id>
+              ^ind 2
+              ^topstate.filters.filter <fil>
+              ^topstate.svs.spatial-scene <sc>
+              ^topstate.svs.command <cmd>)
+   (<sc> ^child <C>)
+   (<C> ^id <obja> ^id-int <id>)
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type <fil>)   
+   (<N7> ^type all_nodes)
+   (<N8> ^type node ^name <obja>)
+}
+
+
 sp {find-relations*relation-search*build-potentials
    (state <s> ^name find-relations
               ^topstate <ss>

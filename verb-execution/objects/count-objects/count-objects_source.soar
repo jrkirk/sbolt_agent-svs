@@ -1,6 +1,6 @@
 
 
-source find-object.soar
+source index-object.soar
 
 source increment-count.soar
 
