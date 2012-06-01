@@ -95,21 +95,21 @@ sp {find-relations*extract-filters*for-query*second
 }
 
 
-sp {find-relations*relation-search*build-potentials
-   (state <s> ^name find-relations
-              ^topstate <ss>
-             -^prep
-              ^obj <id>)
-   (<ss> ^svs.command <cmd>)
-   (<s>  ^predicate <p1>)
-   (<p1> ^name <type>)
-   (<ss> ^svs.spatial-scene.child.id-int <id2> <> <id>)
--->
-   (<s> ^relation <rel>)
-   (<rel> ^name <type> ^obj <id2>)
-}
+#sp {find-relations*relation-search*build-potentials
+#   (state <s> ^name find-relations
+#              ^topstate <ss>
+#             -^prep
+#              ^obj <id>)
+#   (<ss> ^svs.command <cmd>)
+#   (<s>  ^predicate <p1>)
+#   (<p1> ^name <type>)
+#   (<ss> ^svs.spatial-scene.child.id-int <id2> <> <id>)
+#-->
+#   (<s> ^relation <rel>)
+#   (<rel> ^name <type> ^obj <id2>)
+#}
 
-sp {find-relations*relation-search*build-potentials*optional-prep
+sp {find-relations*relation-search*build-potentials
    (state <s> ^name find-relations
               ^topstate <ss>
               ^prep <type>
