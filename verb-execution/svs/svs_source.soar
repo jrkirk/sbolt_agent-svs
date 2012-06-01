@@ -24,3 +24,7 @@ popd
 pushd lookup-smem
 source lookup-smem_source.soar
 popd
+
+pushd svs-tracking
+source svs-tracking_source.soar
+popd

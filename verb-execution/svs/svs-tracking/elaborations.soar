@@ -1,0 +1,14 @@
+#copy down attrs
+sp {svs-tracking*elaborate*objects*preposition
+   (state <s> ^name svs-tracking
+              ^superstate.operator <so>)
+   (<so> ^a <obja>
+         ^b <objb>
+         ^prep <prep>)
+-->
+   (<s> ^a <obja>
+        ^b <objb>
+        ^result <res>
+        ^tracked-relation <tr>
+        ^prep <prep>)
+}

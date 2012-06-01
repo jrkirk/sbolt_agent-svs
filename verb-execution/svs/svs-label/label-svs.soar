@@ -77,6 +77,24 @@ sp {svs*label*propose*lookup-preposition
         ^type <type>)
 }
 
+#sp {svs*label*propose*svs-tracking
+#   (state <s> ^name svs-label
+#             -^track-result
+#              ^superstate.operator.message.fields.objects <objs>)
+#   (<objs> ^type <type>
+#           ^obj <o>
+#           ^obj <o2>)
+#   (<o> ^index 1 ^id <obja>)
+#   (<o2> ^index 2 ^id <objb>)
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name svs-tracking
+#        ^category svs
+#        ^a <obja>
+#        ^b <objb>
+#        ^prep <type>)
+#}
+
 #sp {extractsProjW
 #   (state <s> ^name << svs-label svs-query >>
 #              ^topstate.svs.command <cmd>

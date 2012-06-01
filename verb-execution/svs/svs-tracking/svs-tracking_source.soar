@@ -1,0 +1,26 @@
+#this operator will track a relationship such as the red object inside of the pantry
+#until the relationship is true
+
+# the operator needs the object ids ^a <obja> and ^b <objb> as well as the preposition
+# ^prep <prep>
+
+#sp {*propose*svs-tracking
+#   (state <s> -^track-result
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name svs-tracking
+#        ^category svs
+#        ^a <obja>
+#        ^b <objb>
+#        ^prep right-of)
+#}
+
+# the operator will return ^track-result to the superstate once complete.
+# This will be ^track-result success if the relationship is now true
+# or ^track-result.failure prep-not-found if the preposition cannot be found
+
+# TODO add preposition learning when the preposition is unknown
+
+source track-relationship.soar
+source elaborations.soar
+source complete-svs-tracking.soar
