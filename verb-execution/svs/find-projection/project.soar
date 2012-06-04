@@ -61,8 +61,6 @@ sp {find-projection*project*svs*failure*objb-exist
          ^proj-failure-reason no-object)
 }
 
-
-
 sp {find-projection*project*svs*create-projection
    (state <s> ^name find-projection
               ^a <ida>

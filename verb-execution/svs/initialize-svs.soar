@@ -7,6 +7,7 @@ smem --add {
 (<P142> ^name behind ^obj <O1549> ^obj <O1550> ^relation <R286> ^relation <R287> ^relation <R288>)
 (<P180> ^name in-front-of ^obj <O2520> ^obj <O2521> ^relation <R381> ^relation <R382> ^relation <R383>)
 (<P220> ^name inside ^obj <O3384> ^obj <O3385> ^relation <R485> ^relation <R486> ^relation <R487>)
+(<P222> ^name in ^obj <O3384> ^obj <O3385> ^relation <R485> ^relation <R486> ^relation <R487>)
 (<R96> ^a 1 ^b 2 ^type x-less-than)
 (<R97> ^a 1 ^b 2 ^type y-aligned)
 (<R98> ^a 1 ^b 2 ^type z-aligned)

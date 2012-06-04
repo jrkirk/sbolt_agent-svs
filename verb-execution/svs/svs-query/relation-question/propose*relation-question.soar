@@ -15,8 +15,9 @@
 #find ids for both objects then process in svs
 sp {relation-question*propose*index-object
    (state <s> ^topstate <s>
-              ^interaction.stack.segment.purpose <p>
-              -^obj2)
+              ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>
+         -^info.obj2)
    (<p> ^type relation-question
         ^parameters.object2 <obj2>)
 -->
@@ -53,12 +54,15 @@ sp {relation-question*propose*index-object
 
 sp {relation-question*apply*index-object*results
    (state <s> ^operator <o>
-              ^interaction.stack.segment.purpose.type relation-question)
+              ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>
+          ^info <i>)
+   (<p> ^type relation-question)
    (<o> ^name index-object
         ^obj 2
         ^match.id <id>)
 -->
-   (<s> ^obj2 <id>)
+   (<i> ^obj2 <id>)
 }
 
 #sp {relation-question*apply*find-object2*failure
@@ -94,8 +98,9 @@ sp {relation-question*apply*index-object*failure
 sp {relation-question*propose*process-svs-question
    (state <s> ^operator <o>
              -^processed
-              ^interaction.stack.segment.purpose <p>
-              ^obj2 <id2>)
+              ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>
+          ^info.obj2 <id2>)
    (<p> ^type relation-question
        -^parameters.project
         ^parameters.prep <prep>)
@@ -114,8 +119,9 @@ sp {relation-question*propose*process-svs-question
 sp {relation-question*propose*process-svs-projection
    (state <s> ^operator <o>
              -^processed
-              ^interaction.stack.segment.purpose <p>
-              ^obj2 <id2>)
+              ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>
+          ^info.obj2 <id2>)
    (<p> ^type relation-question
         ^parameters.project
         ^parameters.prep <prep>)
