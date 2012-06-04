@@ -45,7 +45,8 @@ sp {which-question*index-object*elaborate*single-object
    (state <s> ^operator <o> +
               ^interaction.stack.segment.purpose <p>)
    (<p> ^type which-question
-        ^parameters.description <desc>)
+        ^parameters.description <desc>
+       -^parameters.relation)
    (<o> ^name index-object)
 -->
    (<o> ^object <desc>)

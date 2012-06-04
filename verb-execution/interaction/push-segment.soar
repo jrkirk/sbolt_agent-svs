@@ -24,6 +24,7 @@ sp {push-segment*create-segment
    (<s> ^segment <seg>)
    (<seg> ^originator <init>
     	  ^purpose <np>
+       ^info <i>  #JK
 	  ^id ( + <id> 1)
 	  ^next <prev-segment>
 	  ^epmem-id <eid>)

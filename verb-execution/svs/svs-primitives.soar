@@ -42,6 +42,14 @@ sp {clean-up*object1*after*svs
    (<s> ^obj2 <o2> -)
 }
 
+sp {clean-up*find-failed*after*svs
+   (state <s> ^operator.name pop-segment
+              ^topstate <s>
+              ^find-failed <f>)
+-->
+   (<s> ^find-failed <f> -)
+}
+
 sp {clean-up*object2*after*svs
    (state <s> ^operator.name pop-segment
               ^topstate <s>

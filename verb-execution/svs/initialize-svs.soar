@@ -1,0 +1,25 @@
+# can have some preposition already built in
+# loads in basic definitions of left,right,behind,in front, and inside
+
+smem --add {
+(<P66> ^name left-of ^obj <O450> ^obj <O451> ^relation <R96> ^relation <R97> ^relation <R98>)
+(<P104> ^name right-of ^obj <O915> ^obj <O916> ^relation <R191> ^relation <R192> ^relation <R193>)
+(<P142> ^name behind ^obj <O1549> ^obj <O1550> ^relation <R286> ^relation <R287> ^relation <R288>)
+(<P180> ^name in-front-of ^obj <O2520> ^obj <O2521> ^relation <R381> ^relation <R382> ^relation <R383>)
+(<P220> ^name inside ^obj <O3384> ^obj <O3385> ^relation <R485> ^relation <R486> ^relation <R487>)
+(<R96> ^a 1 ^b 2 ^type x-less-than)
+(<R97> ^a 1 ^b 2 ^type y-aligned)
+(<R98> ^a 1 ^b 2 ^type z-aligned)
+(<R191> ^a 1 ^b 2 ^type x-greater-than)
+(<R192> ^a 1 ^b 2 ^type y-aligned)
+(<R193> ^a 1 ^b 2 ^type z-aligned)
+(<R286> ^a 1 ^b 2 ^type x-aligned)
+(<R287> ^a 1 ^b 2 ^type y-greater-than)
+(<R288> ^a 1 ^b 2 ^type z-aligned)
+(<R381> ^a 1 ^b 2 ^type x-aligned)
+(<R382> ^a 1 ^b 2 ^type y-less-than)
+(<R383> ^a 1 ^b 2 ^type z-aligned)
+(<R485> ^a 1 ^b 2 ^type x-aligned)
+(<R486> ^a 1 ^b 2 ^type y-aligned)
+(<R487> ^a 1 ^b 2 ^type z-aligned)
+}

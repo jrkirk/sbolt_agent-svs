@@ -1,5 +1,9 @@
 source svs-primitives.soar
 
+#optional -loads in some prepositions into smem
+source initialize-svs.soar
+
+
 # currently not supported by the parsing system
 #pushd svs-question
 #source svs-question_source.soar
