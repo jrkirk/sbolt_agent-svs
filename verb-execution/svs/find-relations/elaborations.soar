@@ -15,3 +15,13 @@ sp {find-relations*elaborate*copy-down-attrs*prep
 -->
    (<s> ^prep <prep>)
 }
+
+sp {find-relations*elaborate*copy-down-attrs*interaction
+   (state <s> ^name find-relations
+              ^superstate.operator <o>)
+   (<o> ^interaction <inter>)
+-->
+   (<s> ^interaction <inter>)
+}
+
+

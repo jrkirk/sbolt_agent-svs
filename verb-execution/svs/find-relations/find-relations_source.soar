@@ -10,9 +10,12 @@
 #   (<o> ^name find-relations
 #        ^category svs
 #        ^prep right-of
+#        ^interaction << true false >>
 #        ^ind 2
 #		 ^obj <id>
 #}
+
+# interaction is optional and by default set to false
 
 # The find-relations will add a ^relationships WME to the state
 # ^relationships will contain ^with <original-obj-id>, ^preposition right-of 
@@ -32,3 +35,4 @@ source elaborations.soar
 source search-relations.soar
 source preferences.soar
 source complete-search-relations.soar
+source teaching-request.soar

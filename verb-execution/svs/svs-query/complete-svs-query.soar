@@ -11,6 +11,7 @@ sp {svs-query*propose*find-relations
    (<s> ^operator <o>)
    (<o> ^name find-relations
         ^category svs
+        ^interaction true
         ^obj <id>
         ^ind <ind>
         ^prep <prep>) 

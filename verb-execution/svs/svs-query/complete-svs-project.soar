@@ -11,6 +11,7 @@ sp {svs-project*propose*find-projection
    (<s> ^operator <o> + =)
    (<o> ^name find-projection
         ^category svs
+        ^interaction true
         ^a <id>
         ^b <id>
         ^type <prep>)

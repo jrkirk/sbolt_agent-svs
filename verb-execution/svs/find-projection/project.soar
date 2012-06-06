@@ -1,15 +1,4 @@
-sp {find-projection*project*svs
-   (state <s> ^name find-projection
-              ^superstate <ss>
-              ^superstate.operator.a <ida>
-              ^superstate.operator.b <idb>
-              ^superstate.operator.type <prep>)
--->
-   (<s> ^result <res>
-        ^a <ida>
-        ^b <idb>
-        ^prep <prep>)
-}
+
 
 sp {find-projection*project*svs*propose*lookup-preposition
    (state <s> ^name find-projection
@@ -25,13 +14,29 @@ sp {find-projection*project*svs*propose*lookup-preposition
         ^type <type>)
 }
 
+sp {find-projection*project*svs*failure*prep-exist*after-interaction
+   (state <s> ^name find-projection
+              ^superstate <ss>
+              ^a <ida>
+              ^b <idb>
+              ^result <res>
+              ^interaction true
+              ^topstate.interaction.stack.segment.info.status.no-teaching true
+              ^prep <prep>)
+   (<s> ^status default)
+-->
+   (<ss> ^projection-result failure
+         ^proj-failure-reason no-prep)
+}
+
 sp {find-projection*project*svs*failure*prep-exist
    (state <s> ^name find-projection
               ^superstate <ss>
               ^a <ida>
               ^b <idb>
               ^result <res>
-              ^type <prep>)
+             -^interaction true
+              ^prep <prep>)
    (<s> ^status default)
 -->
    (<ss> ^projection-result failure

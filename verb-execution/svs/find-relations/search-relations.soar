@@ -134,10 +134,23 @@ sp {find-relations*relation-search*propose*lookup-preposition
         ^type <type>)
 }
 
+sp {find-relations*propose*relation-search*preposition-not-found*after-interaction
+   (state <s> ^name find-relations
+              ^superstate <ss>
+              ^status default
+              ^interaction true
+              ^topstate.interaction.stack.segment.info.status.no-teaching true
+              ^relationships <rels>
+              ^obj <id>)
+-->
+   (<rels> ^failure prep-not-found)
+}
+
 sp {find-relations*propose*relation-search*preposition-not-found
    (state <s> ^name find-relations
               ^superstate <ss>
               ^status default
+             -^interaction true
               ^relationships <rels>
               ^obj <id>)
 -->

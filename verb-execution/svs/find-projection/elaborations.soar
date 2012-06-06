@@ -1,0 +1,18 @@
+sp {find-projection*elaborate*copy-down-attrs
+   (state <s> ^name find-projection
+              ^superstate.operator.a <ida>
+              ^superstate.operator.b <idb>
+              ^superstate.operator.type <prep>)
+-->
+   (<s> ^result <res>
+        ^a <ida>
+        ^b <idb>
+        ^prep <prep>)
+}
+
+sp {find-projection*elaborate*copy-down-attrs*optional*interaction
+   (state <s> ^name find-projection
+              ^superstate.operator.interaction <int>)
+-->
+   (<s> ^interaction <int>)
+}

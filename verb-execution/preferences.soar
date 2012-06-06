@@ -72,7 +72,7 @@ sp {preference*svs*better-than
    (state <s> ^operator <op1> +
    	      ^operator <op2> +) 
    (<op2> ^category svs)
-   (<op1> ^category << primitive-action sub-primitive-action new-environmental-action object-processing indexing >>)
+   (<op1> ^category << primitive-action sub-primitive-action new-environmental-action indexing >>) #JK removed object-processing
 -->
    (<s> ^operator <op2> > <op1>)
 }
