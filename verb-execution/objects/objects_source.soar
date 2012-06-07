@@ -53,27 +53,9 @@ popd
 
 
 ########------- OBJECT USAGE TOOLS  ------######
-# find-object
+# index-object
 # describe-object
 #################################################
-
-pushd find-object
-source find-object_source.soar
-# find-object is a query operator used to get an object from a bag of words
-# Below is an example of a proposal for a find-object operator to get a red, round object
-#sp {object-question*propose*find-object
-#   (state <s> ^topstate <s>
-#-->
-#   (<s> ^operator <o> +)
-#   (<o> ^name find-object
-#        ^category object-processing
-#		 ^word red
-#  		 ^word round)
-#}
-
-# The find-object will add a ^match WME to the operator
-# ^match will either be a pointer to the found object or the word failure
-popd
 
 
 pushd describe-object

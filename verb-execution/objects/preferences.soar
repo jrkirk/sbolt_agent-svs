@@ -8,10 +8,10 @@ sp {elaborate*pref-rank*delete-object
    (<o> ^pref-rank 0)
 }
 
-sp {elaborate*pref-rank*create-object
+sp {elaborate*pref-rank*lookup-object
    (state <s> ^topstate <s>
               ^operator <o> +)
-   (<o> ^name create-object)
+   (<o> ^name lookup-object)
 -->
    (<o> ^pref-rank 1)
 }

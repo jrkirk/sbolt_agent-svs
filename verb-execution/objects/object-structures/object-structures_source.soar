@@ -1,6 +1,8 @@
 # Operators that create the object structures based on perceived objects from the world
 
-source create-object.soar
+pushd lookup-object
+source lookup-object_source.soar
+popd
 # When there is a new object on the input link initialize a new object sturcture in working memory
 
 source delete-object.soar

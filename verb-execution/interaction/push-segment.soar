@@ -87,3 +87,20 @@ sp {push-segment*apply*mark-as-success
    (<seg> ^next <prev-segment>)
 }
 
+   
+# AHM: Putting stack information on the output link
+sp {apply*mark-as-success*output-link
+   (state <s> ^name push-segment
+              ^operator.name mark-as-success
+              ^io.output-link <out>
+              ^topstate.operator <o>)
+   (<o> ^name push-segment
+        ^originator <orig>
+        ^purpose <p>)
+   (<p> ^type <type>)
+   (<out> -^push-segment)
+-->
+   (<out> ^push-segment <ps>)
+   (<ps> ^type <type>
+         ^originator <orig>)
+}
