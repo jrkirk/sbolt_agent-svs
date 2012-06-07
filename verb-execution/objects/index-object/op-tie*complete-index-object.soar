@@ -1,0 +1,85 @@
+sp {complete-index-object*elaborate*name
+   (state <s> ^superstate.name index-object
+              ^impasse tie
+              ^item.name complete-index-object)
+-->
+   (<s> ^name complete-index-object)
+}
+
+sp {complete-index-object*propose*which-question
+   (state <s> ^name complete-index-object
+              ^superstate.final-matches.object <obj>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name which-question
+        ^category indexing
+        ^object <obj>)
+}
+
+sp {complete-index-object*prefer*which-question*over*indicate-unresolved-tie
+   (state <s> ^name complete-index-object
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name which-question)
+   (<o2> ^name indicate-unresolved-tie)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {complete-index-object*apply*which-question*create-query
+   (state <s> ^name complete-index-object
+              ^operator <o>
+              ^topstate.interaction.stack.segment <seg>)
+   (<o> ^name which-question
+        ^object <obj>)
+-->
+   (<s> ^query <q>)
+   (<q> ^type which-question
+        ^segment <seg>
+        ^description <desc>
+        ^object <obj>)
+}
+
+sp {complete-index-object*apply*which-question*copy*word
+   (state <s> ^name complete-index-object
+              ^operator <o>
+              ^query.description <desc>)
+   (<o> ^name which-question
+        ^object.property <prop>)
+   (<prop> ^category <> name <> shape
+           ^word <word>)
+-->
+   (<desc> ^adjective <word>)
+}
+
+sp {complete-index-object*apply*which-question*copy*name
+   (state <s> ^name complete-index-object
+              ^operator <o>
+              ^query.description <desc>)
+   (<o> ^name which-question
+        ^object.property <prop>)
+   (<prop> ^category << name shape >>
+           ^word <word>)
+-->
+   (<desc> ^word <word>)
+}
+
+sp {complete-index-object*apply*which-question*copy*name*object
+   (state <s> ^name complete-index-object
+              ^operator <o>
+              ^query.description <desc>)
+   (<o> ^name which-question
+        -^object.property.category << name shape >>)
+-->
+   (<desc> ^word object)
+}
+
+sp {complete-index-object*apply*which-question*copy*query
+   (state <s> ^name complete-index-object
+              ^operator.name which-question
+              ^topstate.queries <qs>
+              ^query <q>)
+   (<q> ^description.word)
+-->
+   (<qs> ^query <q>)
+}

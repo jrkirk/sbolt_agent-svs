@@ -1,0 +1,13 @@
+# identify-object: given a description of an object in visual labels, 
+#   returns all possible objects fitting that description
+
+sp {index-object*propose*identify-object
+   (state <s> ^name index-object
+             -^object-matches.object <obj>
+              ^index-object-context.object <obj>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name identify-object
+        ^category indexing
+        ^object <obj>)
+}

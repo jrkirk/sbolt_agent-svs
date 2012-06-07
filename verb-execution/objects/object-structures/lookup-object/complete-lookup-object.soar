@@ -1,0 +1,15 @@
+sp {lookup-object*propose*complete-lookup-object
+   (state <s> ^name lookup-object)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name complete-lookup-object
+        ^category object-processing)
+}
+
+sp {lookup-object*apply*complete-lookup-object
+   (state <s> ^name lookup-object
+              ^operator.name complete-lookup-object
+              ^superstate.operator <o>)
+-->
+   (<o> ^match failure)
+}

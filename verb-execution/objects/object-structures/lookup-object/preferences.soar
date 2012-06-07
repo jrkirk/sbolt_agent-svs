@@ -1,0 +1,10 @@
+sp {lookup-object*prefer*all*over*complete-lookup-object
+   (state <s> ^name lookup-object
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name <> complete-lookup-object
+         ^category object-processing)
+   (<o2> ^name complete-lookup-object)
+-->
+   (<s> ^operator <o1> > <o2>)
+}

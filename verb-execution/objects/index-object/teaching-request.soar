@@ -1,0 +1,83 @@
+# teaching-request
+# 	If use-interaction=true and no matches were found for the object, 
+#   ask the user for more information
+# The teaching interaction is finished with the single word 'cancel' or 'finished'
+
+sp {index-object*propose*teaching-request
+   (state <s> ^name index-object
+              ^index-object-context.use-interaction true
+              ^object-matches <matches>)
+   (<matches> ^object <obj>
+             -^match)
+   (<obj> -^no-teaching)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name teaching-request
+        ^category indexing
+        ^object <obj>)
+}
+
+# Creates a teaching-request query 
+sp {index-object*apply*teaching-request*create*query
+   (state <s> ^name index-object
+              ^operator <o>
+              ^topstate.interaction.stack.segment <seg>)
+   (<o> ^name teaching-request
+        ^object <obj>)
+-->
+   (<s> ^query <q>)
+   (<q> ^type teaching-request
+        ^segment <seg>
+        ^description <desc>
+        ^object <obj>)
+   (<desc> ^determiner a)
+}
+
+# Copies adjectives to the description
+sp {index-object*apply*teaching-request*copy*word
+   (state <s> ^name index-object
+              ^operator <o>
+              ^query.description <desc>)
+   (<o> ^name teaching-request
+        ^object.property <prop>)
+   (<prop> ^category <> name <> shape
+           ^word <word>)
+-->
+   (<desc> ^adjective <word>)
+}
+
+# Copies the name to the description
+sp {index-object*apply*teaching-request*copy*name
+   (state <s> ^name index-object
+              ^operator <o>
+              ^query.description <desc>)
+   (<o> ^name teaching-request
+        ^object.property <prop>)
+   (<prop> ^category << name shape >>
+           ^word <word>)
+-->
+   (<desc> ^word <word>)
+}
+
+# If no names, then copies the word object as the name
+sp {index-object*apply*teaching-request*copy*name*object
+   (state <s> ^name index-object
+              ^operator <o>
+              ^query.description <desc>)
+   (<o> ^name teaching-request
+        -^object.property.category << name shape >>)
+-->
+   (<desc> ^word object)
+}
+
+# Copies the query to the topstate
+sp {index-object*apply*teaching-request*copy*query
+   (state <s> ^name index-object
+              ^operator.name teaching-request
+              ^topstate.queries <qs>
+              ^query <q>)
+   (<q> ^description.word)
+-->
+   (<qs> ^query <q>)
+}
+

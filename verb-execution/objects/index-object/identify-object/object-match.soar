@@ -1,0 +1,89 @@
+# object-match
+# Proposed for every object on the top-state, 
+#  then gets rejected if the object doesn't match the description
+# If not rejected, then it marks that object as a match 
+
+sp {identify-object*propose*object-match
+   (state <s> ^name identify-object
+              ^object-matches <matches>
+              ^topstate.object <obj>)
+   (<matches> -^match <obj>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name object-match
+        ^category indexing
+        ^object <obj>)
+}
+
+# Reject if a list of candidates exists and it is not one of them
+sp {identify-object*reject*not-existing-match
+   (state <s> ^name identify-object
+              ^superstate.operator <ss-op>
+              ^operator <o> +)
+   (<o> ^name object-match
+        ^object <obj>)
+   (<ss-op> ^object.candidate <candidate>
+           -^object.candidate <obj>)
+-->
+   (<s> ^operator <o> -
+        ^not-match <obj>)
+}
+
+# Reject if the object doesn't have the given category
+sp {identify-object*reject*not-match*category
+   (state <s> ^name identify-object
+              ^operator <o> +
+              ^object-matches.object.property.category <cat-name>)
+   (<o> ^name object-match
+        ^object <obj>)
+   (<obj> -^property.name <cat-name>)
+-->
+   (<s> ^operator <o> -
+   	^not-match <obj>)
+}
+
+# Reject if the object's visual label doesn't match
+sp {identify-object*reject*not-match*visual-label
+   (state <s> ^name identify-object
+              ^operator <o> +
+              ^object-matches.object.property <desc-prop>)
+   (<o> ^name object-match
+        ^object <obj>)
+   (<obj> ^property <obj-prop>)
+   (<obj-prop> ^name <cat-name>
+           		^type visual
+           		-^label <label>)
+   (<desc-prop> ^category <cat-name>
+         		^label <label>)
+-->
+   (<s> ^operator <o> -
+   	^not-match <obj>)
+}
+
+# Reject if the object's name doesn't match
+sp {identify-object*reject*not-match*name
+   (state <s> ^name identify-object
+              ^operator <o> +
+              ^object-matches.object.property <desc-prop>)
+   (<o> ^name object-match
+        ^object <obj>)
+   (<obj> ^property <obj-prop>)
+   (<obj-prop> ^name name
+          	  -^word <name>)
+   (<desc-prop> ^category name
+                ^word {<name> <> object})
+-->
+   (<s> ^operator <o> -
+   	^not-match <obj>)
+}
+
+# If the operator wasn't rejected, mark the object as a match
+sp {identify-object*apply*object-match
+   (state <s> ^name identify-object
+              ^operator <o>
+              ^object-matches <m>)
+   (<o> ^name object-match
+        ^object <obj>)
+-->
+   (<m> ^match <obj>)
+}

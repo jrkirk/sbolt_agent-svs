@@ -1,0 +1,125 @@
+# Rules that handle when an object-question is sent by the user
+
+# Proposal
+sp {propose*push-object-question
+   (state <s> ^topstate <s>
+              ^instructor-message <msg>)
+   (<msg> ^type object-question
+         -^processed)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name push-object-question
+        ^category communication
+        ^message <msg>)
+}
+
+# Elaborate useful information from the message to the operator
+sp {elaborate*push-object-question*object
+   (state <s> ^operator <o> +)
+   (<o> ^name push-object-question
+        ^message <msg>)
+   (<msg> ^information.object <obj>)
+-->
+   (<o> ^object <obj>)
+}
+
+#sp {elaborate*push-object-question*relation
+#   (state <s> ^operator <o> +)
+#   (<o> ^name push-object-question
+#        ^message <msg>)
+#   (<msg> ^information.relation <rel>)
+#-->
+#   (<o> ^relation <rel>)
+#}
+
+sp {elaborate*push-object-question*specifier
+   (state <s> ^operator <o> +)
+   (<o> ^name push-object-question
+        ^message <msg>)
+   (<msg> ^information.object.specifier <spec>)
+-->
+   (<o> ^specifier <spec>)
+}
+
+sp {elaborate*push-object-question*question-word
+   (state <s> ^operator <o> +)
+   (<o> ^name push-object-question
+        ^message <msg>)
+   (<msg> ^information.question-word <word>)
+-->
+   (<o> ^question-word <word>)
+}
+
+# Handles which-questions
+sp {apply*push-object-question*which-question
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-question
+        ^question-word which
+        ^message <msg>
+        ^object <obj>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type which-question
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<sat> ^action-event point)
+   (<params> ^description <obj>)
+}
+
+# Handles how-many questions
+sp {apply*push-object-question*how-many-question
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-question
+        ^question-word how-many
+        ^message <msg>
+        ^object <obj>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type how-many-question
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<sat> ^dialog-event count-response)
+   (<params> ^description <obj>)
+}
+
+# Handles 'what is this' questions
+sp {apply*push-object-question*description-request
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-question
+        ^question-word what
+        ^specifier this
+       -^object.word <> UNKNOWN
+        ^message <msg>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type description-request
+        ^satisfaction <sat>)
+   (<sat> ^action-event describe)
+}
+
+# Handles 'what color is this' questions
+sp {apply*push-object-question*category-question
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-question
+        ^question-word what
+        ^specifier this
+        ^object <obj>
+        ^message <msg>)
+	(<obj> ^word {<word> <> UNKNOWN})
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type category-question
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<params> ^category <word>)
+   (<sat> ^dialog-event category-response)
+}
+
+
+sp {apply*push-object-question*mark*processed
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-question
+        ^message <msg>)
+-->
+   (<msg> ^processed true)
+}

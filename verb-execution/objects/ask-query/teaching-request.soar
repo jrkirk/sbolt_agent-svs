@@ -1,0 +1,22 @@
+# teaching-request
+#	Query for the category of a known word
+
+sp {elaborate*ask-query*teaching-request
+   (state <s> ^operator <o>)
+   (<o> ^name ask-query
+        ^query.type teaching-request)
+-->
+   (<o> ^type teaching-request
+        ^expected-response single-word-response)
+}
+
+sp {elaborate*ask-query*teaching-request*description
+   (state <s> ^operator <o>)
+   (<o> ^name ask-query
+        ^query <q>
+        ^fields <f>)
+   (<q> ^type teaching-request
+        ^description <desc>)
+-->
+   (<f> ^description <desc>)
+}

@@ -1,0 +1,105 @@
+# Adds a segment to the interaction stack to deal with the category question
+
+sp {category-question*propose*lookup-smem
+	(state <s> ^interaction.stack.segment.purpose <p>)
+	(<p> ^type category-question
+      	 ^parameters.category <cat-name>)
+-->
+    (<s> ^operator <o> +)
+    (<o> ^name lookup-smem
+         ^lookup-type word
+         ^category smem
+         ^category <cat-name>)
+}
+
+sp {category-question*elaborate*lookup-smem*object*pointed
+   	(state <s> ^operator <o> +
+               ^interaction.stack.segment.purpose.type category-question
+               ^io.input-link.pointed-object <obj-id>
+               ^topstate.object <obj>)
+    (<o> ^name lookup-smem)
+    (<obj> ^id <obj-id>)
+-->
+    (<o> ^object <obj>)
+}
+
+sp {category-question*elaborate*lookup-smem*object*only-one
+   	(state <s> ^operator <o> +
+               ^interaction.stack.segment.purpose.type category-question
+               ^topstate.object <obj>
+              -^topstate.object <> <obj>)
+    (<o> ^name lookup-smem)
+-->
+    (<o> ^object <obj>)
+}
+
+sp {category-question*elaborate*lookup-smem*query
+   (state <s> ^operator <o> +
+              ^interaction.stack.segment.purpose.type category-question)
+   (<o> ^name lookup-smem
+        ^category <cat-name>
+        ^object.property <prop>)
+   (<prop> ^name <cat-name>
+           ^label <label>)
+-->
+   (<o> ^query <q>
+        ^desired.word true)
+   (<q> ^type label-map ^category <cat-name> ^label <label> ^word <word>)
+}
+
+sp {category-question*elaborate*lookup-smem*no-query
+   (state <s> ^operator <o> +
+              ^interaction.stack.segment.purpose.type category-question)
+   (<o> ^name lookup-smem
+       -^query)
+-->
+   (<o> ^result failure)
+}
+
+sp {category-question*apply*failure*dont-know
+   (state <s> ^operator <o>
+              ^io.output-link <out>
+              ^interaction.stack.segment.purpose.type category-question)
+   (<o> ^name lookup-smem
+        ^object
+        ^result failure)
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type dont-know
+          ^fields <f>)
+}
+
+sp {category-question*apply*failure*no-object
+   (state <s> ^operator <o>
+              ^io.output-link <out>
+              ^interaction.stack.segment.purpose.type category-question)
+   (<o> ^name lookup-smem
+        -^object
+        ^result failure)
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type no-object
+          ^fields <f>)
+}
+
+sp {category-question*apply*lookup-smem*send-word
+   (state <s> ^operator <o>
+              ^io.output-link <out>
+              ^interaction.stack.segment.purpose.type category-question)
+   (<o> ^name lookup-smem
+        ^result {<word> <> failure})
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type single-word
+          ^fields.word <word>)
+}
+
+sp {category-question*apply*lookup-smem*mark-performed
+   (state <s> ^operator <o>
+              ^interaction.stack.segment.purpose.type category-question
+              ^status <status>)
+   (<o> ^name lookup-smem
+        ^result)
+-->
+   (<status> ^performed.dialog-event category-response)
+}

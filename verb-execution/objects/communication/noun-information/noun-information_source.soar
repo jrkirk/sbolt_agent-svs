@@ -1,0 +1,9 @@
+source noun-information.soar
+
+source elaborations.soar
+
+source preferences.soar
+
+source lookup-category.soar
+
+source complete-noun-information.soar
