@@ -16,3 +16,19 @@ sp {find-projection*elaborate*copy-down-attrs*optional*interaction
 -->
    (<s> ^interaction <int>)
 }
+
+sp {find-projection*elaborate*copy-down-attrs*found-prep-status
+   (state <s> ^name find-projection
+              ^found-prep <fprep>)
+   (<fprep> ^stat <status>)
+-->
+   (<s> ^stat <status>)
+}
+
+sp {find-projection*elaborate*copy-down-attrs*found-prep-predicate
+   (state <s> ^name find-projection
+              ^found-prep <fprep>)
+   (<fprep> ^predicate <p>)
+-->
+   (<s> ^predicate <p>)
+}

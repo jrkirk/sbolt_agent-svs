@@ -20,12 +20,23 @@ sp {svs*elaborate*svs*objects*ids*to*int
 sp {clean-up*extracts*after*svs
    (state <s> ^operator.name pop-segment
               ^superstate nil
+             -^track-relation.tracking-extract <E11>
               ^svs.command <cmd>)
    (<cmd> ^extract <E11>)
    (<E11> ^a <N7> ^b <N8>)
 -->
    (<cmd> ^extract <E11> -)
 }
+
+sp {clean-up*topstate*found-prep*after*svs-tracking
+   (state <s> ^operator.name pop-segment
+              ^superstate nil
+              ^found-prep <fprep>
+             -^track-relation.found-prep <fprep>)
+-->
+   (<s> ^found-prep <fprep> -)
+}
+
 sp {clean-up*project*after*svs
    (state <s> ^operator.name pop-segment
               ^superstate nil
@@ -94,27 +105,7 @@ sp {clean-up*find-failed*after*svs
 #   (<N8> ^type node ^name <obja>)
 #}
 
-sp {extract-filters*for-labeling
-   (state <s> ^name svs-label
-              ^topstate.filters.filter <fil>
-              ^topstate.svs.command <cmd>
-              ^topstate.svs.spatial-scene <sc>
-              ^superstate.operator.message.fields.objects <objs>)
-   (<objs> ^type <type>
-           ^obj <oa>
-           ^obj <ob>)
-   (<ob> ^index <i2> ^id <objb>)
-   (<oa> ^index <i1> < <i2>
-         ^id <obja>)   
-   (<sc> ^child <C> ^child <C2>)
-   (<C> ^id <obja1> ^id-int <obja>) 
-   (<C2> ^id <objb1> ^id-int <objb>)
--->
-   (<cmd> ^extract <E11>)
-   (<E11> ^a <N7> ^b <N8> ^type <fil>)
-   (<N7> ^type node ^name <obja1>)
-   (<N8> ^type node ^name <objb1>)
-}
+
 
 
 

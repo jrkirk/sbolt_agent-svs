@@ -3,6 +3,7 @@ sp {find-relations*relation-search*false-first-part
               ^topstate <ss>
               ^obj <id>
               ^ind 1
+             -^topstate.track-relation.tracking-extract <E11>
 			  ^relation <r>)
    (<ss> ^svs.command <cmd>)
    (<ss> ^svs.spatial-scene <sc>)
@@ -28,6 +29,7 @@ sp {find-relations*relation-search*false-second-part
               ^topstate <ss>
               ^obj <id>
               ^ind 2
+             -^topstate.track-relation.tracking-extract <E11>
 			  ^relation <r>)
    (<ss> ^svs.command <cmd>)
    (<ss> ^svs.spatial-scene <sc>)
@@ -125,7 +127,7 @@ sp {find-relations*relation-search*build-potentials
 
 sp {find-relations*relation-search*propose*lookup-preposition
    (state <s> ^name find-relations
-             -^status
+             -^found-prep
               ^prep <type>)
 -->
    (<s> ^operator <o> +)
@@ -137,7 +139,7 @@ sp {find-relations*relation-search*propose*lookup-preposition
 sp {find-relations*propose*relation-search*preposition-not-found*after-interaction
    (state <s> ^name find-relations
               ^superstate <ss>
-              ^status default
+              ^found-prep.stat default
               ^interaction true
               ^topstate.interaction.stack.segment.info.status.no-teaching true
               ^relationships <rels>
@@ -149,7 +151,7 @@ sp {find-relations*propose*relation-search*preposition-not-found*after-interacti
 sp {find-relations*propose*relation-search*preposition-not-found
    (state <s> ^name find-relations
               ^superstate <ss>
-              ^status default
+              ^found-prep.stat default
              -^interaction true
               ^relationships <rels>
               ^obj <id>)
@@ -160,7 +162,7 @@ sp {find-relations*propose*relation-search*preposition-not-found
 sp {find-relations*propose*relation-search*build-answerlist
    (state <s> ^name find-relations
               ^superstate <ss>
-              ^status
+              ^found-prep
               ^prep <type>
               ^obj <id>)
 -->

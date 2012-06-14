@@ -16,6 +16,22 @@ sp {find-relations*elaborate*copy-down-attrs*prep
    (<s> ^prep <prep>)
 }
 
+sp {find-relations*elaborate*copy-down-attrs*found-prep-status
+   (state <s> ^name find-relations
+              ^found-prep <fprep>)
+   (<fprep> ^stat <status>)
+-->
+   (<s> ^stat <status>)
+}
+
+sp {find-relations*elaborate*copy-down-attrs*found-prep-predicate
+   (state <s> ^name find-relations
+              ^found-prep <fprep>)
+   (<fprep> ^predicate <p>)
+-->
+   (<s> ^predicate <p>)
+}
+
 sp {find-relations*elaborate*copy-down-attrs*interaction
    (state <s> ^name find-relations
               ^superstate.operator <o>)

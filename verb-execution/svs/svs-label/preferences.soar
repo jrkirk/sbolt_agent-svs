@@ -35,3 +35,12 @@ sp {prefer*new-add*over*false-default*svs-label
    (<s> ^operator <o1> > <o2>)
 }
 
+sp {prefer*lookup-object-over*lookup-prepostion
+   (state <s> ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name lookup-object)
+   (<o2> ^name lookup-preposition)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+

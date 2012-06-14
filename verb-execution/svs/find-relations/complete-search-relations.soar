@@ -1,7 +1,6 @@
 sp {find-relations*propose*complete-relations-search*true
    (state <s> ^name find-relations
               ^obj <id>
-             #-^superstate.relationships
 			  ^relation <r>)
    (<s> ^relationships <rels>)
    (<r> ^result true

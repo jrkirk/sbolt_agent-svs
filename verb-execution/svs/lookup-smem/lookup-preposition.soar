@@ -4,16 +4,27 @@ sp {lookup-smem*preposition*query
               ^smem.command <sc>)
 -->
    (<sc> ^query <q>)
+   (<s> ^found-preposition <fprep>)
+   (<fprep> ^type <type>)
    (<q> ^name <type>)
 }
 
 
 sp {lookup-smem*preposition*query*failure
    (state <s> ^name lookup-preposition
-              ^superstate <ss>
+              ^found-preposition <fprep>
               ^smem.result.failure <cue>)
 -->
-   (<ss> ^status default)
+   (<fprep> ^stat default)
+}
+
+sp {lookup-smem*preposition*apply*complete-failure
+   (state <s> ^name lookup-preposition
+              ^superstate <ss>
+              ^found-preposition <fprep>)
+   (<frep> ^stat default)
+-->
+   (<ss> ^found-prep <fprep>)
 }
 
 sp {lookup-smem*preposition*query*success
@@ -54,23 +65,31 @@ sp {lookup-smem*preposition*propose*complete-lookup-relations
 }
 sp {lookup-smem*preposition*copy*relations
    (state <s> ^name lookup-preposition
-              ^superstate <ss>
+              ^found-preposition <fprep>
               ^relation <rel>
               ^status old)
-   (<s> ^operator <o>)
-   (<o> ^name complete-lookup-relations)
 -->
-   (<ss> ^relation <rel>)
+   (<fprep> ^relation <rel>)
+}
+
+sp {lookup-smem*preposition*copy*predicate
+   (state <s> ^name lookup-preposition
+              ^found-preposition <fprep>
+              ^predicate <p1>
+              ^status old)
+   (<s> ^operator.name complete-lookup-relations)
+-->
+   (<fprep> ^predicate <p1>
+            ^stat old)
 }
 
 sp {lookup-smem*preposition*apply*complete-lookup-relations
    (state <s> ^name lookup-preposition
               ^superstate <ss>
-              ^predicate <p1>
+              ^found-preposition <fprep>
               ^status old)
-   (<s> ^operator <o>)
-   (<o> ^name complete-lookup-relations)
+   (<s> ^operator.name complete-lookup-relations)
+   (<fprep> ^stat old)
 -->
-   (<ss> ^predicate <p1>
-         ^status old)
+   (<ss> ^found-prep <fprep>)
 }

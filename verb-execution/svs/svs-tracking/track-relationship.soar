@@ -1,6 +1,6 @@
-sp {svs-tracking*propose*lookup-preposition
+sp {svs-tracking*propose*lookup-preposition*non-elaboration
    (state <s> ^name svs-tracking
-             -^status
+             -^found-prep.type <prep>
               ^prep <prep>)
 -->
    (<s> ^operator <o> +)
@@ -9,22 +9,112 @@ sp {svs-tracking*propose*lookup-preposition
         ^type <prep>)
 }
 
-sp {svs-tracking*preposition-not-found
+sp {svs-tracking*preposition-not-found1
    (state <s> ^name svs-tracking
               ^superstate <ss>
-              ^status default
+              ^found-prep.stat default
               ^result <res>)
 -->
    (<res> ^failure prep-not-found)
 }
 
+# search when a new item appears in svs
+#sp {svs-tracking*propose*index-object1
+#   (state <s> ^name svs-tracking
+#              ^predicate <p>
+#              ^topstate.svs.spatial-scene.child.id-int <id>
+#             -^trieda <id>
+#             -^a
+#              ^objecta <obja>)
+#-->
+#   (<s> ^operator <o> + =)
+#   (<o> ^name index-object
+#        ^use-interaction false
+#		^allow-ties false
+#        ^obj 1
+#        ^trying <id>
+#        ^category object-processing
+#	    ^object <obja>)
+#}
+#
+#
+#sp {svs-tracking*apply*index-object*results1
+#   (state <s> ^name svs-tracking
+#              ^objecta <obja>
+#              ^operator <o>)
+#   (<o> ^name index-object
+#        ^obj 1
+#        ^trying <idt>
+#        ^match.id <id>)
+#-->
+#   (<s> ^trieda <idt>
+#        ^a <id>)
+#}
+#
+#sp {svs-tracking*propose*index-object2
+#   (state <s> ^name svs-tracking
+#              ^predicate <p>
+#              ^topstate.svs.spatial-scene.child.id-int <id>
+#             -^triedb <id>
+#             -^b
+#              ^objectb <objb>)
+#-->
+#   (<s> ^operator <o> + =)
+#   (<o> ^name index-object
+#        ^use-interaction false
+#		^allow-ties false
+#        ^obj 2
+#        ^trying <id>
+#        ^category object-processing
+#	    ^object <objb>)
+#}
+#
+#
+#sp {svs-tracking*apply*index-object*results2
+#   (state <s> ^name svs-tracking
+#              ^objectb <objb>
+#              ^operator <o>)
+#   (<o> ^name index-object
+#        ^obj 2
+#        ^trying <idt>
+#        ^match.id <id>)
+#-->
+#   (<s> ^triedb <idt>
+#        ^b <id>)
+#}
+#
+#sp {svs-tracking*apply*index-object*failure1
+#   (state <s> ^name svs-tracking
+#              ^objecta <obja>
+#              ^objectb <objb>
+#              ^operator <o>)
+#   (<o> ^name index-object
+#        ^obj 1
+#        ^trying <idt>
+#        ^match failure)              
+#-->
+#   (<s> ^trieda <idt>)
+#}
+#
+#sp {svs-tracking*apply*index-object*failure2
+#   (state <s> ^name svs-tracking
+#              ^objecta <obja>
+#              ^objectb <objb>
+#              ^operator <o>)
+#   (<o> ^name index-object
+#        ^obj 2
+#        ^trying <idt>
+#        ^match failure)              
+#-->
+#   (<s> ^triedb <idt>)
+#}
 
-sp {svs-tracking*extract-filters
+sp {svs-tracking*extract-filters1
    (state <s> ^name svs-tracking
               ^a <obja>
               ^b <objb>
               ^prep <prep>
-              ^predicate <p>
+              ^found-prep.predicate <p>
               ^topstate.svs.spatial-scene <sc>
               ^topstate.svs.command <cmd>)
    (<p> ^name <prep>
@@ -40,12 +130,12 @@ sp {svs-tracking*extract-filters
    (<N8> ^type node ^name <objb1>)
 }
 
-sp {svs-tracking*test-every-relations*negative
+sp {svs-tracking*test-every-relations*negative1
    (state <s> ^name svs-tracking
               ^a <obja>
               ^b <objb>
               ^prep <prep>
-              ^predicate.relation.type <type>
+              ^found-prep.predicate.relation.type <type>
               ^tracked-relation <tr>
               ^topstate.svs.spatial-scene <sc>
               ^topstate.svs.command <cmd>)
@@ -61,12 +151,12 @@ sp {svs-tracking*test-every-relations*negative
    (<rel> ^result false ^type <type>)
 }
 
-sp {svs-tracking*test-every-relations*positive
+sp {svs-tracking*test-every-relations*positive1
    (state <s> ^name svs-tracking
               ^a <obja>
               ^b <objb>
               ^prep <prep>
-              ^predicate.relation.type <type>
+              ^found-prep.predicate.relation.type <type>
               ^tracked-relation <tr>
               ^topstate.svs.spatial-scene <sc>
               ^topstate.svs.command <cmd>)

@@ -5,7 +5,7 @@
 
 sp {find-relations*propose*teaching-request
    (state <s> ^name find-relations
-              ^status default
+              ^stat default
               ^prep <prep>
               ^interaction true
              -^topstate.interaction.stack.segment.info.status.no-teaching true

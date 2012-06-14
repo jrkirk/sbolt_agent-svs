@@ -2,7 +2,7 @@
 
 sp {find-projection*project*svs*propose*lookup-preposition
    (state <s> ^name find-projection
-             -^status
+             -^found-prep
               ^a <ida>
               ^b <idb>
               ^result <res>
@@ -23,7 +23,7 @@ sp {find-projection*project*svs*failure*prep-exist*after-interaction
               ^interaction true
               ^topstate.interaction.stack.segment.info.status.no-teaching true
               ^prep <prep>)
-   (<s> ^status default)
+   (<s> ^stat default)
 -->
    (<ss> ^projection-result failure
          ^proj-failure-reason no-prep)
@@ -37,7 +37,7 @@ sp {find-projection*project*svs*failure*prep-exist
               ^result <res>
              -^interaction true
               ^prep <prep>)
-   (<s> ^status default)
+   (<s> ^stat default)
 -->
    (<ss> ^projection-result failure
          ^proj-failure-reason no-prep)

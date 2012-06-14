@@ -23,4 +23,5 @@
 
 source track-relationship.soar
 source elaborations.soar
+source topstate-tracking.soar
 source complete-svs-tracking.soar

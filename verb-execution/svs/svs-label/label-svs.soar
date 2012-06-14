@@ -2,6 +2,7 @@ sp {svs-label*direct-compare
    (state <s> ^name svs-label
               ^superstate.operator.message.fields.objects <objs>
    			  ^superstate.superstate <sss>
+             -^topstate.track-relation.tracking-extract <E11>
               ^label-svs <l>)
    (<sss> ^svs.command <cmd>)
    (<sss> ^svs.spatial-scene <sc>)
@@ -37,8 +38,8 @@ sp {svs-label*direct-create*new*prep
               ^superstate.operator.message.fields.objects <objs>
    			  ^superstate <ss>
               ^superstate.superstate <sss>
-             -^status old
-              ^status default)
+             -^stat old
+              ^stat default)
    (<objs> ^type <type>)
 -->
    (<s> ^label-svs <l>)
@@ -52,8 +53,8 @@ sp {svs-label*direct-add*new*obj*to*prep
               ^superstate.operator.message.fields.objects <objs>
    			  ^superstate <ss>
               ^superstate.superstate <sss>
-             -^status old
-              ^status default)
+             -^stat old
+              ^stat default)
    (<objs> ^type <type>
            ^obj <o>)
    (<o> ^index <i>)  
@@ -67,7 +68,8 @@ sp {svs-label*direct-add*new*obj*to*prep
 
 sp {svs*label*propose*lookup-preposition
    (state <s> ^name svs-label
-             -^status
+             -^found-prep
+#              ^track-result
               ^superstate.operator.message.fields.objects <objs>)
    (<objs> ^type <type>)
 -->
@@ -75,6 +77,28 @@ sp {svs*label*propose*lookup-preposition
    (<o> ^name lookup-preposition
         ^category svs
         ^type <type>)
+}
+
+sp {svs*label*extract-filters
+   (state <s> ^name svs-label
+              ^topstate.filters.filter <fil>
+              ^topstate.svs.command <cmd>
+              ^topstate.svs.spatial-scene <sc>
+              ^superstate.operator.message.fields.objects <objs>)
+   (<objs> ^type <type>
+           ^obj <oa>
+           ^obj <ob>)
+   (<ob> ^index <i2> ^id <objb>)
+   (<oa> ^index <i1> < <i2>
+         ^id <obja>)   
+   (<sc> ^child <C> ^child <C2>)
+   (<C> ^id <obja1> ^id-int <obja>) 
+   (<C2> ^id <objb1> ^id-int <objb>)
+-->
+   (<cmd> ^extract <E11>)
+   (<E11> ^a <N7> ^b <N8> ^type <fil>)
+   (<N7> ^type node ^name <obja1>)
+   (<N8> ^type node ^name <objb1>)
 }
 
 #sp {svs*label*propose*svs-tracking
@@ -107,4 +131,94 @@ sp {svs*label*propose*lookup-preposition
 #   (<N7> ^type node ^name <id1>)
 #   (<N8> ^type node ^name <id2>)
 #}
+
+#sp {extractsDistance
+#   (state <s> ^topstate <s>
+#              ^topstate.svs.command <cmd>
+#              ^topstate.svs.spatial-scene <sp>)
+#   (<sp> ^child.id <id1>
+#         ^child.id <id2> <> <id1>)
+#-->
+#   (<cmd> ^extract_distance <P11>)
+#   (<P11> ^a <N7> ^b <N8>)
+#   (<N7> ^type node ^name <id1>)
+#   (<N8> ^type node ^name <id2>)
+#}
+
+#sp {extractsDistance1
+#   (state <s> ^topstate <s>
+#              ^object <a>
+#             -^object.id 3
+#              ^object <b>
+#              ^topstate.svs.command <cmd>
+#              ^topstate.svs.spatial-scene <sp>)
+#   (<sp> ^child <C> ^child <C2>)
+#   (<C> ^id <id1> ^id-int 0)
+#   (<C2> ^id <id2> ^id-int 1)
+#   (<a> ^id 0)
+#   (<b> ^id 1)
+#-->
+#   (<cmd> ^extract_distance <P11>)
+#   (<P11> ^a <N7> ^b <N8>)
+#   (<N7> ^type node ^name <id1>)
+#   (<N8> ^type node ^name <id2>)
+#}
+#
+#sp {extractsDistance13
+#   (state <s> ^topstate <s>
+#              ^object <a>
+#             -^object.id 3
+#              ^object <b>
+#              ^topstate.svs.command <cmd>
+#              ^topstate.svs.spatial-scene <sp>)
+#   (<sp> ^child <C> ^child <C2>)
+#   (<C> ^id <id1> ^id-int 1)
+#   (<C2> ^id <id2> ^id-int 0)
+#   (<a> ^id 0)
+#   (<b> ^id 1)
+#-->
+#   (<cmd> ^extract_distance <P11>)
+#   (<P11> ^a <N7> ^b <N8>)
+#   (<N7> ^type node ^name <id1>)
+#   (<N8> ^type node ^name <id2>)
+#}
+#
+#sp {extractsDistance2
+#   (state <s> ^topstate <s>
+#              ^object <a>
+#             -^object.id 3
+#              ^object <b>
+#              ^topstate.svs.command <cmd>
+#              ^topstate.svs.spatial-scene <sp>)
+#   (<sp> ^child <C> ^child <C2>)
+#   (<C> ^id <id1> ^id-int 0)
+#   (<C2> ^id <id2> ^id-int 2)
+#   (<a> ^id 0)
+#   (<b> ^id 2)
+#-->
+#   (<cmd> ^extract_distance <P11>)
+#   (<P11> ^a <N7> ^b <N8>)
+#   (<N7> ^type node ^name <id1>)
+#   (<N8> ^type node ^name <id2>)
+#}
+#
+#sp {extractsDistance21
+#   (state <s> ^topstate <s>
+#              ^object <a>
+#             -^object.id 3
+#              ^object <b>
+#              ^topstate.svs.command <cmd>
+#              ^topstate.svs.spatial-scene <sp>)
+#   (<sp> ^child <C> ^child <C2>)
+#   (<C> ^id <id1> ^id-int 2)
+#   (<C2> ^id <id2> ^id-int 0)
+#   (<a> ^id 0)
+#   (<b> ^id 2)
+#-->
+#   (<cmd> ^extract_distance <P11>)
+#   (<P11> ^a <N7> ^b <N8>)
+#   (<N7> ^type node ^name <id1>)
+#   (<N8> ^type node ^name <id2>)
+#}
+
 

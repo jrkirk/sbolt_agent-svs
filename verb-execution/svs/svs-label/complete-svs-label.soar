@@ -65,7 +65,8 @@ sp {svs-label*propose*remove-relation
    (state <s> ^name svs-label
               ^superstate.operator.message.fields.objects <objs>
               ^superstate.superstate <sss>
-              ^status old)
+             -^topstate.track-relation.tracking-extract <E>
+              ^stat old)
    (<sss> ^svs.command <cmd>)
    (<sss> ^svs.spatial-scene <sc>)
    (<objs> ^type <type>
@@ -107,7 +108,7 @@ sp {svs-label*apply*remove-relation
 sp {svs-label*propose*complete-svs-label*old*default
    (state <s> ^name svs-label
               ^superstate.operator.message.fields.objects <obj>
-              ^status old)
+              ^stat old)
 -->
    (<s> ^operator <o> +) # <
    (<o> ^name complete-svs-label
@@ -127,8 +128,6 @@ sp {svs-label*propose*complete-svs-label*direct*false
         ^category svs
         ^type false)
 }
-
-
 
 
 sp {svs-label*apply*complete-svs-label*direct*mark-processed
