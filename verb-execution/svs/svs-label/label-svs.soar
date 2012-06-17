@@ -65,21 +65,21 @@ sp {svs-label*direct-add*new*obj*to*prep
    (<o1> ^index <i>)
 }
 
-sp {relation-messaging*propose*svs-tracking2
-   (state <s> ^topstate <ts>
-              ^name svs-label
-              ^found-prep <fprep>
-              ^object <a>
-             -^object.id 2
-              ^object <b>)
-   (<a> ^id 0)
-   (<b> ^id 1)
--->
-   (<s> ^track-relation <relation>)
-   (<relation> ^object1 <a>
-               ^object2  <b>
-               ^prep <fprep>)
-}
+#sp {relation-messaging*propose*svs-tracking2
+#   (state <s> ^topstate <ts>
+#              ^name svs-label
+#              ^found-prep <fprep>
+#              ^topstate.object <a>
+#    #         -^topstate.object.id 2
+#              ^topstate.object <b>)
+#   (<a> ^id 0)
+#   (<b> ^id 1)
+#-->
+#   (<ts> ^track-relation <relation>)
+#   (<relation> ^object1 <a>
+#               ^object2  <b>
+#               ^found-prep <fprep>)
+#}
 
 sp {svs*label*propose*lookup-preposition
    (state <s> ^name svs-label

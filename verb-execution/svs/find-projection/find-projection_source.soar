@@ -15,7 +15,7 @@
 #}
 
 # This corresponds to the sentence "put <obja> to the <prep> of <objb>" where
-# <obj> corresponds to the ids for those objects <prep> to the word (ie right-of)
+# <obj> corresponds to the topstate objects and <prep> to the word (ie right-of)
 #
 # interaction is optional and by default set to false
 
