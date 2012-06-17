@@ -30,12 +30,12 @@
 #   (<s> ^track-relation <relation>)
 #   (<relation> ^object1 <a>
 #               ^object2  <b>
-#               ^prep left-of)
+#               ^found-prep <fprep>)
 #}
 
 #############################################
 #############################################
-
+# <fprep> should be looked up with operator lookup-prepositon
 # When the tracking relation is true <relation> will have ^complete success.
 # To end tracking remove track-relation from topstate
 # you can track multiple relationships at the same time

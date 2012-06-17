@@ -110,19 +110,7 @@ sp {relation-messaging*apply*index-object*failure
 #               ^prep right-of)
 #}
 #
-#sp {relation-messaging*propose*svs-tracking2
-#   (state <s> ^topstate <s>
-#              ^object <a>
-#             -^object.id 2
-#              ^object <b>)
-#   (<a> ^id 0)
-#   (<b> ^id 1)
-#-->
-#   (<s> ^track-relation <relation>)
-#   (<relation> ^object1 <a>
-#               ^object2  <b>
-#               ^prep left-of)
-#}
+
 
 
 

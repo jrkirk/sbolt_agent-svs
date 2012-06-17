@@ -57,7 +57,8 @@ sp {svs-tracking*elaborate*create*tracked-relation
               ^track-relation <relation>)
    (<relation> ^object1.id <ida>
                ^object2.id <idb>
-               ^prep <prep>)
+               ^found-prep <fprep>)
+   (<fprep> ^type <prep>)
 -->
-   (<relation> ^tracked-relation <tr>)
+   (<relation> ^tracked-relation <tr> ^prep <prep>)
 }

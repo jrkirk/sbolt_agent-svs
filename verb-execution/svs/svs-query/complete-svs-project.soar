@@ -2,18 +2,20 @@
 sp {svs-project*propose*find-projection
    (state <s> ^name svs-project
               -^projection-result
+               ^topstate.object <a>
               ^superstate.operator <so>)
    (<so> ^message.fields.objects <objs>)
    (<objs> ^obj <object>
            ^type <prep>)
    (<object> ^id <id> ^index <ind>)
+   (<a> ^id <id>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name find-projection
         ^category svs
         ^interaction true
-        ^a <id>
-        ^b <id>
+        ^a <a>
+        ^b <a>
         ^type <prep>)
 }
 

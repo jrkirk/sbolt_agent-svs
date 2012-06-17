@@ -1,27 +1,27 @@
-sp {svs-tracking*propose*lookup-preposition
-   (state <s> ^topstate <s>
-              ^track-relation <relation>)
-   (<relation> ^object1.id <ida>
-               ^object2.id <idb>
-              -^found-prep
-               ^prep <prep>)
--->
-   (<s> ^operator <o> +)
-   (<o> ^name lookup-preposition
-        ^category svs
-        ^type <prep>)
-}
-
-sp {svs-tracking*preposition*store*found-prep
-   (state <s> ^topstate <s>
-              ^found-prep <fprep>
-              ^track-relation <relation>)
-  (<fprep> ^type <prep>)
-  (<relation> ^prep <prep>
-             -^found-prep <fprep1> <> <fprep>)
--->
-   (<relation> ^found-prep <fprep>)
-}
+#sp {svs-tracking*propose*lookup-preposition
+#   (state <s> ^topstate <s>
+#              ^track-relation <relation>)
+#   (<relation> ^object1.id <ida>
+#               ^object2.id <idb>
+#              -^found-prep
+#               ^prep <prep>)
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name lookup-preposition
+#        ^category svs
+#        ^type <prep>)
+#}
+#
+#sp {svs-tracking*preposition*store*found-prep
+#   (state <s> ^topstate <s>
+#              ^found-prep <fprep>
+#              ^track-relation <relation>)
+#  (<fprep> ^type <prep>)
+#  (<relation> ^prep <prep>
+#             -^found-prep <fprep1> <> <fprep>)
+#-->
+#   (<relation> ^found-prep <fprep>)
+#}
 
 sp {svs-tracking*preposition*not-found
    (state <s> ^topstate <s>

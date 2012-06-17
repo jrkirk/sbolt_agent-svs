@@ -1,7 +1,7 @@
 sp {find-projection*elaborate*copy-down-attrs
    (state <s> ^name find-projection
-              ^superstate.operator.a <ida>
-              ^superstate.operator.b <idb>
+              ^superstate.operator.a.id <ida>
+              ^superstate.operator.b.id <idb>
               ^superstate.operator.type <prep>)
 -->
    (<s> ^result <res>
