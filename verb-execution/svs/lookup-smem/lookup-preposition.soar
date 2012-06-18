@@ -22,7 +22,7 @@ sp {lookup-smem*preposition*apply*complete-failure
    (state <s> ^name lookup-preposition
               ^superstate <ss>
               ^found-preposition <fprep>)
-   (<frep> ^stat default)
+   (<fprep> ^stat default)
 -->
    (<ss> ^found-prep <fprep>)
 }

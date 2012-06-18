@@ -22,5 +22,5 @@ smem --add {
 (<R383> ^a 1 ^b 2 ^type z-aligned)
 (<R485> ^a 1 ^b 2 ^type x-aligned)
 (<R486> ^a 1 ^b 2 ^type y-aligned)
-(<R487> ^a 1 ^b 2 ^type z-aligned)
+(<R487> ^a 1 ^b 2 ^type z-greater-than)
 }
