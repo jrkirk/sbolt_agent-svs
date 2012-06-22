@@ -160,43 +160,43 @@ sp {svs*label*extract-filters
 #   (<N8> ^type node ^name <id2>)
 #}
 
-#sp {extractsDistance1
-#   (state <s> ^topstate <s>
-#              ^object <a>
-#             -^object.id 3
-#              ^object <b>
-#              ^topstate.svs.command <cmd>
-#              ^topstate.svs.spatial-scene <sp>)
-#   (<sp> ^child <C> ^child <C2>)
-#   (<C> ^id <id1> ^id-int 0)
-#   (<C2> ^id <id2> ^id-int 1)
-#   (<a> ^id 0)
-#   (<b> ^id 1)
-#-->
-#   (<cmd> ^extract_distance <P11>)
-#   (<P11> ^a <N7> ^b <N8>)
-#   (<N7> ^type node ^name <id1>)
-#   (<N8> ^type node ^name <id2>)
-#}
-#
-#sp {extractsDistance13
-#   (state <s> ^topstate <s>
-#              ^object <a>
-#             -^object.id 3
-#              ^object <b>
-#              ^topstate.svs.command <cmd>
-#              ^topstate.svs.spatial-scene <sp>)
-#   (<sp> ^child <C> ^child <C2>)
-#   (<C> ^id <id1> ^id-int 1)
-#   (<C2> ^id <id2> ^id-int 0)
-#   (<a> ^id 0)
-#   (<b> ^id 1)
-#-->
-#   (<cmd> ^extract_distance <P11>)
-#   (<P11> ^a <N7> ^b <N8>)
-#   (<N7> ^type node ^name <id1>)
-#   (<N8> ^type node ^name <id2>)
-#}
+sp {extractsDistance1
+   (state <s> ^topstate <s>
+              ^object <a>
+             -^object.id 3
+              ^object <b>
+              ^topstate.svs.command <cmd>
+              ^topstate.svs.spatial-scene <sp>)
+   (<sp> ^child <C> ^child <C2>)
+   (<C> ^id <id1> ^id-int 0)
+   (<C2> ^id <id2> ^id-int 1)
+   (<a> ^id 0)
+   (<b> ^id 1)
+-->
+   (<cmd> ^extract_distance <P11>)
+   (<P11> ^a <N7> ^b <N8>)
+   (<N7> ^type node ^name <id1>)
+   (<N8> ^type node ^name <id2>)
+}
+
+sp {extractsDistance13
+   (state <s> ^topstate <s>
+              ^object <a>
+             -^object.id 3
+              ^object <b>
+              ^topstate.svs.command <cmd>
+              ^topstate.svs.spatial-scene <sp>)
+   (<sp> ^child <C> ^child <C2>)
+   (<C> ^id <id1> ^id-int 1)
+   (<C2> ^id <id2> ^id-int 0)
+   (<a> ^id 0)
+   (<b> ^id 1)
+-->
+   (<cmd> ^extract_distance <P11>)
+   (<P11> ^a <N7> ^b <N8>)
+   (<N7> ^type node ^name <id1>)
+   (<N8> ^type node ^name <id2>)
+}
 #
 #sp {extractsDistance2
 #   (state <s> ^topstate <s>
