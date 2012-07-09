@@ -11,6 +11,7 @@ sp {index-object*propose*find-relations
 -->
    (<s> ^operator <o> + =)
    (<o> ^name find-relations
+        ^interaction true
         ^category indexing
         ^prep <prep>
         ^ind 2

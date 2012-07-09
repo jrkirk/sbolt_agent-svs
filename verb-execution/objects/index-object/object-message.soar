@@ -7,24 +7,13 @@
 sp {this-object-message*apply*complete-this-object-message*resolve*which-question
    (state <s> ^name this-object-message
               ^operator.name complete-this-object-message
-              ^topstate.queries.query <q>
-              ^object <obj>)
-   (<q> ^type which-question
-        ^active true
-        ^object <query-obj>)
+              ^topstate.interaction.stack.segment <seg>
+              ^this-object <obj>)
+   (<seg> ^context <context>)
+   (<context> ^cause which-question
+              ^object <context-obj>)
 -->
-   (<query-obj> ^candidate <obj>)
-}
-
-sp {this-object-message*apply*complete-this-object-message*which-question*remove*query
-   (state <s> ^name this-object-message
-              ^operator.name complete-this-object-message
-              ^topstate.queries <qs>)
-   (<qs> ^query <q>)   
-   (<q> ^type which-question
-        ^object <query-obj>)
--->
-   (<qs> ^query <q> -)
+   (<context-obj> ^candidate <obj>)
 }
 
 # Results when an object-message with a relation is sent in response to a which-question
@@ -35,7 +24,7 @@ sp {segment*purpose*propose*index-object
    (<seg> ^purpose <p>
           ^originator instructor)
    (<p> ^type index-object
-        ^parameters.query.type which-question)
+        ^parameters.context.cause which-question)
 -->
    (<s> ^operator <o> +)
    (<o> ^name index-object
@@ -50,7 +39,7 @@ sp {index-object*purpose*elaborate*relation
               ^interaction.stack.segment.purpose <p>)
    (<o> ^name index-object)
    (<p> ^type index-object
-        ^parameters.query.type which-question
+        ^parameters.context.cause which-question
         ^parameters.relation <rel>)
    (<rel> ^object1 <obj1>
           ^object2 <obj2>)
@@ -66,24 +55,11 @@ sp {index-object*purpose*apply*perform*indexing
               ^interaction.stack.segment.purpose <p>
               ^status <status>)
    (<p> ^type index-object
-        ^parameters.query.type which-question)
+        ^parameters.context.cause which-question)
    (<o> ^name index-object
         ^finished true)
 -->
    (<status> ^performed.internal-event indexing)
-}
-
-sp {index-object*purpose*apply*index-object*remove-query
-   (state <s> ^operator <o>
-              ^interaction.stack.segment.purpose <p>
-              ^queries <qs>)
-   (<p> ^type index-object
-        ^parameters.query <q>)
-   (<q> ^type which-question)
-   (<o> ^name index-object
-        ^finished true)
--->
-   (<qs> ^query <q> -)
 }
 
 sp {index-object*purpose*apply*failure*send-message
@@ -91,7 +67,7 @@ sp {index-object*purpose*apply*failure*send-message
               ^io.output-link <out>
               ^interaction.stack.segment.purpose <p>)
    (<p> ^type index-object
-        ^parameters.query.type which-question)
+        ^parameters.context.cause which-question)
    (<o> ^name index-object
         ^match failure)
 -->
@@ -107,9 +83,9 @@ sp {index-object*purpose*apply*add*candidate
    (<o> ^name index-object
         ^match {<m> <> failure})
    (<p> ^type index-object
-        ^parameters.query <q>)
-   (<q> ^type which-question
-        ^object <obj>)
+        ^parameters.context <context>)
+   (<context> ^cause which-question
+        		^object <obj>)
         
 -->
    (<obj> ^candidate <m>)

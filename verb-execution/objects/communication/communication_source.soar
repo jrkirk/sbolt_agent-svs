@@ -1,7 +1,3 @@
-pushd message-interpretation
-source message-interpretation_source.soar
-popd
-
 pushd this-object-message
 source this-object-message_source.soar
 popd

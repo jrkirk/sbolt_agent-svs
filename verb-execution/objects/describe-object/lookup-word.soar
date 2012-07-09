@@ -2,7 +2,7 @@
 sp {describe-object*propose*lookup-smem*word
    (state <s> ^name describe-object
               ^needs-found <nf>
-              ^object <obj>)
+              ^desc-object <obj>)
    (<nf> ^query {<label> <> name}
         -^result)
 -->
@@ -32,7 +32,7 @@ sp {describe-object*apply*lookup-smem*word
 sp {describe-object*propose*lookup-name
    (state <s> ^name describe-object
               ^needs-found <nf>
-              ^object <obj>)
+              ^desc-object <obj>)
    (<nf> ^query name
         -^result)
 -->
@@ -44,7 +44,7 @@ sp {describe-object*propose*lookup-name
 sp {describe-object*apply*lookup-name*has-name
    (state <s> ^name describe-object
               ^operator.name lookup-name
-              ^object <obj>
+              ^desc-object <obj>
               ^needs-found <nf>)
    (<obj> ^property <prop>)
    (<prop> ^name name

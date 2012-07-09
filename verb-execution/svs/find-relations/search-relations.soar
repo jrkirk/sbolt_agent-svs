@@ -68,6 +68,7 @@ sp {find-relations*extract-filters*for-query*first
    (state <s> ^name find-relations
               ^obj <id>
               ^ind 1
+              ^predicate <p1>
               ^topstate.filters.filter <fil>
               ^topstate.svs.spatial-scene <sc>
               ^topstate.svs.command <cmd>)
@@ -84,6 +85,7 @@ sp {find-relations*extract-filters*for-query*second
 (state <s> ^name find-relations
               ^obj <id>
               ^ind 2
+              ^predicate <p1>
               ^topstate.filters.filter <fil>
               ^topstate.svs.spatial-scene <sc>
               ^topstate.svs.command <cmd>)

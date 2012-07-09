@@ -115,7 +115,7 @@ sp {relation-messaging*apply*index-object*failure
 
 
 sp {relation-messaging*propose*process-svs-message
-   (state <s> -^processed
+   (state <s> #-^processed
                ^interaction.stack.segment <seg>)
    (<seg> ^purpose <p>
           ^info.obj1 <id1>

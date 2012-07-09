@@ -1,7 +1,7 @@
 # Fetch the category for the given word from memory
 sp {this-object-message*propose*lookup-smem*category
    (state <s> ^name this-object-message
-              ^object <obj>
+              ^this-object <obj>
               ^nounjective <nj>)
    (<nj> -^category
           ^word <word>)

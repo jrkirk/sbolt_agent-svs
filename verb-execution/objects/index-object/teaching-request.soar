@@ -17,19 +17,17 @@ sp {index-object*propose*teaching-request
         ^object <obj>)
 }
 
-# Creates a teaching-request query 
-sp {index-object*apply*teaching-request*create*query
+# Creates a teaching-request context 
+sp {index-object*apply*teaching-request*create*context
    (state <s> ^name index-object
-              ^operator <o>
-              ^topstate.interaction.stack.segment <seg>)
+              ^operator <o>)
    (<o> ^name teaching-request
         ^object <obj>)
 -->
-   (<s> ^query <q>)
-   (<q> ^type teaching-request
-        ^segment <seg>
-        ^description <desc>
-        ^object <obj>)
+   (<s> ^context <context>)
+   (<context> ^cause teaching-request
+        		^description <desc>
+        		^object <obj>)
    (<desc> ^determiner a)
 }
 
@@ -37,7 +35,7 @@ sp {index-object*apply*teaching-request*create*query
 sp {index-object*apply*teaching-request*copy*word
    (state <s> ^name index-object
               ^operator <o>
-              ^query.description <desc>)
+              ^context.description <desc>)
    (<o> ^name teaching-request
         ^object.property <prop>)
    (<prop> ^category <> name <> shape
@@ -50,7 +48,7 @@ sp {index-object*apply*teaching-request*copy*word
 sp {index-object*apply*teaching-request*copy*name
    (state <s> ^name index-object
               ^operator <o>
-              ^query.description <desc>)
+              ^context.description <desc>)
    (<o> ^name teaching-request
         ^object.property <prop>)
    (<prop> ^category << name shape >>
@@ -63,21 +61,32 @@ sp {index-object*apply*teaching-request*copy*name
 sp {index-object*apply*teaching-request*copy*name*object
    (state <s> ^name index-object
               ^operator <o>
-              ^query.description <desc>)
+              ^context.description <desc>)
    (<o> ^name teaching-request
         -^object.property.category << name shape >>)
 -->
    (<desc> ^word object)
 }
 
-# Copies the query to the topstate
-sp {index-object*apply*teaching-request*copy*query
+# Creates a status on the topstate to initiate a new segment
+sp {index-object*apply*teaching-request*create*status
    (state <s> ^name index-object
               ^operator.name teaching-request
-              ^topstate.queries <qs>
-              ^query <q>)
-   (<q> ^description.word)
+              ^topstate.status <status>
+              ^context <context>)
+   (<context> ^description <desc>)
+   (<desc> ^word)
 -->
-   (<qs> ^query <q>)
+  (<status> ^type teaching-request
+         ^state-name topstate
+         ^purpose <p>)
+   (<p> ^type teaching-request
+        ^context <context>
+        ^parameters <params>
+        ^satisfaction.dialog-event single-word-response)
+   # Segment parameters - A message to send 
+   (<params> ^message <msg>)
+   (<msg> ^type teaching-request
+          ^originator agent
+          ^fields.description <desc>)
 }
-

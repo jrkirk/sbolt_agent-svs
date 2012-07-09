@@ -1,0 +1,50 @@
+sp {get-linguistic-id*elaborate*state
+   (state <s> ^name get-linguistic-id
+   	      ^superstate.operator <sop>)
+   (<sop> ^name get-linguistic-id
+   	  ^cue <cue>)
+-->
+   (<s> ^cue <cue>)
+}
+
+
+sp {get-linguistic-id*elaborate*smem*command
+   (state <s> ^name get-linguistic-id
+   	      ^smem.command <scom>
+	      ^cue <cue>)
+ -->
+   (<scom> ^query <cue>)
+}
+
+sp {get-linguistic-id*write*to*superstate
+   (state <s> ^name get-linguistic-id
+   	      ^smem.result <res>
+	      ^superstate <ss>)
+   (<res> ^retrieved <ret>)
+-->
+   (<ss> ^linguistic <ret>)
+}
+
+#### if get-linguistic-id results in a failure, there is no mapping between language and procedural knowledge. Assume that this will occur when the agent is learning a new action and a verb associated with it. Create new mapping in semantic memory and return that.
+
+
+sp {get-linguistic-id*failure
+   (state <s> ^name get-linguistic-id
+   	      ^smem.result <res>
+	      ^cue <cue>)
+   (<res> ^failure <any>)
+-->
+   (<s> ^operator <op> +)
+   (<op> ^name create-new-mapping
+   	 ^category indexing
+	 ^cue <cue>)}
+
+sp {get-linguistic-id*failure*write*to*superstate
+   (state <s> ^name get-linguistic-id
+   	      ^new-mapping <map>
+	      ^superstate <ss>)
+   (<map> ^linguistic <ling>)
+-->
+  (<ss> ^linguistic <ling>)
+}
+	      

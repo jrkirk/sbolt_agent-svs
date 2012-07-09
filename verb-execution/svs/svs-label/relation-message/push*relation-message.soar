@@ -15,7 +15,7 @@ sp {apply*push-object-message*relation-message
         ^object <obj>
         ^relation <rel>)
    (<rel> ^p1.object <obja> ^p2.object <objb> ^word <prep>)
-   (<msg> -^query.type which-question)
+   (<msg> -^context.cause which-question)
 -->
    (<msg> ^purpose <p>)
    (<p> ^type relation-message

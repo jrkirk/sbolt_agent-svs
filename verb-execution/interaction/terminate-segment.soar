@@ -18,7 +18,7 @@ sp {propose*pop-segment*agent
 }
 
 
-### the segment was originated by the instructo and an action-event/learning-event was expected from the agent
+### the segment was originated by the instructor and an action-event/learning-event was expected from the agent
 
 sp {propose*pop-segment*instructor
    (state <s> ^interaction.stack.segment <segment>
@@ -46,9 +46,14 @@ sp {propose*pop-segment*internal
 	 ^category interaction-stack)
 }
 
+
+#### #SM delete the status only if the next segment does not have the same satisfaction.
+### pop all segments that have the same satisfaction
 sp {apply*pop-segment*instructor*clear
    (state <s> ^status <status>
-   	      ^operator.name pop-segment)
+   	      ^operator.name pop-segment
+	      -^interaction.stack.segment.next.purpose.satisfaction.<etype> <info>)
+   (<status> ^performed.<etype> <info>)
 -->
    (<s> ^status <status> -
    	^status <new-status>)

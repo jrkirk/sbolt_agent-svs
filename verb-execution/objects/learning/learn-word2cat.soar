@@ -37,18 +37,4 @@ sp {apply*learn-word2cat*mark*satisfied
 -->
    (<status> ^performed.learning-event word2cat)
 }
-
-sp {apply*learn-word2cat*remove*queries
-   (state <s> ^operator <o>
-              ^topstate.queries <queries>)
-   (<o> ^name learn-word2cat
-        ^word <word>)
-   (<queries> ^query <q>)
-   (<q> ^type category-of-word
-        ^word <word>)
--->
-   (<queries> ^query <q> -)
-}
-
-
               

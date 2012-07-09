@@ -1,4 +1,3 @@
-
 sp {initialize*filter-list
    (state <s> ^superstate nil)
 -->

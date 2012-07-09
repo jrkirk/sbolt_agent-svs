@@ -3,44 +3,12 @@
 
 sp {topstate*operator-tie*propose*write-unresolved-tie-topstate
    (state <s> -^superstate.superstate.name explain
-   	      ^name operator-tie)
+   	      ^name selection
+	      -^learning-operator <any>)
 -->
    (<s> ^operator <op> + >)
    (<op> ^name indicate-unresolved-tie)
    (dont-learn <s>)
-}
-
-### unresolved-tie application
-
-sp {operator-tie*apply*write-unresolved-tie-topstate*old
-   (state <s> ^operatorr <op>
-	      ^superstate <top>
-	      ^topstate <top>)
-   (<top> ^task <ts>)
-   (<op> ^name indicate-unresolved-tie)
--->
-   (<ts> ^information <info>
-	 ^progress <prog>)
-   (<info> ^category next-task-unknown
-   	   ^name topstate)
-   (<prog> ^status <tps>)
-   (<tps> ^type unresolved-tie)
-}
-
-sp {operator-tie*apply*write-unresolved-ties-no-topstate*old
-   (state <s> ^superstater <ss>
-   	      ^topstate <top> <> <ss>
-	      ^operator <op>)
-   (<top> ^task <ts>)
-   (<op> ^name indicate-unresolved-tie)
-   (<ss> ^name <ssname>)
--->
-   (<ts> ^information <info>
-	 ^progress <prog>)
-   (<info> ^category operator-application
-   	   ^name <ssname>)
-   (<prog> ^status <tps>)
-   (<tps> ^type unresolved-tie)
 }
 
 

@@ -10,6 +10,7 @@ sp {elaborate*agent-purpose*next-task-unknown
 -->
    (<status> ^purpose <p>)
    (<p> ^type get-next-task
+        ^parameters.message.type get-next-task
    	^satisfaction <sat>)
     (<sat> ^dialog-event verb-command)
 }
@@ -23,6 +24,7 @@ sp {elaborate*agent-purpose*next-subaction
 -->
    (<status> ^purpose <p>)
    (<p> ^type get-next-subaction
+        ^parameters.message.type get-next-subaction
    	^satisfaction <sat>)
    (<sat> ^dialog-event verb-command
    	  ^dialog-event successful-completion)

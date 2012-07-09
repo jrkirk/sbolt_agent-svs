@@ -1,7 +1,0 @@
-smem --init
-
-source verb-execution.soar
-
-pushd svs
-source svs_source.soar
-popd

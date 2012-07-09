@@ -14,7 +14,9 @@ sp {push-segment*create-segment
    	      ^superstate <ss>
 	      ^epmem.present-id <eid>)
    (<ss> ^operator <sop>
-   	 ^interaction.stack.segment <prev-segment>)
+   	 ^interaction <i>)
+   (<i> ^action-counter <count>
+   	^stack.segment <prev-segment>)
    (<prev-segment> ^id <id>)
    (<sop> ^name push-segment
    	  ^originator <init>
@@ -24,10 +26,12 @@ sp {push-segment*create-segment
    (<s> ^segment <seg>)
    (<seg> ^originator <init>
     	  ^purpose <np>
-       ^info <i>  #JK
+       ^info <info>  #JK
+       ^context <context> #AM: Information about why the segment was initiated
 	  ^id ( + <id> 1)
 	  ^next <prev-segment>
-	  ^epmem-id <eid>)
+	  ^epmem-id <eid>
+	  ^action-id <count>)
    (<np> ^type <type>
          ^parameters <params>
    	^satisfaction <new-sat>)
@@ -41,6 +45,16 @@ sp {push-segment*purpose*copy-parameters
          ^purpose.parameters.<param-arg> <param-val>)
 -->
    (<params> ^<param-arg> <param-val>)
+}
+
+sp {push-segment*apply*copy-context
+   (state <s> ^name push-segment
+              ^superstate.operator <op>
+              ^segment.context <context>)
+   (<op> ^name push-segment
+         ^purpose.context.<att> <val>)
+-->
+   (<context> ^<att> <val>)
 }
 
 sp {push-segment*create-satisfaction
@@ -88,7 +102,7 @@ sp {push-segment*apply*mark-as-success
 }
 
    
-# AHM: Putting stack information on the output link
+# AM: Putting stack information on the output link
 sp {apply*mark-as-success*output-link
    (state <s> ^name push-segment
               ^operator.name mark-as-success

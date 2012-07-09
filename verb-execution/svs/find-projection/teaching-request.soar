@@ -3,6 +3,8 @@
 #   ask the user for more information
 # The teaching interaction is finished with the single word 'cancel' or 'finished'
 
+# AM: I changed this a little so instead of using queries it creates a status on the topstate
+
 sp {find-projection*propose*teaching-request
    (state <s> ^name find-projection
               ^stat default
@@ -25,9 +27,9 @@ sp {find-projection*apply*teaching-request*create*query
    (<o> ^name teaching-request
         ^prep <prep>)
 -->
-   (<s> ^query <q>)
+   (<s> ^context <context>)
    (<i> ^status <stat>)
-   (<q> ^type teaching-request
+   (<context> ^cause teaching-request
         ^segment <seg>
         ^status <stat>
         ^description <desc>
@@ -39,22 +41,32 @@ sp {find-projection*apply*teaching-request*create*query
 sp {find-projection*apply*teaching-request*copy*name
    (state <s> ^name find-projection
               ^operator <o>
-              ^query.description <desc>)
+              ^context.description <desc>)
    (<o> ^name teaching-request
         ^prep <prep>)
 -->
    (<desc> ^word <prep>)
 }
 
-# Copies the query to the topstate
-sp {find-projection*apply*teaching-request*copy*query
+# Creates a status on the topstate
+sp {find-projection*apply*teaching-request*create*status
    (state <s> ^name find-projection
               ^operator.name teaching-request
-              ^topstate.queries <qs>
-              ^query <q>)
-   (<q> ^description.word)
+              ^topstate.status <status>
+              ^context <context>)
+   (<context> ^description <desc>)
+   (<desc> ^word)
 -->
-   (<qs> ^query <q>)
+   (<status> ^type teaching-request
+         	^state-name topstate
+         	^purpose <p>)
+   (<p> ^type teaching-request
+        ^context <context>
+        ^parameters <params>
+        ^satisfaction.dialog-event single-word-response)
+   # Segment parameters - A message to send 
+   (<params> ^message <msg>)
+   (<msg> ^type teaching-request
+          ^originator agent
+          ^fields.description <desc>)
 }
-
-

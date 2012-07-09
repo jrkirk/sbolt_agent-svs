@@ -1,0 +1,48 @@
+## propose point for all known objects
+sp {propose*point-to*object
+   (state <s> ^object <obj>
+   	       -^problem-space << lgsoar message-interpretation >>
+	       ^topstate <ts>)
+   (<ts> -^self-pointing-at <obj>)
+   (<obj> ^category block)
+ -->
+   (<s> ^operator <op> +)
+   (<op> ^name op_point-to-object
+   	 ^argument1 <obj>)
+}
+
+sp {elaborate*pointto*object*action
+   (state <s> ^operator <op> +)
+   (<op> ^argument1 <obj>
+   	 ^name op_point-to-object)
+   (<obj> ^id <id>)
+  -->
+   (<op> ^actions.point.id <id>
+ 	 ^category primitive-action)
+   (<op> ^kind atomic)
+}
+
+sp {apply*pointto*object*action
+   (state <s> ^name op_point-to-object
+   	      ^superstate.operator <op>
+   	      ^topstate <ts>
+	      ^topstate.io.output-link.point.id <id>)
+   (<op> ^argument1 <obj>
+   	 ^name op_point-to-object)
+-->
+   (<ts> ^self-pointing-at <obj>)
+}
+   
+## clear self-pointing-at from the topstate after the primitive action
+sp {clear*self-pointing-at
+   (state <s> ^operator <op>
+   	      ^self-pointing-at <obj>
+	      ^topstate <s>)
+   (<op> ^category << interaction-stack indexing communication >>)
+-->
+   (<s> ^self-pointing-at <obj> -)
+}
+
+
+### action model
+## not required because it is not used in learning

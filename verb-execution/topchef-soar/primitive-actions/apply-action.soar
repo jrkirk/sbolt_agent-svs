@@ -1,7 +1,7 @@
 sp {apply*operator*actions
-   (state <s> ^topstate <s>
-              ^operator <op>
-   	      ^io.output-link <ol>)
+   (state <s> ^operator <op>
+   	      ^io.output-link <ol>
+   	      ^io.input-link.self.action wait)
    (<op> ^actions <act>)
    (<act> ^<command> <com>)
 -->

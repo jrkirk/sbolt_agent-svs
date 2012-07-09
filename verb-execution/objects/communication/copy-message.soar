@@ -26,3 +26,15 @@ sp {apply*copy-message*remove*processed
 -->
    (<s> ^processed <pm> -)
 }
+
+sp {apply*pop-segment*copy*context*to*instructor-message
+   (state <s> ^topstate <s> 
+              ^operator.name pop-segment
+              ^interaction.stack.segment <seg>
+              ^instructor-message <msg>)
+   (<seg> ^purpose.satisfaction.dialog-event <response-type>
+          ^context <context>)
+   (<msg> ^type <response-type>)
+-->
+   (<msg> ^context <context>)
+}

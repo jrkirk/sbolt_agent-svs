@@ -1,7 +1,0 @@
-source complete-find-value-group.soar
-source differs-from-group.soar
-source elaborations.soar
-
-source preferences.soar
-source propose*find-value-group.soar
-source shared-att-val.soar

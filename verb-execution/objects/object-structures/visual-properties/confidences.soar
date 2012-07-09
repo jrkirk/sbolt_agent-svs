@@ -6,12 +6,12 @@ sp {elaborate*visual-properties*confidences*high
               ^io.input-link.objects.object <io-obj>)
    (<obj> ^id <id>
           ^property <prop>)
-   (<prop> ^name <prop-name>
+   (<prop> ^name <cat-name>
            ^value <val>)
    (<val> ^label <label>)
    (<io-obj> ^id <id>
-             ^category.name <prop-name>
-             ^category.<label> {<conf> > .7})
+             ^visual-prop.category <cat-name>
+             ^visual-prop.<label> {<conf> > .7})
 -->
    (<val> ^confidence high)
 }
@@ -26,8 +26,8 @@ sp {elaborate*visual-properties*confidences*medium
            ^value <val>)
    (<val> ^label <label>)
    (<io-obj> ^id <id>
-             ^category.name <prop-name>
-             ^category.<label> {<conf> > .3 < .7})
+             ^visual-prop.category <cat-name>
+             ^visual-prop.<label> {<conf> > .3 < .7})
 -->
    (<val> ^confidence medium)
 }
@@ -42,8 +42,8 @@ sp {elaborate*visual-properties*confidences*low
            ^value <val>)
    (<val> ^label <label>)
    (<io-obj> ^id <id>
-             ^category.name <prop-name>
-             ^category.<label> {<conf> < .3})
+             ^visual-prop.category <cat-name>
+             ^visual-prop.<label> {<conf> < .3})
 -->
    (<val> ^confidence low)
 }

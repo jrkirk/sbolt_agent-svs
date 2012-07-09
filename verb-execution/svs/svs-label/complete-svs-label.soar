@@ -136,6 +136,7 @@ sp {svs-label*apply*complete-svs-label*direct*mark-processed
               ^topstate.status <status>
               ^smem.command <sc>
               ^superstate.operator.message.fields.objects <objs>
+              ^io.output-link <ol>
               ^superstate <ss>)
    (<ss> ^operator.message <m>)
    (<objs> ^type <type>)
@@ -145,6 +146,8 @@ sp {svs-label*apply*complete-svs-label*direct*mark-processed
 -->
    (<sc> ^store <p1>)
    (<status> ^performed.learning-event preposition)
+   (<ol> ^send-message <msg>)
+   (<msg> ^type confirmation)
 }
 
 

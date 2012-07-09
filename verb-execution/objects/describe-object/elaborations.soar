@@ -2,7 +2,7 @@ sp {describe-object*elaborate*object
    (state <s> ^name describe-object
               ^superstate.operator.object <obj>)
 -->
-   (<s> ^object <obj>)
+   (<s> ^desc-object <obj>)
 }
 
 sp {describe-object*elaborate*needs-found*name
@@ -13,7 +13,7 @@ sp {describe-object*elaborate*needs-found*name
 
 sp {describe-object*elaborate*needs-found*visual-property
    (state <s> ^name describe-object
-              ^object.property <prop>)
+              ^desc-object.property <prop>)
    (<prop> ^type visual
            ^label <label>)
 -->

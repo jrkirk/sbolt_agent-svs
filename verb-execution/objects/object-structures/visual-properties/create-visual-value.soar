@@ -7,9 +7,9 @@ sp {propose*create-visual-value
               ^io.input-link.objects.object <io-obj>
               ^object <obj>)
    (<io-obj> ^id <id>
-             ^category <cat>)
-   (<cat> ^{<label> <> name <> unknown} <conf>
-          ^name <cat-name>)
+             ^visual-prop <vis-prop>)
+   (<vis-prop> ^{<label> <> category <> unknown} <conf>
+          ^category <cat-name>)
    (<obj> ^id <id>
           ^property <prop>)
    (<prop> ^name <cat-name>

@@ -10,39 +10,22 @@ sp {propose*lookup-object
         ^id <id>)
 }
 
-# Successful lookup, use the constructed match
-sp {apply*lookup-object*copy*match
-   (state <s> ^operator <o> +)
-   (<o> ^name lookup-object
-        ^match {<m> <> failure})
--->
-   (<o> ^object <m>)
-}
-
 # Failed lookup, create a new object structure
 sp {apply*lookup-object*object
 	(state <s> ^operator <o>)
    (<o> ^name lookup-object
-       # ^match failure
+        ^match failure
         ^id <id>)
 -->
    (<o> ^object <obj>)
 }
 
-# Adds the object structure to the topstate
-sp {apply*lookup-object*copy*object
-   (state <s> ^operator <o>)
-   (<o> ^name lookup-object
-        ^object <obj>)
--->
-   (<s> ^object <obj>)
-}
 
 # Adds the name to the object
 sp {apply*lookup-object*name
    (state <s> ^operator <o>)
    (<o> ^name lookup-object
-      #  ^match failure
+        ^match failure
         ^object <obj>)
 -->
    (<obj> ^property <prop>)
@@ -54,8 +37,18 @@ sp {apply*lookup-object*name
 sp {apply*lookup-object*id
    (state <s> ^operator <o>)
    (<o> ^name lookup-object
+        ^match failure
         ^object <obj>
         ^id <id>)
 -->
    (<obj> ^id <id>)
+}
+
+# Adds the object structure to the topstate
+sp {apply*lookup-object*copy*object
+   (state <s> ^operator <o>)
+   (<o> ^name lookup-object
+        ^{<< match object >>} {<obj> <> failure})
+-->
+   (<s> ^object <obj>)
 }

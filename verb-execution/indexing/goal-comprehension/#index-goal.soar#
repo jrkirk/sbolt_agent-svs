@@ -1,0 +1,10 @@
+sp {elaborate*state*index-goal
+   (state <s> ^name index-goal
+   	      ^superstate.operator <sop>)
+   (<sop> ^name index-goal
+   	  ^information <info>)
+   -->
+   (<s> ^information <info>)
+}
+
+### 

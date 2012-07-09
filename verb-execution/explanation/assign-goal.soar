@@ -1,0 +1,72 @@
+## create the ^desired attribute in the explanation state. 
+## if the operator is associated with a long-term id corresponding to the goal, retrieve the children.
+## if no children are retrieved, pose a 'goal-query'
+## SM: will not work! The goal has to be grounded before this stage. Possibly comprehension.
+
+### elaborate assign-goal
+sp {assign-goal*elaborate*state
+   (state <s> ^name assign-goal
+   	      ^superstate.operator <sop>)
+   (<sop> ^name assign-goal
+   	  ^long-term-id <glid>) ### pass verb here :SM
+-->
+  (<s> ^long-term-id <glid>
+       ^desired <d>)
+}
+
+### retrieve the long-term-id corresponding to the goal of the indexed-operator
+sp {assign-goal*retrieve*long-term-id
+   (state <s> ^name assign-goal
+   	      ^long-term-id <glid>
+	      ^smem.command <scom>)
+-->
+   (<scom> ^retrieve <glid>)
+}
+
+### if there is no predicate attribute on the goal id, no goal is known, begin an interaction
+sp {assign-goal*unknown-goal
+   (state <s> ^name assign-goal
+   	      ^long-term-id <glid>
+	      ^smem.result <sres>
+	      ^topstate <ts>)
+   (<sres> ^success <glid>) ## correctly retrieved
+   (<glid> -^predicate <any>) ## no predicates in goal
+   (<ts> ^status <stat>)
+-->
+   (<stat> ^type unknown-goal)
+}
+
+### elaborate desired
+sp {assign-goal*elaborate*desired*state
+   (state <s> ^name assign-goal
+   	      ^desired <d>
+	      ^long-term-id <glid>)
+   (<glid> ^predicate <p1>)
+-->
+   (<d> ^track-relation <p1>)
+}
+
+### create the desired attribute on the state
+sp {assign-goal*propsoe*retrieve-predicate
+   (state <s> ^name assign-goal
+   	      ^long-term-id <glid>
+	      ^smem.result <sres>
+   (<sres> ^success <glid>)
+   (<glid> ^predicate <p1>)
+   (<p1> -^name <any>)
+-->
+   (<s> ^operator <op> + >)
+   (<op> ^name retrieve-predicate
+   	 ^predicate <p1>)
+}
+
+
+### retrieve the predicate
+sp {retrieve-predicate*retrieve-predicate
+   (state <s> ^name retrieve-predicate
+   	      ^superstate.operator.predicate <p1>
+	      ^smem.command <scomm>
+  -->
+   (<scomm> ^retrieve <p1>)
+}
+	      

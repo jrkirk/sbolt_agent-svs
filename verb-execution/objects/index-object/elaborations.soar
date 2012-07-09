@@ -23,6 +23,14 @@ sp {index-object*elaborate*object*desired*no-relation
    (<obj> ^desired true)
 }
 
+sp {index-object*elaborate*operator*default*context-id
+   (state <s> ^operator <o>)
+   (<o> ^name index-object
+       -^context-id <> default)
+-->
+   (<o> ^context-id default)
+}
+
 
 # For each property of an object, create a label-query structure to 
 # look up the label for that word
@@ -41,7 +49,7 @@ sp {index-object*elaborate*label-query
 sp {index-object*elaborate*boolean*parameter*copy
    (state <s> ^name index-object
               ^superstate.operator <ss-op>)
-   (<ss-op> ^{<par> << use-interaction allow-ties return-all >>} <val>)
+   (<ss-op> ^{<par> << use-interaction allow-ties return-all context-id >>} <val>)
 -->
    (<s> ^<par> <val>)
 }

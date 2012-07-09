@@ -1,4 +1,0 @@
-source object-message.soar
-source object-question.soar
-source unknown-message.soar
-source single-word-response.soar

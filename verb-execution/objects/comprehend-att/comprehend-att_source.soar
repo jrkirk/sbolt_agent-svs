@@ -1,8 +1,0 @@
-pushd find-value-group
-source find-value-group_source.soar
-popd
-
-source complete-comprehend-att.soar
-source elaborations.soar
-source preferences.soar
-source propose*comprehend-att.soar

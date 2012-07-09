@@ -1,0 +1,19 @@
+##### 
+
+### if the interaction-stack has a goal statement map the goal 
+sp {propose*map*goal
+   (state <s> ^interaction.stack.segment <top>)
+   (<top> ^originator instructor
+   	  ^purpose <p>)
+   (<p> ^type goal
+   	^satisfaction <ps>
+	^indexed-operator <iop>)
+   (<iop> -^goal <any>)0
+   (<ps> ^learning-event <info>)
+-->
+   (<s> ^operator <op> +)
+   (<op> ^name index-goal
+   	 ^information <info>
+	 ^category indexing)
+}
+

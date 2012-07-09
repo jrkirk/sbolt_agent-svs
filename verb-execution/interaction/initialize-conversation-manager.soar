@@ -6,6 +6,7 @@ sp {topstate*apply*init*conversation-manager
    (<op> ^name init-agent)
 -->
    (<s> ^interaction <conv>)
+   (<conv> ^action-counter 0)
    (<conv> ^stack <cs>)
    (<conv> ^expectation <expec>)
    (<cs> ^segment <seg>)
@@ -14,4 +15,30 @@ sp {topstate*apply*init*conversation-manager
    (<s> ^nl <snl>) 
    (<snl> ^input-link <snl-il>
    	  ^output-link <snl-ol>)
+}
+
+
+### every time an segment with external-action is pushed, increment the action counter
+#### VERY HACKY!!! come up with a good way to fix this! SM
+
+sp {topstate*increment*actioncounter
+   (state <s> ^operator <op>
+   	      ^interaction <i>)
+   (<op> ^name push-segment
+   	 ^purpose.type external-action)
+   (<i> ^action-counter <count>)
+-->
+   (<i> ^new-action-counter (+ <count> 1))
+}
+
+sp {topstate*delete*action-counter
+   (state <s> ^operator <op>
+   	      ^interaction <i>)
+   (<op> -^name push-segment)
+   (<i> ^action-counter <count>
+   	^new-action-counter <new-count>)
+-->
+   (<i> ^new-action-counter <new-count> -
+   	^action-counter <count> -
+   	^action-counter <new-count>)
 }

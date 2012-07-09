@@ -27,9 +27,17 @@ sp {find-relations*apply*teaching-request*create*query
    (<o> ^name teaching-request
         ^prep <prep>)
 -->
-   (<s> ^query <q>)
+#   (<s> ^query <q>)
+#   (<i> ^status <stat>)
+#   (<q> ^type teaching-request
+#        ^segment <seg>
+#        ^status <stat>
+#        ^description <desc>
+#        ^prep <prep>)
+#   (<desc> ^determiner preposition)
+   (<s> ^context <context>)
    (<i> ^status <stat>)
-   (<q> ^type teaching-request
+   (<context> ^cause teaching-request
         ^segment <seg>
         ^status <stat>
         ^description <desc>
@@ -43,13 +51,12 @@ sp {find-relations*apply*teaching-request*create*query
 sp {find-relations*apply*teaching-request*copy*name
    (state <s> ^name find-relations
               ^operator <o>
-              ^query.description <desc>)
+              ^context.description <desc>)
    (<o> ^name teaching-request
         ^prep <prep>)
 -->
    (<desc> ^word <prep>)
 }
-
 
 
 # Copies the query to the topstate
@@ -61,4 +68,30 @@ sp {find-relations*apply*teaching-request*copy*query
    (<q> ^description.word)
 -->
    (<qs> ^query <q>)
+}
+
+
+
+
+# Creates a status on the topstate
+sp {find-relations*apply*teaching-request*create*status
+   (state <s> ^name find-relations
+              ^operator.name teaching-request
+              ^topstate.status <status>
+              ^context <context>)
+   (<context> ^description <desc>)
+   (<desc> ^word)
+-->
+   (<status> ^type teaching-request
+         	^state-name topstate
+         	^purpose <p>)
+   (<p> ^type teaching-request
+        ^context <context>
+        ^parameters <params>
+        ^satisfaction.dialog-event single-word-response)
+   # Segment parameters - A message to send 
+   (<params> ^message <msg>)
+   (<msg> ^type teaching-request
+          ^originator agent
+          ^fields.description <desc>)
 }

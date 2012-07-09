@@ -32,14 +32,6 @@ sp {elaborate*pref-rank*create-value
    (<o> ^pref-rank 3)
 }
 
-sp {elaborate*pref-rank*ask-query
-   (state <s> ^topstate <s>
-              ^operator <o> +)
-   (<o> ^name ask-query)
--->
-   (<o> ^pref-rank 4)
-}
-
 sp {elaborate*pref-rank*message-responses
    (state <s> ^topstate <s>
               ^operator <o> +)

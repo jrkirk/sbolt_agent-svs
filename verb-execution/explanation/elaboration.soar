@@ -1,0 +1,77 @@
+#### elaborate learning operator
+sp {elaborate*learning-operator
+   (state <s> ^name explain
+   	      ^segment.purpose.indexed-operator <op>)
+   (<op> ^name <op_name>)
+-->
+   (<s> ^learning-operator <op_name>)
+} 
+
+### copy to all the substate
+sp {copy*learning-operator
+   (state <s> ^superstate.learning-operator <op_name>)
+-->
+   (<s> ^learning-operator <op_name>)
+}
+
+sp {explain*copy*superstate*objects
+   (state <s> ^superstate <ss>)
+   (<ss> ^name explain
+   	 ^object <m>)
+-->
+   (<s> ^object <m>)
+}
+
+### copy structures in the new instructed section
+
+#sp {explain*copy*superstate*relevant*structures*object
+#   (state <s> ^superstate <ss>)
+#   (<ss> ^name explain
+#   	 ^object <m>)
+#   (<m> ^id <mid>
+#   	-^focus yes
+#	^category <cat>)
+#-->
+#   (<s> ^object <nm>)
+#   (<nm> ^id (make-constant-symbol))
+#   (<nm> ^id <mid>
+#   	 ^category <cat>)
+#}
+
+#sp {explain*copy*superstate*relevant*structures*object*focus
+#   (state <s> ^superstate <ss>)
+#   (<ss> ^name explain
+#   	 ^object <m>)
+#   (<m> ^id <mid>
+#   	^focus yes
+#	^category <cat>)
+#-->
+#   (<s> ^object <nm>)
+#   (<nm> ^id <mid>
+##   (<nm> ^id (make-constant-symbol)
+#   	 ^focus yes
+#	 ^category <cat>)
+#}
+
+
+sp {explain*copy*superstate*relevant*structures*self
+   (state <s> ^superstate <ss>)
+   (<ss> ^name explain
+   	 ^self <m>)
+-->
+   (<s> ^self <nm>)
+}
+
+### --- elaborate problem-space
+sp {new-operator*elaborate*problem-space
+   (state <s> ^name {<sname> <> evaluate-operator <> operator-tie <> selection <> explain})
+-->  
+   (<s> ^problem-space <p>)
+   (<p> ^name <sname>
+   	^default-state-copy yes
+	^two-level-attributes object
+	^two-level-attributes self
+	^one-level-attributes location grabbed
+	^dont-copy vpredicates)
+}
+   	      

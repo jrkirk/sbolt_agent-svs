@@ -14,3 +14,12 @@ sp {this-object-message*apply*complete-this-object-message
 -->
    (<status> ^performed.learning-event object)
 }
+
+sp {this-object-message*apply*complete-this-object-message*confirmation
+   (state <s> ^name this-object-message
+              ^operator.name complete-this-object-message
+              ^io.output-link <ol>)
+-->
+   (<ol> ^send-message <msg>)
+   (<msg> ^type confirmation)
+}

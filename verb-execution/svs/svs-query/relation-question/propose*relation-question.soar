@@ -96,7 +96,7 @@ sp {relation-question*apply*index-object*failure
 }
 
 sp {relation-question*propose*process-svs-question
-   (state <s> -^processed
+   (state <s> #-^processed
                ^interaction.stack.segment <seg>)
    (<seg> ^purpose <p>
           ^info.obj2 <id2>)
@@ -116,7 +116,7 @@ sp {relation-question*propose*process-svs-question
 }
 
 sp {relation-question*propose*process-svs-projection
-   (state <s> -^processed
+   (state <s> #-^processed
                ^interaction.stack.segment <seg>)
    (<seg> ^purpose <p>
           ^info.obj2 <id2>)

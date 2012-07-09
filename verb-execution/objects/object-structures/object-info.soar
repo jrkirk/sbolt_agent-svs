@@ -23,6 +23,7 @@ sp {elaborate*object*bbox
    (<obj> ^bbox <pose>)
 }
 
+# AM: Uncomment to automatically name locations
 sp {elaborate*object*name
    (state <s> ^topstate <s>
               ^io.input-link.objects.object <il-obj>

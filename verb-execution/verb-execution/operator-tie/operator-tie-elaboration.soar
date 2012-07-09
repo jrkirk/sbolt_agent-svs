@@ -1,8 +1,8 @@
 ### elaborations for operator tie
-sp {elaborate*operator-tie
-   (state <s> ^impasse tie
-   	      ^attribute operator)
--->
-   (<s> ^name operator-tie)
-}
+#sp {elaborate*operator-tie
+#   (state <s> ^impasse tie
+#   	      ^attribute operator)
+#-->
+#   (<s> ^name operator-tie)
+#}
   

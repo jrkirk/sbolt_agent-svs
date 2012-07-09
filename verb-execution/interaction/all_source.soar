@@ -18,3 +18,9 @@ source communicate-instructor.soar
 source copy-instructor-message.soar
 source nl.soar
 source wait-for-instructor.soar
+
+# AM: Tells the user about the current state of the interaction
+source report-interaction.soar
+
+# AM: Clears the interaction stack by popping off segments
+source clear-interaction-stack.soar

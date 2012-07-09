@@ -34,7 +34,7 @@ sp {this-object-message*apply*lookup-smem*label*send-training-label
    (state <s> ^name this-object-message
               ^io.output-link <out>
               ^operator <o>
-              ^object.id <id>)
+              ^this-object.id <id>)
    (<o> ^name lookup-smem
         ^lookup-type label
         ^query.category <cat>
@@ -47,7 +47,7 @@ sp {this-object-message*apply*lookup-smem*label*send-training-label
 sp {this-object-message*apply*lookup-smem*label*name*object
    (state <s> ^name this-object-message
               ^operator <o>
-              ^object <obj>)
+              ^this-object <obj>)
    (<o> ^name lookup-smem
         ^lookup-type label
         ^query.category name

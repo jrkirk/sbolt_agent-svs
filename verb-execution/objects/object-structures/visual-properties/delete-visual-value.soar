@@ -12,9 +12,9 @@ sp {propose*delete-visual-value
            ^value <val>)
    (<val> ^label <label>)
    (<io-obj> ^id <id>
-             ^category <cat>)
-   (<cat> ^name <prop-name>
-         -^<label>)
+             ^visual-prop <vis-prop>)
+   (<vis-prop> ^category <prop-name>
+         		-^<label>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name delete-visual-value

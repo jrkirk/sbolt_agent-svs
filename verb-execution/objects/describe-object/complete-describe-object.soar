@@ -37,7 +37,7 @@ sp {describe-object*elaborate*complete-describe-object*label
 sp {describe-object*apply*complete-describe-object
    (state <s> ^name describe-object
               ^operator <o>
-              ^object
+              ^desc-object
               ^superstate.operator <ss-o>)
    (<o> ^name complete-describe-object
         ^description <desc>)
@@ -48,7 +48,7 @@ sp {describe-object*apply*complete-describe-object
 sp {describe-object*apply*complete-describe-object*failure
    (state <s> ^name describe-object
               ^operator.name complete-describe-object
-             -^object
+             -^desc-object
               ^superstate.operator <ss-o>)
 -->
    (<ss-o> ^description failure)

@@ -16,24 +16,14 @@ sp {index-object*propose*init-index-object
 sp {index-object*apply*init-index-object*existing*context
    (state <s> ^name index-object
               ^operator <o>
+              ^context-id <id>
               ^topstate <top>)
    (<o> ^name init-index-object)
-   (<top> ^interaction.stack.segment <seg>
-          ^index-object-context <context>)
-   (<context> ^segment <seg>)
+   (<top> ^interaction.stack.segment.info <info>)
+   (<info> ^index-object-context <context>)
+   (<context> ^context-id <id>)
 -->
    (<s> ^index-object-context <context>)
-}
-
-# If for some reason the segment associated with an index-object-context is popped, remove the context
-sp {pop-segment*remove*index-object-context
-   (state <s> ^superstate <s>
-              ^operator.name pop-segment
-              ^interaction.stack.segment <seg>
-              ^index-object-context <context>)
-   (<context> ^segment <seg>)
--->
-   (<s> ^index-object-context <context> -)
 }
 
 #--------- Create new context ----------#
@@ -41,12 +31,13 @@ sp {pop-segment*remove*index-object-context
 sp {index-object*apply*init-index-object*new*context
    (state <s> ^name index-object
               ^operator.name init-index-object
+              ^context-id <id>
               ^topstate <top>)
-   (<top> ^interaction.stack.segment <seg>
-          -^index-object-context.segment <seg>)
+   (<top> ^interaction.stack.segment.info <info>)
+   (<info> -^index-object-context.context-id <id>)
 -->
    (<s> ^copy-context <cc>)
-   (<cc> ^context.segment <seg>)
+   (<cc> ^context <context>)
 }
 
 #----------- Copy Parameters ----------------#
@@ -66,7 +57,7 @@ sp {index-object*apply*init-index-object*copy*parameters
               ^copy-context <cc>)
    (<cc> ^context <context>
         -^copied-parameters)
-   (<s> ^{<arg> << use-interaction allow-ties return-all >>} <val>)
+   (<s> ^{<arg> << use-interaction allow-ties return-all context-id >>} <val>)
 -->
    (<context> ^<arg> <val>)
 }
@@ -146,12 +137,24 @@ sp {index-object*apply*init-index-object*copy*objects*relations*depth2*resolve*r
 sp {index-object*apply*init-index-object*copy*created*context
    (state <s> ^name index-object
               ^operator.name init-index-object
-              ^copy-context <cc>
-              ^topstate <top>)
+              ^copy-context <cc>)
    (<cc> ^copied-depth2 true
          ^context <context>)
 -->
    (<s> ^index-object-context <context>)
-   (<top> ^index-object-context <context>)
 }
+
+sp {index-object*apply*init-index-object*copy*created*context*topstate
+   (state <s> ^name index-object
+              ^use-interaction true
+              ^operator.name init-index-object
+              ^copy-context <cc>
+              ^topstate <top>)
+   (<top> ^interaction.stack.segment.info <info>)
+   (<cc> ^copied-depth2 true
+         ^context <context>)
+-->
+   (<info> ^index-object-context <context>)
+}
+     
               

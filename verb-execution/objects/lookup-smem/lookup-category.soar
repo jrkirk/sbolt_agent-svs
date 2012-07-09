@@ -24,18 +24,28 @@ sp {apply*lookup-smem*category*working-mem
 }
 
 # If this is a new word with an unknown category ask the user
-sp {apply*lookup-smem*category*failure*query
+sp {apply*lookup-smem*category*failure*new-interaction
    (state <s> ^operator <o>
-              ^topstate.queries <qs>
-              ^topstate.interaction.stack.segment <seg>)
+              ^topstate.status <status>)
    (<o> ^name lookup-smem
         ^ask-user true
         ^lookup-type category
         ^query.word <word>
         ^result failure)
 -->
-   (<qs> ^query <q>)
-   (<q> ^type category-of-word
-        ^segment <seg>
-        ^word <word>)
+  (<status> ^type category-of-word
+         ^state-name topstate
+         ^purpose <p>)
+   (<p> ^type category-of-word
+        ^context <context>
+        ^parameters <params>
+        ^satisfaction.dialog-event object-message)
+   # Segment context - the word being asked about
+   (<context> ^cause category-of-word-query
+              ^word <word>)
+   # Segment parameters - A message to send 
+   (<params> ^message <msg>)
+   (<msg> ^type category-of-word
+          ^originator agent
+          ^fields.word <word>)
 }
