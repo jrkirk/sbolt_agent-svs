@@ -14,7 +14,7 @@ smem --add {
      (<ap1> ^op_name op_put-down ^argument <obj>)
 ## put the red block in the pantry.
      (<a2> ^linguistic <al2> ^procedural <ap2> ^type action)
-     (<al2> ^verb put ^direct-object <obj2> ^to <loc2>) 
+     (<al2> ^verb put ^direct-object <obj2> ^in <loc2>) 
      (<ap2> ^op_name op_put-down-object-location ^argument1 <obj2> ^argument2 <loc2>)
 ## put the red block to the right of/left of the yellow cylinder.
       (<a5> ^linguistic <al5> ^procedural <ap5> ^type action)
