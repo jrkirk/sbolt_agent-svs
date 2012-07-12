@@ -17,7 +17,7 @@ sp {prefer*remove-relation*over*complete-svs-label**svs-label
    (state <s> ^name svs-label
               ^operator <o1> +
               ^operator <o2> +)
-   (<o1> ^name remove-relation)
+   (<o1> ^name add-to-relation)
    (<o2> ^name complete-svs-label)
 -->
    (<s> ^operator <o1> > <o2>)

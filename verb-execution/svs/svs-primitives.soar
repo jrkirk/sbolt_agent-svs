@@ -7,6 +7,18 @@ sp {initialize*filter-list
         ^filter z-aligned ^filter z-greater-than ^filter z-less-than)
 }
 
+sp {initialize*axis-filter-list
+   (state <s> ^superstate nil)
+-->
+   (<s> ^axis-filters <f>)
+   (<f> ^filters <f1>
+        ^filters <f2>
+        ^filters <f3>)
+   (<f1> ^axis 0 ^filter x-aligned ^filter x-greater-than ^filter x-less-than)
+   (<f2> ^axis 1 ^filter y-aligned ^filter y-greater-than ^filter y-less-than)
+   (<f3> ^axis 2 ^filter z-aligned ^filter z-greater-than ^filter z-less-than)
+}
+
 sp {svs*elaborate*svs*objects*ids*to*int 
    (state <s> ^superstate nil
    	          ^svs.spatial-scene <sc>)
@@ -25,6 +37,17 @@ sp {clean-up*extracts*after*svs
    (<E11> ^a <N7> ^b <N8>)
 -->
    (<cmd> ^extract <E11> -)
+}
+
+sp {clean-up*extracts_distance*after*svs
+   (state <s> ^operator.name pop-segment
+              ^superstate nil
+             -^track-relation.tracking-extract <E11>
+              ^svs.command <cmd>)
+   (<cmd> ^extract_distance <E11>)
+   (<E11> ^a <N7> ^b <N8>)
+-->
+   (<cmd> ^extract_distance <E11> -)
 }
 
 sp {clean-up*topstate*found-prep*after*svs-tracking

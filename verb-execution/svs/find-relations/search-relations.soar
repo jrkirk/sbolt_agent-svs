@@ -12,16 +12,16 @@ sp {find-relations*relation-search*false-first-part
          ^relation <rel>)
    (<r> ^name <type>
         ^obj <objb>)
-   (<rel> ^type <t>)
+   (<rel> ^type <t> ^axis <axis>)
    (<cmd> ^extract <E11>)
    (<sc> ^child <C> ^child <C2>)
    (<C> ^id <obja1> ^id-int <id>)
    (<C2> ^id <objb1> ^id-int <objb>)
-   (<E11> ^type <t> ^result.negative.atom <A1>)
+   (<E11> ^type <t> ^result.positive.atom <A1>)
    (<A1> ^a <obja1> 
          ^b <objb1>)
 -->
-   (<r> ^result false) 
+   (<r> ^<axis> true ^<axis> <t>) 
 }
 
 sp {find-relations*relation-search*false-second-part
@@ -38,19 +38,19 @@ sp {find-relations*relation-search*false-second-part
          ^relation <rel>)
    (<r> ^name <type>
         ^obj <objb>)
-   (<rel> ^type <t>)
+   (<rel> ^type <t> ^axis <axis>)
    (<cmd> ^extract <E11>)
    (<sc> ^child <C> ^child <C2>)
    (<C> ^id <objb1> ^id-int <id>)
    (<C2> ^id <obja1> ^id-int <objb>)
-   (<E11> ^type <t> ^result.negative.atom <A1>)
+   (<E11> ^type <t> ^result.positive.atom <A1>)
    (<A1> ^a <obja1> 
          ^b <objb1>)
 -->
-   (<r> ^result false) 
+   (<r> ^<axis> true^<axis> <t>) 
 }
 
-sp {find-relations*relation-search*true-default
+sp {find-relations*relation-search*false-default
    (state <s> ^name find-relations
               ^topstate <ss>
               ^obj <id>
@@ -61,7 +61,7 @@ sp {find-relations*relation-search*true-default
    (<r> ^name <type> 
           ^obj <objb>)
 -->
-   (<r> ^result true) 
+   (<r> ^result false) 
 }
 
 sp {find-relations*extract-filters*for-query*first
