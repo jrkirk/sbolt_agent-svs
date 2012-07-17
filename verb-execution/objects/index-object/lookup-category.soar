@@ -20,6 +20,22 @@ sp {index-object*propose*lookup-smem*category
    (<q> ^type word2cat ^word <word> ^category <cat>)
 }
 
+# go through words in alphabetical order
+sp {index-object*prefer*lookup-smem*category*lower-word
+   (state <s> ^name index-object
+              ^index-object-context
+              ^label-query <lq>
+              ^use-interaction <ask>
+              ^operator <o1> + <o2> +)
+   (<o1> ^name lookup-smem
+         ^query.word <w1>)
+   (<o2> ^name lookup-smem
+         ^query.word <w2> < <w1>)
+   
+-->
+   (<s> ^operator <o1> < <o2>)
+}
+
 # Copy the result
 sp {index-object*apply*lookup-smem*copy*result
    (state <s> ^name index-object
