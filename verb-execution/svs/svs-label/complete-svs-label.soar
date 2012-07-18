@@ -8,11 +8,6 @@ sp {svs-label*propose*complete-svs-label*direct
               ^label-svs <l>)
    (<l> ^result <r>)
    (<r> ^type <t> ^axis <axis> ^dist <dist>)
-#        -^type x-aligned
-#        -^type y-aligned
-#        -^type z-aligned)
-#        ^a <i1>
-#        ^b <i2>)
    (<objs> ^type <type>)
    (<s> ^predicate <p1>)
    (<p1> ^name <type>)
@@ -357,7 +352,7 @@ sp {svs-label*propose*complete-svs-label*old*default
               ^superstate.operator.message.fields.objects <obj>
               ^stat old)
 -->
-   (<s> ^operator <o> +) # <
+   (<s> ^operator <o> +)
    (<o> ^name complete-svs-label
         ^category svs
         ^type old)
@@ -370,7 +365,7 @@ sp {svs-label*propose*complete-svs-label*direct*false
    (<l> ^done true)
    (<objs> ^type <type>)
 -->
-   (<s> ^operator <o> +) # <
+   (<s> ^operator <o> +)
    (<o> ^name complete-svs-label
         ^category svs
         ^type false)

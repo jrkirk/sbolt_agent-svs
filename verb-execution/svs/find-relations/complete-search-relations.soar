@@ -49,10 +49,10 @@ sp {find-relations*apply*found-possible-match*extract-distance
    (<C> ^id <obja1> ^id-int <id>)
    (<C2> ^id <objb1> ^id-int <objb>)
 -->
-   (<cmd> ^extract_distance <P11>)
-   (<P11> ^a <N7> ^b <N8> ^axis <axis>)
-   (<N7> ^type node ^name <obja1>)
-   (<N8> ^type node ^name <objb1>)
+   (<cmd> ^extract <P11>)
+   (<P11> ^a <N7> ^b <N8> ^type distance_xyz ^axis <axis>)
+   (<N7> ^type node ^id <obja1>)
+   (<N8> ^type node ^id <objb1>)
 }
 sp {find-relations*apply*found-possible-match*matched-true
    (state <s> ^name find-relations
@@ -103,11 +103,11 @@ sp {find-relations*apply*found-possible-match*check-distance
          ^relation <rel>)
    (<rel> ^axis <axis> ^avg <avg> ^top <top> ^bottom <bot> -^count 1)
    (<ss> ^svs.command <cmd>)
-   (<cmd> ^extract_distance <ED1>)
-   (<ED1> ^a <N7> ^b <N8> ^axis <axis> 
-          ^result.distance { >= <bot> <= <top> })
-   (<N7> ^type node ^name <obja1>)
-   (<N8> ^type node ^name <objb1>)
+   (<cmd> ^extract <ED1>)
+   (<ED1> ^type distance_xyz ^axis <axis> ^result.record <rec>)
+   (<rec> ^value { >= <bot> <= <top> } ^params <A>)
+   (<A> ^a <obja1>
+        ^b <objb1>)
    (<ss> ^svs.spatial-scene <sc>)
    (<sc> ^child <C> ^child <C2>)
    (<C> ^id <obja1> ^id-int <id>)
@@ -130,12 +130,11 @@ sp {find-relations*apply*found-possible-match*check-distance*false
          ^relation <rel>)
    (<rel> ^axis <axis> ^avg <avg> ^top <top> ^bottom <bot> -^count 1)
    (<ss> ^svs.command <cmd>)
-   (<cmd> ^extract_distance <ED1>)
-   (<ED1> ^a <N7> ^b <N8> ^axis <axis> 
-          ^result <res>)
-   (<res> -^distance { >= <bot> <= <top> }) #{ >= (- <avg> (* <stdev> 1.5)) <= (+ <avg> (* <stdev> 1.5)) }
-   (<N7> ^type node ^name <obja1>)
-   (<N8> ^type node ^name <objb1>)
+   (<cmd> ^extract <ED1>)
+   (<ED1> ^type distance_xyz ^axis <axis> ^result.record <rec>)
+   (<rec> -^value { >= <bot> <= <top> } ^params <A>)
+   (<A> ^a <obja1>
+        ^b <objb1>)
    (<ss> ^svs.spatial-scene <sc>)
    (<sc> ^child <C> ^child <C2>)
    (<C> ^id <obja1> ^id-int <id>)
@@ -158,11 +157,11 @@ sp {find-relations*apply*found-possible-match*check-distance*true-for-one
          ^relation <rel>)
    (<rel> ^axis <axis> ^avg <avg> ^top <top> ^bottom <bot> ^count 1)
    (<ss> ^svs.command <cmd>)
-   (<cmd> ^extract_distance <ED1>)
-   (<ED1> ^a <N7> ^b <N8> ^axis <axis> 
-          ^result <res>)
-   (<N7> ^type node ^name <obja1>)
-   (<N8> ^type node ^name <objb1>)
+   (<cmd> ^extract <ED1>)
+   (<ED1> ^type distance_xyz ^axis <axis> ^result.record <rec>)
+   (<rec> ^value <val> ^params <A>)
+   (<A> ^a <obja1>
+        ^b <objb1>)
    (<ss> ^svs.spatial-scene <sc>)
    (<sc> ^child <C> ^child <C2>)
    (<C> ^id <obja1> ^id-int <id>)

@@ -77,46 +77,9 @@ sp {relation-messaging*apply*index-object*failure
 }
 
 
-#sp {relation-messaging*propose*svs-tracking
-#   (state <s> ^topstate <s>
-#              ^object <a>
-#              ^object <b>
-#              ^interaction.stack.segment <seg>)
-#   (<seg> ^purpose <p>
-#          ^info.obj1 <id1>
-#          ^info.obj2 <id2>)
-#   (<p> ^type relation-message
-#        ^parameters.prep <prep>)
-#   (<a> ^id <id1>)
-#   (<b> ^id <id2>)
-#-->
-#   (<s> ^track-relation <relation>)
-#   (<relation> ^object1 <a>
-#               ^object2  <b>
-#               ^prep <prep>)
-#}
-
-#sp {relation-messaging*propose*svs-tracking1
-#   (state <s> ^topstate <s>
-#              ^object <a>
-#             -^object.id 3
-#              ^object <b>)
-#   (<a> ^id 0)
-#   (<b> ^id 1)
-#-->
-#   (<s> ^track-relation <relation>)
-#   (<relation> ^object1 <a>
-#               ^object2  <b>
-#               ^prep right-of)
-#}
-#
-
-
-
 
 sp {relation-messaging*propose*process-svs-message
-   (state <s> #-^processed
-               ^interaction.stack.segment <seg>)
+   (state <s> ^interaction.stack.segment <seg>)
    (<seg> ^purpose <p>
           ^info.obj1 <id1>
           ^info.obj2 <id2>)

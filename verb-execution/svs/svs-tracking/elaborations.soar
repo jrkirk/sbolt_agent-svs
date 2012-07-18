@@ -13,19 +13,6 @@ sp {svs-tracking*elaborate*objects*preposition
         ^prep <prep>)
 }
 
-#sp {svs-tracking*elaborate*objects*descriptions
-#   (state <s> ^name svs-tracking
-#              ^superstate.operator <so>)
-#   (<so> ^objecta <obja>
-#         ^objectb <objb>
-#         ^prep <prep>)
-#-->
-#   (<s> ^objecta <obja>
-#        ^objectb <objb>
-#        ^result <res>
-#        ^tracked-relation <tr>
-#        ^prep <prep>)
-#}
 
 sp {svs-tracking*elaborate*objects*from-topstate
    (state <s> ^name svs-tracking
@@ -40,17 +27,6 @@ sp {svs-tracking*elaborate*objects*from-topstate
         ^tracked-relation <tr>
         ^prep <prep>)
 }
-
-#sp {svs-tracking*elaborate*objects*store-current-objects
-#   (state <s> ^name svs-tracking
-#              ^current-objs <co>
-#              ^topstate.svs.spatial-scene.child.id <id>
-#              ^superstate.operator <so>)
-#   (<so> ^objecta <obja>
-#         ^objectb <objb>)
-#-->
-#   (<co> ^obj <id>)
-#}
 
 sp {svs-tracking*elaborate*create*tracked-relation
    (state <s> ^topstate <s>

@@ -21,8 +21,7 @@ sp {find-projection*project*svs*failure*prep-exist*after-interaction
               ^b <idb>
               ^result <res>
               ^interaction true
-              ^topstate.interaction.stack.segment.info.status.no-teaching true
-              ^prep <prep>)
+              ^topstate.interaction.stack.segment.info.status.no-teaching true)
    (<s> ^stat default)
 -->
    (<ss> ^projection-result failure
@@ -35,8 +34,7 @@ sp {find-projection*project*svs*failure*prep-exist
               ^a <ida>
               ^b <idb>
               ^result <res>
-             -^interaction true
-              ^prep <prep>)
+             -^interaction true)
    (<s> ^stat default)
 -->
    (<ss> ^projection-result failure
@@ -70,7 +68,6 @@ sp {find-projection*project*svs*create-projection
    (state <s> ^name find-projection
               ^a <ida>
               ^b <idb>
-              ^prep <prep>
               ^result <res>
               ^predicate <p1>
               ^topstate.svs.command <cmd>
@@ -89,7 +86,6 @@ sp {find-projection*project*svs*create-projection*add-axis
    (state <s> ^name find-projection
               ^a <ida>
               ^b <idb>
-              ^prep <prep>
               ^result <res>
               ^topstate.svs.command <cmd>
               ^predicate <p1>
@@ -113,7 +109,6 @@ sp {find-projection*project*svs*create-projection*add-primitives
    (state <s> ^name find-projection
               ^a <ida>
               ^b <idb>
-              ^prep <prep>
               ^result <res>
               ^topstate.svs.command <cmd>
               ^predicate <p1>
@@ -137,7 +132,6 @@ sp {find-projection*project*svs*complete-projection
    (state <s> ^name find-projection
               ^a <ida>
               ^b <idb>
-              ^prep <prep>
               ^result <res>
               ^superstate <ss>
               ^topstate.svs.command <cmd>)
