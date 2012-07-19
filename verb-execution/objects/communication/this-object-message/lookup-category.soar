@@ -16,6 +16,19 @@ sp {this-object-message*propose*lookup-smem*category
    (<q> ^type word2cat ^word <word> ^category <cat>)
 }
 
+# go through words in alphabetical order
+sp {this-object-message*prefer*lookup-smem*category*lower-word
+   (state <s> ^name this-object-message
+              ^operator <o1> + <o2> +)
+   (<o1> ^name lookup-smem
+         ^query.word <w1>)
+   (<o2> ^name lookup-smem
+         ^query.word <w2> < <w1>)
+   
+-->
+   (<s> ^operator <o1> < <o2>)
+}
+
 # Successful retrieval
 sp {this-object-message*apply*lookup-smem*category*success
    (state <s> ^name this-object-message

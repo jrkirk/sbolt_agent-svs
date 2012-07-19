@@ -115,32 +115,32 @@ sp {svs-label*direct-edit*old*prep
 #}
 
 
-sp {propose*lookup-prepositio
-   (state <s> ^topstate <s>
-             -^object.id 3   
-              ^object.id 0          
-             -^found-prep)
--->
-   (<s> ^operator <o> +)
-   (<o> ^name lookup-preposition
-        ^category interaction-stack
-        ^type in)
-}
-sp {relation-messaging*propose*svs-trackin
-   (state <s> ^topstate <s>
-              ^found-prep <fprep>
-             -^object.id 3   
-              ^object <a>
-    #         -^topstate.object.id 2
-              ^object <b>)
-   (<a> ^id 2)
-   (<b> ^id 1)
--->
-   (<s> ^track-relation <relation>)
-   (<relation> ^object1 <a>
-               ^object2  <b>
-               ^found-prep <fprep>)
-}
+#sp {propose*lookup-prepositio
+#   (state <s> ^topstate <s>
+#             -^object.id 3   
+#              ^object.id 0          
+#             -^found-prep)
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name lookup-preposition
+#        ^category interaction-stack
+#        ^type in)
+#}
+#sp {relation-messaging*propose*svs-trackin
+#   (state <s> ^topstate <s>
+#              ^found-prep <fprep>
+#             -^object.id 3   
+#              ^object <a>
+#    #         -^topstate.object.id 2
+#              ^object <b>)
+#   (<a> ^id 2)
+#   (<b> ^id 1)
+#-->
+#   (<s> ^track-relation <relation>)
+#   (<relation> ^object1 <a>
+#               ^object2  <b>
+#               ^found-prep <fprep>)
+#}
 
 
 sp {svs*label*propose*lookup-preposition
