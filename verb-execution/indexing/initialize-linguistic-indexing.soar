@@ -18,7 +18,7 @@ smem --add {
      (<ap2> ^op_name op_put-down-object-location ^argument1 <obj2> ^argument2 <loc2>)
 ## put the red block to the right of/left of the yellow cylinder.
       (<a5> ^linguistic <al5> ^procedural <ap5> ^type action)
-     (<al5> ^verb put ^direct-object <obj5> ^right-of <loc5> ^left-of <loc5> ^above <loc5> ^below <loc5> ^behind <loc5> ^in-front-of <loc5>) 
+     (<al5> ^verb put ^direct-object <obj5> ^right-of <loc5> ^left-of <loc5> ^above <loc5> ^below <loc5> ^behind <loc5> ^in-front-of <loc5> ^near <loc5>) 
      (<ap5> ^op_name op_put-down-object-object ^argument1 <obj5> ^argument2 <loc5> ^spatial-relationship <loc5>)
 ## point to the yellow block.
      (<a3> ^linguistic <al3> ^procedural <ap3> ^type action)

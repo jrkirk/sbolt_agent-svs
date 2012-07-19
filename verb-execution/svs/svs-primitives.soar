@@ -7,6 +7,18 @@ sp {initialize*filter-list
         ^filter z-aligned ^filter z-greater-than ^filter z-less-than)
 }
 
+sp {initialize*axis-filter-list
+   (state <s> ^superstate nil)
+-->
+   (<s> ^axis-filters <f>)
+   (<f> ^filters <f1>
+        ^filters <f2>
+        ^filters <f3>)
+   (<f1> ^axis 0 ^filter x-aligned ^filter x-greater-than ^filter x-less-than)
+   (<f2> ^axis 1 ^filter y-aligned ^filter y-greater-than ^filter y-less-than)
+   (<f3> ^axis 2 ^filter z-aligned ^filter z-greater-than ^filter z-less-than)
+}
+
 sp {svs*elaborate*svs*objects*ids*to*int 
    (state <s> ^superstate nil
    	          ^svs.spatial-scene <sc>)
@@ -27,6 +39,7 @@ sp {clean-up*extracts*after*svs
    (<cmd> ^extract <E11> -)
 }
 
+
 sp {clean-up*topstate*found-prep*after*svs-tracking
    (state <s> ^operator.name pop-segment
               ^superstate nil
@@ -44,6 +57,7 @@ sp {clean-up*project*after*svs
 -->
    (<cmd> ^project <P11> -)
 }
+
 #sp {clean-up*object1*after*svs
 #   (state <s> ^operator.name pop-segment
 #              ^topstate <s>
@@ -52,13 +66,6 @@ sp {clean-up*project*after*svs
 #   (<s> ^obj2 <o2> -)
 #}
 
-sp {clean-up*find-failed*after*svs
-   (state <s> ^operator.name pop-segment
-              ^topstate <s>
-              ^find-failed <f>)
--->
-   (<s> ^find-failed <f> -)
-}
 
 #sp {clean-up*object2*after*svs
 #   (state <s> ^operator.name pop-segment
@@ -67,52 +74,3 @@ sp {clean-up*find-failed*after*svs
 #-->
 #   (<s> ^obj1 <o1> -)
 #}
-
-#sp {extract-filters*for-query*first
-#   (state <s> ^name svs-query
-#              ^topstate.filters.filter <fil>
-#              ^topstate.svs.spatial-scene <sc>
-#              ^topstate.svs.command <cmd>
-#              ^superstate.operator.message.fields.objects <objs>)
-#   (<objs> ^obj <object>
-#           ^type <prep>)
-#   (<object> ^id <id> ^index 1)
-#   (<sc> ^child <C>)
-#   (<C> ^id <obja> ^id-int <id>) 
-#-->
-#   (<cmd> ^extract <E11>)
-#   (<E11> ^a <N7> ^b <N8> ^type <fil>)
-#   (<N7> ^type node ^name <obja>)
-#   (<N8> ^type all_nodes)
-#}
-#
-#sp {extract-filters*for-query*second
-#   (state <s> ^name svs-query
-#              ^topstate.filters.filter <fil>
-#              ^topstate.svs.spatial-scene <sc>
-#              ^topstate.svs.command <cmd>
-#              ^superstate.operator.message.fields.objects <objs>)
-#   (<objs> ^obj <object>
-#           ^type <prep>)
-#   (<object> ^id <id> ^index 2)
-#   (<sc> ^child <C>)
-#   (<C> ^id <obja> ^id-int <id>) 
-#-->
-#   (<cmd> ^extract <E11>)
-#   (<E11> ^a <N7> ^b <N8> ^type <fil>)   
-#   (<N7> ^type all_nodes)
-#   (<N8> ^type node ^name <obja>)
-#}
-
-
-
-
-
-#sp {extractsPA
-#   (state <s> ^superstate nil
-#              ^svs.command <cmd>)
-#-->
-#   (<cmd> ^extract <E11>)
-#   (<E11> ^a <N7> ^b <N8> ^type planar-aligned)
-#   (<N7> ^type all_nodes)
-#   (<N8> ^type all_nodes)}

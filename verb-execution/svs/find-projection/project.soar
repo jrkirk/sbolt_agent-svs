@@ -21,8 +21,7 @@ sp {find-projection*project*svs*failure*prep-exist*after-interaction
               ^b <idb>
               ^result <res>
               ^interaction true
-              ^topstate.interaction.stack.segment.info.status.no-teaching true
-              ^prep <prep>)
+              ^topstate.interaction.stack.segment.info.status.no-teaching true)
    (<s> ^stat default)
 -->
    (<ss> ^projection-result failure
@@ -35,8 +34,7 @@ sp {find-projection*project*svs*failure*prep-exist
               ^a <ida>
               ^b <idb>
               ^result <res>
-             -^interaction true
-              ^prep <prep>)
+             -^interaction true)
    (<s> ^stat default)
 -->
    (<ss> ^projection-result failure
@@ -70,48 +68,71 @@ sp {find-projection*project*svs*create-projection
    (state <s> ^name find-projection
               ^a <ida>
               ^b <idb>
-              ^prep <prep>
               ^result <res>
               ^predicate <p1>
               ^topstate.svs.command <cmd>
               ^topstate.svs.spatial-scene <sp>)
+   (<p1> ^all-aligned <val>)
    (<sp> ^child <c1> ^child <c2>)
    (<c1> ^id-int <ida> ^id <obja>)
    (<c2> ^id-int <idb> ^id <objb>)
 -->
    (<cmd> ^project <P11>)
+   (<P11> ^a <N7> ^b <N8> ^aligned <val>)
+   (<N7> ^type node ^name <obja>)
+   (<N8> ^type node ^name <objb>)
+}
+
+sp {find-projection*project*svs*create-projection*add-axis
+   (state <s> ^name find-projection
+              ^a <ida>
+              ^b <idb>
+              ^result <res>
+              ^topstate.svs.command <cmd>
+              ^predicate <p1>
+              ^topstate.svs.spatial-scene <sp>)
+   (<p1> ^name <prep>
+         ^relation <r>)
+   (<r> ^avg <avg> ^axis <axis>)
+   (<sp> ^child <c1> ^child <c2>)
+   (<c1> ^id-int <ida> ^id <obja>)
+   (<c2> ^id-int <idb> ^id <objb>)
+   (<cmd> ^project <P11>)
    (<P11> ^a <N7> ^b <N8>)
    (<N7> ^type node ^name <obja>)
    (<N8> ^type node ^name <objb>)
+-->
+   (<P11> ^rel <rel>)
+   (<rel> ^axis <axis> ^avg <avg>)
 }
 
 sp {find-projection*project*svs*create-projection*add-primitives
    (state <s> ^name find-projection
               ^a <ida>
               ^b <idb>
-              ^prep <prep>
               ^result <res>
               ^topstate.svs.command <cmd>
               ^predicate <p1>
               ^topstate.svs.spatial-scene <sp>)
    (<p1> ^name <prep>
-         ^relation.type <ptype>)
+         ^relation <r>)
+   (<r> ^type <ptype> ^axis <axis>)
    (<sp> ^child <c1> ^child <c2>)
    (<c1> ^id-int <ida> ^id <obja>)
    (<c2> ^id-int <idb> ^id <objb>)
    (<cmd> ^project <P11>)
-   (<P11> ^a <N7> ^b <N8>)
+   (<P11> ^a <N7> ^b <N8> ^rel <rel>)
+   (<rel> ^axis <axis>)
    (<N7> ^type node ^name <obja>)
    (<N8> ^type node ^name <objb>)
 -->
-   (<P11> ^type <ptype>)
+   (<rel> ^type <ptype>)
 }
 
 sp {find-projection*project*svs*complete-projection
    (state <s> ^name find-projection
               ^a <ida>
               ^b <idb>
-              ^prep <prep>
               ^result <res>
               ^superstate <ss>
               ^topstate.svs.command <cmd>)

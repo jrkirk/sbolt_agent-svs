@@ -64,7 +64,6 @@ sp {find-projection*apply*teaching-request*create*status
         ^context <context>
         ^parameters <params>
         ^satisfaction.dialog-event single-word-response)
-   # Segment parameters - A message to send 
    (<params> ^message <msg>)
    (<msg> ^type teaching-request
           ^originator agent

@@ -12,16 +12,17 @@ sp {find-relations*relation-search*false-first-part
          ^relation <rel>)
    (<r> ^name <type>
         ^obj <objb>)
-   (<rel> ^type <t>)
+   (<rel> ^type <t> ^axis <axis>)
    (<cmd> ^extract <E11>)
    (<sc> ^child <C> ^child <C2>)
    (<C> ^id <obja1> ^id-int <id>)
    (<C2> ^id <objb1> ^id-int <objb>)
-   (<E11> ^type <t> ^result.negative.atom <A1>)
+   (<E11> ^type <t> ^result.record <rec>)
+   (<rec> ^value t ^params <A1>)
    (<A1> ^a <obja1> 
          ^b <objb1>)
 -->
-   (<r> ^result false) 
+   (<r> ^<axis> true ^<axis> <t>) 
 }
 
 sp {find-relations*relation-search*false-second-part
@@ -38,19 +39,20 @@ sp {find-relations*relation-search*false-second-part
          ^relation <rel>)
    (<r> ^name <type>
         ^obj <objb>)
-   (<rel> ^type <t>)
+   (<rel> ^type <t> ^axis <axis>)
    (<cmd> ^extract <E11>)
    (<sc> ^child <C> ^child <C2>)
    (<C> ^id <objb1> ^id-int <id>)
    (<C2> ^id <obja1> ^id-int <objb>)
-   (<E11> ^type <t> ^result.negative.atom <A1>)
+   (<E11> ^type <t> ^result.record <rec>)
+   (<rec> ^value t ^params <A1>)
    (<A1> ^a <obja1> 
          ^b <objb1>)
 -->
-   (<r> ^result false) 
+   (<r> ^<axis> true ^<axis> <t>) 
 }
 
-sp {find-relations*relation-search*true-default
+sp {find-relations*relation-search*false-default
    (state <s> ^name find-relations
               ^topstate <ss>
               ^obj <id>
@@ -61,7 +63,7 @@ sp {find-relations*relation-search*true-default
    (<r> ^name <type> 
           ^obj <objb>)
 -->
-   (<r> ^result true) 
+   (<r> ^result false) 
 }
 
 sp {find-relations*extract-filters*for-query*first
@@ -69,15 +71,16 @@ sp {find-relations*extract-filters*for-query*first
               ^obj <id>
               ^ind 1
               ^predicate <p1>
-              ^topstate.filters.filter <fil>
+#              ^topstate.filters.filter <fil>
               ^topstate.svs.spatial-scene <sc>
               ^topstate.svs.command <cmd>)
+   (<p1> ^relation.type <type>)
    (<sc> ^child <C>)
    (<C> ^id <obja> ^id-int <id>) 
 -->
    (<cmd> ^extract <E11>)
-   (<E11> ^a <N7> ^b <N8> ^type <fil>)
-   (<N7> ^type node ^name <obja>)
+   (<E11> ^a <N7> ^b <N8> ^type <type>)
+   (<N7> ^type node ^id <obja>)
    (<N8> ^type all_nodes)
 }
 
@@ -86,16 +89,17 @@ sp {find-relations*extract-filters*for-query*second
               ^obj <id>
               ^ind 2
               ^predicate <p1>
-              ^topstate.filters.filter <fil>
+#              ^topstate.filters.filter <fil>
               ^topstate.svs.spatial-scene <sc>
               ^topstate.svs.command <cmd>)
+   (<p1> ^relation.type <type>)
    (<sc> ^child <C>)
    (<C> ^id <obja> ^id-int <id>)
 -->
    (<cmd> ^extract <E11>)
-   (<E11> ^a <N7> ^b <N8> ^type <fil>)   
+   (<E11> ^a <N7> ^b <N8> ^type <type>)   
    (<N7> ^type all_nodes)
-   (<N8> ^type node ^name <obja>)
+   (<N8> ^type node ^id <obja>)
 }
 
 
@@ -116,7 +120,6 @@ sp {find-relations*extract-filters*for-query*second
 sp {find-relations*relation-search*build-potentials
    (state <s> ^name find-relations
               ^topstate <ss>
-              ^prep <type>
               ^obj <id>)
    (<ss> ^svs.command <cmd>)
    (<s>  ^predicate <p1>)

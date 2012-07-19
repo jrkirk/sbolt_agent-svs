@@ -5,7 +5,6 @@ sp {propose*put-down-object-object*next-to
 	      ^object <loc>
 	     -^problem-space << lgsoar message-interpretation >>
 	     -^track-relation.complete success) ## SM: HACKY!! figure out a way to to this more generally
-   (<loc> -^category location)
 -->
    (<s> ^operator <op> +)
    (<op> ^name op_put-down-object-object
@@ -35,6 +34,7 @@ sp {elaborate*op_put-down-object-object
 sp {propose*svs*lookup-preposition*object
    (state <s> ^name op_put-down-object-object
    	      ^io
+	       ^projection-result <any>
 	      ^spatial-relationship <rel>
 	      -^found-prep <fprep>
          ^projection-result)
@@ -55,6 +55,7 @@ sp {propose*svs*find-projection*object
 -->
    (<s> ^operator <op> + >)
    (<op> ^name find-projection
+   	 ^interaction true
    	^a <obj>
 	^b <loc>
 	^type <rel>
