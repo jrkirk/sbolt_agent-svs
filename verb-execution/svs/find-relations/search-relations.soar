@@ -49,7 +49,7 @@ sp {find-relations*relation-search*false-second-part
    (<A1> ^a <obja1> 
          ^b <objb1>)
 -->
-   (<r> ^<axis> true^<axis> <t>) 
+   (<r> ^<axis> true ^<axis> <t>) 
 }
 
 sp {find-relations*relation-search*false-default

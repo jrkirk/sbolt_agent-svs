@@ -7,7 +7,10 @@ sp {svs-label*propose*complete-svs-label*direct
               ^stat default
               ^label-svs <l>)
    (<l> ^result <r>)
-   (<r> ^type <t> ^axis <axis> ^dist <dist>)
+   (<r> ^type <t> ^axis <axis> ^dist <dist>
+        -^type x-aligned
+        -^type y-aligned
+        -^type z-aligned)
    (<objs> ^type <type>)
    (<s> ^predicate <p1>)
    (<p1> ^name <type>)
@@ -27,6 +30,38 @@ sp {svs-label*propose*complete-svs-label*direct
         ^type new-add)
 }
 
+sp {svs-label*propose*complete-svs-label*all-aligned
+   (state <s> ^name svs-label
+              ^superstate.operator.message.fields.objects <objs>
+              ^smem.command <sc>
+              ^superstate.superstate <sss>
+              ^label-svs <l>)
+   (<l> ^result.type x-aligned ^result.type y-aligned ^result.type z-aligned)
+   (<objs> ^type <type>)
+   (<s> ^predicate <p1>)
+   (<p1> ^name <type>)
+   (<p1> ^all-aligned {<val> false})
+-->
+#   (<p1> ^all-aligned <val> -)
+#   (<p1> ^all-aligned true)
+   (<s> ^operator <o> + =)
+   (<o> ^name remove-relation
+        ^remove <val>
+        ^category svs)
+}
+
+sp {svs-label*apply*remove-relation
+   (state <s> ^name svs-label
+              ^predicate <p1>
+              ^operator <o>)
+   (<o> ^name remove-relation
+        ^remove <val>)
+-->
+   (<p1> ^all-aligned <val> -)
+   (<p1> ^all-aligned true)
+}
+
+
 sp {svs-label*propose*complete-svs-label*direct*old
    (state <s> ^name svs-label
               ^superstate.operator.message.fields.objects <objs>
@@ -35,10 +70,10 @@ sp {svs-label*propose*complete-svs-label*direct*old
               ^stat old
               ^label-svs <l>)
    (<l> ^result <r>)
-   (<r> ^type <t> ^axis <axis> ^dist <dist>)
-#        -^type x-aligned
-#        -^type y-aligned
-#        -^type z-aligned)
+   (<r> ^type <t> ^axis <axis> ^dist <dist>
+        -^type x-aligned
+        -^type y-aligned
+        -^type z-aligned)
 #        ^a <i1>
 #        ^b <i2>)
    (<objs> ^type <type>)
@@ -67,10 +102,10 @@ sp {svs-label*propose*complete-svs-label*direct*old3
               ^stat old
               ^label-svs <l>)
    (<l> ^result <r>)
-   (<r> ^type <t> ^axis <axis> ^dist <dist>)
-#        -^type x-aligned
-#        -^type y-aligned
-#        -^type z-aligned)
+   (<r> ^type <t> ^axis <axis> ^dist <dist>
+        -^type x-aligned
+        -^type y-aligned
+        -^type z-aligned)
 #        ^a <i1>
 #        ^b <i2>)
    (<objs> ^type <type>)
@@ -98,10 +133,10 @@ sp {svs-label*propose*complete-svs-label*direct*old2
               ^stat old
               ^label-svs <l>)
    (<l> ^result <r>)
-   (<r> ^type <t> ^axis <axis> ^dist <dist>)
-#        -^type x-aligned
-#        -^type y-aligned
-#        -^type z-aligned)
+   (<r> ^type <t> ^axis <axis> ^dist <dist>
+        -^type x-aligned
+        -^type y-aligned
+        -^type z-aligned)
 #        ^a <i1>
 #        ^b <i2>)
    (<objs> ^type <type>)
@@ -125,11 +160,10 @@ sp {svs-label*apply*add-to-relation
         ^relation <r1>
         ^dist <dist>
         ^type <t>)
-   (<r1> ^count <count> ^sum <sum> ^squaredsum <sqsum> ^avg <avg> ^top <top> ^bottom <bot>)
+   (<r1> ^count {<count> > 0} ^sum <sum> ^squaredsum <sqsum> ^avg <avg> ^top <top> ^bottom <bot>)
 -->
    (<r1> ^count <count> -)
    (<r1> ^sum <sum> -)
-   (<r1> ^stdev <stdev> -)
    (<r1> ^avg <avg> -)
    (<r1> ^top <top> -)
    (<r1> ^bottom <bot> -)
@@ -150,6 +184,36 @@ sp {svs-label*apply*add-to-relation
                                                            (/ (+ <sum> <dist>) (+ 1 <count>)))))))))
     (<sc> ^store <r1>)
 }
+
+
+sp {svs-label*apply*add-to-relation*count-zero
+   (state <s> ^name svs-label
+              ^smem.command <sc>
+              ^predicate <p1>
+              ^operator <o>)
+   (<o> ^name add-to-relation
+        ^relation <r1>
+        ^dist <dist>
+        ^type <t>)
+   (<r1> ^count {<count> 0} ^sum <sum> ^squaredsum <sqsum> ^avg <avg> ^top <top> ^bottom <bot>)
+-->
+   (<r1> ^count <count> -)
+   (<r1> ^sum <sum> -)
+   (<r1> ^avg <avg> -)
+   (<r1> ^top <top> -)
+   (<r1> ^bottom <bot> -)
+   (<r1> ^squaredsum <sqsum> -)
+   (<r1> ^dist <dist> 
+         ^type <t>
+         ^count (+ 1 <count>) 
+         ^sum (+ <sum> <dist>) 
+         ^squaredsum (+ <sqsum> (* <dist> <dist>))
+         ^avg (/ (+ <sum> <dist>) (+ 1 <count>))
+         ^top (* 2 <dist>)
+         ^bottom 0)
+    (<sc> ^store <r1>)
+}
+
 sp {svs-label*apply*add-to-relation*no-type
    (state <s> ^name svs-label
               ^smem.command <sc>
@@ -200,65 +264,65 @@ sp {svs-label*apply*add-to-relation*no-dist
    (<sc> ^store <r1>)
 }
 
-#sp {svs-label*propose*complete-svs-label*direct*aligned
-#   (state <s> ^name svs-label
-#              ^superstate.operator.message.fields.objects <objs>
-#              ^smem.command <sc>
-#              ^stat default
-#              ^superstate.superstate <sss>
-#              ^label-svs <l>)
-#   (<l> ^result <r>)
-#   (<r> ^type <t> << x-aligned z-aligned y-aligned >>
-#        ^axis <axis> ^dist <dist>)
-##        ^a <i1>
-##        ^b <i2>)
-#   (<objs> ^type <type>)
-#   (<s> ^predicate <p1>)
-#   (<p1> ^name <type>)
-##         ^obj <o1>
-##         ^obj <o2>)
-##   (<o2> ^index <i2>)
-##   (<o1> ^index <i1>)
-#-->
-#   (<p1> ^relation <r1>)
-#   (<r1> ^type <t> ^axis <axis> ^count 0 ^sum 0 ^squaredsum 0 ^avg 0 ^stdev 0)
-##         ^a <i1>
-##         ^b <i2>)
-#   (<sc> ^store <r1>)
-#   (<s> ^operator <o> + =)
-#   (<o> ^name complete-svs-label
-#        ^category svs
-#        ^type new-add)
-#}
+sp {svs-label*propose*complete-svs-label*direct*aligned
+   (state <s> ^name svs-label
+              ^superstate.operator.message.fields.objects <objs>
+              ^smem.command <sc>
+              ^stat default
+              ^superstate.superstate <sss>
+              ^label-svs <l>)
+   (<l> ^result <r>)
+   (<r> ^type <t> << x-aligned z-aligned y-aligned >>
+        ^axis <axis> ^dist <dist>)
+#        ^a <i1>
+#        ^b <i2>)
+   (<objs> ^type <type>)
+   (<s> ^predicate <p1>)
+   (<p1> ^name <type>)
+#         ^obj <o1>
+#         ^obj <o2>)
+#   (<o2> ^index <i2>)
+#   (<o1> ^index <i1>)
+-->
+   (<p1> ^relation <r1>)
+   (<r1> ^type <t> ^axis <axis> ^count 0 ^sum 0 ^squaredsum 0 ^avg 0 ^top 0 ^bottom 0)
+#         ^a <i1>
+#         ^b <i2>)
+   (<sc> ^store <r1>)
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-svs-label
+        ^category svs
+        ^type new-add)
+}
 
-#sp {svs-label*propose*complete-svs-label*direct*aligned*old
-#   (state <s> ^name svs-label
-#              ^superstate.operator.message.fields.objects <objs>
-#              ^smem.command <sc>
-#              ^stat old
-#              ^superstate.superstate <sss>
-#              ^label-svs <l>)
-#   (<l> ^result <r>)
-#   (<r> ^type <t> << x-aligned z-aligned y-aligned >>
-#        ^axis <axis> ^dist <dist>)
-##        ^a <i1>
-##        ^b <i2>)
-#   (<objs> ^type <type>)
-#   (<s> ^predicate <p1>)
-#   (<p1> ^name <type>
-#         ^relation <r1>)
-#   (<r1> ^axis <axis> -^type <t>)
-##         ^obj <o1>
-##         ^obj <o2>)
-##   (<o2> ^index <i2>)
-##   (<o1> ^index <i1>)
-#-->
-#   (<s> ^operator <o> + =)
-#   (<o> ^name add-to-relation
-#        ^relation <r1>
-#        ^type <t>
-#        ^category svs)
-#}
+sp {svs-label*propose*complete-svs-label*direct*aligned*old
+   (state <s> ^name svs-label
+              ^superstate.operator.message.fields.objects <objs>
+              ^smem.command <sc>
+              ^stat old
+              ^superstate.superstate <sss>
+              ^label-svs <l>)
+   (<l> ^result <r>)
+   (<r> ^type <t> << x-aligned z-aligned y-aligned >>
+        ^axis <axis> ^dist <dist>)
+#        ^a <i1>
+#        ^b <i2>)
+   (<objs> ^type <type>)
+   (<s> ^predicate <p1>)
+   (<p1> ^name <type>
+         ^relation <r1>)
+   (<r1> ^axis <axis> -^type <t>)
+#         ^obj <o1>
+#         ^obj <o2>)
+#   (<o2> ^index <i2>)
+#   (<o1> ^index <i1>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name add-to-relation
+        ^relation <r1>
+        ^type <t>
+        ^category svs)
+}
 
 #   (<r1> ^type <t>)
 ##         ^a <i1>

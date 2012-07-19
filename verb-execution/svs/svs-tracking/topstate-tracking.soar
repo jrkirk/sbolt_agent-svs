@@ -132,7 +132,7 @@ sp {svs-tracking*test-relations*positive*aligned
          ^b <objb1>)
 -->
    (<tr> ^relation <rel>)
-   (<rel> ^<axis> true)
+   (<rel> ^<axis> true ^<axis> <type>)
 }
 
 sp {svs-tracking*test-relations*positive
@@ -167,7 +167,7 @@ sp {svs-tracking*test-relations*positive
          ^b <objb1>)
 -->
    (<tr> ^relation <rel>)
-   (<rel> ^<axis> true)
+   (<rel> ^<axis> true ^<axis> <t>)
 }
 
 sp {svs-tracking*test-relations*positive*true-for-one
@@ -196,7 +196,7 @@ sp {svs-tracking*test-relations*positive*true-for-one
          ^b <objb1>)
 -->
    (<tr> ^relation <rel>)
-   (<rel> ^<axis> true)
+   (<rel> ^<axis> true ^<axis> <t>)
 }
 
 
@@ -215,7 +215,31 @@ sp {svs-tracking*propose*complete-svs-tracking
    (<rel1> ^0 true)
    (<rel2> ^1 true)
    (<rel3> ^2 true)   
-   (<fprep> ^type <prep>)
+   (<fprep> ^type <prep> ^predicate <p>)
+   (<p> ^all-aligned true)
+-->
+   (<relation> ^complete success)
+}
+
+sp {svs-tracking*propose*complete-svs-tracking*not-aligned
+   (state <s> ^topstate <s>
+              ^track-relation <relation>)
+   (<relation> ^object1.id <obja>
+               ^object2.id <objb>
+              -^failure prep-not-found
+#              -^tracked-relation.relation.result false
+               ^tracked-relation <tr>
+               ^prep <prep>
+               ^found-prep <fprep>)
+   (<tr> ^relation <rel1> ^relation <rel2> ^relation <rel3>)
+   (<rel1> ^0 true)
+   (<rel2> ^1 true)
+   (<rel3> ^2 true)   
+   (<fprep> ^type <prep> ^predicate <p>)
+   (<p> ^all-aligned false)
+  -{(<rel1> ^0 x-aligned)
+    (<rel2> ^1 y-aligned)
+    (<rel3> ^2 z-aligned)}
 -->
    (<relation> ^complete success)
 }

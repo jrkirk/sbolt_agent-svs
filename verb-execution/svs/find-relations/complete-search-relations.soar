@@ -15,15 +15,54 @@ sp {find-relations*propose*complete-relations-search*true
    (<rels> ^relations <r>)
 }
 
+#sp {find-relations*propose*complete-relations-search*true*all-aligned
+#   (state <s> ^name find-relations
+#              ^obj <id>
+#              ^predicate <p1>
+#			  ^relation <r>)
+#   (<p1> ^all-aligned true)
+#   (<s> ^relationships <rels>)
+#   (<r> ^0 true ^0 x-aligned
+#        ^1 true ^1 y-aligned
+#        ^2 true ^2 z-aligned)
+#-->
+#   (<s> ^operator <o> + =)
+#   (<o> ^name complete-relations-search
+#        ^category svs
+#        ^type true)
+#   (<rels> ^relations <r>)
+#}
+
 sp {find-relations*propose*found-possible-match
    (state <s> ^name find-relations
               ^obj <id>
+              ^predicate <p1>
 			  ^relation <r>)
    (<s> ^relationships <rels>)
+   (<p1> ^all-aligned true)
    (<r> ^0 true
         ^1 true
         ^2 true
        -^matched)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name found-possible-match
+        ^category svs
+        ^relation <r>)
+}
+
+sp {find-relations*propose*found-possible-match*not-all-aligned
+   (state <s> ^name find-relations
+              ^obj <id>
+              ^predicate <p1>
+			  ^relation <r>)
+   (<s> ^relationships <rels>)
+   (<p1> ^all-aligned false)
+   (<r> ^0 true
+        ^1 true
+        ^2 true
+       -^matched)
+  -{(<r> ^0 x-aligned ^1 y-aligned ^2 z-aligned)}
 -->
    (<s> ^operator <o> + =)
    (<o> ^name found-possible-match
