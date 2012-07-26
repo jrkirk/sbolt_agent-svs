@@ -10,6 +10,7 @@ sp {elaborate*instructor-message*purpose*case1
     	 ^information <info>)
 ### SM: special handling for "you are done" command. To be fixed later.
     (<info> -^verb.word done)
+    (<info> -^verb.word describe) #JK for describe the scene-shouldn't be handled as a verb
  -->
     (<m> ^purpose <p>)
     (<p> ^type external-action
@@ -25,6 +26,7 @@ sp {elaborate*instructor-message*purpose*case1*done
     (<m> ^type verb-command
     	 ^information <info>)
     (<info> ^verb.word done)
+    (<info> -^verb.word describe) #JK for describe the scene-shouldn't be handled as a verb
  -->
     (<m> ^purpose <p>)
     (<p> ^type explanation

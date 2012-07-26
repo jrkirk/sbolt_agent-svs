@@ -9,6 +9,7 @@ sp {propose*map*verb
    	^satisfaction <ps>
 	-^indexed-operator <map-op>)  
    (<ps> ^action-event <info>)
+   (<info> -^verb.word describe) #JK for describe the scene-shouldn't be handled as a verb
 -->
    (<s> ^operator <op> +)
    (<op> ^name index-verb
