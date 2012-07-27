@@ -6,5 +6,6 @@ sp {process-message*propose*svs-query
    (<s> ^operator <o> +)
    (<o> ^name svs-query
         ^category svs
+        ^descriptions <d>
         ^message <m>)
 }

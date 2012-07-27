@@ -3,29 +3,34 @@ sp {describe-object*propose*complete-describe-object
 -->
    (<s> ^operator <o> +)
    (<o> ^name complete-describe-object
-        ^category object-processing
-        ^description <desc>)
+        ^category object-processing)
 }
 
-sp {describe-object*elaborate*complete-describe-object*name
+sp {describe-object*apply*complete-describe-object*description
    (state <s> ^name describe-object
-              ^operator <o>
+              ^operator.name complete-describe-object
+             -^description)
+-->
+   (<s> ^description <desc>)
+}
+
+sp {describe-object*apply*complete-describe-object*name
+   (state <s> ^name describe-object
+              ^operator.name complete-describe-object
+              ^description <desc>
               ^needs-found <nf>)
-   (<o> ^name complete-describe-object
-        ^description <desc>)
    (<nf> ^query name
          ^result <name>)
 -->
    (<desc> ^word <name>)
 }
 
-sp {describe-object*elaborate*complete-describe-object*label
+sp {describe-object*apply*complete-describe-object*label
    (state <s> ^name describe-object
-              ^operator <o>
+              ^operator.name complete-describe-object
+              ^description <desc>
               ^needs-found <nf>
               ^needs-found <name-nf>)
-   (<o> ^name complete-describe-object
-        ^description <desc>)
    (<nf> ^query <> name
          ^result {<word> <> failure <> <name>})
    (<name-nf> ^query name
@@ -34,13 +39,20 @@ sp {describe-object*elaborate*complete-describe-object*label
    (<desc> ^adjective <word>)
 }
 
+sp {describe-object*apply*complete-describe-object*finished
+   (state <s> ^name describe-object
+              ^operator.name complete-describe-object
+              ^description <desc>)
+-->
+   (<s> ^finished true)
+}
+
 sp {describe-object*apply*complete-describe-object
    (state <s> ^name describe-object
-              ^operator <o>
-              ^desc-object
+              ^operator.name complete-describe-object
+              ^description <desc>
+              ^finished true
               ^superstate.operator <ss-o>)
-   (<o> ^name complete-describe-object
-        ^description <desc>)
 -->
    (<ss-o> ^description <desc>)
 }

@@ -1,6 +1,7 @@
 source propose*svs-query.soar
 source propose*svs-project.soar
 source preferences.soar
+source elaborations.soar
 source complete-svs-query.soar
 source complete-svs-project.soar
 

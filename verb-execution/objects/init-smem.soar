@@ -43,15 +43,12 @@ smem --add {
 	(<v47> ^type word2cat ^word dishwasher ^category name)
 	(<v48> ^type word2cat ^word table ^category name)
 	(<v49> ^type word2cat ^word garbage ^category name)
+#    (<v51> ^type label-map ^word sphere ^category shape ^label shape-sphere)
+#    (<v52> ^type label-map ^word green ^category color ^label color-green)
+#    (<v59> ^type label-map ^word orange ^category color ^label color-orange)
+#    (<v53> ^type label-map ^word blue ^category color ^label color-blue)
+#    (<v55> ^type label-map ^word red ^category color ^label color-red)
+#    (<v56> ^type label-map ^word yellow ^category color ^label color-yellow)
+#    (<v57> ^type label-map ^word rectangle ^category shape ^label shape-rectangle)
+#    (<v54> ^type label-map ^word cylinder ^category shape ^label shape-cylinder)
 }
-
-# Example of how to prestore labels
-#smem --add{
-#   (<v1> ^type label-map ^word sphere ^category shape ^label shape-sphere)
-#   (<v2> ^type label-map ^word green ^category color ^label color-green)
-#   (<v3> ^type label-map ^word blue ^category color ^label color-blue)
-#   (<v5> ^type label-map ^word red ^category color ^label color-red)
-#   (<v6> ^type label-map ^word yellow ^category color ^label color-yellow)
-#   (<v7> ^type label-map ^word rectangle ^category shape ^label shape-rectangle)
-#   (<v4> ^type label-map ^word cylinder ^category shape ^label shape-cylinder)
-#}
