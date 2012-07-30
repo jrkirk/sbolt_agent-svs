@@ -7,7 +7,8 @@ sp {prefer*instructed*action*goto
    	  ^purpose <p>)
    (<p> ^type external-action
    	^satisfaction <ps>)
-   (<ps> ^action-event <info>)
+   # AM: Moved satisfaction info inside the event
+   (<ps> ^action-event.type <info>)
    (<info> ^verb.word go
    	   ^verb.preposition.object.word <loc-name>)
    (<op> ^name goto
@@ -27,7 +28,8 @@ sp {prefer*instructed*action*pickup
    	  ^purpose <p>)
    (<p> ^type external-action
    	^satisfaction <ps>)
-   (<ps> ^action-event <info>)
+   # AM: Moved satisfaction info inside the event
+   (<ps> ^action-event.type <info>)
    (<info> ^verb.word pick
    	   ^verb.direct-object.word <obj-name>)
    (<op> ^name pick-up-object
@@ -44,7 +46,8 @@ sp {prefer*instructed*action*putdown
    	  ^purpose <p>)
    (<p> ^type external-action
    	^satisfaction <ps>)
-   (<ps> ^action-event <info>)
+   # AM: Moved satisfaction info inside the event
+   (<ps> ^action-event.type <info>)
    (<info> ^verb.word put)
    (<op> ^name put-down)
 -->
@@ -58,7 +61,9 @@ sp {write*primitive-action*status*topstate
    (<op> ^category primitive-action
    	 ^information <info>)
  -->
-   (<status> ^performed.action-event <info>)
+   # AM: Changed performed structure
+   (<status> ^performed.action-event <e>)
+   (<e> ^type <info>)
 }
   
    	     

@@ -11,3 +11,24 @@ sp {lookup-smem*elaborate*desired
 -->
    (<s> ^desired <d>)
 }
+
+sp {lookup-smem*elaborate*parameters
+   (state <s> ^name lookup-smem
+              ^superstate.operator.{<param> << return-all >>} <val>)
+-->
+   (<s> ^<param> <val>)
+}
+
+sp {lookup-smem*elaborate*return-all*default
+   (state <s> ^name lookup-smem
+             -^superstate.operator.return-all)
+-->
+   (<s> ^return-all false)
+}
+
+sp {lookup-smem*elaborate*default*count
+   (state <s> ^name lookup-smem
+             -^retrieval-count > 0)
+-->
+   (<s> ^retrieval-count 0)
+}

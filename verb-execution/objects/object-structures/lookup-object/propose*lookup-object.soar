@@ -30,7 +30,7 @@ sp {apply*lookup-object*name
 -->
    (<obj> ^property <prop>)
    (<prop> ^name name
-           ^type descriptive)
+           ^type linguistic)
 }
 
 # Copies the id of the object

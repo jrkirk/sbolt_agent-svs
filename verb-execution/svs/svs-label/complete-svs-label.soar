@@ -452,7 +452,9 @@ sp {svs-label*apply*complete-svs-label*direct*mark-processed
    (<ss> ^superstate <sss>)
 -->
    (<sc> ^store <p1>)
-   (<status> ^performed.learning-event preposition)
+   # AM: Changed performed structure
+   (<status> ^performed.learning-event <e>)
+   (<e> ^type preposition)
    (<ol> ^send-message <msg>)
    (<msg> ^type confirmation)
 }
@@ -475,7 +477,7 @@ sp {svs-label*apply*complete-svs-label*direct*mark-processed*old
 -->
    (<sc> ^store <p1>)
    (<p> ^prep <type>)
-   (<status> ^performed.learning-event preposition)
+   (<status> ^performed.learning-event.type preposition)
    (<ol> ^send-message <msg>)
    (<msg> ^type confirmation)
 }

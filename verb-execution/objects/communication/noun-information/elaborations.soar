@@ -1,6 +1,0 @@
-sp {noun-information*elaborate*description
-   (state <s> ^name noun-information
-              ^superstate.operator.object.word {<word> <> object})
--->
-   (<s> ^nounjective.word <word>)
-}

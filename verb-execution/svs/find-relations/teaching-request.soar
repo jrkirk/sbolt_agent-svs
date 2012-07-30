@@ -88,7 +88,9 @@ sp {find-relations*apply*teaching-request*create*status
    (<p> ^type teaching-request
         ^context <context>
         ^parameters <params>
-        ^satisfaction.dialog-event single-word-response)
+        #^satisfaction.dialog-event single-word-response)
+   		# AM: Changed satisfaction structure
+   		^satisfaction.dialog-event.type single-word-response)
    # Segment parameters - A message to send 
    (<params> ^message <msg>)
    (<msg> ^type teaching-request

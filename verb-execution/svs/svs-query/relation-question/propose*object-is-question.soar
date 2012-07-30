@@ -73,7 +73,7 @@ sp {object-is-question*apply*index-object*failure
    (<out> ^send-message <msg>)
    (<msg> ^type no-object
           ^fields.object failure)
-   (<status> ^performed.action-event describe)
+   (<status> ^performed.action-event.type describe)
 }
 
 sp {object-is-question*propose*process-svs-question

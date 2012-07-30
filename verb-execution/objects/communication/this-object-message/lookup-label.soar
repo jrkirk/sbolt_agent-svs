@@ -43,35 +43,3 @@ sp {this-object-message*apply*lookup-smem*label*send-training-label
    (<out> ^send-training-label <stl>)
    (<stl> ^id <id> ^label <label> ^category <cat>)
 }
-
-sp {this-object-message*apply*lookup-smem*label*name*object
-   (state <s> ^name this-object-message
-              ^operator <o>
-              ^this-object <obj>)
-   (<o> ^name lookup-smem
-        ^lookup-type label
-        ^query.category name
-        ^query.word <word>
-        ^result {<label> <> failure})
-   (<obj> ^property <prop>)
-   (<prop> ^name name)
--->
-   (<prop> ^word <word>)
-}
-
-sp {this-object-message*apply*lookup-smem*add*word*to*object
-   (state <s> ^name this-object-message
-              ^operator <o>
-              ^topstate.object <obj>)
-   (<o> ^name lookup-smem
-        ^lookup-type label
-        ^query.category {<cat-name> <> name}
-        ^query.word <word>
-        ^result {<label> <> failure})
-   (<obj> ^property <prop>)
-   (<prop> ^name <cat-name>
-           ^value <val>)
-   (<val> ^label <label>)
--->
-   (<val> ^word <word>)
-}

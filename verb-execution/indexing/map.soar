@@ -8,7 +8,9 @@ sp {propose*map*verb
    (<p> ^type external-action
    	^satisfaction <ps>
 	-^indexed-operator <map-op>)  
-   (<ps> ^action-event <info>)
+	# AM: Moved satisfaction info to inside the event
+   #(<ps> ^action-event <info>)
+   (<ps> ^action-event.type <info>)
    (<info> -^verb.word describe) #JK for describe the scene-shouldn't be handled as a verb
 -->
    (<s> ^operator <op> +)
@@ -52,7 +54,8 @@ sp {elaborate*operator*match
 sp {prefer*match
    (state <s> ^indexed-operator <map-op> <> <op>
    	      ^operator <op> +
-	      ^interaction.stack.segment.purpose.satisfaction.action-event <info>
+          # AM: Moved satisfaction info inside the event
+	      ^interaction.stack.segment.purpose.satisfaction.action-event.type <info>
 	      ^topstate <s>)
    (<op> -^op-matched no
    	 ^category << primitive-action composite-action >>)
@@ -70,7 +73,8 @@ sp {propose*indexed-operator*if*no-choices
 	      ^attribute state)
    (<ss> ^indexed-operator <map-op>
    	 ^topstate <ss>
-	  ^interaction.stack.segment.purpose.satisfaction.action-event <info>)
+          # AM: Moved satisfaction info inside the event
+	  ^interaction.stack.segment.purpose.satisfaction.action-event.type <info>)
  -->
    (<ss> ^operator <map-op> +)
    (<map-op> ^category composite-action
@@ -130,7 +134,10 @@ sp {write*primitive-action*status*topstate
    	 ^indexed-operator <map-op>)
    (<map-op> ^information <info>)
  -->
-   (<status> ^performed.action-event <info>)
+   #(<status> ^performed.action-event <info>)
+   # AM: Changed performed structure
+   (<status> ^performed.action-event <e>)
+   (<e> ^type <info>)
 }
 
 

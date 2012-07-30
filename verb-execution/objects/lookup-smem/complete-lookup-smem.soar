@@ -1,48 +1,39 @@
-# Knows a query is processed if there is a success or failure result
-sp {lookup-smem*propose*complete-lookup-smem
+# If return-all false 
+sp {lookup-smem*propose*complete-lookup-smem*return-all*false
    (state <s> ^name lookup-smem
-              ^smem <smem>)
-   (<smem> ^command.query <query>
-           ^result.{<< success failure >>} <query>)
+              ^return-all false
+              ^result )
 -->
    (<s> ^operator <o> +)
    (<o> ^name complete-lookup-smem
-        ^category smem
-        ^query <query>)
+        ^category smem)
 }
 
-# Remove the query from the smem.command link
-sp {lookup-smem*apply*complete-lookup-smem*remove*query
+sp {lookup-smem*propose*complete-lookup-smem*return-all*true
    (state <s> ^name lookup-smem
-              ^operator <o>
-              ^smem.command <cmd>)
+              ^return-all true
+              ^finished true)
+-->
+   (<s> ^operator <o> +)
    (<o> ^name complete-lookup-smem
-        ^query <query>)
-   (<cmd> ^query <query>)
--->
-   (<cmd> ^query <query> -)
+        ^category smem)
 }
 
-# Case 1 : failure
-sp {lookup-smem*apply*complete-lookup-smem*failure
+sp {lookup-smem*apply*complete-lookup-smem*copy*result
    (state <s> ^name lookup-smem
               ^operator.name complete-lookup-smem
-              ^smem.result.failure
-              ^superstate.operator <ss-op>)
+              ^superstate.operator <ss-op>
+              ^result <res>)
 -->
-   (<ss-op> ^result failure)
+   (<ss-op> ^result <res>)
 }
 
-# Case 2:  success
-sp {lookup-smem*apply*complete-lookup-smem*success
+sp {lookup-smem*apply*complete-lookup-smem*mark*multiple
    (state <s> ^name lookup-smem
               ^operator.name complete-lookup-smem
-              ^smem.result <smem-result>
-              ^desired <d>
-              ^superstate.operator <ss-op>)
-   (<d> ^<att> <v>)
-   (<smem-result> ^success
-                  ^retrieved.<att> <result>)
+              ^superstate.operator <ss-op>
+              ^result <res>
+              ^result <> <res>)
 -->
-   (<ss-op> ^result <result>)
+   (<ss-op> ^multiple-results true)
 }

@@ -12,7 +12,7 @@ sp {elaborate*self
 sp {elaborate*objects*locations
    (state <s> ^topstate <s>)
    (<s> ^object <obj>)
-   (<obj> ^property.word << table garbage pantry stove >>)
+   (<obj> ^property.word << table garbage pantry stove scale >>)
 -->
    (<obj> ^category location)
 }
@@ -21,7 +21,7 @@ sp {elaborate*objects*locations
 sp {elaborate*objects*blocks
    (state <s> ^topstate <s>)
    (<s> ^object <obj>)
-   (<obj> -^property.word << table garbage pantry stove >>)
+   (<obj> -^property.word << table garbage pantry stove scale >>)
 -->
    (<obj> ^category block)
 }

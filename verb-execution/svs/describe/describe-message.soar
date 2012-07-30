@@ -124,6 +124,6 @@ sp {describe-message*apply*complete-describe-message
    (<out> ^send-message <msg>)
    (<msg> ^type describe-scene-objects
           ^fields.objects <descs>)
-   (<status> ^performed.learning-event explanation)
+   (<status> ^performed.learning-event.type explanation)
 }
 

@@ -52,9 +52,9 @@ sp {svs-is-query*apply*complete-svs-query*no
    (<r> -^relations.obj <obj-id>)  
 -->
    (<out> ^send-message <msg>)
-   (<msg> ^type single-word
+   (<msg> ^type single-word-response
           ^fields.word No)
-   (<status> ^performed.action-event describe)
+   (<status> ^performed.action-event.type describe)
 }
 
 sp {svs-is-query*apply*complete-svs-query*yes
@@ -72,9 +72,9 @@ sp {svs-is-query*apply*complete-svs-query*yes
    (<r> ^relations.obj <obj-id>)  
 -->
    (<out> ^send-message <msg>)
-   (<msg> ^type single-word
+   (<msg> ^type single-word-response
           ^fields.word Yes)
-   (<status> ^performed.action-event describe)
+   (<status> ^performed.action-event.type describe)
 }
 
 sp {svs-is-query*apply*complete-svs-is-query*preposition-unknown
@@ -88,7 +88,7 @@ sp {svs-is-query*apply*complete-svs-is-query*preposition-unknown
    (<out> ^send-message <msg>)
    (<msg> ^type no-prep
           ^fields.object failure)
-   (<status> ^performed.action-event describe)
+   (<status> ^performed.action-event.type describe)
 }
 
 

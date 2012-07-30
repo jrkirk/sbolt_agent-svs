@@ -6,7 +6,8 @@ sp {topstate*propose*explain*operator
    (state <s> ^topstate <s>
    	      ^interaction.stack.segment <top>
 	      -^operator.name push-segment
-	      -^status.performed.learning-event explanation)
+        	#-^status.performed.learning-event explanation) #AM: Changed performed structure
+	      -^status.performed.learning-event.type explanation)
    (<top> ^purpose <p>
    	  ^next <next>)
    (<p> ^type explanation)
@@ -148,10 +149,13 @@ sp {new-operator*reject
 sp {explain*success
    (state <s> ^name explain
    	      ^successful-explanation <op-name>
-	      ^topstate.status <stat>)
+	      ^topstate.status <status>)
 -->
-   (<stat> ^performed <p>)
-   (<p> ^learning-event explanation)
+   #(<stat> ^performed <p>)
+   #(<p> ^learning-event explanation)
+   # AM: Changed performed structure
+   (<status> ^performed.learning-event <e>)
+   (<e> ^type explanation)
 }
 	      
 
@@ -196,7 +200,10 @@ sp {apply*composite*operator*elaborate*success
    (<iop> ^information <info>)
  -->
    (<ss> ^indexed-operator <iop> -)
-   (<status> ^performed.action-event <info>)
+   #(<status> ^performed.action-event <info>)
+   # AM: Changed performed structure
+   (<status> ^performed.action-event <e>)
+   (<e> ^type <info>)
 }
 
 ## prefer mark success to primitive actions

@@ -70,6 +70,16 @@ sp {push-segment*create-satisfaction
    (<new-sat> ^<arg> <val>)
 }
 
+# AM: Trying to give o-support to satisfactions
+sp {push-segment*copy*satisfaction*depth2
+   (state <s> ^name push-segment
+              ^superstate.operator.name push-segment
+              ^segment.purpose.satisfaction.<event> <e>)
+   (<e> ^<arg2> <val2>)
+-->
+   (<e> ^<arg2> <val2>)
+}
+
 sp {push-segment*propose*mark-as-success
    (state <s> ^name push-segment
 	      ^segment <seg>

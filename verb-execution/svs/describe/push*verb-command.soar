@@ -19,7 +19,7 @@ sp {apply*push*push-describe-message
    (<p> ^type describe-message
         ^parameters <params>
         ^satisfaction <sat>)
-   (<sat> ^learning-event explanation)
+   (<sat> ^learning-event.type explanation)
 }
 
 sp {describe-message*propose*describe-message

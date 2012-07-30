@@ -12,6 +12,7 @@ sp {relation-messaging*propose*index-object1
    (<o> ^name index-object
         ^use-interaction true
 		^allow-ties true
+  		^infer-match true # AM: Allows index-object to guess a match if there is only one partial match
         ^obj 1
         ^category object-processing
 	    ^object <obj1>)
@@ -30,6 +31,7 @@ sp {relation-messaging*propose*index-object2
    (<o> ^name index-object
         ^use-interaction true
 		^allow-ties true
+  		^infer-match true # AM: Allows index-object to guess a match if there is only one partial match
         ^obj 2
         ^category object-processing
 	    ^object <obj2>)
@@ -73,7 +75,9 @@ sp {relation-messaging*apply*index-object*failure
    (<out> ^send-message <msg>)
    (<msg> ^type no-object
           ^fields.object failure)
-   (<status> ^performed.learning-event preposition)
+   # AM: Changed performed structure
+   (<status> ^performed.learning-event <e>)
+   (<e> ^type preposition)
 }
 
 

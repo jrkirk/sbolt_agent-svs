@@ -20,7 +20,8 @@ sp {apply*push-relation-question*which-question
    (<rel2> ^object1 <obja>
           ^object2 <objb>
           ^word <prep>)
-   (<sat> ^action-event point)
+        # AM: Changed the satisfaction structure
+   (<sat> ^action-event.type point)
 }
 
 # Returns points to the described object
@@ -38,6 +39,7 @@ sp {which-question*propose*index-object
         ^return-all false
         ^use-interaction true
         ^allow-ties true
+        ^infer-match true
         ^category object-processing)
 }
 
@@ -73,7 +75,10 @@ sp {which-question*apply*index-object
    (<o> ^name index-object
         ^finished true)
 -->
-   (<status> ^performed.action-event point)
+  #(<status> ^performed.action-event point)
+   # AM: Changed performed structure
+   (<status> ^performed.action-event <e>)
+   (<e> ^type point)
 }
 
 sp {recogition-question*apply*failure*send-message

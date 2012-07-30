@@ -6,7 +6,7 @@ sp {propose*change-state-property
               ^io.input-link.objects.object <io-obj>
               ^object <obj>)
    (<io-obj> ^id <id>
-             ^property <io-prop>)
+             ^state-property <io-prop>)
    (<io-prop> ^name <prop-name>
               ^type state
               ^value <prop-val>)

@@ -24,6 +24,7 @@ sp {propose*index-object
    (<o> ^name index-object
 	^category indexing
 	^use-interaction true
+  	^infer-match true # AM: Allows index-object to guess a match if there is only one partial match
 	^return-all true
 	^object <arg>)
 }

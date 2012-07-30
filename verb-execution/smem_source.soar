@@ -1,13 +1,5 @@
 # Sources files used to create structures in semantic memory at the beginning of the agent's execution
 
-pushd objects
-source init-smem.soar
-popd
-
-pushd svs
-source init-smem.soar
-popd
-
-pushd indexing
-source initialize-linguistic-indexing.soar
+pushd init-smem
+source init-smem_source.soar
 popd

@@ -47,7 +47,7 @@ sp {apply*push-object-message*this-object-message
    (state <s> ^operator <o>)
    (<o> ^name push-object-message
         ^message <msg>
-        ^specifier this
+        ^specifier << this that >>
         ^object <obj>
        -^relation)
 -->
@@ -56,7 +56,8 @@ sp {apply*push-object-message*this-object-message
         ^parameters <params>
         ^satisfaction <sat>)
    (<params> ^object <obj>)
-   (<sat> ^learning-event object)
+   # AM: Changed satisfaction structure
+   (<sat> ^learning-event.type object)
 }
 
 # If the message is in response to a category-of-word question,
@@ -66,7 +67,7 @@ sp {apply*push-object-message*learn-word2cat
    (<o> ^name push-object-message
         ^message <msg>
         ^specifier INDEF
-        ^object.word {<category> <> <word>}
+        ^object.word {<category> <> <word> <> property <> one}
        -^relation)
    (<msg> ^context <context>)
    (<context> ^cause category-of-word-query
@@ -78,7 +79,10 @@ sp {apply*push-object-message*learn-word2cat
         ^satisfaction <sat>)
    (<params> ^category <category>
              ^word <word>)
-   (<sat> ^learning-event word2cat)
+        # AM: Changed satisfaction structure
+   (<sat> ^learning-event <e>)
+   (<e> ^type word2cat
+        ^word <word>)
 }
 
 # If the message is INDEF, and not a query response, 
@@ -141,12 +145,12 @@ sp {apply*push-object-message*which-question-response*relation
    (<p> ^type index-object
         ^parameters <params>
         ^satisfaction <sat>)
-   (<params> ^relation <rel2>
-             ^context <context>)
+   (<params> ^relation <rel2>)
    (<rel2> ^object1 <obja>
           ^object2 <objb>
           ^word <prep>)
-   (<sat> ^internal-event indexing)
+        # AM: Changed satisfaction structure
+   (<sat> ^internal-event.type indexing)
 }
 
 

@@ -8,14 +8,15 @@
 #   (<q> ^type label-map ^word w6 ^category c34 ^label <label>)
 # only the label is actually specified
 
-# The label is cached in working memory, use it
-sp {lookup-smem*word*working-mem
-   (state <s> ^operator <o>
-              ^topstate.mappings.label-map <lm>)
+# If the word is already known then skip an smem lookup
+sp {apply*lookup-smem*word*already*known
+   (state <s> ^topstate.object.property.value <val>
+              ^operator <o>)
    (<o> ^name lookup-smem
         ^lookup-type word
         ^query.label <label>)
-   (<lm> ^<word>.<cat> <label>)
+   (<val> ^label <label>
+          ^word <word>)
 -->
    (<o> ^result <word>)
 }

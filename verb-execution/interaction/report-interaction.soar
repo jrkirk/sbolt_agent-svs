@@ -36,5 +36,8 @@ sp {apply*report-interaction*mark-performed
               ^operator.name report-interaction
               ^status <status>)
 -->
-   (<status> ^performed.dialog-event report-interaction)
+   #(<status> ^performed.dialog-event report-interaction)
+   # AM: Changed performed structure
+   (<status> ^performed.dialog-event <e>)
+   (<e> ^type report-interaction)
 }

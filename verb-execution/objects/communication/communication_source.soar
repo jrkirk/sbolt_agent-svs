@@ -12,6 +12,6 @@ source how-many-question.soar
 
 source which-question.soar
 
-pushd noun-information
-#source noun-information_source.soar
-popd
+source object-is-question.soar
+
+source index-confirmation.soar
