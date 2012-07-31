@@ -67,6 +67,23 @@ sp {apply*push-object-question*which-question
    (<params> ^description <obj>)
 }
 
+# JK Handles where-questions
+sp {apply*push-object-question*where-question
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-question
+        ^question-word where
+        ^message <msg>
+        ^object <obj>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type location-question
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<sat> ^dialog-event.type explanation)
+   (<params> ^description <obj>)
+}
+
+
 # Handles how-many questions
 sp {apply*push-object-question*how-many-question
    (state <s> ^operator <o>)

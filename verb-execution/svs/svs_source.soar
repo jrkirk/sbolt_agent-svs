@@ -36,3 +36,7 @@ popd
 pushd describe
 source describe_source.soar
 popd
+
+pushd location
+source location_source.soar
+popd
