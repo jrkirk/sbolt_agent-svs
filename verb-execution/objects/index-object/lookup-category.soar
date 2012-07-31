@@ -5,15 +5,14 @@
 sp {index-object*propose*lookup-smem*category
    (state <s> ^name index-object
               ^index-object-context
-              ^label-query <lq>
-              ^use-interaction <ask>)
+              ^label-query <lq>)
    (<lq> -^category
           ^word <word>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name lookup-smem
         ^category smem
-        ^ask-user <ask>
+        ^ask-user true
         ^lookup-type category
         ^query <q>
         ^desired.category true)

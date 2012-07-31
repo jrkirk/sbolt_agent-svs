@@ -9,7 +9,6 @@ smem --set learning on
 # Maintains an ordering among object-processing operators
 source preferences.soar
 
-
 ############------- SMEM OPERATORS ------############
 #  lookup-smem
 #####################################################
@@ -50,6 +49,10 @@ pushd index-object
 source index-object_source.soar
 popd
 
+# Given a description of an object, this returns how many of that object there are
+pushd count-objects
+source count-objects_source.soar
+popd
 
 ############-------- COMMUNICATION ------############
 #  communication
