@@ -1,0 +1,29 @@
+#load all structures related to game into working memory
+sp {find-action*propose*lookup-game
+   (state <s> ^name find-action
+             -^game
+              ^game-name <game>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name lookup-game
+        ^category svs # for now determine better or new category
+        ^game-name <game>)
+}
+
+#TODO for now only handle world objects as parameters
+sp {find-action*build-action-options
+   (state <s> ^name find-action
+              ^game.actions.action <a>
+              ^game.facts.equivalences <eq>
+              ^topstate.object <o>
+              ^game-name <game>)
+   (<a> ^parameters <p>)
+   (<p> ^<param> <pa>)
+   (<eq> ^equivalence <eq1>)
+   (<eq1> ^a.parameter <param>
+          ^b.world object)
+   (<o> ^name <param>)
+-->
+   (<p> ^option.<param> <o>)
+   
+}

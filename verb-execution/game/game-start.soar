@@ -1,0 +1,21 @@
+sp {start-turn*propose*find-action
+   (state <s> ^name start-turn
+             -^action
+              ^game-name <game>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name find-action
+        ^category svs # for now determine better or new category
+        ^game-name <game>)
+}
+
+sp {start-turn*propose*do-action
+   (state <s> ^name start-turn
+              ^action <action>
+              ^game <game>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name do-action
+        ^category svs # for now determine better or new category
+        ^game <game>)
+}

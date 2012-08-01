@@ -1,0 +1,19 @@
+sp {turn-start*elaborate*copy-down-attrs
+   (state <s> ^name turn-start
+              ^superstate.operator <o>)
+   (<o> ^game-name <name>
+        ^turn-count <num>)
+-->
+   (<s> ^game-name <name>
+        ^turn-count <num>)
+}
+
+
+
+sp {find-action*elaborate*copy-down-attrs
+   (state <s> ^name find-action
+              ^superstate.operator <o>)
+   (<o> ^game-name <name>)
+-->
+   (<s> ^game-name <name>)
+}
