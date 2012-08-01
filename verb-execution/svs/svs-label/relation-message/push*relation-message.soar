@@ -24,7 +24,5 @@ sp {apply*push-object-message*relation-message
    (<params> ^object1 <obja>
              ^object2 <objb>
              ^prep <prep>)
-  # (<sat> ^learning-event preposition)
-   # AM: Changed satisfaction structure
    (<sat> ^learning-event.type preposition)
 }
