@@ -1,6 +1,3 @@
-
-
-#find ids for both objects then process in svs
 sp {location-question*propose*index-object
    (state <s> ^topstate <s>
               ^interaction.stack.segment <seg>)
@@ -57,10 +54,5 @@ sp {location*propose*location-question
    (<o> ^name location-question
         ^category svs
 	    ^obj <id2>)
-#   (<m> ^fields <f> ^type svs-query)
-#   (<f> ^objects <object>)
-#   (<object> ^obj <obja>
-#             ^type <prep>)
-#   (<obja> ^id <id2> ^index 2)
 }
 
