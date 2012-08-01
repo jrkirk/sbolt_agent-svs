@@ -39,16 +39,16 @@ sp {selection*elaborate*instructed*action
    (<s> ^indexed-operator <iop>)
 }
 
-#### SM: hack for the current chunks to form. only look at the focus objects
-### prefer the indexed operator
+### prefer the operator that matches the indexed operator
 sp {elaborate*attribute*match*epmem*arguments
    (state <s> ^name selection
    	      ^indexed-operator <map-op>
    	      ^operator <o> +)
    (<o> ^superoperator <sop>)
    (<sop> ^<attr> <val>)
-   (<val> ^focus yes)
+   (<val> ^id <id>)
    (<map-op> ^<attr> <anyval>) 
+   (<anyval> ^id <id>)
 -->
    (<o> ^matched <attr>)
 }
@@ -69,7 +69,7 @@ sp {elaborate*operator*match*epmem
    (state <s> ^name selection
    	      ^indexed-operator <map-op>
    	      ^operator <o> +)
-   (<map-op> ^{<attr> <> applied <> information} <val>) ### excluded agent architecture arguments from matching: SM
+   (<map-op> ^{<attr> <> applied <> information <> _metadata <> spatial-relationship} <val>) ### excluded agent architecture arguments from matching: SM
    (<o> -^matched <attr>)
 -->
    (<o> ^not-matched <attr>)
@@ -84,6 +84,26 @@ sp {prefer*match*epmem
    (<o> -^not-matched <any>)
    -->
    (<s> ^operator <o> >)
+}
+
+sp {prefer*match*epmem*elaborate*spatial-rel
+   (state <s> ^name selection
+	      ^superstate.desired <des>
+   	      ^operator <o>)
+   (<o> -^not-matched <any>
+   	^superoperator <sop>)
+   (<des> ^track-relation <tr>)
+   (<tr> ^prep <prep>
+   	 ^p1 <val3>
+	 ^p2 <val4>)
+   (<sop> ^<arg1> <val1>
+   	  ^<arg2> <val2>)
+ (<val1> ^focus <fval1>)
+   (<val2> ^focus <fval2>)
+   (<val3> ^focus <fval1>)
+   (<val4> ^focus <fval2>)
+   -->
+   (<sop> ^spatial-relationship <prep>)
 }
 
 

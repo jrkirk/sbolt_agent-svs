@@ -12,6 +12,25 @@ sp {propose*report-interaction
         ^category communication)
 }
 
+sp {apply*pop-segment*report-interaction
+   (state <s> ^operator <op>
+              ^io.output-link <out>)
+   (<op> ^name pop-segment
+   	 	^segment.next <seg>)
+   (<seg> ^purpose <p>
+          ^originator agent
+          ^context <context>)
+   (<p> ^satisfaction <sat>
+        ^type <type>)
+-->
+   (<out> ^report-interaction <ri>)
+   # Information given on the output-link includes:
+   (<ri> ^type <type>			# Segment type
+         ^originator agent		# Segment originator
+         ^context <context>		# Context of the segment
+         ^satisfaction <sat>)	# Satisfaction of the segment
+}
+
 sp {apply*report-interaction
    (state <s> ^topstate <s>
               ^operator.name report-interaction

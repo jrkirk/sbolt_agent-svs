@@ -18,7 +18,7 @@ sp {found-closest*elaborate*copy-down-attrs
 -->
    (<s> ^descriptions <d>
         ^prep <prep>
-        ^object <id2>
+        ^obj <id2>
         ^with <id2>
-        ^object <id1>)
+        ^obj <id1>)
 }

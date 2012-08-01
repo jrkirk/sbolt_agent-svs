@@ -30,7 +30,8 @@ sp {elaborate*objects*blocks
 sp {copy*objects
    (state <s> ^superstate <ss>
       	  -^problem-space << lgsoar message-interpretation >>
-	  -^name explain
+	  -^name explain 
+	  -^name assign-goal
 	  -^learning-operator <any>)
    (<ss> -^problem-space << lgsoar message-interpretation >>
    	 ^object <obj>)

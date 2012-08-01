@@ -75,7 +75,7 @@ sp {location-question*propose*found-closest
 
 sp {found-closest*propose*describe-object
    (state <s> ^name found-closest
-               ^object <id>
+               ^obj <id>
               -^described <obj>
                ^topstate.object <obj>)
    (<obj> ^id <id>)
@@ -101,7 +101,7 @@ sp {found-closest*apply*describe-object
 sp {found-closest*propose*complete-location-question
    (state <s> ^name found-closest
               ^descriptions <d>)
-   (<s> ^object <id1> ^with {<id2> <> <id1>} ^prep <prep>)
+   (<s> ^obj <id1> ^with {<id2> <> <id1>} ^prep <prep>)
    (<d> ^obj-desc <objd1> ^obj-desc <objd2>)
    (<objd1> ^desc <desc1> ^object <obj1>)
    (<objd2> ^desc <desc2> ^object <obj2>)

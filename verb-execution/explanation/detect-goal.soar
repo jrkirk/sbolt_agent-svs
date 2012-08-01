@@ -1,37 +1,19 @@
-### write a rule to detect goal
-
-sp {new-operator*detect*goal
-   (state <s> ^desired <d>
-   	      ^vpredicates.predicate <p>)
-   (<d> ^in <in-p>)
-   (<in-p> ^object <nobj>
-   	   ^location <loc>)
-   (<p> ^<predicate> <inp>)
-   (<inp> ^object <obj>
-   	  ^location <loc>)
-   (<obj> ^focus yes)
-   (<nobj> ^focus yes)
--->
-   (<s> ^success <d>)
-}
-
-
 ### detect track-relation success (based on the action-model) ### HACKY, only one track relation
 sp {new-operator*detect*track-relation*success
    (state <s> ^desired <d>
    	      ^track-relation <tr>)
    (<d> ^track-relation <dtr>)
-   (<dtr> ^object1 <val1>
-   	  ^object2 <val2>
+   (<dtr> ^p1 <val1>
+   	  ^p2 <val2>
 	  ^prep <prep>)
    (<tr> ^complete success
    	 ^object1 <val3>
 	 ^object2 <val4>
 	 ^prep <prep>)
-   (<val1> ^focus yes)
-   (<val2> ^focus yes)
-   (<val3> ^focus yes)
-   (<val4> ^focus yes)
+   (<val1> ^focus <fval1>)
+   (<val2> ^focus <fval2>)
+   (<val3> ^focus <fval1>)
+   (<val4> ^focus <fval2>)
 -->
    (<s> ^success <d>)
 }

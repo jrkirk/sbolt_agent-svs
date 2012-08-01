@@ -50,11 +50,6 @@ pushd ./svs
 source svs_source.soar
 popd
 
-
-## source LGSoar
-##source bolt-lgsoar.soar
-##popd
-
 ### source all the selection rules
 pushd ./default
 source selection.soar
@@ -158,4 +153,10 @@ sp {copy*topstate*top-state
 }
 
 
-##### any time an object has a highest preference, make it a required prefrence
+### elaborate problem space for lgsoar operator
+# sp {elaborate*problem-space*lgsoar
+#    (state <s> ^name preprocess-sentence)
+# -->
+#    (<s> ^problem-space lgsoar)
+# }
+   

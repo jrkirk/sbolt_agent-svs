@@ -4,10 +4,12 @@ sp {elaborate*generate*operator
    	      ^superstate.operator <sop>)
    (<sop> ^procedural-id <pid>
    	  ^linguistic-id <lid>
+	  ^map-id <map>
 	  ^cue <cue>)
 -->
    (<s> ^procedural-id <pid>
    	^linguistic-id <lid>
+	^map-id <map>
 	^cue <cue>)
 }
 
@@ -18,7 +20,7 @@ sp {generate*operator*name
 -->
    (<s> ^index-operator <op>)
    (<op> ^name <op-name>)
-}
+  }
 
 sp {generate*operator*arguments
    (state <s> ^name generate-operator
@@ -31,7 +33,7 @@ sp {generate*operator*arguments
    (<pid> ^{<arg> <> spatial-relationship} <lobj>)
 -->
    (<op> ^<arg> <obj>)
-#   (<obj> ^_ltid <lobj>)
+  #   (<obj> ^_ltid <lobj>)
 }
 
 #### associate spatial-relationships
@@ -48,13 +50,22 @@ sp {associate*spatial*relations
    (<op> ^spatial-relationship <connect>)
 }
 
-sp {generate*operator*goal
+#sp {generate*operator*goal
+#   (state <s> ^name generate-operator
+#   	      ^procedural-id <pid>
+#	      ^index-operator <op>)
+#   (<pid> ^goal <g>)
+#-->
+#   (<op> ^goal-lid <g>)
+#}
+
+sp {copy*map-id*metadata
    (state <s> ^name generate-operator
-   	      ^procedural-id <pid>
-	      ^index-operator <op>)
-   (<pid> ^goal <g>)
+   	      ^index-operator <op>
+	      ^map-id <map>)
 -->
-   (<op> ^goal-lid <g>)
+   (<op> ^_metadata <met>)
+   (<met> ^map-id <map>)
 }
 
 sp {generate*operator*arguments*write-to-superstate

@@ -4,7 +4,9 @@
 sp {topstate*operator-tie*propose*write-unresolved-tie-topstate
    (state <s> -^superstate.superstate.name explain
    	      ^name selection
-	      -^learning-operator <any>)
+	      -^learning-operator <any>
+	      -^problem-space << lgsoar message-interpretation >>
+	      -^name preprocess-sentence)
 -->
    (<s> ^operator <op> + >)
    (<op> ^name indicate-unresolved-tie)
