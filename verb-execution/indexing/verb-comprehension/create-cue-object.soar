@@ -1,0 +1,29 @@
+### create cues for objects
+sp {elaborate*object*cue
+   (state <s> ^name create-cue-argument
+   	      ^superstate.operator <sop>)
+   (<sop> ^name create-cue-argument
+   	  ^argument <arg>)
+-->
+   (<s> ^argument <arg>
+        ^cue <cue>)
+}
+
+sp {create*cue*noun
+   (state <s> ^name create-cue-argument
+   	      ^argument <arg>
+	      ^cue <cue>)
+   (<arg> ^word <noun>)
+-->
+   (<cue> ^word <noun>)
+}
+
+
+sp {write*to*superstate*object*no-adjective
+   (state <s> ^name create-cue-argument
+   	      ^cue <cue>
+	      ^superstate <ss>)
+   (<cue> ^word <any>)
+-->
+   (<ss> ^cue <cue>)
+}

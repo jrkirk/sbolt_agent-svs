@@ -1,0 +1,22 @@
+#### process multiple matches to one argument, rely on interaction
+
+sp {multiple*argument*matches*elaborate*name
+   (state <s> ^impasse tie
+   	      ^superstate <ss>)
+   (<ss> ^indexed-operator <iop>)
+   (<iop> ^<arg> <val1> <val2>)
+-->
+   (<s> ^name complete-index-object
+   	^tied-argument <arg>)
+}
+
+sp {multiple*argument*matches*propose*which-question
+   (state <s> ^name complete-index-object
+   	      ^tied-argument <arg>
+              ^superstate.indexed-operator <iop>)
+   (<iop> ^<arg> <obj>)
+-->
+   (<s> ^operator <o> + >)
+   (<o> ^name which-question
+        ^object <obj>)
+}

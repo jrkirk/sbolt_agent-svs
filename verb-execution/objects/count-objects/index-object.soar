@@ -5,30 +5,19 @@ sp {count-objects*propose*index-object
    (<s> ^operator <o> +)
    (<o> ^name index-object
         ^return-all true
-        ^use-interaction false
-        ^allow-ties false
-        ^infer-match false
-        ^category object-processing)
+        ^category object-processing
+        ^object <obj>)
 }
 
-sp {count-objects*elaborate*index-object*object
+sp {count-objects*elaborate*index-object*word
    (state <s> ^name count-objects
               ^operator <o> +
-              ^superstate.operator.object <obj>)
-   (<o> ^name index-object)
+              ^superstate.operator.word <word>)
+   (<o> ^name index-object
+        ^object <obj>)
 -->
-   (<o> ^object <obj>)
+   (<obj> ^word <word>)
 }
-
-sp {count-objects*elaborate*index-object*relation
-   (state <s> ^name count-objects
-              ^operator <o> +
-              ^superstate.operator.relation <rel>)
-   (<o> ^name index-object)
--->
-   (<o> ^relation <rel>)
-}
-
 
 sp {count-objects*apply*index-object*copy-matches
    (state <s> ^name count-objects

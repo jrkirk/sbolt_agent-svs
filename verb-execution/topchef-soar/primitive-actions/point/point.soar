@@ -5,6 +5,7 @@ sp {propose*point-to*object
 	       ^topstate <ts>
 	       -^grabbed <any>)
    (<ts> -^self-pointing-at <obj>)
+   (<obj> ^pose)
  -->
    (<s> ^operator <op> +)
    (<op> ^name op_point-to-object

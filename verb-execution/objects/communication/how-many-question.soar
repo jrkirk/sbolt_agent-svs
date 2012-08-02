@@ -1,5 +1,7 @@
 # Adds a segment to the interaction stack to deal with the which question
 
+
+
 # Returns points to the described object
 
 sp {how-many-question*propose*count-objects
@@ -13,29 +15,24 @@ sp {how-many-question*propose*count-objects
         ^category object-processing)
 }
 
-sp {how-many-question*count-objects*elaborate*single-object
+sp {how-many-question*count-objects*elaborate*word
    (state <s> ^operator <o> +
               ^interaction.stack.segment.purpose <p>)
    (<p> ^type how-many-question
-        ^parameters.object <obj>
-       -^parameters.relation)
+        ^parameters.description.word {<word> <> object })
    (<o> ^name count-objects)
 -->
-   (<o> ^object <obj>)
+   (<o> ^word <word>)
 }
 
-sp {how-many-question*count-objects*elaborate*relation
+sp {how-many-question*count-objects*elaborate*adjective
    (state <s> ^operator <o> +
               ^interaction.stack.segment.purpose <p>)
-   (<o> ^name count-objects)
    (<p> ^type how-many-question
-        ^parameters.relation <rel>)
-   (<rel> ^object1 <obj1>
-          ^object2 <obj2>)
+        ^parameters.description.adjective <word>)
+   (<o> ^name count-objects)
 -->
-   (<o> ^object <obj1>
-        ^object <obj2>
-        ^relation <rel>)
+   (<o> ^word <word>)
 }
 
 sp {how-many-question*apply*count-objects
