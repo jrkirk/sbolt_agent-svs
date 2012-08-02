@@ -14,16 +14,36 @@ sp {find-action*propose*lookup-game
 sp {find-action*build-action-options
    (state <s> ^name find-action
               ^game.actions.action <a>
-              ^game.facts.equivalences <eq>
-              ^topstate.object <o>
+#              ^game.facts.equivalences <eq>
+              ^topstate.<thing> <o>
               ^game-name <game>)
    (<a> ^parameters <p>)
-   (<p> ^<param> <pa>)
-   (<eq> ^equivalence <eq1>)
-   (<eq1> ^a.parameter <param>
-          ^b.world object)
-   (<o> ^name <param>)
+   (<p> ^<arg>.{<param> <> type} <pa> ^<arg>.type.world.<thing> <atr>)
+#   (<eq> ^equivalence <eq1>)
+#   (<eq1> ^a.parameter <param>
+#          ^b.world <thing>)
+   (<o> ^<atr> <param>)
 -->
-   (<p> ^option.<param> <o>)
-   
+   (<p> ^option.<arg> <o>)
 }
+
+#check-legality of action TODO
+#sp {find-action*find-legal-actions
+#   (state <s> ^name find-action
+#              ^game.actions.action <a>
+#              ^game.facts.equivalences <eq>
+#              ^topstate.prepositions <prep>
+#              ^game-name <game>)
+#   (<a> ^parameters.option.<arg> <o>)
+#   (<a> ^conditions <c>)
+#   (<c> ^<arg>.{<param> <> type} <pa> ^<arg>.type.world.<thing> <atr>)
+#   (<eq> ^equivalence <eq1>)
+#   (<eq1> ^a.parameter <param>
+#          ^b.world <thing>)
+#   (<prep> ^<atr> <param>)
+#-->
+#   (<p> ^option.<arg> <o>)
+#}
+
+
+
