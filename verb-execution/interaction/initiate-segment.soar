@@ -38,6 +38,18 @@ sp {propose*push-segment*instructor-purpose
 	 ^category interaction-stack)
 }
 
+# AM: Automatically copy the message's context to the push-segment operator
+sp {elaborate*push-segment*instructor-purpose*context
+   (state <s> ^instructor-message <m>
+              ^operator <o> +)
+   (<o> ^name push-segment
+        ^purpose <p>)
+   (<m> ^context <context>)
+-->
+   (<p> ^context <context>)
+}
+
+
 sp {apply*push-segment*instructor-purpose
    (state <s> ^operator <op>
    	      ^instructor-message <m>

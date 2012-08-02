@@ -29,7 +29,7 @@ sp {this-object-message*prefer*lookup-smem*category*lower-word
    (<s> ^operator <o1> < <o2>)
 }
 
-# Successful retrieval
+# Successful retrieval - single 
 sp {this-object-message*apply*lookup-smem*category*success
    (state <s> ^name this-object-message
               ^operator <o>
@@ -37,7 +37,8 @@ sp {this-object-message*apply*lookup-smem*category*success
    (<o> ^name lookup-smem
         ^lookup-type category
         ^query.word <word>
-        ^result {<cat> <> failure})
+        ^result {<cat> <> failure}
+       -^multiple-results)
    (<nj> ^word <word>)
 -->
    (<nj> ^category <cat>)

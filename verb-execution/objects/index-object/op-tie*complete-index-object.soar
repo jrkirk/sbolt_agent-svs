@@ -75,7 +75,7 @@ sp {complete-index-object*apply*which-question*copy*name*object
 sp {complete-index-object*apply*which-question*create*status
    (state <s> ^name complete-index-object
               ^operator.name which-question
-              ^topstate.status <status> <qs>
+              ^topstate.status <status>
               ^context <context>)
    (<context> ^description <desc>)
    (<desc> ^word)
@@ -86,7 +86,8 @@ sp {complete-index-object*apply*which-question*create*status
    (<p> ^type which-question
         ^context <context>
         ^parameters <params>
-        ^satisfaction.dialog-event object-message)
+        # AM: Changed the satisfaction structure
+        ^satisfaction.dialog-event.type object-message)
    # Segment parameters - A message to send 
    (<params> ^message <msg>)
    (<msg> ^type which-question

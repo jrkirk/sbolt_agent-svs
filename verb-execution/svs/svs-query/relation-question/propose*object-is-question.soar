@@ -12,6 +12,7 @@ sp {object-is-question*propose*index-object1
    (<o> ^name index-object
         ^use-interaction true
 		^allow-ties true
+        ^infer-match true
         ^obj 1
         ^category object-processing
 	    ^object <obj1>)
@@ -30,6 +31,7 @@ sp {object-is-question*propose*index-object2
    (<o> ^name index-object
         ^use-interaction true
 		^allow-ties true
+        ^infer-match true
         ^obj 2
         ^category object-processing
 	    ^object <obj2>)
@@ -73,7 +75,7 @@ sp {object-is-question*apply*index-object*failure
    (<out> ^send-message <msg>)
    (<msg> ^type no-object
           ^fields.object failure)
-   (<status> ^performed.action-event describe)
+   (<status> ^performed.action-event.type describe)
 }
 
 sp {object-is-question*propose*process-svs-question

@@ -32,3 +32,11 @@ popd
 pushd svs-tracking
 source svs-tracking_source.soar
 popd
+
+pushd describe
+source describe_source.soar
+popd
+
+pushd location
+source location_source.soar
+popd

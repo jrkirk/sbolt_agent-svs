@@ -13,7 +13,7 @@ sp {this-object-message*apply*complete-this-object-message*resolve*which-questio
    (<context> ^cause which-question
               ^object <context-obj>)
 -->
-   (<context-obj> ^candidate <obj>)
+   (<context-obj> ^match <obj>)
 }
 
 # Results when an object-message with a relation is sent in response to a which-question
@@ -21,10 +21,9 @@ sp {segment*purpose*propose*index-object
    (state <s> ^topstate <s>
              -^instructor-message <msg>
               ^interaction.stack.segment <seg>)
-   (<seg> ^purpose <p>
+   (<seg> ^purpose.type index-object
+          ^context.cause which-question
           ^originator instructor)
-   (<p> ^type index-object
-        ^parameters.context.cause which-question)
 -->
    (<s> ^operator <o> +)
    (<o> ^name index-object
@@ -36,10 +35,11 @@ sp {segment*purpose*propose*index-object
 
 sp {index-object*purpose*elaborate*relation
    (state <s> ^operator <o> +
-              ^interaction.stack.segment.purpose <p>)
+              ^interaction.stack.segment <seg>)
    (<o> ^name index-object)
+   (<seg> ^purpose <p>
+          ^context.cause which-question)
    (<p> ^type index-object
-        ^parameters.context.cause which-question
         ^parameters.relation <rel>)
    (<rel> ^object1 <obj1>
           ^object2 <obj2>)
@@ -52,22 +52,25 @@ sp {index-object*purpose*elaborate*relation
 
 sp {index-object*purpose*apply*perform*indexing
    (state <s> ^operator <o>
-              ^interaction.stack.segment.purpose <p>
+              ^interaction.stack.segment <seg>
               ^status <status>)
-   (<p> ^type index-object
-        ^parameters.context.cause which-question)
+   (<seg> ^purpose.type index-object
+          ^context.cause which-question)
    (<o> ^name index-object
         ^finished true)
 -->
-   (<status> ^performed.internal-event indexing)
+   #(<status> ^performed.internal-event indexing)
+   # AM: Changed performed structure
+   (<status> ^performed.internal-event <e>)
+   (<e> ^type indexing)
 }
 
 sp {index-object*purpose*apply*failure*send-message
    (state <s> ^operator <o>
               ^io.output-link <out>
-              ^interaction.stack.segment.purpose <p>)
-   (<p> ^type index-object
-        ^parameters.context.cause which-question)
+              ^interaction.stack.segment <seg>)
+   (<seg> ^purpose.type index-object
+          ^context.cause which-question)
    (<o> ^name index-object
         ^match failure)
 -->
@@ -79,11 +82,11 @@ sp {index-object*purpose*apply*failure*send-message
 sp {index-object*purpose*apply*add*candidate
    (state <s> ^operator <o>
               ^io.output-link <out>
-              ^interaction.stack.segment.purpose <p>)
+              ^interaction.stack.segment <seg>)
    (<o> ^name index-object
         ^match {<m> <> failure})
-   (<p> ^type index-object
-        ^parameters.context <context>)
+   (<seg> ^purpose.type index-object
+          ^context <context>)
    (<context> ^cause which-question
         		^object <obj>)
         

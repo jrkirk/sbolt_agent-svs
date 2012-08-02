@@ -90,7 +90,7 @@ sp {category-question*apply*lookup-smem*send-word
         ^result {<word> <> failure})
 -->
    (<out> ^send-message <msg>)
-   (<msg> ^type single-word
+   (<msg> ^type single-word-response
           ^fields.word <word>)
 }
 
@@ -101,5 +101,8 @@ sp {category-question*apply*lookup-smem*mark-performed
    (<o> ^name lookup-smem
         ^result)
 -->
-   (<status> ^performed.dialog-event category-response)
+   #(<status> ^performed.dialog-event category-response)
+   # AM: Changed performed structure
+   (<status> ^performed.dialog-event <e>)
+   (<e> ^type category-response)
 }

@@ -59,7 +59,8 @@ sp {explain*propose*segment-verb
    (<seg> ^purpose <p>)
    (<p> ^type environmental-action
    	^satisfaction <ps>) 
-   (<ps> ^action-event <info>)
+   # AM: Moved satisfaction info inside the event
+   (<ps> ^action-event.type <info>)
    (<info> ^verb <verb-name>)
 -->
    (<s> ^operator <op> + >)

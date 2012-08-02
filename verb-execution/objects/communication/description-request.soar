@@ -38,7 +38,10 @@ sp {description-request*apply*describe-object*mark-performed
    (<o> ^name describe-object
         ^description <desc>)
 -->
-   (<status> ^performed.action-event describe)
+   #(<status> ^performed.action-event describe)
+   # AM: Changed performed structure
+   (<status> ^performed.action-event <e>)
+   (<e> ^type describe)
 }
 
 sp {description-request*apply*describe-object*send-message

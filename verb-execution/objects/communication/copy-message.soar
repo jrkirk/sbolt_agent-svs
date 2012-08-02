@@ -32,7 +32,8 @@ sp {apply*pop-segment*copy*context*to*instructor-message
               ^operator.name pop-segment
               ^interaction.stack.segment <seg>
               ^instructor-message <msg>)
-   (<seg> ^purpose.satisfaction.dialog-event <response-type>
+        # AM: Changed the satisfaction structure
+   (<seg> ^purpose.satisfaction.dialog-event.type <response-type>
           ^context <context>)
    (<msg> ^type <response-type>)
 -->

@@ -44,5 +44,5 @@ sp {apply*push-object-is-question
    (<params> ^object1 <obja>
              ^object2 <objb>
              ^prep <prep>)
-   (<sat> ^action-event describe)
+   (<sat> ^action-event.type describe)
 }

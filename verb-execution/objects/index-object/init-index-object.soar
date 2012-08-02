@@ -57,7 +57,7 @@ sp {index-object*apply*init-index-object*copy*parameters
               ^copy-context <cc>)
    (<cc> ^context <context>
         -^copied-parameters)
-   (<s> ^{<arg> << use-interaction allow-ties return-all context-id >>} <val>)
+   (<s> ^{<arg> << use-interaction allow-ties return-all context-id infer-match >>} <val>)
 -->
    (<context> ^<arg> <val>)
 }
@@ -110,9 +110,28 @@ sp {index-object*apply*init-index-object*copy*words*depth2
          ^map <map>)
    (<map> ^original <val>
           ^copy <val-copy>)
-   (<val> ^word {<word> <> UNKNOWN})
+   (<val> ^word {<word> <> UNKNOWN}
+         -^questioned <word>)
 -->
    (<val-copy> ^property.word <word>)
+}
+
+sp {index-object*apply*init-index-object*copy*this*depth2
+   (state <s> ^name index-object
+              ^operator.name init-index-object
+              ^io.input-link.pointed-object <obj-id>
+              ^topstate.object <obj>
+              ^copy-context <cc>)
+   (<obj> ^id <obj-id>)
+   (<cc> ^context <context>
+         ^copied-depth1 true
+        -^copied-depth2
+         ^map <map>)
+   (<map> ^original <val>
+          ^copy <val-copy>)
+   (<val> ^specifier << this that >>)
+-->
+   (<val-copy> ^candidate <obj>)
 }
 
 sp {index-object*apply*init-index-object*copy*objects*relations*depth2*resolve*references

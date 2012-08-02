@@ -192,8 +192,20 @@ sp {svs*label*extract-filters
 #   (<b> ^id 1)
 #-->
 #   (<cmd> ^extract <P11>)
-#   (<P11> ^a <N7> ^b <N8> ^type distance_xyz ^axis 1)
+#   (<P11> ^a <N7> ^b <N8> ^type distance)
 #   (<N7> ^type node ^id <id1>)
 #   (<N8> ^type node ^id <id2>)
 #}
-#
+#sp {extractsDistance1
+#   (state <s> ^topstate <s>
+#              ^topstate.svs.command <cmd>
+#              ^topstate.svs.spatial-scene <sp>)
+#      (<sp> ^child <C> ^child <C2>)
+#   (<C> ^id <id1> ^id-int 0)
+#   (<C2> ^id <id2> ^id-int 1)
+#-->
+#   (<cmd> ^extract <P11>)
+#   (<P11> ^a <N7> ^b <N8> ^type distance)
+#   (<N7> ^type node ^id <id1>)
+#   (<N8> ^type all_nodes)
+#}

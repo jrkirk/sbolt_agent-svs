@@ -43,7 +43,7 @@ sp {apply*push-relation-question*what
    (<params> ^object1 <obja>
              ^object2 <objb>
              ^prep <prep>)
-   (<sat> ^action-event describe)
+   (<sat> ^action-event.type describe)
 }
 
 
@@ -66,5 +66,5 @@ sp {apply*push-relation-question*which
              ^object2 <objb>
              ^project prj
              ^prep <prep>)
-   (<sat> ^action-event describe)
+   (<sat> ^action-event.type describe)
 }

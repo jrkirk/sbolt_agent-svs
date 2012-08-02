@@ -30,7 +30,7 @@ sp {apply*communicate*copy*type
               ^operator <o>)
    (<o> ^name communicate
         ^message <msg>)
-   (<p> ^type {<type> << get-next-task get-next-subaction >>})
+   (<p> ^type {<type> << get-next-task get-next-subaction get-goal >>})
 -->
    (<msg> ^type <type>)
 }
@@ -70,7 +70,7 @@ sp {communicate*propose*put-on-nl-oplink*message
 # Puts the message on the nl output-link and mark communicated
 sp {communicate*apply*put-on-nl-oplink*message
    (state <s> ^name communicate
-   	      		^operator <op> 
+   	      ^operator <op> 
 	      ^nl.output-link <ol>)
    (<op> ^name put-on-nl-oplink
          ^message <msg>)

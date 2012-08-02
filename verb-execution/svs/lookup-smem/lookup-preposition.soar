@@ -21,6 +21,18 @@ sp {lookup-smem*preposition*query*failure
 sp {lookup-smem*preposition*apply*complete-failure
    (state <s> ^name lookup-preposition
               ^superstate <ss>
+             -^interaction true
+              ^found-preposition <fprep>)
+   (<fprep> ^stat default)
+-->
+   (<ss> ^found-prep <fprep>)
+}
+
+sp {lookup-smem*preposition*apply*complete-failure*after-interaction
+   (state <s> ^name lookup-preposition
+              ^superstate <ss>
+              ^interaction true
+              ^topstate.interaction.stack.segment.info.status.no-teaching true
               ^found-preposition <fprep>)
    (<fprep> ^stat default)
 -->

@@ -6,20 +6,16 @@ sp {topstate*propose*explain*operator
    (state <s> ^topstate <s>
    	      ^interaction.stack.segment <top>
 	      -^operator.name push-segment
-	      -^status.performed.learning-event explanation)
+	      -^status.performed.learning-event.type explanation
+	      -^status.type unknown-goal)
    (<top> ^purpose <p>
    	  ^next <next>)
    (<p> ^type explanation)
 -->
    (<s> ^operator <op> + >)
    (<op> ^name explain
-   	 ^segment <next>)
-}
-
-sp {elaborate*explain*dont-learn
-   (state <s> ^name explain)
--->
-   (dont-learn <s>)
+   	 ^segment <next>
+	 ^category explanation)
 }
 
 sp {elaborate*explain*query
@@ -67,17 +63,19 @@ sp {explain*copy*retrieved*episode*self
 
 
 
-## in the explanation state, generate the desired state
-#sp {explain*propose*assign-goal
-#   (state <s> ^name explain
-#   	      ^segment.purpose.indexed-operator <iop>
-#	      -^desired <any>)
-#   (<iop> ^goal-lid <glid>)
-#-->
-#   (<s> ^operator <op> + >)
-#   (<op> ^name assign-goal
-#   	 ^long-term-id <glid>)
-#}
+## in the explanation state, generate the desired state//
+sp {explain*propose*assign-goal
+   (state <s> ^name <sname>
+   	      ^superstate.operator <sop>
+	      -^desired <any>)
+   (<sop> ^_metadata.map-id.goal <glid>)
+-->
+   (<s> ^operator <op> + >)
+   (<op> ^name assign-goal
+   	 ^long-term-id <glid>
+	 ^category explanation
+	 ^superoperator <sop>)
+}
 
 ### in the generated state, propose the verb on the segment
 sp {explain*propose*segment-verb
@@ -85,10 +83,13 @@ sp {explain*propose*segment-verb
    	      ^segment <seg>)
    (<seg> ^purpose <p>)
    (<p> ^indexed-operator <map-op>) 
-   (<map-op> ^name <name>)
+   (<map-op> ^name <name>
+   	     ^_metadata <met>)
 -->
    (<s> ^operator <new-op> + >)
-   (<new-op> ^name <name>)
+   (<new-op> ^name <name>
+   	     ^category explanation
+	     ^_metadata <met>)
 }
 
 sp {explain*propose*segment-verb*elaborate
@@ -103,27 +104,21 @@ sp {explain*propose*segment-verb*elaborate
    (<obj> ^id <id>)
    -->
    (<op> ^<arg> <obj>)
-   (<obj> ^focus yes)
+   (<obj> ^focus (concat <name> <arg>))
 }
 
-##### more generalized version of desired
-sp {new-operator*desired*generalized
-   (state <s> ^name <sname>
-   	      ^superstate <ss>
-	      ^object <val1>
-	      ^object <val2>)
-   (<ss> ^operator <sop>)
-   (<sop> ^name <sname>
-   	  ^{<arg1> <> name <> goal-lid <> applied <> category <> indexed-operator <> information <> success} <val1>
-	  ^{<arg2> <> name  <> goal-lid <> applied <> category <> indexed-operator <> information <> success} <val2>)
-   (<val2> ^category location)
-   (<val1> -^category location)
--->
-   (<s> ^desired <d>)
-   (<d> ^track-relation <in-p>)
-   (<in-p> ^object1 <val1>
-   	   ^object2 <val2>
-	   ^prep in)
+sp {explain*propose*segment-verb*elaborate*goal
+   (state <s> ^name explain
+   	      ^segment.purpose.indexed-operator <map-op>
+	      ^operator <op> +
+	      ^object <obj>)
+   (<op> ^name <name>)
+   (<map-op> ^name <name>
+	     ^_metadata.map-id.goal.<prep>.<arg> <sobj>)
+   (<sobj> ^id <id>)
+   (<obj> ^id <id>)
+   -->
+   (<obj> ^focus (concat <name> <arg>))
 }
 
 ### --- reject operator if desired state is reached
@@ -139,7 +134,8 @@ sp {new-operator*reject
    	 ^operator <sop>)
 -->
    (<ss> ^operator <sop>
-   	 ^successful-explanation <sname>)
+   	 ^successful-explanation <sname>
+	  ^category explanation)
 }
 
 
@@ -148,28 +144,12 @@ sp {new-operator*reject
 sp {explain*success
    (state <s> ^name explain
    	      ^successful-explanation <op-name>
-	      ^topstate.status <stat>)
+	      ^topstate.status <status>)
 -->
-   (<stat> ^performed <p>)
-   (<p> ^learning-event explanation)
+   (<status> ^performed.learning-event <e>)
+   (<e> ^type explanation)
 }
 	      
-
-
-### temporary composite operator reject
-#sp {composite*operator*elaborate*success
-#   (state <s> ^name <sname>
-#   	      ^superstate <ss>)
-#   (<ss> ^operator <sop>
-#   	 ^indexed-operator <iop>)
-#   (<sop> ^category composite-action)
-#   (<sop> ^name <sname>)
-#   (<s> ^desired <d>
-#   	^success <d>)
-#-->
-#   (<ss> ^composite-success <sop>)
-#   (<iop> ^applied true)
-#}
 
 ### o-support
 sp {propose*composite*operator*elaborate*success
@@ -185,7 +165,8 @@ sp {propose*composite*operator*elaborate*success
 -->
    (<s> ^operator <op> + > !)
    (<op> ^name mark-success
-	 ^indexed-operator <iop>)
+	 ^indexed-operator <iop>
+	  ^category explanation)
 }
 sp {apply*composite*operator*elaborate*success
    (state <s> ^operator <op>
@@ -196,7 +177,8 @@ sp {apply*composite*operator*elaborate*success
    (<iop> ^information <info>)
  -->
    (<ss> ^indexed-operator <iop> -)
-   (<status> ^performed.action-event <info>)
+   (<status> ^performed.action-event <e>)
+   (<e> ^type <info>)
 }
 
 ## prefer mark success to primitive actions
@@ -218,23 +200,34 @@ sp {composite*operator*retract
 }
 
 
-### get focus to work
+### focus for operator arguments
 sp {composite*operator*elaborate*focus
    (state <s> ^name <sname>
    	      ^superstate <ss>
-	      ^object <val1>
-	      ^object <val2>)
+	      ^object <val1>)
    (<ss> ^operator <sop>)
    (<sop> ^category composite-action
    	  ^name <sname>
-   	  ^{<arg1> <> name} <val1>
-	  ^{<arg2> <> name} <val2>)
-   (<val2> ^category location)
-   (<val1> -^category location)
+   	  ^{<arg1> <> name <> applied <> _metadata <> indexed-operator <> information <> category} <val1>)
  -->
-   (<val2> ^focus yes)
-   (<val1> ^focus yes)
+   (<val1> ^focus (concat <sname> <arg1>))
 }
+
+### focus for operator goal
+sp {composite*operator*elaborate*goal*focus
+   (state <s> ^name <sname>
+   	      ^superstate <ss>
+	      ^object <val1>)
+   (<ss> ^operator <sop>)
+   (<sop> ^name <sname>
+   	  ^category composite-action
+	  ^_metadata.map-id.goal.<prep>.<arg> <sobj>)
+   (<sobj> ^id <id>)
+   (<val1> ^id <id>)
+   -->
+   (<val1> ^focus (concat <sname> <arg>))
+}
+
 
 ### clean up focus
 sp {object*clean-up*focus
@@ -242,7 +235,7 @@ sp {object*clean-up*focus
    	      ^object <obj>
 	      ^operator <op>)
    (<op> ^category << interaction-stack communication >>)
-   (<obj> ^focus yes)
+   (<obj> ^focus <any>)
 -->
-   (<obj> ^focus yes -)
+   (<obj> ^focus <any> -)
 }

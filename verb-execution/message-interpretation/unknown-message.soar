@@ -3,6 +3,7 @@
 sp {propose*push-unknown-message
    (state <s> ^topstate <s>
               ^instructor-message <msg>)
+   (<msg> -^processed)
 -->
    (<s> ^operator <o> +)
    (<o> ^name push-unknown-message
@@ -40,7 +41,8 @@ sp {apply*push-unknown-message*mark-purpose
 -->
    (<msg> ^purpose <p>)
    (<p> ^type unknown-message
-        ^satisfaction.dialog-event unknown-message)
+        # AM: Changed satisfaction structure
+        ^satisfaction.dialog-event.type unknown-message)
 }
 
 sp {propose*unknown-message
@@ -66,5 +68,8 @@ sp {apply*unknown-message*mark*performed
    (state <s> ^operator.name unknown-message
               ^status <status>)
 -->
-   (<status> ^performed.dialog-event unknown-message)
+   #(<status> ^performed.dialog-event unknown-message)
+   # AM: Changed performed structure
+   (<status> ^performed.dialog-event <e>)
+   (<e> ^type unknown-message)
 }

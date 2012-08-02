@@ -44,7 +44,8 @@ sp {index-object*apply*lookup-smem*copy*result
    (<o> ^name lookup-smem
         ^lookup-type category
         ^query.word <word>
-        ^result <result>)
+        ^result <result>
+       -^multiple-results)
    (<lq> ^word <word>)
 -->
    (<lq> ^category <result>)
@@ -58,7 +59,8 @@ sp {index-object*apply*lookup-smem*success*copy*result*object
    (<o> ^name lookup-smem
         ^lookup-type category
         ^query.word <word>
-        ^result {<result> <> failure <> generic})
+        ^result {<result> <> failure <> generic}
+       -^multiple-results)
    (<prop> ^word <word>)
 -->
    (<prop> ^category <result>)

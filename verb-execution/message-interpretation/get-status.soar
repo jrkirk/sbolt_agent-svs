@@ -19,5 +19,6 @@ sp {apply*push-get-status*add*purpose
 -->
    (<msg> ^purpose <p>)
    (<p> ^type report-interaction
-        ^satisfaction.dialog-event report-interaction)
+        # AM: Changed satisfaction structure
+        ^satisfaction.dialog-event.type report-interaction)
 }

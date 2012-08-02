@@ -77,7 +77,87 @@ sp {apply*push-single-word-response*status*start-clear-stack
 -->
    (<msg> ^purpose <p>)
    (<p> ^type report-interaction
-        ^satisfaction.dialog-event report-interaction)
+        # AM: Changed satisfaction structure
+        ^satisfaction.dialog-event.type report-interaction)
+}
+
+# Response to asking for confirmation on an indexing
+sp {apply*push-single-word-response*request-index-confirmation*clear-arm
+   (state <s> ^operator <o>
+              ^io.output-link <out>)
+   (<o> ^name push-single-word-response
+        ^message.context.cause request-index-confirmation)
+-->
+   (<out> ^home <h>)
+}
+
+sp {apply*push-single-word-response*request-index-confirmation*index-confirmation
+   (state <s> ^operator <o>
+              ^io.output-link <out>)
+   (<o> ^name push-single-word-response
+        ^response <resp>
+        ^message <msg>)
+   (<msg> ^context <context>)
+   (<context> ^cause request-index-confirmation
+              ^object.id <id>
+              ^index-object <i-obj>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type index-confirmation
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<sat> ^action-event.type home)
+   (<params> ^object-id <id>
+             ^object-desc <i-obj>
+             ^response <resp>)
+}
+
+
+sp {apply*push-single-word-response*request-index-confirmation*yes
+   (state <s> ^operator <o>
+              ^io.output-link <out>)
+   (<o> ^name push-single-word-response
+        ^response yes
+        ^message <msg>)
+   (<msg> ^context <context>)
+   (<context> ^cause request-index-confirmation
+              ^object <obj>
+              ^index-object <i-obj>)
+-->
+   (<i-obj> ^match <obj>)
+}
+
+sp {apply*push-single-word-response*request-index-confirmation*no
+   (state <s> ^operator <o>
+              ^io.output-link <out>)
+   (<o> ^name push-single-word-response
+        ^response no
+        ^message <msg>)
+   (<msg> ^context <context>)
+   (<context> ^cause request-index-confirmation
+              ^index-object-context <i-context>)
+   (<i-context> ^infer-match true)
+-->
+   (<i-context> ^infer-match true -
+                ^infer-match false)
+}
+
+# Response to an abiguous category
+sp {apply*push-single-word-response*ambiguous-category
+   (state <s> ^operator <o>
+              ^instructor-message <msg>
+              ^interaction.stack.segment.info <info>)
+   (<o> ^name push-single-word-response
+        ^response <cat>
+        ^message.context <context>)
+   (<context> ^cause ambiguous-category
+              ^word <word>
+              ^result <cat>)
+-->
+   (<info> ^nounjective <nj>)
+   (<nj> ^word <word>
+         ^category <cat>)
+   (<s> ^instructor-message <msg> -)
 }
 
 sp {apply*push-single-word-response*mark*processed

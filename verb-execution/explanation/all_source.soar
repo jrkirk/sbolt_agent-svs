@@ -1,7 +1,6 @@
 source explanation.soar
 
-
-#source assign-goal.soar #AM
+source assign-goal.soar
 
 source detect-goal.soar
 source elaboration.soar

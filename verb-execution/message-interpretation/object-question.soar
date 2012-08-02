@@ -62,9 +62,27 @@ sp {apply*push-object-question*which-question
    (<p> ^type which-question
         ^parameters <params>
         ^satisfaction <sat>)
-   (<sat> ^action-event point)
+    # AM: Changed satisfaction structure
+   (<sat> ^action-event.type point)
    (<params> ^description <obj>)
 }
+
+# JK Handles where-questions
+sp {apply*push-object-question*where-question
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-question
+        ^question-word where
+        ^message <msg>
+        ^object <obj>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type location-question
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<sat> ^dialog-event.type explanation)
+   (<params> ^description <obj>)
+}
+
 
 # Handles how-many questions
 sp {apply*push-object-question*how-many-question
@@ -87,14 +105,15 @@ sp {apply*push-object-question*description-request
    (state <s> ^operator <o>)
    (<o> ^name push-object-question
         ^question-word what
-        ^specifier this
+        ^specifier << this that >>
        -^object.word <> UNKNOWN
         ^message <msg>)
 -->
    (<msg> ^purpose <p>)
    (<p> ^type description-request
         ^satisfaction <sat>)
-   (<sat> ^action-event describe)
+        # AM: Changed satisfaction structure
+   (<sat> ^action-event.type describe)
 }
 
 # Handles 'what color is this' questions
@@ -102,7 +121,7 @@ sp {apply*push-object-question*category-question
    (state <s> ^operator <o>)
    (<o> ^name push-object-question
         ^question-word what
-        ^specifier this
+        ^specifier << this that >>
         ^object <obj>
         ^message <msg>)
 	(<obj> ^word {<word> <> UNKNOWN})
@@ -112,7 +131,8 @@ sp {apply*push-object-question*category-question
         ^parameters <params>
         ^satisfaction <sat>)
    (<params> ^category <word>)
-   (<sat> ^dialog-event category-response)
+        # AM: Changed satisfaction structure
+   (<sat> ^dialog-event.type category-response)
 }
 
 

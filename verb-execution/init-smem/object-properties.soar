@@ -1,0 +1,81 @@
+# init-smem.soar
+# Preloads information into semantic memory that has to do with learning about nouns and adjectives
+
+smem --add {
+	# Mapping 1: Categorical information
+	#   This is how the system distinguishes different types of object properties
+	# (<cat> ^type word2cat ^word <word> ^category <category>)
+   
+	# These are essential, do not comment out
+	# Property: visual - these are properties of an object that can be learned by the visual system
+   (<c1> ^type word2cat ^word color ^category visual)
+   (<c2> ^type word2cat ^word shape ^category visual)
+   (<c3> ^type word2cat ^word size ^category visual)
+    # Property: linguistic - these are properties of an object that are acquired through dialog
+   (<c4> ^type word2cat ^word name ^category linguistic)
+   (<c5> ^type word2cat ^word generic ^category linguistic)  # generic - words that should be ignored in a description (object, one, thing, etc.)
+    # Property: measurable - these are properties of an object that are acquired by performing an action
+   (<c6> ^type word2cat ^word firmness ^category measurable)
+    # Property: property-type - this is a meta-category for each property above
+   (<c7> ^type word2cat ^word visual ^category property-type)
+   (<c8> ^type word2cat ^word linguistic ^category property-type)
+   (<c9> ^type word2cat ^word measurable ^category property-type)
+
+   # Color
+	# These determine what the default knowledge is in the system and can be commented out as desired
+#   (<v11> ^type word2cat ^word red ^category color)
+#   (<v12> ^type word2cat ^word orange ^category color)
+#   (<v13> ^type word2cat ^word yellow ^category color)
+#   (<v14> ^type word2cat ^word green ^category color)
+#   (<v15> ^type word2cat ^word blue ^category color)
+#   (<v16> ^type word2cat ^word purple ^category color)
+#   
+#   (<lm11> ^type label-map ^word red ^category color ^label color-red)
+#   (<lm12> ^type label-map ^word orange ^category color ^label color-orange)
+#   (<lm13> ^type label-map ^word yellow ^category color ^label color-yellow)
+#   (<lm14> ^type label-map ^word green ^category color ^label color-green)
+#   (<lm15> ^type label-map ^word blue ^category color ^label color-blue)
+#   (<lm16> ^type label-map ^word purple ^category color ^label color-purple)
+   
+   # Shape
+#	(<v21> ^type word2cat ^word rectangle ^category shape)
+#	(<v22> ^type word2cat ^word triangle ^category shape)
+#	(<v23> ^type word2cat ^word cylinder ^category shape)
+#	(<v24> ^type word2cat ^word lblock ^category shape)
+#	(<v25> ^type word2cat ^word tblock ^category shape)
+#	(<v26> ^type word2cat ^word half-cylinder ^category shape)
+#	(<v27> ^type word2cat ^word arch ^category shape)
+#	(<v28> ^type word2cat ^word square ^category shape)
+#	(<v29> ^type word2cat ^word doughnut ^category shape)
+#    (<v210> ^type word2cat ^word sphere ^category shape)
+#    
+#    (<lm21> ^type label-map ^word rectangle ^category shape ^label shape-rectangle)
+#    (<lm22> ^type label-map ^word triangle ^category shape ^label shape-triangle)
+#    (<lm23> ^type label-map ^word cylinder ^category shape ^label shape-cylinder)
+#    (<lm24> ^type label-map ^word lblock ^category shape ^label shape-lblock)
+#    (<lm25> ^type label-map ^word tblock ^category shape ^label shape-tblock)
+#    (<lm26> ^type label-map ^word square ^category shape ^label shape-square)
+#    (<lm27> ^type label-map ^word sphere ^category shape ^label shape-sphere)
+ 
+ 	# Size
+#	(<v31> ^type word2cat ^word small ^category size)
+#	(<v32> ^type word2cat ^word medium ^category size)
+#	(<v33> ^type word2cat ^word large ^category size)
+   
+#    (<lm31> ^type label-map ^word small ^category size ^label size-small)
+#    (<lm32> ^type label-map ^word medium ^category size ^label size-medium)
+#    (<lm33> ^type label-map ^word large ^category size ^label size-large)
+ 
+ 	# Generics
+	# Leave these uncommented
+ 	(<v41> ^type word2cat ^word one ^category generic)
+	(<v42> ^type word2cat ^word object ^category generic)
+ 
+ 	# Names
+	(<v43> ^type word2cat ^word stove ^category name)
+	(<v44> ^type word2cat ^word pantry ^category name)
+	(<v45> ^type word2cat ^word dishwasher ^category name)
+	(<v46> ^type word2cat ^word table ^category name)
+	(<v47> ^type word2cat ^word garbage ^category name)
+	(<v48> ^type word2cat ^word scale ^category name)
+}

@@ -19,7 +19,7 @@ sp {lookup-object*apply*construct-object*create-object
    (<copy> ^id <id>
            ^property <prop>)
    (<prop> ^name name
-           ^type descriptive)
+           ^type linguistic)
 }
 
 sp {lookup-object*apply*construct-object*copy-name

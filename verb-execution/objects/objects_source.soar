@@ -1,79 +1,64 @@
-
-
-##############------- CONFIGURATION -----############
+############-------- CONFIGURATION ------############
 smem --set learning on
 
-########------- ELABORATIONS and PREFERENCES -----#######
-#  elaborations
+
+############--------- PREFERENCES -------############
 #  preferences
-#########################################################
+#####################################################
 
-pushd elaborations
-source elaborations_source.soar
-# Contains basic elaborations used across objects
-popd
-
+# Maintains an ordering among object-processing operators
 source preferences.soar
 
-source mappings.soar
-# Creates a working memory cache of mappings, these are only those mappings that exist in working memory
-# If an object is removed or changed then the mapping dissappears
-# Only the smem mappings are long-term
+############------- SMEM OPERATORS ------############
+#  lookup-smem
+#####################################################
 
-
-
-
-########------- SMEM OPERATIONS ------######
-# lookup-smem
-############################################
-
+# Operators used to retrieve information from semantic memory
 pushd lookup-smem
 source lookup-smem_source.soar
 popd
 
+# Learnings the mapping from a word to its category (like red to color)                        
+source learn-word2cat.soar
 
 
-##########-------- OBJECT PROCESSING -------#######
+############------ OBJECT PROCESSING ----############
 #  object-structures
-#  visual-properties
-#########################################################
+#####################################################
+
+# Operators that create, maintain, and delete internal representations of objects from the input link
 pushd object-structures
 source object-structures_source.soar
-# Operators that create the object structures based on perceived objects from the world
 popd
 
 
-
-########------- OBJECT USAGE TOOLS  ------######
+############----- OBJECT USAGE TOOLS ----############
 # index-object
 # describe-object
-#################################################
+#####################################################
+# General-purpose operators used by other parts of the agent when dealing with objects
 
-
+# Given an object in working memory, generates an NL description to be used in messages
 pushd describe-object
 source describe-object_source.soar
-
 popd
 
-
-pushd count-objects
-source count-objects_source.soar
-popd
-
+# Given a description of an object, finds the object being referred to
+# You can also include a relation to help disambiguate the object (e.g. the red object in the pantry)
 pushd index-object
 source index-object_source.soar
 popd
 
+# Given a description of an object, this returns how many of that object there are
+pushd count-objects
+source count-objects_source.soar
+popd
 
-########----------- COMMUNICATION ----------#######
+############-------- COMMUNICATION ------############
 #  communication
-#########################################################
-
+#####################################################
+# Operators that deal with new segments caused by a message from the instructor
 pushd communication
 source communication_source.soar
 popd
 
-
-pushd learning
-source learning_source.soar
-popd

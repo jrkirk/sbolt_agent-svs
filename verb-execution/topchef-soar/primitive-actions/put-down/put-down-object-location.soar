@@ -42,7 +42,7 @@ sp {elaborate*op_put-down-object-location
 sp {propose*svs*lookup-preposition
    (state <s> ^name op_put-down-object-location
    	      ^io
-          ^projection-result <any>
+              ^projection-result <any>
 	      ^spatial-relationship <rel>
 	      -^found-prep <fprep>)
 -->

@@ -1,6 +1,6 @@
-#pushd ./point
-#source all_source.soar
-#popd
+pushd ./point
+source all_source.soar
+popd
 
 pushd ./pick-up
 source all_source.soar
@@ -8,6 +8,14 @@ popd
 
 
 pushd ./put-down
+source all_source.soar
+popd
+
+pushd ./weigh
+source all_source.soar
+popd
+
+pushd ./measure
 source all_source.soar
 popd
 

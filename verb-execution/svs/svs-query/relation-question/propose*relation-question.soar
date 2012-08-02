@@ -12,6 +12,7 @@ sp {relation-question*propose*index-object
    (<s> ^operator <o> + =)
    (<o> ^name index-object
         ^use-interaction true
+        ^infer-match true
 		^allow-ties true
         ^obj 2
         ^category object-processing
@@ -44,7 +45,7 @@ sp {relation-question*apply*index-object*failure
    (<out> ^send-message <msg>)
    (<msg> ^type no-object
           ^fields.object failure)
-   (<status> ^performed.action-event describe)
+   (<status> ^performed.action-event.type describe)
 }
 
 sp {relation-question*propose*process-svs-question

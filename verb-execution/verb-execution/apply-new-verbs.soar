@@ -6,6 +6,6 @@ sp {propose*intructed*verb-command
    	  ^purpose <p>)
    (<p> ^type external-action
    	^satisfaction <ps>)
-   (<ps> ^action-event <info>)
+#   (<ps> ^action-event <info>)
  
 

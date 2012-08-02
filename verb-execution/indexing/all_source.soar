@@ -1,19 +1,20 @@
-#AM: Changed the way smem is loaded by default
-#source initialize-linguistic-indexing.soar
 source preferences.soar
 
 #### map verbs to operators
-source map.soar
-source index-verb.soar
-source create-cue-verb.soar
-source generate-operator.soar
-
+pushd ./verb-comprehension
+source all_source.soar
+popd
 
 ### map arguments to objects/locations
-source create-cue-object.soar
-source index-arguments.soar
-#source find-object.soar
-source find-object-smem.soar
+pushd ./np-comprehension
+source all_source.soar
+popd
+
+
+### map goal to relations
+pushd ./goal-comprehension
+source all_source.soar
+popd
 
 
 pushd ./smem-operators

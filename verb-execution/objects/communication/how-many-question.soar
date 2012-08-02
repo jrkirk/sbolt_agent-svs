@@ -42,7 +42,10 @@ sp {how-many-question*apply*count-objects
    (<o> ^name count-objects
         ^match-count <m>)
 -->
-   (<status> ^performed.dialog-event count-response)
+   #(<status> ^performed.dialog-event count-response)
+   # AM: Changed performed structure
+   (<status> ^performed.dialog-event <e>)
+   (<e> ^type count-response)
 }
 
 sp {recogition-question*apply*send-message
