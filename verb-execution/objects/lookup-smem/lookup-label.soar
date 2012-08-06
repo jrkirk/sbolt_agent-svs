@@ -62,16 +62,3 @@ sp {apply*lookup-smem*label*annotate*object
 -->
    (<val> ^word <word>)
 }
-
-sp {apply*lookup-smem*label*annotate*name
-   (state <s> ^topstate.object.property <prop>
-              ^operator <o>)
-   (<o> ^name lookup-smem
-        ^lookup-type label
-        ^query.category name
-        ^query.word <word>
-        ^result <> failure)
-   (<prop> ^name name)
--->
-   (<prop> ^word <word>)
-}
