@@ -44,6 +44,17 @@ sp {clean-up*extracts*after*svs
    (<cmd> ^extract <E11> -)
 }
 
+sp {clean-up*extract_once*after*svs
+   (state <s> ^operator.name pop-segment
+              ^superstate nil
+#             -^track-relation.tracking-extract <E11>
+              ^svs.command <cmd>)
+   (<cmd> ^extract_once <E11>)
+   (<E11> ^a <N7> ^b <N8>)
+-->
+   (<cmd> ^extract_once <E11> -)
+}
+
 
 sp {clean-up*topstate*found-prep*after*svs-tracking
    (state <s> ^operator.name pop-segment

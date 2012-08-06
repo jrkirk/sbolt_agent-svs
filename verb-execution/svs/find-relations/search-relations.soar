@@ -3,7 +3,7 @@ sp {find-relations*relation-search*false-first-part
               ^topstate <ss>
               ^obj <id>
               ^ind 1
-             -^topstate.track-relation.tracking-extract <E11>
+#             -^topstate.track-relation.tracking-extract_once <E11>
 			  ^relation <r>)
    (<ss> ^svs.command <cmd>)
    (<ss> ^svs.spatial-scene <sc>)
@@ -13,7 +13,7 @@ sp {find-relations*relation-search*false-first-part
    (<r> ^name <type>
         ^obj <objb>)
    (<rel> ^type <t> ^axis <axis>)
-   (<cmd> ^extract <E11>)
+   (<cmd> ^extract_once <E11>)
    (<sc> ^child <C> ^child <C2>)
    (<C> ^id <obja1> ^id-int <id>)
    (<C2> ^id <objb1> ^id-int <objb>)
@@ -30,7 +30,7 @@ sp {find-relations*relation-search*false-second-part
               ^topstate <ss>
               ^obj <id>
               ^ind 2
-             -^topstate.track-relation.tracking-extract <E11>
+#             -^topstate.track-relation.tracking-extract_once <E11>
 			  ^relation <r>)
    (<ss> ^svs.command <cmd>)
    (<ss> ^svs.spatial-scene <sc>)
@@ -40,7 +40,7 @@ sp {find-relations*relation-search*false-second-part
    (<r> ^name <type>
         ^obj <objb>)
    (<rel> ^type <t> ^axis <axis>)
-   (<cmd> ^extract <E11>)
+   (<cmd> ^extract_once <E11>)
    (<sc> ^child <C> ^child <C2>)
    (<C> ^id <objb1> ^id-int <id>)
    (<C2> ^id <obja1> ^id-int <objb>)
@@ -66,7 +66,7 @@ sp {find-relations*relation-search*false-default
    (<r> ^result false) 
 }
 
-sp {find-relations*extract-filters*for-query*first
+sp {find-relations*extract_once-filters*for-query*first
    (state <s> ^name find-relations
               ^obj <id>
               ^ind 1
@@ -78,13 +78,13 @@ sp {find-relations*extract-filters*for-query*first
    (<sc> ^child <C>)
    (<C> ^id <obja> ^id-int <id>) 
 -->
-   (<cmd> ^extract <E11>)
+   (<cmd> ^extract_once <E11>)
    (<E11> ^a <N7> ^b <N8> ^type <type>)
    (<N7> ^type node ^id <obja>)
    (<N8> ^type all_nodes)
 }
 
-sp {find-relations*extract-filters*for-query*second
+sp {find-relations*extract_once-filters*for-query*second
 (state <s> ^name find-relations
               ^obj <id>
               ^ind 2
@@ -96,7 +96,7 @@ sp {find-relations*extract-filters*for-query*second
    (<sc> ^child <C>)
    (<C> ^id <obja> ^id-int <id>)
 -->
-   (<cmd> ^extract <E11>)
+   (<cmd> ^extract_once <E11>)
    (<E11> ^a <N7> ^b <N8> ^type <type>)   
    (<N7> ^type all_nodes)
    (<N8> ^type node ^id <obja>)

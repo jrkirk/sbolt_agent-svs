@@ -40,7 +40,7 @@ sp {location-question*extract-distances
    (<C> ^id <obj1> ^id-int <id1>)
    (<C2> ^id <obj2> ^id-int <id2>)
 -->
-   (<cmd> ^extract <P11>)
+   (<cmd> ^extract_once <P11>)
    (<P11> ^a <N7> ^b <N8> ^type distance)
    (<N7> ^type node ^id <obj1>)
    (<N8> ^type node ^id <obj2>)
@@ -56,7 +56,7 @@ sp {location-question*propose*found-closest
    (<sp> ^child <C> ^child <C2>)
    (<C> ^id <obj1> ^id-int <id1>)
    (<C2> ^id <obj2> ^id-int <id2>)
-   (<cmd> ^extract <E11>)
+   (<cmd> ^extract_once <E11>)
    (<E11> ^type distance ^result.record <rec>)
    (<rec> ^value <dist> ^params <A1>)
    (<A1> ^a <obj1> 

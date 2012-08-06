@@ -327,7 +327,7 @@ sp {svs-label*propose*complete-svs-label*direct*aligned*old
 #   (state <s> ^name svs-label
 #              ^superstate.operator.message.fields.objects <objs>
 #              ^superstate.superstate <sss>
-#             -^topstate.track-relation.tracking-extract <E>
+#             -^topstate.track-relation.tracking-extract_once <E>
 #              ^stat old)
 #   (<sss> ^svs.command <cmd>)
 #   (<sss> ^svs.spatial-scene <sc>)
@@ -337,7 +337,7 @@ sp {svs-label*propose*complete-svs-label*direct*aligned*old
 #   (<o2> ^index <i2> ^id <objb>)
 #   (<o1> ^index <i1> ^id <obja>)
 #   (<o1> ^index < <i2>)
-#   (<cmd> ^extract <E>)
+#   (<cmd> ^extract_once <E>)
 #   (<E> ^type <t> ^result.negative.atom <A>)
 #   (<sc> ^child <C> ^child <C2>)
 #   (<C> ^id <obja1> ^id-int <obja>)
