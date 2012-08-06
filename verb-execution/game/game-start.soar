@@ -20,3 +20,23 @@ sp {start-turn*propose*do-action
         ^action <action>
         ^game-name <game>)
 }
+
+sp {start-turn*apply*do-action
+   (state <s> ^name start-turn
+              ^topstate <ts>
+              ^operator <o>)
+   (<o> ^name do-action
+        ^action <action>)
+   (<action> ^verb <verb>)
+   (<ts> ^status <status>)
+-->
+   (<ts> ^instructor-message <im>)
+   (<im> ^context <c> ^id 99 ^information <i> ^speaker instructor ^type verb-command)
+   (<i> ^verb <v>)
+   (<v> ^direct-object <do> ^preposition <prep> ^word <verb>)
+   (<do> ^object <o1>)
+   (<o1> ^specifier DEF ^word triangle)
+   (<prep> ^object <o2> ^word to)
+   (<o2> ^specifier DEF ^word garbage)
+   (<status> ^performed.action-event.type turn)   
+}

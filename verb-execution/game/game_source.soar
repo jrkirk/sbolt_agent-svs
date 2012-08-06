@@ -1,1 +1,12 @@
-source init-smem.soar 
+source init-smem.soar
+source find-action.soar
+source elaborations.soar
+source game-start.soar
+
+pushd lookup-smem
+source lookup-smem_source.soar
+popd
+
+pushd message-interpretation
+source message-interpretation_source.soar
+popd

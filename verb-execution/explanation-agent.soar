@@ -59,6 +59,10 @@ source default.soar
 source preferences.soar
 ##source chunking.soar
 
+#game source
+pushd game
+source game_source.soar
+popd
 
 sp {propose*init-agent
    (state <s> -^name

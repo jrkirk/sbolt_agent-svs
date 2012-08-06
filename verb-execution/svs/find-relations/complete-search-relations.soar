@@ -93,6 +93,7 @@ sp {find-relations*apply*found-possible-match*extract-distance
    (<N7> ^type node ^id <obja1>)
    (<N8> ^type node ^id <objb1>)
 }
+
 sp {find-relations*apply*found-possible-match*matched-true
    (state <s> ^name find-relations
               ^operator <o>

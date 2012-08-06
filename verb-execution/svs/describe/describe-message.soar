@@ -1,6 +1,5 @@
 sp {describe-message*propose*lookup-preposition
    (state <s> ^name describe-message
-              ^topstate.object
              -^found-prep.predicate.name <prep>
               ^topstate.prepositions.prep <prep>)
 -->

@@ -1,14 +1,50 @@
-sp {lookup-game*query
+#sp {lookup-game*query
+#   (state <s> ^name lookup-game
+#              ^superstate.operator.game-name <name>
+#              ^smem.command <sc>)
+#-->
+#   (<sc> ^query <q>)
+#   (<s> ^found-game <game>)
+#   (<game> ^name <name>)
+#   (<q> ^name <name>)
+#}
+
+sp {lookup-game*propose*lookup-general
    (state <s> ^name lookup-game
               ^superstate.operator.game-name <name>
+             -^retrieved
               ^smem.command <sc>)
 -->
-   (<sc> ^query <q>)
-   (<s> ^found-game <game>)
-   (<game> ^name <name>)
-   (<q> ^name <name>)
+   (<s> ^operator <o> + =)
+   (<o> ^name lookup-general
+        ^category svs
+        ^game-name <name>)
 }
 
+sp {lookup-game*propose*complete-lookup-game
+   (state <s> ^name lookup-game
+              ^superstate.operator.game-name <name>
+              ^retrieved <ret>
+              ^smem.command <sc>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-lookup-game
+        ^category svs
+        ^retrieved <ret>)
+}
+
+sp {lookup-game*apply*complete-lookup-game
+   (state <s> ^name lookup-game
+              ^superstate.operator.game-name <name>
+              ^retrieved <ret>
+              ^superstate <ss>
+              ^operator <o>
+              ^smem.command <sc>)
+   (<o> ^name complete-lookup-game
+        ^retrieved <ret>)
+-->
+   (<ss> ^game <ret>)
+}
 
 #sp {lookup-smem*preposition*query*failure
 #   (state <s> ^name lookup-preposition
@@ -27,69 +63,69 @@ sp {lookup-game*query
 #   (<ss> ^found-prep <fprep>)
 #}
 
-sp {lookup-game*query*success
-   (state <s> ^name lookup-game
-              ^superstate.operator.game-name <name>
-              ^smem.result.success <cue>
-              ^smem.result <res>)
-   (<res> ^retrieved <ret>)
--->
-   (<s> ^predicate <ret>
-        ^status old)
-}
-
-sp {lookup-smem*preposition*propose*lookup-relations
-   (state <s> ^name lookup-preposition
-              ^superstate.operator.type <type>
-              ^predicate <p1>
-              ^status old
-             -^relation <rel>)
-   (<p1> ^relation <rel>)
--->
-   (<s> ^operator <o> + =)
-   (<o> ^name lookup-relations
-        ^category svs
-        ^lte <rel>)
-}
-
-
-sp {lookup-smem*preposition*propose*complete-lookup-relations
-   (state <s> ^name lookup-preposition
-              ^superstate.operator.type <type>
-              ^predicate <p1>
-              ^status old)
--->
-   (<s> ^operator <o> +)
-   (<o> ^name complete-lookup-relations
-        ^category svs)
-}
-sp {lookup-smem*preposition*copy*relations
-   (state <s> ^name lookup-preposition
-              ^found-preposition <fprep>
-              ^relation <rel>
-              ^status old)
--->
-   (<fprep> ^relation <rel>)
-}
-
-sp {lookup-smem*preposition*copy*predicate
-   (state <s> ^name lookup-preposition
-              ^found-preposition <fprep>
-              ^predicate <p1>
-              ^status old)
-   (<s> ^operator.name complete-lookup-relations)
--->
-   (<fprep> ^predicate <p1>
-            ^stat old)
-}
-
-sp {lookup-smem*preposition*apply*complete-lookup-relations
-   (state <s> ^name lookup-preposition
-              ^superstate <ss>
-              ^found-preposition <fprep>
-              ^status old)
-   (<s> ^operator.name complete-lookup-relations)
-   (<fprep> ^stat old)
--->
-   (<ss> ^found-prep <fprep>)
-}
+#sp {lookup-game*query*success
+#   (state <s> ^name lookup-game
+#              ^superstate.operator.game-name <name>
+#              ^smem.result.success <cue>
+#              ^smem.result <res>)
+#   (<res> ^retrieved <ret>)
+#-->
+#   (<s> ^predicate <ret>
+#        ^status old)
+#}
+#
+#sp {lookup-smem*preposition*propose*lookup-relations
+#   (state <s> ^name lookup-preposition
+#              ^superstate.operator.type <type>
+#              ^predicate <p1>
+#              ^status old
+#             -^relation <rel>)
+#   (<p1> ^relation <rel>)
+#-->
+#   (<s> ^operator <o> + =)
+#   (<o> ^name lookup-relations
+#        ^category svs
+#        ^lte <rel>)
+#}
+#
+#
+#sp {lookup-smem*preposition*propose*complete-lookup-relations
+#   (state <s> ^name lookup-preposition
+#              ^superstate.operator.type <type>
+#              ^predicate <p1>
+#              ^status old)
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name complete-lookup-relations
+#        ^category svs)
+#}
+#sp {lookup-smem*preposition*copy*relations
+#   (state <s> ^name lookup-preposition
+#              ^found-preposition <fprep>
+#              ^relation <rel>
+#              ^status old)
+#-->
+#   (<fprep> ^relation <rel>)
+#}
+#
+#sp {lookup-smem*preposition*copy*predicate
+#   (state <s> ^name lookup-preposition
+#              ^found-preposition <fprep>
+#              ^predicate <p1>
+#              ^status old)
+#   (<s> ^operator.name complete-lookup-relations)
+#-->
+#   (<fprep> ^predicate <p1>
+#            ^stat old)
+#}
+#
+#sp {lookup-smem*preposition*apply*complete-lookup-relations
+#   (state <s> ^name lookup-preposition
+#              ^superstate <ss>
+#              ^found-preposition <fprep>
+#              ^status old)
+#   (<s> ^operator.name complete-lookup-relations)
+#   (<fprep> ^stat old)
+#-->
+#   (<ss> ^found-prep <fprep>)
+#}

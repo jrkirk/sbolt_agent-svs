@@ -1,5 +1,5 @@
 sp {turn-start*elaborate*copy-down-attrs
-   (state <s> ^name turn-start
+   (state <s> ^name start-turn
               ^superstate.operator <o>)
    (<o> ^game-name <name>
         ^turn-count <num>)

@@ -1,44 +1,50 @@
 
  smem --add {
  (<G> ^game <G1>)
- (<G1> ^name checkers ^actions <A> ^rules <R> ^goals <G> ^facts <F>)
+ (<G1> ^game-name tic-tac-toe ^actions <A> )#^rules <R> ^goals <G> ^facts <F>)
  
  #Actions
- (<A> ^action <a1>)
- (<a1> ^name place ^conditions <c> ^result <res> ^parameters <p> ^verb move)
+ (<A> ^action <ac1>)
+ (<ac1> ^name place ^conditions <c> ^result <res> ^parameters <p> ^verb move)
  (<c> ^a <conda>)
- (<conda> ^empty <location> ^type.world.prepositions <name>)
+ (<conda> ^empty <location> ^type <t3>)
+ (<t3> ^world <w3>)
+ (<w3> ^prepositions name)
  (<p> ^a <parama> ^b <paramb>)
- (<parama> ^type.world.object name ^mine <obj>)
- (<paramb> ^type.world.object name ^location <location>)
+ (<parama> ^type <t4> ^block <obj>)
+ (<t4> ^world <w4>)
+ (<w4> ^object category)
+ (<paramb> ^type <t5> ^location <location>)
+ (<t5> ^world <w5>)
+ (<w5> ^object category)
  (<res> ^owns <location>)
  
  #Goals
- (<G> ^owns <loc1> <loc2> <loc3> ^adjacent <adj> ^adjacent <adj2>)
- (<adj> ^location <loc1> <loc2>)
- (<adj> ^location <loc2> <loc3>)
- 
- #Rules
- (<R> ^actions-per-turn 1 ^num-players 2)
- 
- #Facts
- (<F> ^equivalences <eqs>)
- (<eqs> ^equivalence <eq1> <eq2> <eq3> <eq4>)
- (<eq3> ^a <A3> ^b <B3>)
- (<A3> ^parameter location)
- (<B3> ^world object)
- (<eq1> ^a <A1> ^b <B1>)
- (<A1> ^owns <loc4>)
- (<B1> ^prep <prep>)
- (<prep> ^name in ^a red-square ^b <loc4>)
- (<eq4> ^a <A4> ^b <B4>)
- (<A4> ^empty <loc14>)
- (<B4> ^prep <prep2>)
- (<prep2> ^negated true ^name in ^a all ^b <loc14>)
- (<eq2> ^a <A2> ^b <B2>)
- (<A2> ^name place ^parameters.location <loc5>)
- (<B2> ^verb <move>)
- (<move> ^name move ^location <loc5>)
+# (<G> ^owns <loc1> <loc2> <loc3> ^adjacent <adj> ^adjacent <adj2>)
+# (<adj> ^location <loc1> <loc2>)
+# (<adj2> ^location <loc2> <loc3>)
+# 
+# #Rules
+# (<R> ^actions-per-turn 1 ^num-players 2)
+# 
+# #Facts
+# (<F> ^equivalences <eqs>)
+# (<eqs> ^equivalence <eq1> <eq2> <eq3> <eq4>)
+# (<eq3> ^a <A3> ^b <B3>)
+# (<A3> ^parameter location)
+# (<B3> ^world object)
+# (<eq1> ^a <A1> ^b <B1>)
+# (<A1> ^owns <loc4>)
+# (<B1> ^prep <prep>)
+# (<prep> ^name in ^a red-square ^b <loc4>)
+# (<eq4> ^a <A4> ^b <B4>)
+# (<A4> ^empty <loc14>)
+# (<B4> ^prep <prep2>)
+# (<prep2> ^negated true ^name in ^a all ^b <loc14>)
+# (<eq2> ^a <A2> ^b <B2>)
+# (<A2> ^name place ^parameters.location <loc5>)
+# (<B2> ^verb <move>)
+# (<move> ^name move ^location <loc5>)
  
  #Prepositions        
  (<P345> ^all-aligned false ^name left-of ^relation <R209> <R210> <R211> )

@@ -1,0 +1,31 @@
+sp {apply*push-object-message*game-turn-message
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-message
+        ^message <msg>
+        ^object.word turn)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type game-turn-message
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<sat> ^action-event.type turn)
+}
+
+sp {game-turn-message*propose*process-game-message
+   (state <s> ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>)
+   (<p> ^type game-turn-message)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name start-turn
+        ^category svs
+        ^turn-count 0
+	    ^game-name tic-tac-toe)
+#   (<m> ^fields <f> ^type svs-label)
+#   (<f> ^objects <object>)
+#   (<object> ^obj <obja>
+#             ^obj <objb>
+#             ^type <prep>)
+#   (<obja> ^id <id1> ^index 1)
+#   (<objb> ^id <id2> ^index 2)
+} 

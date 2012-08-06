@@ -27,6 +27,31 @@ sp {find-action*build-action-options
    (<p> ^option.<arg> <o>)
 }
 
+sp {find-action*propose*complete-find-action
+   (state <s> ^name find-action
+              ^game.actions.action <a>)
+   (<a> ^parameters <p>)
+   (<p> ^option.<arg> <o>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-find-action
+        ^category svs
+        ^action <a>)
+}
+
+sp {find-action*apply*complete-find-action
+   (state <s> ^name find-action
+              ^operator <o>
+              ^superstate <ss>
+              ^game.actions.action <a>)
+   (<o> ^name complete-find-action
+        ^action <a>)
+-->
+   (<ss> ^action <a>)
+}
+
+
+
 #check-legality of action TODO
 #sp {find-action*find-legal-actions
 #   (state <s> ^name find-action
