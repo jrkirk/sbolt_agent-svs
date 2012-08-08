@@ -135,6 +135,7 @@ sp {find-relations*relation-search*propose*lookup-preposition
              -^found-prep
               ^prep <type>)
 -->
+#   (interrupt)
    (<s> ^operator <o> +)
    (<o> ^name lookup-preposition
         ^category svs

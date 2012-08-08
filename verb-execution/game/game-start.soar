@@ -9,34 +9,138 @@ sp {start-turn*propose*find-action
         ^game-name <game>)
 }
 
-sp {start-turn*propose*do-action
+sp {start-turn*elaborate*cue
    (state <s> ^name start-turn
               ^action <action>
-              ^game-name <game>)
+              ^obj1 <oa>
+              ^obj2 <ob>)
+   (<action> ^verb <verb>)
 -->
-   (<s> ^operator <o> + =)
-   (<o> ^name do-action
-        ^category svs # for now determine better or new category
-        ^action <action>
-        ^game-name <game>)
+   (<s> ^cue <cue>)
+   (<cue> ^direct-object <oa> ^to <ob> ^verb <verb>)
 }
 
-sp {start-turn*apply*do-action
+sp {start-turn*elaborate*mcue
    (state <s> ^name start-turn
-              ^topstate <ts>
-              ^operator <o>)
-   (<o> ^name do-action
-        ^action <action>)
+              ^action <action>
+              ^obj1 <oa>
+              ^obj2 <ob>)
    (<action> ^verb <verb>)
-   (<ts> ^status <status>)
 -->
-   (<ts> ^instructor-message <im>)
-   (<im> ^context <c> ^id 99 ^information <i> ^speaker instructor ^type verb-command)
-   (<i> ^verb <v>)
-   (<v> ^direct-object <do> ^preposition <prep> ^word <verb>)
-   (<do> ^object <o1>)
-   (<o1> ^specifier DEF ^word triangle)
-   (<prep> ^object <o2> ^word to)
-   (<o2> ^specifier DEF ^word garbage)
-   (<status> ^performed.action-event.type turn)   
+   (<s> ^mcue <mcue>)
+   (<mcue> ^direct-object <n1> ^to <n2> ^verb <verb>)
 }
+
+### propose lookup semantic memory
+sp {start-turn*propose*lookup*semantic-memory
+   (state <s> ^name start-turn
+   	      ^mcue <cue>
+	      -^linguistic <any>)
+  -->
+   (interrupt)
+   (<s> ^operator <op> +)
+   (<op> ^name get-linguistic-id
+   	 ^cue <cue>
+	 ^category indexing)
+}
+
+
+### retrieved id is the lid for the linguistic structure of the verb
+sp {start-turn*propose*get-parent-map
+   (state <s> ^name start-turn
+   	      ^linguistic <ling>
+	      -^map-id <map>)
+-->
+   (<s> ^operator <op> + =)
+   (<op> ^name get-map-id
+   	 ^linguistic <ling>
+	 ^category indexing)
+}
+
+### get procedural knowledge for the map
+sp {start-turn*propose*get-procedural
+   (state <s> ^name start-turn
+   	      ^map-id <map>
+	      -^procedural <proc>)
+  -->
+  (<s> ^operator <op> + =)
+  (<op> ^name get-procedural-id
+  	^map-id <map>
+	^category indexing)
+}
+
+### generate the structure of the new operator
+sp {start-turn*propose*generate-operator
+   (state <s> ^name start-turn
+   	      ^procedural <pid>
+	      ^linguistic <lid>
+	      ^map-id <map>
+	      ^cue <cue>
+	      -^indexed-operator <any>)
+-->
+  (<s> ^operator <op> +)
+  (<op> ^name generate-operator
+  	^procedural-id <pid>
+	^linguistic-id <lid>
+	^cue <cue>
+	^map-id <map>
+	^category indexing)
+}
+
+sp {start-turn*propose*do-action
+   (state <s> ^name start-turn
+#              ^impasse no-change
+#              ^attribute state
+              ^action <action>
+              ^obj1 <oa>
+              ^obj2 <ob>
+              ^indexed-operator <map-op>
+              ^game-name <game>)
+ -->
+   (<s> ^operator <map-op> +)
+   (<map-op> ^category composite-action #composite-action
+#   	     ^information <info>
+	     ^indexed-operator <map-op>)
+}
+#sp {start-turn*propose*do-action
+#   (state <s> ^name start-turn
+#              ^action <action>
+#              ^obj1 <oa>
+#              ^obj2 <ob>
+#              ^game-name <game>)
+#-->
+#   (interrupt)
+#   (<s> ^operator <o> + =)
+#   (<o> ^name op_2
+#        ^category svs
+#        ^indexed-operator <o>
+#        ^information <i>
+#        ^_metadata <Me>
+#        ^argument5 <oa>
+#        ^argument6 <ob>)
+#   (<i> ^verb <v>)
+#   (<v> ^direct-object <do> ^preposition <prep> ^word move)
+#   (<do> ^object <o1>)
+#   (<o1> ^specifier DEF ^word object ^word green)
+#   (<prep> ^object <o2> ^word to)
+#   (<o2> ^specifier DEF ^word grid1)
+#   (<Me> ^map-id <M>)
+#   (<M> ^goal <G> ^linguistic <m2> ^procedural <p2> ^type action)
+#      (<m2> ^direct-object <n1> ^to <n2> ^verb move)
+#      (<p2> ^argument5 <n1> ^argument6 <n2> ^op_name op_2)
+#   (<Me> ^map-id @M95)
+#   (@M95 ^goal @G3 ^linguistic @M94 ^procedural @P1401 ^type action)
+#   (@M94 ^direct-object @N24 ^to @N23 ^verb move)
+#   (@P1401 ^argument5 @N24 ^argument6 @N23 ^op_name op_2)
+#   (<status> ^performed.action-event.type turn)   
+#}
+#   (<ts> ^instructor-message <im>)
+#   (<im> ^context <c> ^id 99 ^information <i> ^speaker instructor ^type verb-command)
+#   (<i> ^verb <v>)
+#   (<v> ^direct-object <do> ^preposition <prep> ^word <verb>)
+#   (<do> ^object <o1>)
+#   (<o1> ^specifier DEF ^word square ^word green)
+#   (<prep> ^object <o2> ^word to)
+#   (<o2> ^specifier DEF ^word grid1)
+#   (<status> ^performed.action-event.type turn)   
+#}

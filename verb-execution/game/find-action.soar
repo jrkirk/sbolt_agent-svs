@@ -15,28 +15,50 @@ sp {find-action*build-action-options
    (state <s> ^name find-action
               ^game.actions.action <a>
 #              ^game.facts.equivalences <eq>
-              ^topstate.<thing> <o>
+              ^topstate.<thing> <obj>
               ^game-name <game>)
    (<a> ^parameters <p>)
    (<p> ^<arg>.{<param> <> type} <pa> ^<arg>.type.world.<thing> <atr>)
 #   (<eq> ^equivalence <eq1>)
 #   (<eq1> ^a.parameter <param>
 #          ^b.world <thing>)
-   (<o> ^<atr> <param>)
+   (<obj> ^<atr> <param>)
 -->
-   (<p> ^option.<arg> <o>)
+   (<p> ^option.<arg> <obj>)
+}
+
+sp {find-action*propose*check-valid-parameter
+   (state <s> ^name find-action
+             -^valid-arg.<arg> <obj>
+             -^invalid-arg.<arg> <obj>
+              ^game.actions.action <a>)
+   (<a> ^parameters <p> ^conditions <c>)
+   (<p> ^option.<arg> <obj>)
+   (<c> ^<arg> <conda>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name check-valid-parameter
+        ^category svs
+        ^arg <arg>
+        ^obj <obj>
+        ^objd <objd>
+        ^cond <conda>)
 }
 
 sp {find-action*propose*complete-find-action
    (state <s> ^name find-action
-              ^game.actions.action <a>)
+              ^game.actions.action <a>
+              ^valid-arg.a <o1>
+              ^valid-arg.b <o2>)
    (<a> ^parameters <p>)
-   (<p> ^option.<arg> <o>)
+   (<p> ^option.a <o1> ^option.b <o2>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name complete-find-action
         ^category svs
-        ^action <a>)
+        ^action <a>
+        ^obja <o1> 
+        ^objb <o2>)
 }
 
 sp {find-action*apply*complete-find-action
@@ -45,9 +67,13 @@ sp {find-action*apply*complete-find-action
               ^superstate <ss>
               ^game.actions.action <a>)
    (<o> ^name complete-find-action
+        ^obja <o1>
+        ^objb <o2>
         ^action <a>)
 -->
-   (<ss> ^action <a>)
+   (<ss> ^action <a>
+         ^obj1 <o1>
+         ^obj2 <o2>)
 }
 
 

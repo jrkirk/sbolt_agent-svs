@@ -17,3 +17,17 @@ sp {find-action*elaborate*copy-down-attrs
 -->
    (<s> ^game-name <name>)
 }
+
+sp {check-valid-parameter*elaborate*copy-down-attrs
+   (state <s> ^name check-valid-parameter
+              ^superstate.operator <o>)
+   (<o> ^arg <arg>
+        ^cond <cond>
+        ^objd <objd>
+        ^obj <obj>)
+-->
+   (<s> ^arg <arg>
+        ^cond <cond>
+        ^objd <objd>
+        ^obj <obj>)
+}
