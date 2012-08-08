@@ -37,7 +37,6 @@ sp {start-turn*propose*lookup*semantic-memory
    	      ^mcue <cue>
 	      -^linguistic <any>)
   -->
-   (interrupt)
    (<s> ^operator <op> +)
    (<op> ^name get-linguistic-id
    	 ^cue <cue>
@@ -102,6 +101,33 @@ sp {start-turn*propose*do-action
 #   	     ^information <info>
 	     ^indexed-operator <map-op>)
 }
+
+sp {start-turn*propose*complete-turn
+   (state <s> ^name start-turn
+#              ^impasse no-change
+#              ^attribute state
+              ^action <action>
+              ^obj1 <oa>
+              ^obj2 <ob>
+              ^indexed-operator <map-op>
+              ^game-name <game>)
+ -->
+   (<s> ^operator <o> +)
+   (<o> ^name complete-turn
+        ^flaged complete
+        ^category composite-action)
+}
+
+sp {start-turn*apply*complete-turn
+   (state <s> ^name start-turn
+              ^topstate.status <status>
+              ^operator <o>)
+   (<o> ^name complete-turn)
+-->
+   (interrupt)
+   (<status> ^performed.action-event.type turn) 
+}
+
 #sp {start-turn*propose*do-action
 #   (state <s> ^name start-turn
 #              ^action <action>

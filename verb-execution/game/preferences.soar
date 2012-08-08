@@ -68,3 +68,14 @@ sp {prefer*find-relations*over*describe-object
 -->
    (<s> ^operator <o1> > <o2>)
 }
+
+sp {prefer*do-action*over*complete-turn
+   (state <s> ^name start-turn
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^category composite-action)
+   (<o2> ^category composite-action
+         ^flaged complete)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
