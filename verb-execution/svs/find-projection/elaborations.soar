@@ -22,6 +22,19 @@ sp {find-projection*elaborate*copy-down-attrs*optional*found-prep
         ^found-prep <fprep>)
 }
 
+sp {find-projection*elaborate*copy-down-attrs*optional*predicate
+   (state <s> ^name find-projection
+              ^superstate.operator.a.id <ida>
+              ^superstate.operator.b.id <idb>
+              ^superstate.operator.predicate <pred>)
+-->
+   (<s> ^result <res>
+        ^a <ida>
+        ^b <idb>
+        ^stat old
+        ^predicate <pred>)
+}
+
 sp {find-projection*elaborate*copy-down-attrs*optional*interaction
    (state <s> ^name find-projection
               ^superstate.operator.interaction <int>)

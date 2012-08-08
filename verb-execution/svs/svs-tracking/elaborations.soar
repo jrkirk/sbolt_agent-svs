@@ -38,3 +38,15 @@ sp {svs-tracking*elaborate*create*tracked-relation
 -->
    (<relation> ^tracked-relation <tr> ^prep <prep>)
 }
+
+sp {svs-tracking*elaborate*create*tracked-relation*predicate
+   (state <s> ^topstate <s>
+              ^track-relation <relation>)
+   (<relation> ^object1.id <ida>
+               ^object2.id <idb>
+               ^predicate <pred>)
+   (<pred> ^name <prep>)
+-->
+   (<relation> ^tracked-relation <tr> ^prep <prep> ^found-prep <fprep>)
+   (<fprep> ^stat old ^type <prep> ^predicate <pred>)
+}
