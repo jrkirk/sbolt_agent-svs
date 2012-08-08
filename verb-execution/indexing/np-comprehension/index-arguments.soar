@@ -18,7 +18,8 @@ sp {elaborate*index-arguments
 sp {propose*index-object
    (state <s> ^name index-argument
    	      ^argument <arg>
-	      -^match <any>)
+	      -^match <any>
+	      ^connector <con>)
 -->
    (<s> ^operator <o> +)
    (<o> ^name index-object
@@ -26,19 +27,20 @@ sp {propose*index-object
 	^use-interaction true
   	^infer-match true # AM: Allows index-object to guess a match if there is only one partial match
 	^return-all true
-	^object <arg>)
+	^object <arg>
+	^context-id <con>)
 }
 
 ### copy the correct object if find-object is successful
 sp {copy*matched*object
    (state <s> ^name index-argument
    	      ^operator <op>
-	      ^argument <arg>) 
+	      ^argument <arg>
+	      ^connector <con>) 
    (<op> ^match <obj>
    	 ^name index-object)
  -->   
     (<s> ^match <obj>)
-  #  (<obj> ^_ldesc <arg>)
 }
 
 ### write matched object to the superstate

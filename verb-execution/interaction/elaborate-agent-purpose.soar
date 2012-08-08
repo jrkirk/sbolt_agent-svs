@@ -49,3 +49,18 @@ sp {elaborate*agent-purpose*get-goal
    (<sat> ^dialog-event <de>)
    (<de> ^type goal-relation-message)
 }	     
+
+sp {elaborate*agent-purpose*unreachable-goal
+   (state <s> ^topstate <s>
+   	      ^status <status>)
+   (<status> ^performed.learning-event <e>)
+   (<e> ^type explanation
+   	^information failure)
+-->
+   (<status> ^purpose <p>)
+   (<p> ^type restart-task-instruction
+        ^parameters.message.type restart-task-instruction
+   	^satisfaction <sat>)
+        # AM: Changed the satisfaction structure
+   (<sat> ^dialog-event.type verb-command)
+}

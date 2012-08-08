@@ -11,7 +11,6 @@ sp {elaborate*goal-acquistion*indexed-operator
    (<p> ^indexed-operator <iop>)
 }
 
-
 sp {propose*map*goal
    (state <s> ^interaction.stack.segment <top>)
    (<top> ^originator instructor

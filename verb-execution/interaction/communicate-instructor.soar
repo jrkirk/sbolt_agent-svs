@@ -30,7 +30,7 @@ sp {apply*communicate*copy*type
               ^operator <o>)
    (<o> ^name communicate
         ^message <msg>)
-   (<p> ^type {<type> << get-next-task get-next-subaction get-goal >>})
+   (<p> ^type {<type> << get-next-task get-next-subaction get-goal restart-task-instruction >>})
 -->
    (<msg> ^type <type>)
 }

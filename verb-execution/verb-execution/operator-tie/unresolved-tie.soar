@@ -20,7 +20,8 @@ sp {operator-tie*apply*write-unresolved-tie-topstate
    (state <s> ^operator <op>
 	      ^superstate <top>
 	      ^topstate <top>)
-   (<top> ^status <status>)
+   (<top> ^status <status>
+   	  -^failed explanation)
    (<op> ^name indicate-unresolved-tie)
 -->
    (<status> ^type unresolved-tie
@@ -31,12 +32,26 @@ sp {operator-tie*apply*write-unresolved-ties-no-topstate
    (state <s> ^superstate <ss>
    	      ^topstate <top> <> <ss>
 	      ^operator <op>)
-   (<top> ^status <status>)
+   (<top> ^status <status>
+   	  -^failed explanation)
    (<op> ^name indicate-unresolved-tie)
    (<ss> ^name <ssname>)
 -->
    (<status> ^type unresolved-tie
    	     ^state-name <ssname>)
+}
+
+sp {operator-tie*apply*topstate*failed-explanation
+   (state <s> ^topstate <top>
+   	      ^superstate <top>
+	      ^operator <op>)
+   (<top> ^status <status>
+   	  ^failed explanation)
+   (<op> ^name indicate-unresolved-tie)
+-->
+   (<status> ^performed.learning-event <e>)
+   (<e> ^type explanation
+   	^information failure)
 }
 	      
  

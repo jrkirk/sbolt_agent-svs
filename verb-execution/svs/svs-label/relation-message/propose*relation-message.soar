@@ -15,7 +15,8 @@ sp {relation-messaging*propose*index-object1
   		^infer-match true # AM: Allows index-object to guess a match if there is only one partial match
         ^obj 1
         ^category object-processing
-	    ^object <obj1>)
+	    ^object <obj1>
+	    ^context-id object1)
 }
 
 sp {relation-messaging*propose*index-object2
@@ -34,7 +35,8 @@ sp {relation-messaging*propose*index-object2
   		^infer-match true # AM: Allows index-object to guess a match if there is only one partial match
         ^obj 2
         ^category object-processing
-	    ^object <obj2>)
+	    ^object <obj2>
+	    ^context-id object2)
 }
 
 

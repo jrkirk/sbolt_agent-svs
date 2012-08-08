@@ -34,7 +34,8 @@ sp {elaborate*instructor-message*purpose*case1*done
    (<p> ^type explanation
    	 ^satisfaction <sat>)
    # AM: Changed the satisfaction structure
-   (<sat> ^learning-event.type explanation)
+   (<sat> ^learning-event <e>)
+   (<e> ^type explanation)
 }
 
 ### case 3 goal-message, purpose: to attach the concept of a goal to a verb
@@ -60,7 +61,6 @@ sp {elaborate*instructor-message*purpose*case2
     (<m> ^purpose <p>)
     (<p> ^type explanation
     	 ^satisfaction <sat>)
-    
-     # AM: Changed the satisfaction structure
+         # AM: Changed the satisfaction structure
     (<sat> ^learning-event.type explanation)
  }

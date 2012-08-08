@@ -40,7 +40,7 @@ sp {elaborate*attribute*match
 sp {elaborate*operator*match
    (state <s> ^operator <op> + 
    	      ^indexed-operator <map-op> <> <op>)
-   (<map-op> ^{<attr> <> applied <> information <> spatial-relationship <> _metadata} <val>)
+   (<map-op> ^{<attr> <> applied <> information <> _relation <> _metadata} <val>)
    (<op> -^matched <attr>
    	 ^category << primitive-action composite-action >>)
 -->
@@ -83,7 +83,7 @@ sp {propose*indexed-operator*if*no-choices
 sp {augment*spatial-relationship
    (state <s> ^indexed-operator <iop>
    	      ^operator <op>)
-   (<iop> ^spatial-relationship <rel>)
+   (<iop> ^_relation._ltid <rel>)
    (<op> ^category primitive-action)
 -->
    (<op> ^spatial-relationship <rel>)

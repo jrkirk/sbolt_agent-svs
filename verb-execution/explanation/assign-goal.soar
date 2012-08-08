@@ -44,9 +44,10 @@ sp {assign-goal*elaborate*desired*state
    	      ^desired <d>
 	      ^long-term-id <glid>)
    (<glid> ^<prep> <p1>)
+   (<p1> ^type <ltid>)
 -->
    (<d> ^track-relation <rel>)
-   (<rel> ^prep <prep>)
+   (<rel> ^spatial-relationship <ltid>)
 }
 
 ### connect desired to the objects in the indexed-operator
@@ -56,8 +57,9 @@ sp {assign-goal*elaborate*objects
 	      ^long-term-id <glid>
 	      ^superoperator <iop>)
    (<glid> ^<prep> <p1>)
-   (<tr> ^prep <prep>)
-   (<p1> ^<parg> <sobj>)
+   (<tr> ^spatial-relationship <type>)
+   (<p1> ^{<parg> <> type} <sobj>
+   	 ^type <type>)
    (<iop> ^_metadata.map-id.procedural.<varg> <sobj>
    	  ^<varg> <obj>)
 -->
@@ -73,8 +75,9 @@ sp {assign-goal*elaborate*semantic-objects
 	      ^long-term-id <glid>
 	      ^superoperator <iop>)
    (<glid> ^<prep> <p1>)
-   (<tr> ^prep <prep>)
-   (<p1> ^<parg> <sobj>)
+   (<tr> ^spatial-relationship <type>)
+   (<p1> ^{<parg> <> type} <sobj>
+   	 ^type <type>)
    (<iop> -^_metadata.map-id.procedural.<varg> <sobj>
    	  ^name <opname>)
 -->
