@@ -4,31 +4,41 @@ sp {propose*put-down-object-location
 	      ^object <loc>
 	     -^problem-space << lgsoar message-interpretation >>
 	     ^name {<any> <> evaluate-operator})
-	     -{(<s> ^track-relation <relation>)
-     (<relation> ^object1 <obj>
-     		 ^object2 <loc>
-		 ^vprep in
-		 ^complete success)
-   }#### the topstate does not have a track-relation that already has what this action is trying to do
    (<loc> ^category location)
 -->
    (<s> ^operator <op> +)
    (<op> ^name op_put-down-object-location
    	 ^argument1 <obj>
 	 ^argument2 <loc>
-	 ^spatial-relationship in
 	 ^category primitive-action)
+}
+
+### if an operator is trying to achieve what track-relation has tracked to be success
+sp {retract*put-down-object-location
+   (state <s> ^operator <op>)
+   (<op> ^name << op_put-down-object-location op_put-down-object-object >>
+   	 ^argument1 <obj>
+	 ^argument2 <loc>
+	 ^spatial-relationship <rel>)
+   (<s> ^track-relation <tr>)
+   (<tr> ^object1 <obj>
+     	 ^object2 <loc>
+	 ^complete success
+	 ^vpredicate <rel>)
+-->
+  (<s> ^operator <op> -)
 }
 
 
 ### control in close loop with SVS
 ## elaborate the operator state
 sp {elaborate*op_put-down-object-location
-   (state <s> ^name op_put-down-object-location
+   (state <s> ^name  << op_put-down-object-location op_put-down-object-object >>
    	      ^superstate <ss>
-	      ^io)
+	      ^io
+	      ^smem.command <scomm>)
    (<ss> ^operator <sop>)
-   (<sop> ^name op_put-down-object-location
+   (<sop> ^name << op_put-down-object-location op_put-down-object-object >>
    	  ^argument1 <obj>
 	  ^argument2 <loc>
 	  ^spatial-relationship <rel>)
@@ -36,23 +46,12 @@ sp {elaborate*op_put-down-object-location
    (<s> ^argument1 <obj>
    	^argument2 <loc>
 	^spatial-relationship <rel>)
+   (<scomm> ^retrieve <rel>)
 }
 
-## find long-term-id related to preposition
-sp {propose*svs*lookup-preposition
-   (state <s> ^name op_put-down-object-location
-   	      ^io
-              ^projection-result <any>
-	      ^spatial-relationship <rel>
-	      -^found-prep <fprep>)
--->
-  (<s> ^operator <op> + >)
-  (<op> ^name lookup-preposition
-  	^type <rel> ^category svs)
-}
 ## determine the location x,y,z using SVS
 sp {propose*svs*find-projection
-   (state <s> ^name op_put-down-object-location
+   (state <s> ^name << op_put-down-object-location op_put-down-object-object >>
    	      ^io
    	      ^argument1 <obj>
 	      ^argument2 <loc>
@@ -62,41 +61,39 @@ sp {propose*svs*find-projection
    (<s> ^operator <op> + >)
    (<op> ^name find-projection
          ^interaction true
-   	^a <obj>
-	^b <loc>
-	^type <rel>
-	^category svs)
+   	 ^a <obj>
+	 ^b <loc>
+	 ^predicate <rel>
+	 ^category svs)
 }
 
 ## set up tracking
 ## SM 06/17/2012: changed to work with tracking in the superstate
 sp {set*svs*tracking
-(state <s> ^name << op_put-down-object-location op_put-down-object-object >> #AM: Is this the right merge?
-#(state <s> ^name op_put-down-object-location
+   (state <s> ^name << op_put-down-object-location op_put-down-object-object >>
    	      ^projection-result <res>
 	      ^io
 	      ^argument1 <obj>
 	      ^argument2 <loc>
 	      ^spatial-relationship <rel>
-	      ^found-prep <fprep>
 	      ^topstate <ts>)
    (<ts> ^object <obj>
-      ^object <loc>)
+         ^object <loc>)
 -->
    (<ts> ^track-relation <relation>)
    (<relation> ^object1 <obj>
    	       ^object2 <loc>
-	       ^found-prep <fprep>
-	       ^vprep <rel>)
+	       ^predicate <rel>
+	       ^vpredicate <rel>)
 }
 
 ## put actions on the output-link
 sp {elaborate*put-down*object*location*action
-   (state <s> ^name op_put-down-object-location
+   (state <s> ^name << op_put-down-object-location op_put-down-object-object >>
    	      ^superstate <ss>
 	      ^projection-result <res>)
    (<ss> ^operator <sop>)
-   (<sop> ^name op_put-down-object-location)
+   (<sop> ^name << op_put-down-object-location op_put-down-object-object >>)
 -->
    (<sop> ^actions.put-down.location <res>		 
    	 ^category primitive-action)
@@ -123,15 +120,17 @@ sp {apply*put-down*location*action-model
    (state <s> ^operator <op>	
 	     -^io
 	     ^grabbed <obj>)
-   (<op> ^name op_put-down-object-location
+   (<op> ^name << op_put-down-object-location op_put-down-object-object >>
    	 ^argument1 <obj>
-	 ^argument2 <loc>)
+	 ^argument2 <loc>
+	 ^spatial-relationship <rel>)
 -->
    (<s> ^grabbed <obj> -
-   	^track-relation <rel>)
-   (<rel> ^object1 <obj>
+   	^track-relation <trel>)
+   (<trel> ^object1 <obj>
           ^object2 <loc>
-          ^prep in
-          ^complete success)
+          ^predicate <rel>
+          ^complete success
+	  ^vpredicate <rel>)
 }
 

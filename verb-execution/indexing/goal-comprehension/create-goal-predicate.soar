@@ -15,6 +15,8 @@
 #   (<scomm> ^retrieve <gid>)
 #}
 
+
+
 #### create state
 sp {elaborate*create-goal-predicate
    (state <s> ^name create-goal-predicate
@@ -35,6 +37,7 @@ sp {elaborate*create-goal-predicate
 	^goal-id <gid>)
 }	
 
+
 ### elaborate preposition-id
 sp {elaborate*preposition-id
    (state <s> ^preposition-id <id>
@@ -44,23 +47,48 @@ sp {elaborate*preposition-id
    (<id> ^word <prep-word>)
 }
 
+### index preposition
+sp {propose*index-preposition*goal-predicate
+   (state <s> ^name create-goal-predicate
+   	      ^preposition-id.word <prep>
+	      -^_relation.preposition <prep>)
+ -->
+   (<s> ^operator <op> +)
+   (<op> ^name index-preposition
+   	 ^preposition <prep>
+	 ^category indexing)
+}
+
+sp {index-preposition*goal-predicate*write-to-superstate
+   (state <s> ^name create-goal-predicate
+   	      ^preposition-id.word <prep>
+	      ^_relation <rel>
+	      ^superstate <ss>)
+   (<rel> ^preposition <prep>)
+-->
+   (<ss> ^_relation <rel>)
+}
+
 #### index arguments
 sp {propose*index*argument
    (state <s> ^name create-goal-predicate
    	      ^information <info>
 	      ^bit flip
-	      ^preposition-id <id>)
+	      ^preposition-id <id>
+	      ^_relation.preposition)
    (<info> ^{<argattr> <> word} <obj>)
    (<obj> ^object <arg>)
-   (<id> -^<argattr> <anything>)
+   (<id> -^<argattr> <anything>
+   	 ^word <prep>)
 -->
    (<s> ^operator <op> + =)
    (<op> ^name index-argument
-   	 ^category indexing
+   	 ^category indexing	
 	 ^connector <argattr>
 	 ^cue <id>
 	 ^argument <arg>)
 }
+
 
 #### using dialog context, resolve the referent
 #### improper dialog context
@@ -112,15 +140,24 @@ sp {create*relation*semantic-object*substructure
 sp {write*superstate
    (state <s> ^superstate <ss>
    	      ^impasse no-change
-	      ^attribute state)
+	      ^attribute state
+	      ^smem.command <scomm>)
    (<ss> ^name create-goal-predicate
-   	      ^relation <rel>
-	      ^goal-id <gid>
-	      ^superstate <sss>
-	      ^preposition-id.word <pword>)
+   	 ^relation <rel>
+	 ^goal-id <gid>
+	 ^superstate <sss>
+	 ^preposition-id.word <pword>
+	 ^_relation <trel>)
+   (<trel> ^preposition <pword>
+   	  ^_ltid <cid>)
    (<rel> ^<sub> <structure>)
 -->
-   (<gid> ^<pword> <rel>)
+   (<gid> ^predicate <rel>)
+   (<rel> ^type <cid>
+   	  ^g_prep_name <pword>)
+   (<scomm> ^store <gid>
+   	    ^store <rel>
+	    ^store <cid>)
    (<sss> ^bit flip)
 }
 

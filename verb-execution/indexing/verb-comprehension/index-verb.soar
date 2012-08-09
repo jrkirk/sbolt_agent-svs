@@ -7,7 +7,6 @@ sp {elaborate*state*index-verb
    (<s> ^information <info>)
 }
 
-
 ### create cue
 sp {propose*create*cue
    (state <s> ^name index-verb

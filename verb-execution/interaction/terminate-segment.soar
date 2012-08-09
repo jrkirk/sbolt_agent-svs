@@ -94,7 +94,7 @@ sp {elaborate*pop-segment*next-is-satisfied
 # AM: Now uses the next-is-satisfied flag to decide when to clear a status
 sp {apply*pop-segment*instructor*clear
    (state <s> ^status <status>
-   	      		^operator <o>)
+   	      ^operator <o>)
    (<o> ^name pop-segment
        -^next-is-satisfied true)
 -->

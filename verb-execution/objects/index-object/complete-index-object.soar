@@ -12,17 +12,19 @@ sp {complete*index-object*mark-finished
    (<ss-op> ^finished true)
 }
 
+
+# SM: is there a need to remove the context? if the purpose of the segment is achieved, the segment will go away 
 # Removes the context from the topstate when the operator finishes
-sp {complete*index-object*destroy-context
-   (state <s> ^operator <o>
-              ^topstate <top>)
-   (<o> ^name index-object
-        ^finished true)
-   (<top> ^interaction.stack.segment.info <info>)
-   (<info> ^index-object-context <context>)
--->
-   (<info> ^index-object-context <context> -)
-}
+# sp {complete*index-object*destroy-context
+#    (state <s> ^operator <o>
+#               ^topstate <top>)
+#    (<o> ^name index-object
+#         ^finished true)
+#    (<top> ^interaction.stack.segment.info <info>)
+#    (<info> ^index-object-context <context>)
+# -->
+#    (<info> ^index-object-context <context> -)
+# }
 
 # index-object-failure
 #  As soon as we know that the index will fail, we mark it on the superstate operator

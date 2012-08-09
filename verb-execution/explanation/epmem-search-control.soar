@@ -69,7 +69,7 @@ sp {elaborate*operator*match*epmem
    (state <s> ^name selection
    	      ^indexed-operator <map-op>
    	      ^operator <o> +)
-   (<map-op> ^{<attr> <> applied <> information <> _metadata <> spatial-relationship} <val>) ### excluded agent architecture arguments from matching: SM
+   (<map-op> ^{<attr> <> applied <> information <> _metadata <> spatial_relationship <> _relation} <val>) ### excluded agent architecture arguments from matching: SM
    (<o> -^matched <attr>)
 -->
    (<o> ^not-matched <attr>)
@@ -93,12 +93,12 @@ sp {prefer*match*epmem*elaborate*spatial-rel
    (<o> -^not-matched <any>
    	^superoperator <sop>)
    (<des> ^track-relation <tr>)
-   (<tr> ^prep <prep>
+   (<tr> ^spatial-relationship <prep>
    	 ^p1 <val3>
 	 ^p2 <val4>)
    (<sop> ^<arg1> <val1>
    	  ^<arg2> <val2>)
- (<val1> ^focus <fval1>)
+   (<val1> ^focus <fval1>)
    (<val2> ^focus <fval2>)
    (<val3> ^focus <fval1>)
    (<val4> ^focus <fval2>)
@@ -106,4 +106,27 @@ sp {prefer*match*epmem*elaborate*spatial-rel
    (<sop> ^spatial-relationship <prep>)
 }
 
+
+### elaborate spatial relationship others
+sp {prefer*match*epmem*elaborate*spatial-rel*indexed-operator
+   (state <s> ^name selection
+   	      ^operator <o>
+	      ^superstate.desired <des>
+	      ^indexed-operator <iop>)
+   (<o> -^not-matched <any>
+   	^superoperator <sop>)
+   (<iop> ^_relation._ltid <prep>)
+   (<des> ^track-relation <tr>)
+   (<tr> ^spatial-relationship <prep>
+   	 ^p1 <val3>
+	 ^p2 <val4>)
+   (<sop> ^<arg1> <val1>
+   	  ^<arg2> <val2>)
+   -{(<val1> ^focus <fval1>)
+   (<val2> ^focus <fval2>)
+   (<val3> ^focus <fval1>)
+   (<val4> ^focus <fval2>)}
+-->
+   (<sop> ^spatial-relationship <prep>)
+}
 

@@ -1,9 +1,19 @@
-sp {prefer*find-relations*over*lookup-preposition*location-question
+sp {prefer*lookup-preposition*over*find-relations*location-question
    (state <s> ^name location-question
               ^operator <o1> +
               ^operator <o2> +)
    (<o1> ^name find-relations)
    (<o2> ^name lookup-preposition)
+-->
+   (<s> ^operator <o2> > <o1>)
+}
+
+sp {prefer*lookup-preposition-list*over*find-relations*location-question
+   (state <s> ^name location-question
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name find-relations)
+   (<o2> ^name lookup-preposition-list)
 -->
    (<s> ^operator <o2> > <o1>)
 }
@@ -32,6 +42,16 @@ sp {prefer*lookup-preposition*over*end-location-question*location-question
               ^operator <o1> +
               ^operator <o2> +)
    (<o1> ^name lookup-preposition)
+   (<o2> ^name end-location-question)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+sp {prefer*lookup-preposition-list*over*end-location-question*location-question
+   (state <s> ^name location-question
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name lookup-preposition-list)
    (<o2> ^name end-location-question)
 -->
    (<s> ^operator <o1> > <o2>)

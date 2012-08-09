@@ -7,3 +7,5 @@ source elaboration.soar
 
 source epmem-search-control.soar
 source find-next-episode.soar
+
+source focus.soar

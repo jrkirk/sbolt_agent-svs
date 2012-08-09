@@ -70,7 +70,7 @@ sp {find-relations*propose*found-possible-match*not-all-aligned
         ^relation <r>)
 }
 
-sp {find-relations*apply*found-possible-match*extract-distance
+sp {find-relations*apply*found-possible-match*extract_once-distance
    (state <s> ^name find-relations
               ^operator <o>
               ^topstate <ss>
@@ -88,7 +88,7 @@ sp {find-relations*apply*found-possible-match*extract-distance
    (<C> ^id <obja1> ^id-int <id>)
    (<C2> ^id <objb1> ^id-int <objb>)
 -->
-   (<cmd> ^extract <P11>)
+   (<cmd> ^extract_once <P11>)
    (<P11> ^a <N7> ^b <N8> ^type distance_xyz ^axis <axis>)
    (<N7> ^type node ^id <obja1>)
    (<N8> ^type node ^id <objb1>)
@@ -143,7 +143,7 @@ sp {find-relations*apply*found-possible-match*check-distance
          ^relation <rel>)
    (<rel> ^axis <axis> ^avg <avg> ^top <top> ^bottom <bot> -^count 1)
    (<ss> ^svs.command <cmd>)
-   (<cmd> ^extract <ED1>)
+   (<cmd> ^extract_once <ED1>)
    (<ED1> ^type distance_xyz ^axis <axis> ^result.record <rec>)
    (<rec> ^value { >= <bot> <= <top> } ^params <A>)
    (<A> ^a <obja1>
@@ -170,7 +170,7 @@ sp {find-relations*apply*found-possible-match*check-distance*false
          ^relation <rel>)
    (<rel> ^axis <axis> ^avg <avg> ^top <top> ^bottom <bot> -^count 1)
    (<ss> ^svs.command <cmd>)
-   (<cmd> ^extract <ED1>)
+   (<cmd> ^extract_once <ED1>)
    (<ED1> ^type distance_xyz ^axis <axis> ^result.record <rec>)
    (<rec> -^value { >= <bot> <= <top> } ^params <A>)
    (<A> ^a <obja1>
@@ -197,7 +197,7 @@ sp {find-relations*apply*found-possible-match*check-distance*true-for-one
          ^relation <rel>)
    (<rel> ^axis <axis> ^avg <avg> ^top <top> ^bottom <bot> ^count 1)
    (<ss> ^svs.command <cmd>)
-   (<cmd> ^extract <ED1>)
+   (<cmd> ^extract_once <ED1>)
    (<ED1> ^type distance_xyz ^axis <axis> ^result.record <rec>)
    (<rec> ^value <val> ^params <A>)
    (<A> ^a <obja1>

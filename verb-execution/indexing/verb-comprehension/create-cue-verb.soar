@@ -49,22 +49,36 @@ sp {propose*index-argument*direct-object
 	 ^category indexing)
 }
 
-sp {propose*index-argument*preposition-object
+
+sp {propose*index-argument*preposition
+   (state <s> ^name create-cue
+   	      ^information.verb <info>
+	      ^bit flip
+	      -^_relation.preposition <prep>)
+   (<info> ^preposition.word <prep>)
+  -->
+   (<s> ^operator <op> + =)
+   (<op> ^name index-preposition
+	 ^preposition <prep>
+	 ^category indexing)
+}
+
+sp {propose*index-argument*preposition*object
    (state <s> ^name create-cue
    	      ^information.verb <info>
 	      ^cue <cue>
 	      -^matched <obj>
-	      ^bit flip)
-   (<info> ^preposition <p>)
-   (<p> ^word <pword>
-   	^object <obj>)
-   (<cue> -^<pword> <any>)
+	      ^bit flip
+	      ^_relation <rel>)
+   (<info> ^preposition.object <obj>)
+   (<rel> ^preposition <p>)
+   (<cue> -^<p> <any>)
 -->
    (<s> ^operator <op> + =)
    (<op> ^name index-argument
    	 ^cue <cue>
 	 ^argument <obj>
-	 ^connector <pword>
+	 ^connector <p>
 	 ^category indexing)
 }
 
@@ -99,6 +113,17 @@ sp {write-to-superstate*copy-success*match-complete
 	      ^information.verb <info>)
 -->
    (<ss> ^cue <cue>)
+}
+
+sp {write-to-superstate*copy-success*match-complete*spatial-relationship
+   (state <s> ^name create-cue
+   	      -^match not-complete
+	      ^_relation <rel>
+	      ^matched <arg>
+	      ^superstate <ss>
+	      ^information.verb <info>)
+-->
+   (<ss> ^_relation <rel>)
 }
    
    

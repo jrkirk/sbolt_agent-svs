@@ -36,7 +36,10 @@ sp {propose*create-goal-predicate
 	      ^indexed-operator <iop>
 	      ^map-id <map>)
    (<rel> ^word <pword>)
-   (<gid> -^<pword> <any>)
+  -{(<s> ^_relation <trel>)
+    (<trel> ^preposition <pword>
+     	   ^_ltid <lid>)
+    (<gid> ^<lid> <any>)}
 -->
    (<s> ^operator <op> +)
    (<op> ^name create-goal-predicate
@@ -61,9 +64,12 @@ sp {write*status*topstate
    (state <s> ^name index-goal
    	      ^goal-id <gid>
 	      ^information.relation <rel>
-	      ^indexed-operator <iop>)
-   -{(<rel> ^word <pword>)
-    (<gid> -^<pword> <any>)}
+	      ^indexed-operator <iop>
+	      ^_relation <trel>)
+  (<trel> ^preposition <pword>
+   	   ^_ltid <lid>)
+ -{(<rel> ^word <pword>)
+   (<gid> -^predicate.type <lid>)}
 -->
    (<iop> ^goal <gid>)
 }

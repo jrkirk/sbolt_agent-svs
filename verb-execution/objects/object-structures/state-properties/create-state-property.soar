@@ -8,7 +8,7 @@ sp {apply*lookup-object*create-state-property
         ^object <obj>
         ^id <id>)
    (<il-obj> ^id <id>
-             ^state-property <prop>)
+             ^state-prop <prop>)
    (<prop> ^type state
            ^name <prop-name>
            ^value <prop-val>)
