@@ -9,7 +9,7 @@ sp {new-operator*detect*track-relation*success
    (<tr> ^complete success
    	 ^object1 <val3>
 	 ^object2 <val4>
-	 ^found-prep <prep>)
+	 ^vpredicate <prep>)
    (<val1> ^focus <fval1>)
    (<val2> ^focus <fval2>)
    (<val3> ^focus <fval1>)

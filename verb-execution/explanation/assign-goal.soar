@@ -45,10 +45,27 @@ sp {assign-goal*elaborate*desired*state
 	      ^long-term-id <glid>)
    (<glid> ^<prep> <p1>)
    (<p1> ^type <ltid>)
+   (<ltid> ^relation <relation>)
 -->
    (<d> ^track-relation <rel>)
    (<rel> ^spatial-relationship <ltid>)
 }
+
+### propose lookup preposition if all the augmentation of the long-term preposition id are not retrieved
+sp {assign-goal*propose*lookup-preposition
+   (state <s> ^name assign-goal
+   	      ^long-term-id <glid>
+	      -^found-prep.predicate <ltid>)
+   (<glid> ^<prep> <p1>)
+   (<p1> ^type <ltid>
+   	 ^g_prep_name <p-name>)
+-->
+   (<s> ^operator <op> + =)
+   (<op> ^name lookup-preposition
+   	 ^type <p-name>
+	 ^category svs)
+}
+
 
 ### connect desired to the objects in the indexed-operator
 sp {assign-goal*elaborate*objects
@@ -99,7 +116,7 @@ sp {assign-goal*write*superstate*desired
 
 
 ### create the desired attribute on the state
-sp {assign-goal*propsoe*retrieve-predicate
+sp {assign-goal*propose*retrieve-predicate
    (state <s> ^name assign-goal
    	      ^long-term-id <glid>
 	      ^smem.result <sres>)

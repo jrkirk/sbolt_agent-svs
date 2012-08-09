@@ -21,7 +21,7 @@ sp {propose*index-preposition*lookup-preposition
     (<s> ^operator <op> + >)
     (<op> ^name lookup-preposition
     	  ^type <p>
-	  ^category <svs>
+	  ^category svs
 	  ^interaction true)
 }
 
@@ -29,10 +29,11 @@ sp {create*_relation*structure
    (state <s> ^name index-preposition
    	      ^found-prep <cid>
 	      ^preposition <p>)
+   (<cid> ^predicate <pred>)
  -->
    (<s> ^_relation <rel>)
    (<rel> ^preposition <p>
-   	  ^_ltid <cid>
+   	  ^_ltid <pred>
 	  ^type spatial)
 }
 

@@ -153,7 +153,8 @@ sp {write*superstate
    (<rel> ^<sub> <structure>)
 -->
    (<gid> ^predicate <rel>)
-   (<rel> ^type <cid>)
+   (<rel> ^type <cid>
+   	  ^g_prep_name <pword>)
    (<scomm> ^store <gid>
    	    ^store <rel>
 	    ^store <cid>)

@@ -23,8 +23,8 @@ sp {retract*put-down-object-location
    (<s> ^track-relation <tr>)
    (<tr> ^object1 <obj>
      	 ^object2 <loc>
-	 ^found-prep <rel>
-	 ^complete success)
+	 ^complete success
+	 ^vpredicate <rel>)
 -->
   (<s> ^operator <op> -)
 }
@@ -63,7 +63,7 @@ sp {propose*svs*find-projection
          ^interaction true
    	 ^a <obj>
 	 ^b <loc>
-	 ^found-prep <rel>
+	 ^predicate <rel>
 	 ^category svs)
 }
 
@@ -83,7 +83,8 @@ sp {set*svs*tracking
    (<ts> ^track-relation <relation>)
    (<relation> ^object1 <obj>
    	       ^object2 <loc>
-	       ^found-prep <rel>)
+	       ^predicate <rel>
+	       ^vpredicate <rel>)
 }
 
 ## put actions on the output-link
@@ -128,7 +129,8 @@ sp {apply*put-down*location*action-model
    	^track-relation <trel>)
    (<trel> ^object1 <obj>
           ^object2 <loc>
-          ^found-prep <rel>
-          ^complete success)
+          ^predicate <rel>
+          ^complete success
+	  ^vpredicate <rel>)
 }
 
