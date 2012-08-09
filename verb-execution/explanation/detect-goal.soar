@@ -1,6 +1,7 @@
 ### detect track-relation success (based on the action-model) ### HACKY, only one track relation
 sp {new-operator*detect*track-relation*success
    (state <s> ^desired <d>
+              ^superstate <ss> #JK also copy success onto superstate
    	      ^track-relation <tr>)
    (<d> ^track-relation <dtr>)
    (<dtr> ^p1 <val1>
@@ -16,5 +17,6 @@ sp {new-operator*detect*track-relation*success
    (<val4> ^focus <fval2>)
 -->
    (<s> ^success <d>)
+   (<ss> ^success <d>) #JK also copy success onto superstate
 }
    

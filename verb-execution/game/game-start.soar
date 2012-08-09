@@ -93,6 +93,7 @@ sp {start-turn*propose*do-action
               ^action <action>
               ^obj1 <oa>
               ^obj2 <ob>
+             -^success
               ^indexed-operator <map-op>
               ^game-name <game>)
  -->
@@ -109,13 +110,12 @@ sp {start-turn*propose*complete-turn
               ^action <action>
               ^obj1 <oa>
               ^obj2 <ob>
-              ^indexed-operator <map-op>
+              ^success
               ^game-name <game>)
  -->
    (<s> ^operator <o> +)
    (<o> ^name complete-turn
-        ^flaged complete
-        ^category composite-action)
+        ^category svs)
 }
 
 sp {start-turn*apply*complete-turn
@@ -124,7 +124,6 @@ sp {start-turn*apply*complete-turn
               ^operator <o>)
    (<o> ^name complete-turn)
 -->
-   (interrupt)
    (<status> ^performed.action-event.type turn) 
 }
 

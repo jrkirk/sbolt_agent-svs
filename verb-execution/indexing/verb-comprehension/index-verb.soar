@@ -94,7 +94,6 @@ sp {propose*generate-operator
 	      ^cue <cue>
 	      -^indexed-operator <any>)
 -->
-  (interrupt)
   (<s> ^operator <op> +)
   (<op> ^name generate-operator
   	^procedural-id <pid>
