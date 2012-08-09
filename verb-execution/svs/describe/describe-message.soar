@@ -1,7 +1,16 @@
+sp {describe-message*propose*lookup-preposition-list
+   (state <s> ^name describe-message
+             -^prep-list)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name lookup-preposition-list
+        ^category svs)
+}
+
 sp {describe-message*propose*lookup-preposition
    (state <s> ^name describe-message
              -^found-prep.predicate.name <prep>
-              ^topstate.prepositions.prep <prep>)
+              ^prep-list.prep <prep>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name lookup-preposition
@@ -82,7 +91,7 @@ sp {describe-message*propose*complete-describe-message*send-message
 
 sp {describe-message*propose*complete-describe-message*no-preps
    (state <s> ^name describe-message
-             -^topstate.prepositions.prep
+             -^prep-list.prep
               ^topstate.io.output-link <out>
               ^descriptions <d>)
 -->

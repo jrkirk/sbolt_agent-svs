@@ -1,9 +1,16 @@
+sp {location-question*propose*lookup-preposition-list
+   (state <s> ^name location-question
+             -^prep-list)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name lookup-preposition-list
+        ^category svs)
+}
 
 sp {location-question*propose*lookup-preposition
    (state <s> ^name location-question
-              ^topstate.object
              -^found-prep.predicate.name <prep>
-              ^topstate.prepositions.prep <prep>)
+              ^prep-list.prep <prep>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name lookup-preposition
@@ -137,7 +144,7 @@ sp {found-closest*apply*complete-location-question
 
 sp {location-question*propose*end-location-question*no-preps
    (state <s> ^name location-question
-             -^topstate.prepositions.prep)
+             -^prep-list.prep)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name end-location-question

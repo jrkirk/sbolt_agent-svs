@@ -155,6 +155,17 @@ sp {svs*label*propose*lookup-preposition
         ^type <type>)
 }
 
+sp {svs*label*propose*lookup-preposition-list
+   (state <s> ^name svs-label
+             -^prep-list
+              ^superstate.operator.message.fields.objects <objs>)
+   (<objs> ^type <type>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name lookup-preposition-list
+        ^category svs)
+}
+
 sp {svs*label*extract_once-filters
    (state <s> ^name svs-label
               ^topstate.filters.filter <fil>

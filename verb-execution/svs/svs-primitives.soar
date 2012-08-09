@@ -6,11 +6,6 @@ sp {initialize*filter-list
         ^filter y-aligned ^filter y-greater-than ^filter y-less-than
         ^filter z-aligned ^filter z-greater-than ^filter z-less-than)
 }
-sp {initialize*prepositions
-   (state <s> ^superstate nil)
--->
-   (<s> ^prepositions <p>)
-}
 
 sp {initialize*axis-filter-list
    (state <s> ^superstate nil)
