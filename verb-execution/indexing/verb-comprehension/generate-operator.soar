@@ -89,7 +89,7 @@ sp {generate*operator*arguments*write-to-superstate
    (state <s> ^name generate-operator
    	      ^index-operator <op>
 	      ^superstate <ss>)
-   (<op> ^_metadata.arg-data <any>)
+  (<op> ^_metadata <any>) #JK removed check for arg-data because have no context
 -->
    (<ss> ^indexed-operator <op>)
 }

@@ -9,8 +9,23 @@ sp {start-turn*propose*find-action
         ^game-name <game>)
 }
 
-sp {start-turn*elaborate*cue
+sp {start-turn*propose*do-action
    (state <s> ^name start-turn
+              ^action <action>
+             -^success
+              ^obj1 <oa>
+              ^obj2 <ob>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name do-action
+        ^category svs
+        ^action <action>
+        ^obj1 <oa>
+        ^obj2 <ob>)
+}
+
+sp {do-action*elaborate*cue
+   (state <s> ^name do-action
               ^action <action>
               ^obj1 <oa>
               ^obj2 <ob>)
@@ -20,8 +35,8 @@ sp {start-turn*elaborate*cue
    (<cue> ^direct-object <oa> ^to <ob> ^verb <verb>)
 }
 
-sp {start-turn*elaborate*mcue
-   (state <s> ^name start-turn
+sp {do-action*elaborate*mcue
+   (state <s> ^name do-action
               ^action <action>
               ^obj1 <oa>
               ^obj2 <ob>)
@@ -32,8 +47,8 @@ sp {start-turn*elaborate*mcue
 }
 
 ### propose lookup semantic memory
-sp {start-turn*propose*lookup*semantic-memory
-   (state <s> ^name start-turn
+sp {do-action*propose*lookup*semantic-memory
+   (state <s> ^name do-action
    	      ^mcue <cue>
 	      -^linguistic <any>)
   -->
@@ -45,8 +60,8 @@ sp {start-turn*propose*lookup*semantic-memory
 
 
 ### retrieved id is the lid for the linguistic structure of the verb
-sp {start-turn*propose*get-parent-map
-   (state <s> ^name start-turn
+sp {do-action*propose*get-parent-map
+   (state <s> ^name do-action
    	      ^linguistic <ling>
 	      -^map-id <map>)
 -->
@@ -57,8 +72,8 @@ sp {start-turn*propose*get-parent-map
 }
 
 ### get procedural knowledge for the map
-sp {start-turn*propose*get-procedural
-   (state <s> ^name start-turn
+sp {do-action*propose*get-procedural
+   (state <s> ^name do-action
    	      ^map-id <map>
 	      -^procedural <proc>)
   -->
@@ -69,8 +84,8 @@ sp {start-turn*propose*get-procedural
 }
 
 ### generate the structure of the new operator
-sp {start-turn*propose*generate-operator
-   (state <s> ^name start-turn
+sp {do-action*propose*generate-operator
+   (state <s> ^name do-action
    	      ^procedural <pid>
 	      ^linguistic <lid>
 	      ^map-id <map>
@@ -86,16 +101,13 @@ sp {start-turn*propose*generate-operator
 	^category indexing)
 }
 
-sp {start-turn*propose*do-action
-   (state <s> ^name start-turn
-#              ^impasse no-change
-#              ^attribute state
+sp {do-action*propose*operator
+   (state <s> ^name do-action
               ^action <action>
               ^obj1 <oa>
               ^obj2 <ob>
              -^success
-              ^indexed-operator <map-op>
-              ^game-name <game>)
+              ^indexed-operator <map-op>)
  -->
    (<s> ^operator <map-op> +)
    (<map-op> ^category composite-action #composite-action
@@ -103,14 +115,19 @@ sp {start-turn*propose*do-action
 	     ^indexed-operator <map-op>)
 }
 
+sp {do-action*finish*operator
+   (state <s> ^name do-action
+              ^superstate <ss>
+              ^success <suc>)
+-->
+   (<ss> ^success true)
+}
+
 sp {start-turn*propose*complete-turn
    (state <s> ^name start-turn
 #              ^impasse no-change
 #              ^attribute state
-              ^action <action>
-              ^obj1 <oa>
-              ^obj2 <ob>
-              ^success
+              ^action
               ^game-name <game>)
  -->
    (<s> ^operator <o> +)
