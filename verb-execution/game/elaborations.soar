@@ -1,21 +1,22 @@
-sp {turn-start*elaborate*copy-down-attrs
-   (state <s> ^name start-turn
-              ^superstate.operator <o>)
-   (<o> ^game-name <name>
-        ^turn-count <num>)
--->
-   (<s> ^game-name <name>
-        ^turn-count <num>)
-}
-
+#sp {turn-start*elaborate*copy-down-attrs
+#   (state <s> ^name start-turn
+#              ^superstate.operator <o>)
+#   (<o> ^game-name <name>
+#        ^turn-count <num>)
+#-->
+#   (<s> ^game-name <name>
+#        ^turn-count <num>)
+#}
 
 
 sp {find-action*elaborate*copy-down-attrs
    (state <s> ^name find-action
+              ^topstate.current-game.game <game>
               ^superstate.operator <o>)
-   (<o> ^game-name <name>)
+   (<game> ^game-name <name>)
 -->
    (<s> ^game-name <name>)
+   (<s> ^game <game>)
 }
 sp {do-action*elaborate*copy-down-attrs
    (state <s> ^name do-action
@@ -29,16 +30,27 @@ sp {do-action*elaborate*copy-down-attrs
         ^obj2 <ob>)
 }
 
+sp {do-action*elaborate*copy-down-attrs*relation
+   (state <s> ^name do-action
+              ^superstate.operator <o>)
+   (<o> ^predicate <p>)
+   (<p> ^relation <rel>)
+-->
+   (<s> ^_relation <rel>)
+}
+
 sp {check-valid-parameter*elaborate*copy-down-attrs
    (state <s> ^name check-valid-parameter
               ^superstate.operator <o>)
    (<o> ^arg <arg>
         ^cond <cond>
         ^objd <objd>
+        ^found-prep <fprep>
         ^obj <obj>)
 -->
    (<s> ^arg <arg>
         ^cond <cond>
         ^objd <objd>
+        ^found-prep <fprep>
         ^obj <obj>)
 }

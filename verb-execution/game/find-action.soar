@@ -1,14 +1,14 @@
 #load all structures related to game into working memory
-sp {find-action*propose*lookup-game
-   (state <s> ^name find-action
-             -^game
-              ^game-name <game>)
--->
-   (<s> ^operator <o> + =)
-   (<o> ^name lookup-game
-        ^category svs # for now determine better or new category
-        ^game-name <game>)
-}
+#sp {find-action*propose*lookup-game
+#   (state <s> ^name find-action
+#             -^game
+#              ^game-name <game>)
+#-->
+#   (<s> ^operator <o> + =)
+#   (<o> ^name lookup-game
+#        ^category svs # for now determine better or new category
+#        ^game-name <game>)
+#}
 
 #TODO for now only handle world objects as parameters
 sp {find-action*build-action-options
@@ -27,8 +27,25 @@ sp {find-action*build-action-options
    (<p> ^option.<arg> <obj>)
 }
 
+sp {find-action*propose*lookup-preposition
+   (state <s> ^name find-action
+             -^found-prep
+              ^game.actions.action <a>)
+   (<a> ^parameters <p> ^conditions <c>)
+   (<p> ^option.<arg> <obj>)
+   (<c> ^<arg> <conda>)
+   (<conda> ^prep <prep>)
+   (<prep> ^name <name> ^a this)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name lookup-preposition
+        ^category svs
+        ^type <name>)
+}
+
 sp {find-action*propose*check-valid-parameter
    (state <s> ^name find-action
+              ^found-prep <fprep>
              -^valid-arg.<arg> <obj>
              -^invalid-arg.<arg> <obj>
               ^game.actions.action <a>)
@@ -41,13 +58,15 @@ sp {find-action*propose*check-valid-parameter
         ^category svs
         ^arg <arg>
         ^obj <obj>
+        ^found-prep <fprep>
         ^objd <objd>
         ^cond <conda>)
 }
 
 sp {find-action*propose*complete-find-action
    (state <s> ^name find-action
-              ^game.actions.action <a>
+              ^game.actions.action <a>          
+              ^found-prep.predicate <p1>
               ^valid-arg.a <o1>
               ^valid-arg.b <o2>)
    (<a> ^parameters <p>)
@@ -57,6 +76,7 @@ sp {find-action*propose*complete-find-action
    (<o> ^name complete-find-action
         ^category svs
         ^action <a>
+        ^predicate <p1>
         ^obja <o1> 
         ^objb <o2>)
 }
@@ -69,9 +89,11 @@ sp {find-action*apply*complete-find-action
    (<o> ^name complete-find-action
         ^obja <o1>
         ^objb <o2>
+        ^predicate <p>
         ^action <a>)
 -->
    (<ss> ^action <a>
+         ^predicate <p>
          ^obj1 <o1>
          ^obj2 <o2>)
 }

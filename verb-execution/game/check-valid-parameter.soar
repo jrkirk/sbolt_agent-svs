@@ -2,6 +2,7 @@ sp {check-valid-parameter*propose*find-relations*a
    (state <s> ^name check-valid-parameter
               ^arg <arg>
               ^obj <obj>
+              ^found-prep <fprep>
               ^cond <cond>)
    (<cond> ^prep <prep>)
    (<obj> ^id <id>)
@@ -14,6 +15,7 @@ sp {check-valid-parameter*propose*find-relations*a
         ^category svs
         ^obj <id>
         ^ind 2
+        ^found-prep <fprep>
         ^prep <name>) 
 }
 
@@ -22,6 +24,7 @@ sp {check-valid-parameter*propose*describe-object
               ^obj <obj>
              -^described <obj>
               ^cond <cond>)
+   (<cond> ^attribute <a>)
    (<obj> ^id <id>)
 -->
    (<s> ^operator <o> + =)

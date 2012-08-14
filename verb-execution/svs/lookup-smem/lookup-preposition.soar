@@ -6,7 +6,7 @@ sp {lookup-smem*preposition*query
    (<sc> ^query <q>)
    (<s> ^found-preposition <fprep>)
    (<fprep> ^type <type>)
-   (<q> ^prep-name <type>)
+   (<q> ^name <type>)
 }
 
 

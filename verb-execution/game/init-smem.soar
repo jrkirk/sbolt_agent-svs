@@ -6,11 +6,6 @@
  #Actions
  (<A> ^action <ac1>)
  (<ac1> ^name place ^conditions <c> ^result <res> ^parameters <p> ^verb move)
-# (<c> ^a <conda> ^b <condb>)
-# (<condb> ^empty <location> ^type <t3>)
-# (<conda> ^outside <obj> ^color red)
-# (<t3> ^world <w3>)
-# (<w3> ^prepositions name)
  (<c> ^a <conda> ^b <condb>)
  (<condb> ^prep <prep4>)
  (<conda> ^prep <prep3> ^attribute <atr3>)

@@ -11,21 +11,64 @@ sp {apply*push-object-message*game-turn-message
    (<sat> ^action-event.type turn)
 }
 
-sp {game-turn-message*propose*process-game-message
+sp {game-turn-message*propose*start-turn
    (state <s> ^interaction.stack.segment <seg>)
    (<seg> ^purpose <p>)
    (<p> ^type game-turn-message)
 -->
    (<s> ^operator <o> +)
    (<o> ^name start-turn
+        ^category svs)
+}
+
+##################################
+sp {apply*push-object-message*game-start-message
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-message
+        ^message <msg>
+        ^object.word {<game-name> <> game}
+        ^object.word game)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type game-start-message
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<params> ^game-name <game-name>)
+   (<sat> ^dialog-event.type game)
+}
+
+sp {game-start-message*propose*game-start
+   (state <s> ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>)
+   (<p> ^type game-start-message
+        ^parameters.game-name <name>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name game-start
         ^category svs
-        ^turn-count 0
-	    ^game-name tic-tac-toe)
-#   (<m> ^fields <f> ^type svs-label)
-#   (<f> ^objects <object>)
-#   (<object> ^obj <obja>
-#             ^obj <objb>
-#             ^type <prep>)
-#   (<obja> ^id <id1> ^index 1)
-#   (<objb> ^id <id2> ^index 2)
-} 
+	    ^game-name <name>)
+}
+
+##############################
+sp {apply*push-object-message*game-initiate-message
+   (state <s> ^operator <o>)
+   (<o> ^name push-single-word-response
+        ^message <msg>
+        ^response start)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type game-initiate-message
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<sat> ^dialog-event.type game)
+}
+
+sp {game-start-message*propose*game-initiate
+   (state <s> ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>)
+   (<p> ^type game-initiate-message)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name game-initiate
+        ^category svs)
+}

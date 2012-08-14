@@ -1,0 +1,145 @@
+sp {start-turn*propose*find-action
+   (state <s> ^name start-turn
+             -^action)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name find-action
+        ^category svs) # for now determine better or new category)
+}
+
+sp {start-turn*propose*do-action
+   (state <s> ^name start-turn
+              ^action <action>
+              ^predicate <p>
+             -^success
+              ^obj1 <oa>
+              ^obj2 <ob>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name do-action
+        ^category svs
+        ^action <action>
+        ^predicate <p>
+        ^obj1 <oa>
+        ^obj2 <ob>)
+}
+
+sp {do-action*elaborate*cue
+   (state <s> ^name do-action
+              ^action <action>
+              ^obj1 <oa>
+              ^obj2 <ob>)
+   (<action> ^verb <verb>)
+-->
+   (<s> ^cue <cue>)
+   (<cue> ^direct-object <oa> ^to <ob> ^verb <verb>)
+}
+
+sp {do-action*elaborate*mcue
+   (state <s> ^name do-action
+              ^action <action>
+              ^obj1 <oa>
+              ^obj2 <ob>)
+   (<action> ^verb <verb>)
+-->
+   (<s> ^mcue <mcue>)
+   (<mcue> ^direct-object <n1> ^to <n2> ^verb <verb>)
+}
+
+### propose lookup semantic memory
+sp {do-action*propose*lookup*semantic-memory
+   (state <s> ^name do-action
+   	      ^mcue <cue>
+	      -^linguistic <any>)
+  -->
+   (<s> ^operator <op> +)
+   (<op> ^name get-linguistic-id
+   	 ^cue <cue>
+	 ^category indexing)
+}
+
+
+### retrieved id is the lid for the linguistic structure of the verb
+sp {do-action*propose*get-parent-map
+   (state <s> ^name do-action
+   	      ^linguistic <ling>
+	      -^map-id <map>)
+-->
+   (<s> ^operator <op> + =)
+   (<op> ^name get-map-id
+   	 ^linguistic <ling>
+	 ^category indexing)
+}
+
+### get procedural knowledge for the map
+sp {do-action*propose*get-procedural
+   (state <s> ^name do-action
+   	      ^map-id <map>
+	      -^procedural <proc>)
+  -->
+  (<s> ^operator <op> + =)
+  (<op> ^name get-procedural-id
+  	^map-id <map>
+	^category indexing)
+}
+
+### generate the structure of the new operator
+sp {do-action*propose*generate-operator
+   (state <s> ^name do-action
+   	      ^procedural <pid>
+	      ^linguistic <lid>
+	      ^map-id <map>
+	      ^cue <cue>
+	      -^indexed-operator <any>)
+-->
+  (<s> ^operator <op> +)
+  (<op> ^name generate-operator
+  	^procedural-id <pid>
+	^linguistic-id <lid>
+	^cue <cue>
+	^map-id <map>
+	^category indexing)
+}
+
+sp {do-action*propose*operator
+   (state <s> ^name do-action
+              ^action <action>
+              ^obj1 <oa>
+              ^obj2 <ob>
+             -^success
+              ^indexed-operator <map-op>)
+ -->
+   (<s> ^operator <map-op> +)
+   (<map-op> ^category composite-action #composite-action
+#   	     ^information <info>
+	     ^indexed-operator <map-op>)
+}
+
+sp {do-action*finish*operator
+   (state <s> ^name do-action
+              ^superstate <ss>
+              ^success <suc>)
+-->
+   (<ss> ^success true)
+}
+
+sp {start-turn*propose*complete-turn
+   (state <s> ^name start-turn
+#              ^impasse no-change
+#              ^attribute state
+              ^action)
+ #             ^game-name <game>)
+ -->
+   (<s> ^operator <o> +)
+   (<o> ^name complete-turn
+        ^category svs)
+}
+
+sp {start-turn*apply*complete-turn
+   (state <s> ^name start-turn
+              ^topstate.status <status>
+              ^operator <o>)
+   (<o> ^name complete-turn)
+-->
+   (<status> ^performed.action-event.type turn) 
+}
