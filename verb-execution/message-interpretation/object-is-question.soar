@@ -6,7 +6,7 @@ sp {propose*push-object-is-question*object-question
               ^instructor-message <msg>)
    (<msg> ^type object-is-question
          -^information.relation.questioned true
-         -^processed)
+         -^purpose)
 -->
    (<s> ^operator <o> +)
    (<o> ^name push-object-is-question
@@ -85,4 +85,14 @@ sp {apply*push-object-is-question*mark*processed
         ^message <msg>)
 -->
    (<msg> ^processed true)
+}
+
+sp {apply*push-object-is-question*remove*message
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-is-question
+        ^message <msg>)
+   (<msg> ^processed true
+         -^purpose)
+-->
+   (<s> ^instructor-message <msg> -)
 }

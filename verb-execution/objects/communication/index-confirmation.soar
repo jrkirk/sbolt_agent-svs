@@ -18,25 +18,37 @@ sp {wait-for-arm*propose*wait-for-arm
    (<o> ^name wait-for-arm)
 }
 
+sp {index-confirmation*apply*operator*mark*started-home
+   (state <s> ^topstate <s>
+              ^operator <o>
+              ^io.input-link.self.action home
+              ^interaction.stack.segment <seg>)
+   (<seg> ^purpose.type index-confirmation
+          ^originator instructor)
+-->
+   (<s> ^started-home true)
+}
+
 sp {index-confirmation*arm-finishes*mark-performed
    (state <s> ^topstate <s>
-              ^io.input-link.self <self>
               ^operator.name wait-for-arm
+              ^started-home true
+              ^io.input-link.self.action wait
               ^interaction.stack.segment.purpose.type index-confirmation
               ^status <status>)
-   (<self> ^action wait ^prev-action home)
 -->
    (<status> ^performed.action-event.type home)
+   (<s> ^started-home true -)
 }
 
 sp {index-confirmation*arm-finishes*send-training
    (state <s> ^topstate <s>
-              ^io.input-link.self <self>
-              ^io.output-link <out>
               ^operator.name wait-for-arm
+              ^started-home true
+              ^io.input-link.self.action wait
+              ^io.output-link <out>
               ^interaction.stack.segment.purpose <p>
               ^status <status>)
-   (<self> ^action wait ^prev-action home)
    (<p> ^type index-confirmation
         ^parameters <params>)
    (<params> ^object-id <id>

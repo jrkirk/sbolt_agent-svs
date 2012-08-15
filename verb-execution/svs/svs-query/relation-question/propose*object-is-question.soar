@@ -1,11 +1,11 @@
 
 
-sp {object-is-question*propose*index-object1
+sp {object-is-question-rel*propose*index-object1
    (state <s> ^topstate <s>
               ^interaction.stack.segment <seg>)
    (<seg> ^purpose <p>
          -^info.obj1)
-   (<p> ^type object-is-question
+   (<p> ^type object-is-question-rel
         ^parameters.object1 <obj1>)
 -->
    (<s> ^operator <o> + =)
@@ -14,17 +14,18 @@ sp {object-is-question*propose*index-object1
 		^allow-ties true
         ^infer-match true
         ^obj 1
+        ^context-id 1
         ^category object-processing
 	    ^object <obj1>)
 }
 
-sp {object-is-question*propose*index-object2
+sp {object-is-question-rel*propose*index-object2
    (state <s> ^topstate <s>
               ^interaction.stack.segment <seg>)
    (<seg> ^purpose <p>
          -^info.obj2
           ^info.obj1)
-   (<p> ^type object-is-question
+   (<p> ^type object-is-question-rel
         ^parameters.object2 <obj2>)
 -->
    (<s> ^operator <o> + =)
@@ -33,16 +34,17 @@ sp {object-is-question*propose*index-object2
 		^allow-ties true
         ^infer-match true
         ^obj 2
+        ^context-id 2
         ^category object-processing
 	    ^object <obj2>)
 }
 
 
 
-sp {object-is-question*apply*index-object*results1
+sp {object-is-question-rel*apply*index-object*results1
    (state <s> ^operator <o>
               ^interaction.stack.segment <seg>)
-   (<seg> ^purpose.type object-is-question
+   (<seg> ^purpose.type object-is-question-rel
           ^info <i>)
    (<o> ^name index-object
         ^obj 1
@@ -51,10 +53,10 @@ sp {object-is-question*apply*index-object*results1
    (<i> ^obj1 <id>)
 }
 
-sp {object-is-question*apply*index-object*results2
+sp {object-is-question-rel*apply*index-object*results2
    (state <s> ^operator <o>
               ^interaction.stack.segment <seg>)
-   (<seg> ^purpose.type object-is-question
+   (<seg> ^purpose.type object-is-question-rel
           ^info <i>)
    (<o> ^name index-object
         ^obj 2
@@ -63,9 +65,9 @@ sp {object-is-question*apply*index-object*results2
    (<i> ^obj2 <id>)
 }
 
-sp {object-is-question*apply*index-object*failure
+sp {object-is-question-rel*apply*index-object*failure
    (state <s> ^operator <o>
-              ^interaction.stack.segment.purpose.type object-is-question
+              ^interaction.stack.segment.purpose.type object-is-question-rel
               ^io.output-link <out>
               ^topstate.status <status>)
    (<o> ^name index-object
@@ -78,12 +80,12 @@ sp {object-is-question*apply*index-object*failure
    (<status> ^performed.action-event.type describe)
 }
 
-sp {object-is-question*propose*process-svs-question
+sp {object-is-question-rel*propose*process-svs-question
    (state <s> ^interaction.stack.segment <seg>)
    (<seg> ^purpose <p>
           ^info.obj1 <id1>
           ^info.obj2 <id2>)
-   (<p> ^type object-is-question
+   (<p> ^type object-is-question-rel
         ^parameters.prep <prep>)
 -->
    (<s> ^operator <o> +)

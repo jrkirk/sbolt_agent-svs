@@ -5,7 +5,7 @@ sp {propose*push-object-message
    (state <s> ^topstate <s>
               ^instructor-message <msg>)
    (<msg> ^type object-message
-         -^processed)
+         -^purpose)
 -->
    (<s> ^operator <o> +)
    (<o> ^name push-object-message
@@ -66,7 +66,7 @@ sp {apply*push-object-message*learn-word2cat
    (state <s> ^operator <o>)
    (<o> ^name push-object-message
         ^message <msg>
-        ^specifier INDEF
+        ^specifier INDEF#<< none INDEF >>
         ^object.word {<category> <> <word> <> property <> one}
        -^relation)
    (<msg> ^context <context>)
@@ -85,24 +85,6 @@ sp {apply*push-object-message*learn-word2cat
         ^word <word>)
 }
 
-# If the message is INDEF, and not a query response, 
-#	learn information about objects
-#sp {apply*push-object-message*object-information
-#   (state <s> ^operator <o>)
-#   (<o> ^name push-object-message
-#        ^message <msg>
-#       -^message.query
-#        ^specifier INDEF
-#        ^object <obj>)
-#-->
-#   (<msg> ^purpose <p>)
-#   (<p> ^type object-information
-#        ^parameters <params>
-#        ^satisfaction <sat>)
-#   (<params> ^object <obj>)
-#   (<sat> ^learning-event object)
-#}
-
 # Result when answered with a further description ('the red object')
 sp {apply*push-object-message*which-question-response*copy-word
    (state <s> ^operator <o>)
@@ -118,17 +100,17 @@ sp {apply*push-object-message*which-question-response*copy-word
    (<context-obj> ^property.word <word>)
 }
 
-sp {apply*push-object-message*which-question-response*remove*message
-   (state <s> ^operator <o>
-              ^instructor-message <msg>)
-   (<o> ^name push-object-message
-        ^specifier << none DEF >>
-        ^message <msg>
-       -^relation)
-   (<msg> ^context.cause which-question)
--->
-   (<s> ^instructor-message <msg> -)
-}
+#sp {apply*push-object-message*which-question-response*remove*message
+#   (state <s> ^operator <o>
+#              ^instructor-message <msg>)
+#   (<o> ^name push-object-message
+#        ^specifier << none DEF >>
+#        ^message <msg>
+#       -^relation)
+#   (<msg> ^context.cause which-question)
+#-->
+#   (<s> ^instructor-message <msg> -)
+#}
 
 # Result when responding to a which-question with a relation
 sp {apply*push-object-message*which-question-response*relation
@@ -154,11 +136,21 @@ sp {apply*push-object-message*which-question-response*relation
 }
 
 
-
 sp {apply*push-object-message*mark*processed
    (state <s> ^operator <o>)
    (<o> ^name push-object-message
         ^message <msg>)
 -->
    (<msg> ^processed true)
+}
+
+
+sp {apply*push-object-message*remove*message
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-message
+        ^message <msg>)
+   (<msg> ^processed true
+         -^purpose)
+-->
+   (<s> ^instructor-message <msg> -)
 }

@@ -4,7 +4,7 @@ sp {propose*push-single-word-response
    (state <s> ^topstate <s>
               ^instructor-message <msg>)
    (<msg> ^type single-word-response
-         -^processed)
+         -^purpose)
 -->
    (<s> ^operator <o> +)
    (<o> ^name push-single-word-response
@@ -23,16 +23,16 @@ sp {elaborate*push-single-word-response*response
 }
 
 # teaching-request - respond with finished or cancel
-sp {apply*push-single-word-response*teaching-request*remove*message
-   (state <s> ^operator <o>
-              ^instructor-message <msg>)
-   (<o> ^name push-single-word-response
-        ^response << finished cancel >>
-        ^message <msg>)
-   (<msg> ^context.cause teaching-request)
--->
-   (<s> ^instructor-message <msg> -)
-}
+#sp {apply*push-single-word-response*teaching-request*remove*message
+#   (state <s> ^operator <o>
+#              ^instructor-message <msg>)
+#   (<o> ^name push-single-word-response
+#        ^response << finished cancel >>
+#        ^message <msg>)
+#   (<msg> ^context.cause teaching-request)
+#-->
+#   (<s> ^instructor-message <msg> -)
+#}
 
 sp {apply*push-single-word-response*teaching-request*cancel
    (state <s> ^operator <o>)
@@ -65,7 +65,7 @@ sp {apply*push-single-word-response*clear*start-clear-stack
         ^message <msg>)
 -->
    (<top> ^clear-interaction-stack true)
-   (<top> ^instructor-message <msg> -)
+#   (<top> ^instructor-message <msg> -)
 }
 
 # AM: Saying status will cause the agent to describe the current interaction
@@ -77,7 +77,6 @@ sp {apply*push-single-word-response*status*start-clear-stack
 -->
    (<msg> ^purpose <p>)
    (<p> ^type report-interaction
-        # AM: Changed satisfaction structure
         ^satisfaction.dialog-event.type report-interaction)
 }
 
@@ -99,7 +98,7 @@ sp {apply*push-single-word-response*request-index-confirmation*index-confirmatio
         ^message <msg>)
    (<msg> ^context <context>)
    (<context> ^cause request-index-confirmation
-              ^object.id <id>
+              ^object-id <id>
               ^index-object <i-obj>)
 -->
    (<msg> ^purpose <p>)
@@ -121,10 +120,10 @@ sp {apply*push-single-word-response*request-index-confirmation*yes
         ^message <msg>)
    (<msg> ^context <context>)
    (<context> ^cause request-index-confirmation
-              ^object <obj>
+              ^object-id <id>
               ^index-object <i-obj>)
 -->
-   (<i-obj> ^match <obj>)
+   (<i-obj> ^match-id <id>)
 }
 
 sp {apply*push-single-word-response*request-index-confirmation*no
@@ -157,7 +156,7 @@ sp {apply*push-single-word-response*ambiguous-category
    (<info> ^nounjective <nj>)
    (<nj> ^word <word>
          ^category <cat>)
-   (<s> ^instructor-message <msg> -)
+  # (<s> ^instructor-message <msg> -)
 }
 
 sp {apply*push-single-word-response*mark*processed
@@ -166,4 +165,14 @@ sp {apply*push-single-word-response*mark*processed
         ^message <msg>)
 -->
    (<msg> ^processed true)
+}
+
+sp {apply*push-single-word-response*remove*message
+   (state <s> ^operator <o>)
+   (<o> ^name push-single-word-response
+        ^message <msg>)
+   (<msg> ^processed true
+         -^purpose)
+-->
+   (<s> ^instructor-message <msg> -)
 }

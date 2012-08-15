@@ -8,12 +8,12 @@ sp {this-object-message*apply*complete-this-object-message*resolve*which-questio
    (state <s> ^name this-object-message
               ^operator.name complete-this-object-message
               ^topstate.interaction.stack.segment <seg>
-              ^this-object <obj>)
+              ^this-object.id <id>)
    (<seg> ^context <context>)
    (<context> ^cause which-question
               ^object <context-obj>)
 -->
-   (<context-obj> ^match <obj>)
+   (<context-obj> ^match-id <id>)
 }
 
 # Results when an object-message with a relation is sent in response to a which-question
@@ -84,14 +84,13 @@ sp {index-object*purpose*apply*add*candidate
               ^io.output-link <out>
               ^interaction.stack.segment <seg>)
    (<o> ^name index-object
-        ^match {<m> <> failure})
+        ^match.id <id>)
    (<seg> ^purpose.type index-object
           ^context <context>)
    (<context> ^cause which-question
         		^object <obj>)
-        
 -->
-   (<obj> ^candidate <m>)
+   (<obj> ^candidate-id <id>)
 }
 
 

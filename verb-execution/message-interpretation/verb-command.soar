@@ -6,7 +6,7 @@ sp {propose*push-verb-command
               ^instructor-message <msg>)
    (<msg> ^type verb-command
          -^information.verb.word describe # JK: Don't do describe the scene
-         -^processed)
+         -^purpose)
 -->
    (<s> ^operator <o> +)
    (<o> ^name push-verb-command
@@ -35,7 +35,6 @@ sp {apply*push-verb-command*normal-command
    (<msg> ^purpose <p>)
     (<p> ^type external-action
     	 ^satisfaction <sat>)
-    # AM: Changed the satisfaction structure
     (<sat> ^action-event.type <info>
     	   ^learning-event.type explanation)
 }
@@ -94,3 +93,14 @@ sp {apply*push-verb-command*mark*processed
 -->
    (<msg> ^processed true)
 }
+
+sp {apply*push-verb-command*remove*message
+   (state <s> ^operator <o>)
+   (<o> ^name push-verb-command
+        ^message <msg>)
+   (<msg> ^processed true
+         -^purpose)
+-->
+   (<s> ^instructor-message <msg> -)
+}
+

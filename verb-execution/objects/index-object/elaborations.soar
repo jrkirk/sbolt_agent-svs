@@ -94,12 +94,14 @@ sp {index-object*elaborate*final-matches
 # If an exact match is given, then copy it right away
 sp {index-object*elaborate*object-matches*exact*match
    (state <s> ^name index-object
+              ^topstate.object <obj>
               ^index-object-context.object <i-obj>)
-   (<i-obj> ^match <match>)
+   (<i-obj> ^match-id <id>)
+   (<obj> ^id <id>)
 -->
    (<s> ^object-matches <matches>)
    (<matches> ^object <i-obj>
-              ^match <match>)
+              ^match <obj>)
 }
 
 # Add the desired object to the final-matches

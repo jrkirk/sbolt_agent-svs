@@ -5,7 +5,7 @@ sp {propose*push-object-question
    (state <s> ^topstate <s>
               ^instructor-message <msg>)
    (<msg> ^type object-question
-         -^processed)
+         -^purpose)
 -->
    (<s> ^operator <o> +)
    (<o> ^name push-object-question
@@ -142,4 +142,14 @@ sp {apply*push-object-question*mark*processed
         ^message <msg>)
 -->
    (<msg> ^processed true)
+}
+
+sp {apply*push-object-question*remove*message
+   (state <s> ^operator <o>)
+   (<o> ^name push-object-question
+        ^message <msg>)
+   (<msg> ^processed true
+         -^purpose)
+-->
+   (<s> ^instructor-message <msg> -)
 }

@@ -3,8 +3,7 @@
 sp {propose*start-clear-stack
    (state <s> ^topstate <s>
               ^instructor-message <msg>)
-   (<msg> ^type clear-stack
-         -^processed)
+   (<msg> ^type clear-stack)
 -->
    (<s> ^operator <o> +)
    (<o> ^name start-clear-stack

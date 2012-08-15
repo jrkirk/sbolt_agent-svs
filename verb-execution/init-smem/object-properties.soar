@@ -61,7 +61,7 @@ smem --add {
 #	(<v31> ^type word2cat ^word small ^category size)
 #	(<v32> ^type word2cat ^word medium ^category size)
 #	(<v33> ^type word2cat ^word large ^category size)
-   
+#   
 #    (<lm31> ^type label-map ^word small ^category size ^label size-small)
 #    (<lm32> ^type label-map ^word medium ^category size ^label size-medium)
 #    (<lm33> ^type label-map ^word large ^category size ^label size-large)

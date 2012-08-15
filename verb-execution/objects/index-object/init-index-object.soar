@@ -120,9 +120,7 @@ sp {index-object*apply*init-index-object*copy*this*depth2
    (state <s> ^name index-object
               ^operator.name init-index-object
               ^io.input-link.pointed-object <obj-id>
-              ^topstate.object <obj>
               ^copy-context <cc>)
-   (<obj> ^id <obj-id>)
    (<cc> ^context <context>
          ^copied-depth1 true
         -^copied-depth2
@@ -131,7 +129,7 @@ sp {index-object*apply*init-index-object*copy*this*depth2
           ^copy <val-copy>)
    (<val> ^specifier << this that >>)
 -->
-   (<val-copy> ^candidate <obj>)
+   (<val-copy> ^candidate-id <obj-id>)
 }
 
 sp {index-object*apply*init-index-object*copy*objects*relations*depth2*resolve*references

@@ -3,8 +3,7 @@
 sp {propose*push-get-status
    (state <s> ^topstate <s>
               ^instructor-message <msg>)
-   (<msg> ^type get-status
-         -^processed)
+   (<msg> ^type get-status)
 -->
    (<s> ^operator <o> +)
    (<o> ^name push-get-status
@@ -19,6 +18,5 @@ sp {apply*push-get-status*add*purpose
 -->
    (<msg> ^purpose <p>)
    (<p> ^type report-interaction
-        # AM: Changed satisfaction structure
         ^satisfaction.dialog-event.type report-interaction)
 }

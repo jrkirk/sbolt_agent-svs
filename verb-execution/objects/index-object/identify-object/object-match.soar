@@ -46,9 +46,10 @@ sp {identify-object*elaborate*not-match*not-candidate
    (state <s> ^name identify-object
               ^match-info <info>
               ^superstate.operator <ss-op>)
-   (<info> ^potential-match <obj>)   
-   (<ss-op> ^object.candidate <candidate>
-           -^object.candidate <obj>)       
+   (<info> ^potential-match <obj>) 
+   (<obj> ^id <id>)  
+   (<ss-op> ^object.candidate-id <cid>
+           -^object.candidate-id <id>)       
 -->
    (<info> ^not-match <obj>)
 }
@@ -207,13 +208,13 @@ sp {identify-object*apply*infer-match*create*context
               ^superstate.index-object-context <i-context>
               ^operator <o>)
    (<o> ^name infer-match
-        ^object <obj>)
+        ^object.id <id>)
 -->
    (<s> ^context <context>)
    (<context> ^cause request-index-confirmation
               ^index-object-context <i-context>
         		^index-object <i-obj>
-        		^object <obj>
+        		^object-id <id>
          		^description <desc>)
    (<desc> ^determiner a)
 }
