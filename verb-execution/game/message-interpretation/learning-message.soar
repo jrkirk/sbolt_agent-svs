@@ -1,0 +1,98 @@
+sp {apply*push-object-message*action-parameter-message
+   (state <s> ^operator <o>
+              ^topstate.current-game.learning <l>)
+   (<l> ^type parameter)
+   (<o> ^name push-object-message
+        ^message <msg>
+        ^object <obj>)
+   (<obj> ^specifier INDEF
+          ^word <type>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type action-parameter-message
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<params> ^parameter <type>)
+   (<sat> ^dialog-event.type game)
+}
+
+sp {action-parameter-message*propose*learn-parameter
+   (state <s> ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>)
+   (<p> ^type action-parameter-message
+        ^parameters.parameter <type>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name learn-parameter
+        ^category svs
+	    ^parameter <type>)
+}
+
+##############################
+sp {apply*push-object-message*parameter-condition-message
+   (state <s> ^operator <o>
+              ^topstate.current-game.learning <l>)
+   (<l> ^type condition ^parameter <type>)
+   (<o> ^name push-object-message
+        ^message <msg>
+        ^object <obj>)
+   (<obj> ^specifier DEF
+          ^word {<cond> <> <type>}
+          ^word <type>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type parameter-condition-message
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<params> ^parameter <type> ^condition <cond>)
+   (<sat> ^dialog-event.type game)
+}
+
+sp {parameter-condition-message*propose*learn-condition
+   (state <s> ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>)
+   (<p> ^type parameter-condition-message
+        ^parameters <param>)
+   (<param> ^parameter <type> ^condition <cond>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name learn-condition
+        ^category svs
+        ^condition <cond>
+	    ^parameter <type>)
+}
+
+##############################
+sp {apply*push-object-message*action-name-message
+   (state <s> ^operator <o>
+              ^topstate.current-game.learning <l>)
+   (<l> ^type action)
+   (<o> ^name push-single-word-response
+        ^message <msg>
+        ^response <name>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type game-initiate-message
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<params> ^action-name <name>)
+   (<sat> ^dialog-event.type game)
+}
+
+sp {action-name-message*propose*learn-action
+   (state <s> ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>)
+   (<p> ^type action-name-message
+        ^parameters <param>)
+   (<param> ^action-name <name>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name learn-action
+        ^action-name <name>
+        ^category svs)
+}
+
+##############################
+#todo use current interaction stack
+#todo finished and verb name handling
+#todo what does clear mean or blue mean

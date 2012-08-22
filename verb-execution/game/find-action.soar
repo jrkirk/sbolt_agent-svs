@@ -24,7 +24,7 @@ sp {find-action*build-action-options
 #          ^b.world <thing>)
    (<obj> ^<atr> <param>)
 -->
-   (<p> ^option.<arg> <obj>)
+   (<s> ^option.<arg> <obj>)
 }
 
 sp {find-action*propose*lookup-preposition
@@ -32,7 +32,7 @@ sp {find-action*propose*lookup-preposition
              -^found-prep
               ^game.actions.action <a>)
    (<a> ^parameters <p> ^conditions <c>)
-   (<p> ^option.<arg> <obj>)
+   (<s> ^option.<arg> <obj>)
    (<c> ^<arg> <conda>)
    (<conda> ^prep <prep>)
    (<prep> ^name <name> ^a this)
@@ -50,7 +50,7 @@ sp {find-action*propose*check-valid-parameter
              -^invalid-arg.<arg> <obj>
               ^game.actions.action <a>)
    (<a> ^parameters <p> ^conditions <c>)
-   (<p> ^option.<arg> <obj>)
+   (<s> ^option.<arg> <obj>)
    (<c> ^<arg> <conda>)
 -->
    (<s> ^operator <o> + =)
@@ -70,7 +70,7 @@ sp {find-action*propose*complete-find-action
               ^valid-arg.a <o1>
               ^valid-arg.b <o2>)
    (<a> ^parameters <p>)
-   (<p> ^option.a <o1> ^option.b <o2>)
+   (<s> ^option.a <o1> ^option.b <o2>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name complete-find-action
