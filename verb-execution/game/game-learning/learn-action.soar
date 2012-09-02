@@ -1,0 +1,9 @@
+sp {learn-action*propose*
+   (state <s> ^name learn-action
+              ^topstate.current-game.learning <l>)
+   (<l> ^type action)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name find-action
+        ^category svs) # for now determine better or new category)
+}

@@ -1,3 +1,5 @@
+
+# a block
 sp {apply*push-object-message*action-parameter-message
    (state <s> ^operator <o>
               ^topstate.current-game.learning <l>)
@@ -28,7 +30,7 @@ sp {action-parameter-message*propose*learn-parameter
 	    ^parameter <type>)
 }
 
-##############################
+############################## the block is clear
 sp {apply*push-object-message*parameter-condition-message
    (state <s> ^operator <o>
               ^topstate.current-game.learning <l>)
@@ -62,7 +64,7 @@ sp {parameter-condition-message*propose*learn-condition
 	    ^parameter <type>)
 }
 
-##############################
+############################## place
 sp {apply*push-object-message*action-name-message
    (state <s> ^operator <o>
               ^topstate.current-game.learning <l>)

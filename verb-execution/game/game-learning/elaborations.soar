@@ -1,0 +1,26 @@
+
+sp {learn-action*elaborate*copy-down-attrs
+   (state <s> ^name learn-action
+              ^superstate.operator <o>)
+   (<o> ^action-name <name>)
+-->
+   (<s> ^action-name <name>)
+}
+
+sp {learn-condition*elaborate*copy-down-attrs
+   (state <s> ^name learn-condition
+              ^superstate.operator <o>)
+   (<o> ^condition <cond>
+	    ^parameter <type>)
+-->
+   (<s> ^condition <cond>
+	    ^parameter <type>)
+}
+
+sp {learn-parameter*elaborate*copy-down-attrs
+   (state <s> ^name learn-parameter
+              ^superstate.operator <o>)
+   (<o> ^parameter <p>)
+-->
+   (<s> ^parameter <p>)
+}

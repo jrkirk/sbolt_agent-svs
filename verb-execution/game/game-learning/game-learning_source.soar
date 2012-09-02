@@ -1,0 +1,4 @@
+source learn-action.soar
+source learn-condition.soar
+source learn-parameter.soar
+source elaborations.soar
