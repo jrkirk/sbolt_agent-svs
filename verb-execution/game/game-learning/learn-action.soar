@@ -1,9 +1,53 @@
-sp {learn-action*propose*
+sp {learn-action*propose*store-action
    (state <s> ^name learn-action
+              ^action-name <name>
+             -^topstate.current-game.game
               ^topstate.current-game.learning <l>)
    (<l> ^type action)
 -->
    (<s> ^operator <o> + =)
-   (<o> ^name find-action
+   (<o> ^name store-action
         ^category svs) # for now determine better or new category)
+}
+
+sp {learn-action*apply*store-action
+   (state <s> ^name learn-action
+              ^action-name <aname>
+              ^topstate <ts>
+              ^operator.name store-action)
+   (<ts> ^current-game <cg>)
+   (<cg> ^learning <l> ^name <gname>)
+-->
+   (<cg> ^game <g>)
+   (<g> ^game-name <gname> ^actions <a>)
+   (<a> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb move) #todo learn verb
+}
+
+sp {learn-action*propose*find-parameter
+   (state <s> ^name learn-action
+              ^action-name <name>
+              ^topstate.current-game.game
+              ^topstate.current-game.learning <l>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name find-parameter
+        ^category svs) # for now determine better or new category)
+}
+
+sp {learn-action*apply*find-parameter
+   (state <s> ^name learn-action
+              ^action-name <name>
+              ^topstate.current-game.game
+              ^operator.name find-parameter
+              ^topstate.io.output-link <out>
+              ^topstate.status <status>
+              ^topstate.current-game.learning <l>)
+   (<l> ^type <t>)
+-->
+   (<l> ^type <t> -)
+   (<l> ^type parameter ^arg 1)
+   (<out> ^send-message <msg>)
+   (<msg> ^type game-new-parameter
+          ^fields <f>)
+   (<status> ^performed.dialog-event.type game)
 }

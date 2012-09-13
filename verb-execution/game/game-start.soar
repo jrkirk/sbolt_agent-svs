@@ -1,6 +1,7 @@
 sp {game-start*propose*lookup-game
    (state <s> ^name game-start
              -^game
+             -^failed
               ^superstate.operator.game-name <game>)
 -->
    (<s> ^operator <o> + =)
@@ -18,6 +19,28 @@ sp {game-start*propose*store-game-context
    (<o> ^name store-game-context
         ^category svs # for now determine better or new category
         ^game <game>)
+}
+
+sp {game-start*propose*learn-new-game
+   (state <s> ^name game-start
+              ^failed true
+              ^superstate.operator.game-name <name>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name learn-new-game
+        ^category svs # for now determine better or new category
+        ^game-name <name>)
+}
+sp {game-start*apply*learn-new-game
+   (state <s> ^name game-start
+              ^operator <o>
+              ^topstate <ts>)
+   (<o> ^name learn-new-game
+        ^game-name <name>)
+-->
+   (<ts> ^current-game <cg>)
+   (<cg> ^learning <l> ^name <name>)
+   (<l> ^type action)
 }
 
 sp {game-start*apply*store-game-context
@@ -45,8 +68,23 @@ sp {game-start*send-message
    (<status> ^performed.dialog-event.type game)
 }
 
+sp {game-start*send-message*new-game
+   (state <s> ^name game-start
+              ^topstate.io.output-link <out>
+              ^topstate.status <status>
+              ^topstate.current-game.learning.type action
+              ^superstate.operator.game-name <game>)
+-->
+   (<out> ^send-message <msg>)
+   (<msg> ^type game-new-action
+          ^fields <f>)
+   (<f> ^game-name <game>)
+   (<status> ^performed.dialog-event.type game)
+}
 
 
+#############################
+#initiate
 sp {game-initiate*send-message
    (state <s> ^name game-initiate
               ^topstate.io.output-link <out>

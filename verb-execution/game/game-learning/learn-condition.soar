@@ -1,9 +1,101 @@
-sp {learn-condition*propose*
+sp {learn-condition*propose*store-condition
    (state <s> ^name learn-condition
+              ^condition <c>
+             -^stored <c>
+#             -^topstate.current-game.game.actions.conditions.<arg>.<something>
               ^topstate.current-game.learning <l>)
-   (<l> ^type condition ^parameter <type>)
+   (<l> ^type condition ^parameter <type> ^arg <arg>)
 -->
    (<s> ^operator <o> + =)
-   (<o> ^name find-action
+   (<o> ^name store-condition
         ^category svs) # for now determine better or new category)
+}
+
+sp {learn-condition*apply*store-condition*prep
+   (state <s> ^name learn-condition
+              ^parameter <pname>
+              ^topstate <ts>
+              ^condition {<cond> << clear >>}
+              ^operator.name store-condition)
+   (<ts> ^current-game <cg>)
+   (<cg> ^learning.arg <arg> ^name <gname>)
+   (<cg> ^game <g>)
+   (<g> ^game-name <gname> ^actions <a>)
+   (<a> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb move)
+   (<c> ^<arg> <conda>)
+-->
+#   (<c> ^<arg> <conda>)
+   (<s> ^stored <cond>)
+   (<conda> ^prep <prep>)
+   (<prep> ^name in ^a this ^b all ^negative true)
+}
+sp {learn-condition*apply*store-condition*attribute
+   (state <s> ^name learn-condition
+              ^parameter <pname>
+              ^topstate <ts>
+              ^condition {<cond> << blue red green orange yellow >>}
+              ^operator.name store-condition)
+   (<ts> ^current-game <cg>)
+   (<cg> ^learning.arg <arg> ^name <gname>)
+   (<cg> ^game <g>)
+   (<g> ^game-name <gname> ^actions <a>)
+   (<a> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb move)
+   (<c> ^<arg> <conda>)
+-->
+#   (<c> ^<arg> <conda>)
+   (<s> ^stored <cond>)
+   (<conda> ^attribute <atr>)
+   (<atr> ^color <cond>)
+}
+
+sp {learn-condition*propose*find-something
+   (state <s> ^name learn-condition
+              ^parameter <pname>
+              ^condition <c>
+              ^stored <c>
+              ^topstate.current-game.game.actions.conditions.<arg>
+              ^topstate.current-game.learning.arg <arg>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name find-something
+        ^category svs) # for now determine better or new category)
+}
+
+sp {learn-condition*apply*find-something
+   (state <s> ^name learn-condition
+              ^parameter <pname>
+              ^condition <c>
+              ^stored <c>
+              ^topstate.current-game.game.actions.conditions.<arg>
+              ^operator.name find-something
+              ^topstate.io.output-link <out>
+              ^topstate.status <status>
+              ^topstate.current-game.learning <l>)
+   (<l> ^type <t> ^arg <arg>)
+-->
+#   (<l> ^arg <arg> -)
+#   (<l> ^arg (+ 1 <arg>))
+#   (<l> ^type condition ^parameter <pname>)
+   (<out> ^send-message <msg>)
+   (<msg> ^type game-new-condition
+          ^fields <f>)
+   (<status> ^performed.dialog-event.type game)
+}
+
+
+sp {finish-conditions*send-message
+   (state <s> ^name finish-conditions
+              ^topstate.io.output-link <out>
+              ^topstate.status <status>
+              ^topstate.current-game.learning <l>)
+   (<l> ^type {<cond> << condition >>} ^arg <arg> ^parameter <type>)
+-->
+   (<l> ^type <cond> -)
+   (<l> ^arg <arg> -)
+   (<l> ^parameter <type> -)
+   (<l> ^type parameter ^arg (+ 1 <arg>))
+   (<out> ^send-message <msg>)
+   (<msg> ^type game-new-parameter
+          ^fields <f>)
+   (<status> ^performed.dialog-event.type game)
 }

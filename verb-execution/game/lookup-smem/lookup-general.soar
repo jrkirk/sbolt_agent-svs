@@ -20,6 +20,14 @@ sp {lookup-general*query*success
         ^top <ret>)
 }
 
+sp {lookup-general*query*failure
+   (state <s> ^name lookup-general
+              ^superstate.operator.game-name <name>
+              ^smem.result.failure <cue>)
+-->
+   (<s> ^failure true)
+}
+
 sp {lookup-general*propose*lookup-next-level
    (state <s> ^name lookup-general
               ^new <ret>
@@ -42,6 +50,16 @@ sp {lookup-general*propose*complete-lookup-general
         ^top <top>)
 }
 
+sp {lookup-general*propose*complete-lookup-general*failure
+   (state <s> ^name lookup-general
+              ^failure true)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-lookup-general
+        ^category svs
+        ^failure true)
+}
+
 sp {lookup-general*apply*complete-lookup-general
    (state <s> ^name lookup-general
               ^operator <o>
@@ -51,6 +69,16 @@ sp {lookup-general*apply*complete-lookup-general
         ^top <top>)
 -->
    (<ss> ^retrieved <top>)
+}
+
+sp {lookup-general*apply*complete-lookup-general*failure
+   (state <s> ^name lookup-general
+              ^operator <o>
+              ^superstate <ss>)
+   (<o> ^name complete-lookup-general
+        ^failure true)
+-->
+   (<ss> ^failed true)
 }
 
 sp {lookup-smem*lookup-next-level*retrieve-lte

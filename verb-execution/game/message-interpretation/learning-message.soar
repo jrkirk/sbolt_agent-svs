@@ -71,10 +71,10 @@ sp {apply*push-object-message*action-name-message
    (<l> ^type action)
    (<o> ^name push-single-word-response
         ^message <msg>
-        ^response <name>)
+        ^response {<name> <> finished})
 -->
    (<msg> ^purpose <p>)
-   (<p> ^type game-initiate-message
+   (<p> ^type action-name-message
         ^parameters <params>
         ^satisfaction <sat>)
    (<params> ^action-name <name>)
@@ -94,7 +94,85 @@ sp {action-name-message*propose*learn-action
         ^category svs)
 }
 
+##finished conditions for parameter
+sp {apply*push-object-message*conditions-finished-message
+   (state <s> ^operator <o>
+              ^topstate.current-game.learning <l>)
+   (<l> ^type {<cond> << condition >>} ^arg <arg> ^parameter <type>)
+   (<o> ^name push-single-word-response
+        ^message <msg>
+        ^response finished)
+-->
+#   (<l> ^type <cond> -)
+#   (<l> ^arg <arg> -)
+#   (<l> ^parameter <type> -)
+#   (<l> ^type parameter ^arg (+ 1 <arg>))
+   (<msg> ^purpose <p>)
+   (<p> ^type conditions-finished-message
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<params> ^parameter <type>)
+   (<sat> ^dialog-event.type game)
+}
+
+sp {conditions-finished-message*propose*finish-conditions
+   (state <s> ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>)
+   (<p> ^type conditions-finished-message
+        ^parameters <param>)
+   (<param> ^parameter <type>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name finish-conditions
+        ^parameter <type>
+        ^category svs)
+}
+
+
+
+
+##finished conditions for parameter
+sp {apply*push-object-message*parameters-finished-message
+   (state <s> ^operator <o>
+              ^topstate.current-game.learning <l>)
+   (<l> ^type parameter ^arg <arg>)
+   (<o> ^name push-single-word-response
+        ^message <msg>
+        ^response finished)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type parameters-finished-message
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<sat> ^dialog-event.type game)
+}
+
+sp {parameters-finished-message*propose*finish-parameters
+   (state <s> ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>)
+   (<p> ^type parameters-finished-message
+        ^parameters <param>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name finish-parameters
+        ^parameter <type>
+        ^category svs)
+}
+
+#sp {action-parameter-message*propose*learn-parameter
+#   (state <s> ^interaction.stack.segment <seg>)
+#   (<seg> ^purpose <p>)
+#   (<p> ^type action-parameter-message
+#        ^parameters.parameter <type>)
+#-->
+#   (<s> ^operator <o> +)
+#   (<o> ^name learn-parameter
+#        ^category svs
+#	    ^parameter <type>)
+#}
+
 ##############################
 #todo use current interaction stack
-#todo finished and verb name handling
+#todo finished and HAHA doing this now
+# verb name handling 
 #todo what does clear mean or blue mean

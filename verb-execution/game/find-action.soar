@@ -14,14 +14,10 @@
 sp {find-action*build-action-options
    (state <s> ^name find-action
               ^game.actions.action <a>
-#              ^game.facts.equivalences <eq>
               ^topstate.<thing> <obj>
               ^game-name <game>)
    (<a> ^parameters <p>)
    (<p> ^<arg>.{<param> <> type} <pa> ^<arg>.type.world.<thing> <atr>)
-#   (<eq> ^equivalence <eq1>)
-#   (<eq1> ^a.parameter <param>
-#          ^b.world <thing>)
    (<obj> ^<atr> <param>)
 -->
    (<s> ^option.<arg> <obj>)
@@ -67,10 +63,14 @@ sp {find-action*propose*complete-find-action
    (state <s> ^name find-action
               ^game.actions.action <a>          
               ^found-prep.predicate <p1>
-              ^valid-arg.a <o1>
-              ^valid-arg.b <o2>)
+              ^valid-arg <va>
+              ^valid-arg <vb>)
+   (<va> ^1 <o1>)
+   (<vb> ^2 <o2>)
    (<a> ^parameters <p>)
-   (<s> ^option.a <o1> ^option.b <o2>)
+   (<s> ^option <oa> ^option <ob>)
+   (<oa> ^1 <o1>)
+   (<ob> ^2 <o2>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name complete-find-action
