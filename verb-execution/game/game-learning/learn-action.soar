@@ -20,7 +20,8 @@ sp {learn-action*apply*store-action
 -->
    (<cg> ^game <g>)
    (<g> ^game-name <gname> ^actions <a>)
-   (<a> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb move) #todo learn verb
+   (<a> ^action <act>)
+   (<act> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb move) #todo learn verb
 }
 
 sp {learn-action*propose*find-parameter

@@ -20,7 +20,7 @@ sp {learn-condition*apply*store-condition*prep
    (<ts> ^current-game <cg>)
    (<cg> ^learning.arg <arg> ^name <gname>)
    (<cg> ^game <g>)
-   (<g> ^game-name <gname> ^actions <a>)
+   (<g> ^game-name <gname> ^actions.action <a>)
    (<a> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb move)
    (<c> ^<arg> <conda>)
 -->
@@ -38,7 +38,7 @@ sp {learn-condition*apply*store-condition*attribute
    (<ts> ^current-game <cg>)
    (<cg> ^learning.arg <arg> ^name <gname>)
    (<cg> ^game <g>)
-   (<g> ^game-name <gname> ^actions <a>)
+   (<g> ^game-name <gname> ^actions.action <a>)
    (<a> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb move)
    (<c> ^<arg> <conda>)
 -->
@@ -53,7 +53,7 @@ sp {learn-condition*propose*find-something
               ^parameter <pname>
               ^condition <c>
               ^stored <c>
-              ^topstate.current-game.game.actions.conditions.<arg>
+              ^topstate.current-game.game.actions.action.conditions.<arg>
               ^topstate.current-game.learning.arg <arg>)
 -->
    (<s> ^operator <o> + =)
@@ -66,7 +66,7 @@ sp {learn-condition*apply*find-something
               ^parameter <pname>
               ^condition <c>
               ^stored <c>
-              ^topstate.current-game.game.actions.conditions.<arg>
+              ^topstate.current-game.game.actions.action.conditions.<arg>
               ^operator.name find-something
               ^topstate.io.output-link <out>
               ^topstate.status <status>

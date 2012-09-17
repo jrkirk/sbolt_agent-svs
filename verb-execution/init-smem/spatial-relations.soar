@@ -38,7 +38,7 @@
  }
 
  smem --add {
- (<G> ^game <G1>)
+# (<G> ^game <G1>)
 # (<G1> ^game-name tic-tac-toe ^actions <A> )#^rules <R> ^goals <G> ^facts <F>)
 # 
 # #Actions

@@ -1,7 +1,7 @@
 sp {learn-parameter*propose*store-parameter
    (state <s> ^name learn-parameter
               ^parameter <p>
-             -^topstate.current-game.game.actions.parameters.<arg>
+             -^topstate.current-game.game.actions.action.parameters.<arg>
               ^topstate.current-game.learning <l>)
    (<l> ^type parameter ^arg <arg>)
 -->
@@ -18,7 +18,7 @@ sp {learn-parameter*apply*store-parameter
    (<ts> ^current-game <cg>)
    (<cg> ^learning.arg <arg> ^name <gname>)
    (<cg> ^game <g>)
-   (<g> ^game-name <gname> ^actions <a>)
+   (<g> ^game-name <gname> ^actions.action <a>)
    (<a> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb move)
 -->
    (<p> ^<arg> <parama>)
@@ -31,7 +31,7 @@ sp {learn-parameter*apply*store-parameter
 sp {learn-parameter*propose*find-condition
    (state <s> ^name learn-parameter
               ^parameter <pname>
-              ^topstate.current-game.game.actions.parameters.<arg>
+              ^topstate.current-game.game.actions.action.parameters.<arg>
               ^topstate.current-game.learning.arg <arg>)
 -->
    (<s> ^operator <o> + =)
@@ -42,7 +42,7 @@ sp {learn-parameter*propose*find-condition
 sp {learn-parameter*apply*find-condition
    (state <s> ^name learn-parameter
               ^parameter <pname>
-              ^topstate.current-game.game.actions.parameters.<arg>
+              ^topstate.current-game.game.actions.action.parameters.<arg>
               ^operator.name find-condition
               ^topstate.io.output-link <out>
               ^topstate.status <status>
@@ -56,20 +56,94 @@ sp {learn-parameter*apply*find-condition
           ^fields <f>)
    (<status> ^performed.dialog-event.type game)
 }
+
 #TODO store all
-sp {finish-parameters*send-message
+sp {finish-parameters*store-game
    (state <s> ^name finish-parameters
               ^topstate.io.output-link <out>
               ^topstate.status <status>
-              ^topstate.current-game.learning <l>)
+              ^smem.command <sc>
+              ^topstate.current-game <cg>)
+   (<cg> ^learning <l> ^game <g>)
+#   (<g> ^<something> <something2>)
+#   (<something2> ^<s3> <s4>)
+-->
+#   (interrupt)
+   (<s> ^stored game)
+   (<s> ^to-store <g>)
+   (<sc> ^store <g>)
+#   (<sc> ^store <something2>)
+}
+
+sp {finish-parameters*propose*store-next-level
+   (state <s> ^name finish-parameters
+              ^topstate.io.output-link <out>
+              ^topstate.status <status>
+              ^smem.command <sc>
+             -^to-store <something2>
+              ^to-store <ts>
+              ^topstate.current-game <cg>)
+   (<ts> ^<something> <something2>)
+   (<something2> ^<s3> <s4>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name store-game-level
+        ^to-store <something2>
+        ^category svs) # for now determine better or new category)
+}
+
+sp {finish-parameters*apply*store-next-level
+   (state <s> ^name finish-parameters
+              ^operator <o>
+              ^smem.command <sc>)
+   (<o> ^name store-game-level
+        ^to-store <something2>)
+-->
+   (<s> ^to-store <something2>)
+   (<sc> ^store <something2>)
+}
+  	
+sp {finish-parameters*propose*complete-learn-game
+   (state <s> ^name finish-parameters
+              ^stored game
+              ^topstate.current-game <cg>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-learn-game
+        ^category svs) # for now determine better or new category)
+}
+
+sp {finish-parameters*apply*complete-learn-game
+   (state <s> ^name finish-parameters
+              ^topstate.io.output-link <out>
+              ^topstate.status <status>
+              ^stored game
+              ^operator.name complete-learn-game
+              ^topstate <ts>)
+   (<ts> ^current-game <cg>)
+   (<cg> ^learning <l> ^game <g>)
    (<l> ^type parameter)
 -->
+   (<ts> ^current-game <cg> -)
 #   (<l> ^type <cond> -)
 #   (<l> ^arg <arg> -)
 #   (<l> ^parameter <type> -)
 #   (<l> ^type parameter ^arg (+ 1 <arg>))
+#   (<sc> ^store <g>)
    (<out> ^send-message <msg>)
-   (<msg> ^type game-initiate
+   (<msg> ^type game-learned
           ^fields <f>)
    (<status> ^performed.dialog-event.type game)
 }
+
+sp {prefer*store-game-level*over*complete-learn-game
+   (state <s> ^name finish-parameters
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name store-game-level)
+   (<o2> ^name complete-learn-game)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
+
