@@ -54,3 +54,31 @@ sp {check-valid-parameter*elaborate*copy-down-attrs
         ^found-prep <fprep>
         ^obj <obj>)
 }
+
+
+sp {find-parameter*elaborate*copy-down-attrs
+   (state <s> ^name find-parameter
+              ^superstate.operator <o>)
+   (<o> ^arg <arg>
+        ^atr <atr>
+        ^param <param>
+        ^found-prep <fprep>
+        ^objd <objd>
+        ^cond <conda>)
+-->
+   (<s> ^arg <arg>
+        ^atr <atr>
+        ^param <param>
+        ^objd <objd>
+        ^found-prep <fprep>
+        ^cond <conda>)
+}
+
+sp {find-parameter*elaborate*object-desc
+   (state <s> ^name find-parameter)
+   (<s> ^objd <objd>
+        ^cond <conda>)
+   (<conda> ^attribute.<type> <atr>)
+-->
+   (<objd> ^word <atr>)
+}

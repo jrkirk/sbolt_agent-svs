@@ -1,0 +1,103 @@
+
+sp {find-parameter*propose*index-object
+   (state <s> ^name find-parameter
+             -^obj <objs>
+              ^objd <objd>)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name index-object
+        ^return-all true
+        ^category object-processing
+	    ^object <objd>)
+}
+
+sp {find-parameter*apply*index-object
+   (state <s> ^name find-parameter
+              ^operator <o>
+              ^atr <atr>
+              ^param <param>
+              ^topstate.object <obj>
+              ^objd <objd>)
+   (<o> ^name index-object
+        ^match.id <id>)
+   (<obj> ^id <id> ^<atr> <param>)
+-->
+   (<s> ^obj <obj>)
+}
+
+sp {find-parameter*propose*find-relations
+   (state <s> ^name find-parameter
+              ^arg <arg>
+              ^obj <obj>
+              ^found-prep <fprep>
+              ^cond <cond>)
+   (<cond> ^prep <prep>)
+   (<obj> ^id <id>)
+   (<prep> ^name <name> ^a this)
+ -{(<s> ^relationships <rels>)
+   (<rels> ^with <id> ^preposition <name>)}
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name find-relations
+        ^category svs
+        ^obj <id>
+        ^ind 2
+        ^found-prep <fprep>
+        ^prep <name>) 
+}
+
+
+sp {find-parameter*check-relation*negative-all*propose*complete-find-parameter
+   (state <s> ^name find-parameter
+              ^arg <arg>
+              ^obj <obj>
+              ^relationships <rels>
+              ^cond <conda>)
+   (<rels> ^with <id> ^preposition <name> ^failure none-found)
+   (<conda> ^prep <prep>)
+   (<obj> ^id <id>)
+   (<prep> ^name <name> ^a this ^b all ^negative true)
+-->
+   (<s> ^operator <o> + =)
+   (<o> ^name complete-find-parameter
+        ^obj <obj>
+        ^category svs) 
+}
+#handle no prep
+#sp {find-parameter*check-relation*negative-all*propose*complete-find-parameter-failed
+#   (state <s> ^name find-parameter
+#              ^arg <arg>
+#              ^obj <obj>
+#              ^relationships <rels>
+#              ^cond <conda>)
+#   (<rels> ^with <id> ^preposition <name> ^relations.matched true)
+#   (<conda> ^prep <prep>)
+#   (<obj> ^id <id>)
+#   (<prep> ^name <name> ^a this ^b all ^negative true)
+#-->
+#   (<s> ^operator <o> + =)
+#   (<o> ^name complete-find-parameter-failed
+#        ^category svs) 
+#}
+
+sp {find-parameter*apply*complete-find-parameter
+   (state <s> ^name find-parameter
+              ^arg <arg>
+              ^superstate <ss>
+              ^operator <o>)
+   (<o> ^name complete-find-parameter
+        ^obj <obj>)
+-->
+   (<ss> ^valid-arg.<arg> <obj>)
+}
+
+#todo failure handle better
+#sp {find-parameter*apply*complete-find-parameter-failed
+#   (state <s> ^name find-parameter
+#              ^arg <arg>
+#              ^obj <obj>
+#              ^superstate <ss>
+#              ^operator.name complete-find-parameter-failed)
+#-->
+#   (<ss> ^valid-arg.<arg> <obj>)
+#}

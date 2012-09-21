@@ -8,11 +8,30 @@ sp {prefer*complete-invalid-parameter*over*complete-valid-parameter
    (<s> ^operator <o1> > <o2>)
 }
 
+sp {prefer*complete-find-parameter*over*complete-find-parameter-failed
+   (state <s> ^name find-parameter
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name complete-find-parameter)
+   (<o2> ^name complete-find-parameter-failed)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+
 sp {prefer*check-valid-parameter*over*complete-find-action
    (state <s> ^name find-action
               ^operator <o1> +
               ^operator <o2> +)
    (<o1> ^name check-valid-parameter)
+   (<o2> ^name complete-find-action)
+-->
+   (<s> ^operator <o1> < <o2>)
+}
+sp {prefer*find-parameter*over*complete-find-action
+   (state <s> ^name find-action
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name find-parameter)
    (<o2> ^name complete-find-action)
 -->
    (<s> ^operator <o1> < <o2>)
@@ -29,6 +48,26 @@ sp {prefer*check-valid-parameter*over*complete-find-action
 #}
 
 
+sp {prefer*find-relations*over*complete-find-parameter
+   (state <s> ^name find-parameter
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name find-relations)
+   (<o2> ^name complete-find-parameter)
+-->
+   (<s> ^operator <o1> < <o2>)
+}
+
+sp {prefer*complete-find-parameter-failed*over*find-relations
+   (state <s> ^name find-parameter
+              ^operator <o1> +
+              ^operator <o2> +)
+   (<o1> ^name complete-find-parameter-failed)
+   (<o2> ^name find-relations)
+-->
+   (<s> ^operator <o1> > <o2>)
+}
+#################33
 sp {prefer*find-relations*over*complete-valid-parameter
    (state <s> ^name check-valid-parameter
               ^operator <o1> +

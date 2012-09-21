@@ -19,7 +19,7 @@ sp {learn-parameter*apply*store-parameter
    (<cg> ^learning.arg <arg> ^name <gname>)
    (<cg> ^game <g>)
    (<g> ^game-name <gname> ^actions.action <a>)
-   (<a> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb move)
+   (<a> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb <aname>)
 -->
    (<p> ^<arg> <parama>)
    (<c> ^<arg> <conda>)

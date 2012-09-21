@@ -29,7 +29,7 @@ sp {learn-condition*apply*store-condition*prep
    (<conda> ^prep <prep>)
    (<prep> ^name in ^a this ^b all ^negative true)
 }
-sp {learn-condition*apply*store-condition*attribute
+sp {learn-condition*apply*store-condition*attribute*color
    (state <s> ^name learn-condition
               ^parameter <pname>
               ^topstate <ts>
@@ -46,6 +46,25 @@ sp {learn-condition*apply*store-condition*attribute
    (<s> ^stored <cond>)
    (<conda> ^attribute <atr>)
    (<atr> ^color <cond>)
+}
+
+sp {learn-condition*apply*store-condition*attribute*shape
+   (state <s> ^name learn-condition
+              ^parameter <pname>
+              ^topstate <ts>
+              ^condition {<cond> << square cylinder rectangle triangle >>}
+              ^operator.name store-condition)
+   (<ts> ^current-game <cg>)
+   (<cg> ^learning.arg <arg> ^name <gname>)
+   (<cg> ^game <g>)
+   (<g> ^game-name <gname> ^actions.action <a>)
+   (<a> ^name <aname> ^conditions <c> ^result <res> ^parameters <p> ^verb move)
+   (<c> ^<arg> <conda>)
+-->
+#   (<c> ^<arg> <conda>)
+   (<s> ^stored <cond>)
+   (<conda> ^attribute <atr>)
+   (<atr> ^shape <cond>)
 }
 
 sp {learn-condition*propose*find-something

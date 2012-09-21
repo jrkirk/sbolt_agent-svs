@@ -44,7 +44,7 @@ sp {check-valid-parameter*apply*describe-object
    (<s> ^described <obj>)
    (<objd> ^desc <desc> ^object <obj>)
 }
-
+#quicker without using describe object?
 sp {check-valid-parameter*check-attribute*propose*complete-valid-parameter
    (state <s> ^name check-valid-parameter
               ^obj <obj>
@@ -52,7 +52,7 @@ sp {check-valid-parameter*check-attribute*propose*complete-valid-parameter
               ^cond <cond>)
    (<objd> ^object <obj> ^desc <desc>)
    (<cond> ^attribute.<a> <word>)
-   (<desc> ^adjective <word>)
+   (<desc> ^<< adjective word >> <word>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name complete-valid-parameter
@@ -67,6 +67,7 @@ sp {check-valid-parameter*check-attribute*propose*complete-invalid-parameter
    (<objd> ^object <obj> ^desc <desc>)
    (<cond> ^attribute.<a> <word>)
    (<desc> -^adjective <word>)
+   (<desc> -^word <word>)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name complete-invalid-parameter

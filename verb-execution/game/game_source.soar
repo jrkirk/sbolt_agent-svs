@@ -3,7 +3,8 @@ source find-action.soar
 source elaborations.soar
 source game-start.soar
 source start-turn.soar
-source check-valid-parameter.soar
+#source check-valid-parameter.soar
+source find-parameter.soar
 source preferences.soar
 
 pushd lookup-smem
