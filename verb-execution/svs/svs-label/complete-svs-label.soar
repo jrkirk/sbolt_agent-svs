@@ -426,10 +426,11 @@ sp {svs-label*apply*complete-svs-label*direct*mark-processed*new-prep
    (<ss> ^operator.message <m>)
    (<objs> ^type <type>)
    (<s> ^predicate <p1>)
-   (<p1> ^name <type>)
+   (<p1> ^name <type>) #todo change to prep-name?
    (<ss> ^superstate <sss>)
 -->
    (<p> ^prep <type>)
+   (<p1> ^prep-name <type>)
    (<sc> ^store <p1> ^store <p>)  
    (<status> ^performed.learning-event.type preposition)
    (<ol> ^send-message <msg>)

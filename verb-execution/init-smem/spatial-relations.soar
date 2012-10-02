@@ -9,7 +9,7 @@
 
 
 # Comment out this section to remove all built in prepositions
- (<preps> ^prep left-of ^prep right-of ^prep behind ^prep in-front-of ^prep near ^prep in)
+ (<preps> ^prep left-of ^prep right-of ^prep behind ^prep in-front-of ^prep near ^prep in ^prep above)
 # (<P345> ^all-aligned false ^name left-of ^relation <R209> <R210> <R211> )
 # (<P502> ^all-aligned false ^name right-of ^relation <R325> <R326> <R327> )
 # (<P655> ^all-aligned false ^name behind ^relation <R441> <R442> <R443> )
@@ -58,6 +58,24 @@
 # (<t5> ^world <w5>)
 # (<w5> ^object category)
 # (<res> ^owns <location>)
+  
+ (<G1> ^game-name tic-tac-toe ^actions <A> )#^rules <R> ^goals <G> ^facts <F>)
+ (<A> ^action <ac1>)
+ (<ac1> ^name move ^conditions <c> ^result <res> ^parameters <p> ^verb move)
+ (<c> ^1 <conda> ^2 <condb>)
+ (<condb> ^prep <prep4> ^prep <prep5>)
+ (<conda> ^prep <prep3> ^attribute <atr3>)
+ (<prep3> ^name in ^a this ^b INDEF ^negative true ^btype location)
+ (<atr3> ^attr blue)
+ (<prep4> ^name above ^a this ^b INDEF ^negative false ^btype block)
+ (<prep5> ^name in ^a this ^b INDEF ^negative true ^btype block)
+ (<p> ^1 <parama> ^2 <paramb>)
+ (<parama> ^type <t4> ^block <obj>)
+ (<t4> ^world <w4>)
+ (<w4> ^object category)
+ (<paramb> ^type <t5> ^location <location>)
+ (<t5> ^world <w5>)
+ (<w5> ^object category)
  
  #Goals
 # (<G> ^owns <loc1> <loc2> <loc3> ^adjacent <adj> ^adjacent <adj2>)
@@ -94,6 +112,7 @@
  (<P968> ^all-aligned false ^prep-name near ^name near ^relation <R676> <R677> <R678> )
  (<P2967> ^all-aligned true ^prep-name in ^name in ^relation <R2298> <R2299> <R2300> )
  (<P1450> ^all-aligned false ^prep-name outside ^name outside ^relation <R246> <R247> <R248>)
+ (<P1147> ^all-aligned false ^prep-name above ^name above ^relation <R3326> <R3327> <R3328>)
  (<R209> ^avg 0 ^axis 1 ^bottom 0 ^count 0 ^squaredsum 0 ^sum 0 ^top 0 ^type y-aligned )
  (<R210> ^avg 0 ^axis 2 ^bottom 0 ^count 0 ^squaredsum 0 ^sum 0 ^top 0 ^type z-aligned )
  (<R211> ^avg 0.2604607939720154 ^axis 0 ^bottom 0 ^count 1 ^dist 0.2604607939720154 ^squaredsum 0.0678398251965326 ^sum 0.2604607939720154 ^top 0.5209215879440308 ^type x-less-than )
@@ -115,4 +134,7 @@
  (<R246> ^avg 0.25 ^axis 0 ^bottom 0.0 ^count 4 ^dist 0.056 0.0471 0.293 0.0308 ^squaredsum 0.0921 ^sum 0.4273 ^top 1.0 ^type x-less-than x-greater-than x-aligned)
  (<R247> ^avg 0 ^axis 2 ^bottom 0 ^count 0 ^squaredsum 0 ^sum 0 ^top 0 ^type z-aligned)
  (<R248> ^avg 0.25 ^axis 1 ^bottom 0.0 ^count 4 ^dist 0.076 0.082 0.71 0.055 ^squaredsum 0.52 ^sum 0.926 ^top 1.0 ^type y-aligned y-greater-than y-less-than)
+ (<R3326> ^avg 0 ^axis 2 ^bottom 0 ^count 0 ^squaredsum 0 ^sum 0 ^top 0 ^type z-aligned)
+ (<R3327> ^avg 0 ^axis 0 ^bottom 0 ^count 0 ^squaredsum 0 ^sum 0 ^top 0 ^type x-aligned)
+ (<R3328> ^avg 0.0863720625638962 ^axis 1 ^bottom 0.0705020772583897 ^count 4 ^dist 0.0875137522816658 0.0933558717370033 0.0710683241486549 0.0935503020882607 ^squaredsum 0.0301763413442957 ^sum 0.3454882502555847 ^top 0.1022420478694026 ^type y-greater-than)
  }

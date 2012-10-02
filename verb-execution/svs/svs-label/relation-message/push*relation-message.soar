@@ -9,7 +9,8 @@
 #}
 
 sp {apply*push-object-message*relation-message
-   (state <s> ^operator <o>)
+   (state <s> ^operator <o>
+              -^topstate.current-game.learning)#TODO fix hack
    (<o> ^name push-object-message
         ^message <msg>
         ^object <obj>

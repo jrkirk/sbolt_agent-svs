@@ -11,9 +11,13 @@ sp {learn-condition*elaborate*copy-down-attrs
    (state <s> ^name learn-condition
               ^superstate.operator <o>)
    (<o> ^condition <cond>
+        ^spec <spec>
+        ^prep <prep>
 	    ^parameter <type>)
 -->
    (<s> ^condition <cond>
+        ^spec <spec>
+        ^prep <prep>
 	    ^parameter <type>)
 }
 

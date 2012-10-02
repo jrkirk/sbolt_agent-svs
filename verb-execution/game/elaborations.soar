@@ -62,7 +62,7 @@ sp {find-parameter*elaborate*copy-down-attrs
    (<o> ^arg <arg>
         ^atr <atr>
         ^param <param>
-        ^found-prep <fprep>
+#        ^found-prep <fprep>
         ^objd <objd>
         ^cond <conda>)
 -->
@@ -70,7 +70,7 @@ sp {find-parameter*elaborate*copy-down-attrs
         ^atr <atr>
         ^param <param>
         ^objd <objd>
-        ^found-prep <fprep>
+#        ^found-prep <fprep>
         ^cond <conda>)
 }
 
@@ -81,4 +81,15 @@ sp {find-parameter*elaborate*object-desc
    (<conda> ^attribute.<type> <atr>)
 -->
    (<objd> ^word <atr>)
+}
+
+sp {find-parameter*elaborate*found-possible-match
+   (state <s> ^name find-parameter
+              ^found-prep <fprep>)
+   (<fprep> ^type <name>)
+   (<s> ^found-possible <fp>)
+   (<fp> ^prep <prep> ^obj <obj>)
+   (<prep> ^name <name>)
+-->
+   (<fprep> ^obj <obj>)
 }

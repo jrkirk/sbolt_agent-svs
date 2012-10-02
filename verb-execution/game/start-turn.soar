@@ -6,7 +6,7 @@ sp {start-turn*propose*find-action
    (<o> ^name find-action
         ^category svs) # for now determine better or new category)
 }
-
+#handle failed object/action look up
 sp {start-turn*propose*do-action
    (state <s> ^name start-turn
               ^action <action>

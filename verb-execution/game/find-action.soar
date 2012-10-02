@@ -30,17 +30,17 @@ sp {find-action*propose*lookup-preposition
    (<a> ^parameters <p> ^conditions <c>)
    (<c> ^<arg> <conda>)
    (<conda> ^prep <prep>)
-   (<prep> ^name <name> ^a this)
+   (<prep> ^name in ^a this)
 -->
    (<s> ^operator <o> + =)
    (<o> ^name lookup-preposition
         ^category svs
-        ^type <name>)
+        ^type in)
 }
 
 sp {find-action*propose*find-parameter
    (state <s> ^name find-action
-              ^found-prep <fprep>
+#              ^found-prep <fprep>
              -^valid-arg.<arg> <something>
               ^game.actions.action <a>)
    (<a> ^parameters <p> ^conditions <c>)
@@ -54,7 +54,7 @@ sp {find-action*propose*find-parameter
         ^atr <atr>
         ^objd <objd>
         ^param <param>
-        ^found-prep <fprep>
+#        ^found-prep <fprep>
         ^cond <conda>)
    (<objd> ^word object)
 }

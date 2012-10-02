@@ -30,13 +30,14 @@ sp {action-parameter-message*propose*learn-parameter
 	    ^parameter <type>)
 }
 
-############################## the block is clear
+############################## the block is blue
 sp {apply*push-object-message*parameter-condition-message
    (state <s> ^operator <o>
               ^topstate.current-game.learning <l>)
    (<l> ^type condition ^parameter <type>)
    (<o> ^name push-object-message
         ^message <msg>
+       -^relation
         ^object <obj>)
    (<obj> ^specifier DEF
           ^word {<cond> <> <type>}
@@ -60,6 +61,48 @@ sp {parameter-condition-message*propose*learn-condition
    (<s> ^operator <o> +)
    (<o> ^name learn-condition
         ^category svs
+        ^prep none
+        ^spec none
+        ^condition <cond>
+	    ^parameter <type>)
+}
+
+
+### the block is in a location
+sp {apply*push-object-message*parameter-condition-message*relation
+   (state <s> ^operator <o>
+              ^topstate.current-game.learning <l>)
+   (<l> ^type condition ^parameter <type>)
+   (<o> ^name push-object-message
+        ^message <msg>
+        ^relation.word <prep>
+        ^object <obj>
+        ^relation.p2.object {<obj1> <> <obj>})
+   (<obj> ^specifier DEF
+          ^word <type>)
+   (<obj1> ^specifier {<spec> << INDEF DEF >>}
+          ^word <cond>)
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type parameter-condition-message-relation
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<params> ^parameter <type> ^condition <cond> ^prep <prep> ^spec <spec>)
+   (<sat> ^dialog-event.type game)
+}
+
+sp {parameter-condition-message-relation*propose*learn-condition
+   (state <s> ^interaction.stack.segment <seg>)
+   (<seg> ^purpose <p>)
+   (<p> ^type parameter-condition-message-relation
+        ^parameters <param>)
+   (<param> ^parameter <type> ^condition <cond> ^prep <prep> ^spec <spec>)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name learn-condition
+        ^category svs
+        ^prep <prep>
+        ^spec <spec>
         ^condition <cond>
 	    ^parameter <type>)
 }
