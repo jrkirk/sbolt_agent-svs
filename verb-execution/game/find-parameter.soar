@@ -60,17 +60,22 @@ sp {find-parameter*propose*find-relations
         ^prep <name>) 
 }
 
-#todo make sure it only cares about btype
 sp {find-parameter*check-relation*negative-all*propose*found-possible-prep-match
    (state <s> ^name find-parameter
               ^arg <arg>
+              ^atr <atr>
               ^obj <obj>
+              ^topstate <ts>
               ^relationships <rels>
               ^cond <conda>)
-   (<rels> ^with <id> ^preposition <name> ^failure none-found)
+   (<rels> ^with <id> ^preposition <name>) #)^failure none-found)
    (<conda> ^prep <prep>)
    (<obj> ^id <id>)
    (<prep> ^name <name> ^a this ^b << INDEF DEF >> ^negative true ^btype <btype>)
+ -{(<rels> ^relations <r>)
+   (<r> ^matched true ^obj <obj-id>)
+   (<ts> ^object <o1>)
+   (<o1> ^id <obj-id> ^<atr> <btype>)}
  -{(<s> ^found-possible <fp>)
    (<fp> ^prep <prep> ^obj <obj>)}
 -->

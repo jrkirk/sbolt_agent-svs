@@ -63,13 +63,15 @@ sp {parameter-condition-message*propose*learn-condition
         ^category svs
         ^prep none
         ^spec none
+        ^negative false
         ^condition <cond>
 	    ^parameter <type>)
 }
 
 
 ### the block is in a location
-sp {apply*push-object-message*parameter-condition-message*relation
+###TODO: fix positive/negative NULL parse hack :(
+sp {apply*push-object-message*parameter-condition-message*relation*positive
    (state <s> ^operator <o>
               ^topstate.current-game.learning <l>)
    (<l> ^type condition ^parameter <type>)
@@ -81,13 +83,37 @@ sp {apply*push-object-message*parameter-condition-message*relation
    (<obj> ^specifier DEF
           ^word <type>)
    (<obj1> ^specifier {<spec> << INDEF DEF >>}
-          ^word <cond>)
+          -^word null
+           ^word <cond>)
 -->
    (<msg> ^purpose <p>)
    (<p> ^type parameter-condition-message-relation
         ^parameters <params>
         ^satisfaction <sat>)
-   (<params> ^parameter <type> ^condition <cond> ^prep <prep> ^spec <spec>)
+   (<params> ^parameter <type> ^condition <cond> ^prep <prep> ^spec <spec> ^negative false)
+   (<sat> ^dialog-event.type game)
+}
+
+sp {apply*push-object-message*parameter-condition-message*relation*negative
+   (state <s> ^operator <o>
+              ^topstate.current-game.learning <l>)
+   (<l> ^type condition ^parameter <type>)
+   (<o> ^name push-object-message
+        ^message <msg>
+        ^relation.word <prep>
+        ^object <obj>
+        ^relation.p2.object {<obj1> <> <obj>})
+   (<obj> ^specifier DEF
+          ^word <type>)
+   (<obj1> ^specifier {<spec> << INDEF DEF >>}
+           ^word null
+           ^word {<cond> <> null})
+-->
+   (<msg> ^purpose <p>)
+   (<p> ^type parameter-condition-message-relation
+        ^parameters <params>
+        ^satisfaction <sat>)
+   (<params> ^parameter <type> ^condition <cond> ^prep <prep> ^spec <spec> ^negative true)
    (<sat> ^dialog-event.type game)
 }
 
@@ -96,13 +122,14 @@ sp {parameter-condition-message-relation*propose*learn-condition
    (<seg> ^purpose <p>)
    (<p> ^type parameter-condition-message-relation
         ^parameters <param>)
-   (<param> ^parameter <type> ^condition <cond> ^prep <prep> ^spec <spec>)
+   (<param> ^parameter <type> ^condition <cond> ^prep <prep> ^spec <spec> ^negative <val>)
 -->
    (<s> ^operator <o> +)
    (<o> ^name learn-condition
         ^category svs
         ^prep <prep>
         ^spec <spec>
+        ^negative <val>
         ^condition <cond>
 	    ^parameter <type>)
 }

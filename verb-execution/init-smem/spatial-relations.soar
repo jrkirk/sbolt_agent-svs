@@ -59,7 +59,7 @@
 # (<w5> ^object category)
 # (<res> ^owns <location>)
   
- (<G1> ^game-name tic-tac-toe ^actions <A> )#^rules <R> ^goals <G> ^facts <F>)
+ (<G1> ^game-name connect-4 ^actions <A> )#^rules <R> ^goals <G> ^facts <F>)
  (<A> ^action <ac1>)
  (<ac1> ^name move ^conditions <c> ^result <res> ^parameters <p> ^verb move)
  (<c> ^1 <conda> ^2 <condb>)
@@ -76,6 +76,24 @@
  (<paramb> ^type <t5> ^location <location>)
  (<t5> ^world <w5>)
  (<w5> ^object category)
+ 
+#  (<G1> ^game-name 8-puzzle ^actions <A> )#^rules <R> ^goals <G> ^facts <F>)
+# (<A> ^action <ac1>)
+# (<ac1> ^name move ^conditions <c> ^result <res> ^parameters <p> ^verb move)
+# (<c> ^1 <conda> ^2 <condb>)
+# (<condb> ^prep <prep4> ^prep <prep5>)
+# (<conda> ^prep <prep3> ^attribute <atr3>)
+# (<prep3> ^name in ^a this ^b INDEF ^negative false ^btype location)
+# (<atr3> ^attr blue)
+# (<prep4> ^name above ^a this ^b INDEF ^negative false ^btype block)
+# (<prep5> ^name in ^a this ^b INDEF ^negative true ^btype block)
+# (<p> ^1 <parama> ^2 <paramb>)
+# (<parama> ^type <t4> ^block <obj>)
+# (<t4> ^world <w4>)
+# (<w4> ^object category)
+# (<paramb> ^type <t5> ^location <location>)
+# (<t5> ^world <w5>)
+# (<w5> ^object category)
  
  #Goals
 # (<G> ^owns <loc1> <loc2> <loc3> ^adjacent <adj> ^adjacent <adj2>)

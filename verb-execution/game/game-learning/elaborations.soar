@@ -13,11 +13,13 @@ sp {learn-condition*elaborate*copy-down-attrs
    (<o> ^condition <cond>
         ^spec <spec>
         ^prep <prep>
+        ^negative <val>
 	    ^parameter <type>)
 -->
    (<s> ^condition <cond>
         ^spec <spec>
         ^prep <prep>
+        ^negative <val>
 	    ^parameter <type>)
 }
 

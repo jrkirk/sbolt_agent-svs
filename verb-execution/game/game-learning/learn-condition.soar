@@ -16,6 +16,7 @@ sp {learn-condition*apply*store-condition*prep
               ^parameter <pname>
               ^topstate <ts>
               ^condition <cond>
+              ^negative <val>
               ^spec <spec>
               ^prep {<prep> <> none}
 #              ^condition {<cond> << clear >>}
@@ -30,7 +31,7 @@ sp {learn-condition*apply*store-condition*prep
 #   (<c> ^<arg> <conda>)
    (<s> ^stored <cond>)
    (<conda> ^prep <p>)
-   (<p> ^name <prep> ^a this ^b <spec> ^negative false)
+   (<p> ^name <prep> ^a this ^b <spec> ^negative <val> ^btype <cond>)
 }
 sp {learn-condition*apply*store-condition*attribute
    (state <s> ^name learn-condition
