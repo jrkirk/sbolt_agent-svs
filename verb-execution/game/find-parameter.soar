@@ -130,6 +130,7 @@ sp {find-parameter*check-relation*propose*complete-find-parameter
               ^obj <obj>
               ^atr <atr>
               ^obj <obj>
+#             -^valid-arg.<arg> <obj>
               ^cond <cond>)
   -{(<s> ^found-prep <fprep>)
    (<fprep> -^obj <obj>)}
@@ -149,6 +150,7 @@ sp {find-parameter*apply*complete-find-parameter
         ^obj <obj>)
 -->
    (<ss> ^valid-arg.<arg> <obj>)
+#   (<s> ^valid-arg.<arg> <obj>)
 }
 
 #handle no prep
@@ -156,6 +158,7 @@ sp {find-parameter*no-prep-condition*propose*complete-find-parameter
    (state <s> ^name find-parameter
               ^arg <arg>
               ^obj <obj>
+#             -^valid-arg.<arg> <obj>
              -^cond.prep)
 -->
    (<s> ^operator <o> + =)

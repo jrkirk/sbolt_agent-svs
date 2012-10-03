@@ -38,26 +38,41 @@ sp {find-action*propose*lookup-preposition
         ^type in)
 }
 
-sp {find-action*propose*find-parameter
+sp {find-action*propose*find-parameters
    (state <s> ^name find-action
 #              ^found-prep <fprep>
              -^valid-arg.<arg> <something>
               ^game.actions.action <a>)
    (<a> ^parameters <p> ^conditions <c>)
-   (<p> ^<arg>.{<param> <> type} <pa> ^<arg>.type.world.object <atr>)
-   (<c> ^<arg> <conda>)
 -->
    (<s> ^operator <o> + =)
-   (<o> ^name find-parameter
+   (<o> ^name find-parameters
         ^category svs
-        ^arg <arg>
-        ^atr <atr>
-        ^objd <objd>
-        ^param <param>
-#        ^found-prep <fprep>
-        ^cond <conda>)
-   (<objd> ^word object)
+        ^params <p>
+        ^conds <c>)
 }
+
+#sp {find-action*propose*find-parameter
+#   (state <s> ^name find-action
+##              ^found-prep <fprep>
+#             -^valid-arg.<arg> <something>
+#              ^game.actions.action <a>)
+#   (<a> ^parameters <p> ^conditions <c>)
+#   (<p> ^<arg>.{<param> <> type} <pa> ^<arg>.type.world.object <atr>)
+#   (<c> ^<arg> <conda>)
+#-->
+#   (<s> ^operator <o> + =)
+#   (<o> ^name find-parameter
+#        ^category svs
+#        ^arg <arg>
+#        ^atr <atr>
+#        ^objd <objd>
+#        ^param <param>
+##        ^found-prep <fprep>
+#        ^cond <conda>)
+#   (<objd> ^word object)
+#}
+
 
 #sp {find-action*propose*check-valid-parameter
 #   (state <s> ^name find-action
